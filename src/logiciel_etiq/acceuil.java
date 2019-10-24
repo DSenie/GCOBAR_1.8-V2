@@ -26,7 +26,7 @@ public class acceuil extends JFrame {
 	private static String laf="com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel";
 	public String bdd = Chemin+Utilitaire.InitBdd()+".accdb";	
 	JLabel label1 = new JLabel(" Mot de passe ");
-	JLabel label2 = new JLabel(" N° Operateur ");
+	JLabel label2 = new JLabel(" NÂ° Operateur ");
 	private JPasswordField mPasse = new JPasswordField();
 	private JFormattedTextField  numOPERA= new JFormattedTextField();
 	private JButton boutonAnnuler = new JButton("Annuler");
@@ -142,7 +142,7 @@ JButton boutonConfirm = new JButton("Confirmer");
 		    
         // JLabel label3 = new JLabel( (String) CConnect.Requete(query1,wini).get(0));//vsigle
 	     JLabel label3 = new JLabel( "IE / "+(String) vsigle);
-	     JLabel label4 = new JLabel("CopyRight © ENIE\\DIIE\\Dpt Informatique,2015");
+	     JLabel label4 = new JLabel("CopyRight Â© ENIE\\DIIE\\Dpt Informatique,2015");
 	    // JLabel label5 = new JLabel("Exercice  " + CConnect.Requete(query1,wini).get(1));
 	     JLabel label5 = new JLabel("Exercice  " + vexercice );
 	     label3.setBounds ( 18 , 450 , 205 , 30 ) ;
@@ -168,7 +168,7 @@ JButton boutonConfirm = new JButton("Confirmer");
          close();
          }
          else{
-         JOptionPane.showMessageDialog(null, "password ou login  erroné ", "Attention", JOptionPane.ERROR_MESSAGE);
+         JOptionPane.showMessageDialog(null, "password ou login  erronÃ© ", "Attention", JOptionPane.ERROR_MESSAGE);
            }
 	}
 
