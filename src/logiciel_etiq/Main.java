@@ -11,35 +11,6 @@ import java.awt.event.ItemEvent;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Main {
-  public static void main(String[] argv) {
-    JFrame frame = new JFrame();
-    JButton but = new JButton("eeee");
-    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    List<Object> list = new LinkedList<Object>();
-    Java2sAutoComboBox textfield;
-    list.add("java2s.com");
-    list.add("a");
-    list.add("bbbb");
-    list.add("ccc");
-    list.add("ddddddd");
-    list.add("eeeeee");
-    list.add( but);
-    textfield = new Java2sAutoComboBox(list);
-    list.remove(1);
-    textfield.setDataList(list);
-    textfield.setRenderer(new ButtonComboBoxRenderer());
-    but.addActionListener(new ActionListener() {
-	  	 public void actionPerformed(ActionEvent ae) {
-	  		 System.out.println("rrrr�");
-	  	 }});
-    
-   // textfield.setText("www.java2s.com");
-    frame.getContentPane().add(textfield);
-    frame.pack();
-    frame.setVisible(true);
-  }
-}
 
 class Java2sAutoTextField extends JTextField {
   class AutoDocument extends PlainDocument {

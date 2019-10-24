@@ -138,13 +138,13 @@ public class zone extends JFrame implements ActionListener {
 	private JLabel comb_lab = new JLabel("Zone");
 	private JLabel zone_lab = new JLabel("Code Zone");
 	private JTextField designation = new JTextField();
-	private JLabel designation_lab = new JLabel("D�signation");
+	private JLabel designation_lab = new JLabel("D?signation");
 	private JTextArea description = new JTextArea();
-	private JLabel description_lab = new JLabel("D�scription");
+	private JLabel description_lab = new JLabel("D?scription");
 	private jcombo zone_comb;
 	private Java2sAutoComboBox poste_comb;
 	final JButton buttonOk = new JButton("Ajouter ");
-	private Object[] entete = { "Code/Intitul� Poste" };
+	private Object[] entete = { "Code/Intitul? Poste" };
 	private final Tableau tab = new Tableau(entete);
 	private gestion_user use = new gestion_user();
 	private JScrollPane p = new JScrollPane(tab);
@@ -166,20 +166,20 @@ public class zone extends JFrame implements ActionListener {
 	public void composant(final String log) {
 
 		
-		 list_z = new ArrayList<String>(Arrays.asList(new String[]{"--S�lectionner une Zone--"}));
+		 list_z = new ArrayList<String>(Arrays.asList(new String[]{"--S?lectionner une Zone--"}));
 		 zone_comb = new jcombo(list_z.toArray());
 	   
 		 list_zone_tr=use.select_zone_code();	  
 		   for(int i=0;i<list_zone_tr.size();i++)
 		   {
-		          //Pour affecter une valeur de base de donn�es � un Combobox 
+		          //Pour affecter une valeur de base de donn?es ? un Combobox 
 			   zone_comb.addItem(list_zone_tr.get(i)+" "+list_zone_tr.get(i+1));
 			   i++;
 		   }
 		   
 		   
 		
-		   list_p = new ArrayList<Object>(Arrays.asList(new String[]{"---S�lectionner un Poste-----"}));
+		   list_p = new ArrayList<Object>(Arrays.asList(new String[]{"---S?lectionner un Poste-----"}));
 			//zone_comb = new jcombo(list_z.toArray());
 		   // selectioncomb.selectzone_chaine1(this,log,tab,list_z);
 
@@ -195,7 +195,7 @@ public class zone extends JFrame implements ActionListener {
 		if(!selectioncomb.prv.contains("zone"))
 		selectioncomb.prv.add("zone");
 //		for (int i = 0; i < imp.select_poste_code().size(); i++) {
-//			// Pour affecter une valeur de base de donn�es � un Combobox
+//			// Pour affecter une valeur de base de donn?es ? un Combobox
 //			poste_comb.addItem(imp.select_poste_code().get(i)+" "+imp.select_poste_code().get(i + 1));
 //			i++;
 //		}
@@ -324,7 +324,7 @@ public class zone extends JFrame implements ActionListener {
 			//	use.select_zone_jtext(designation.getText());
 				msg = "";
 				if (zone_comb.getSelectedIndex() == 0) {
-					msg += "Vous Devez d'abord S�lectionner une zone\n";
+					msg += "Vous Devez d'abord S?lectionner une zone\n";
 				} else if (existe == true) {
 					msg += "Cette Zone n'existe pas \n";
 				}
@@ -334,10 +334,10 @@ public class zone extends JFrame implements ActionListener {
 					use.setdelete_zone(zone_fi.getText(), designation.getText());
 					designation.setText("");
 					zone_comb.removeAllItems();
-					zone_comb.addItem("--S�lectionner une Zone--");
+					zone_comb.addItem("--S?lectionner une Zone--");
 					list_zone_tr=use.select_zone_code();
 					for (int i = 0; i < list_zone_tr.size(); i++) {
-						// Pour affecter une valeur de base de donn�es � un
+						// Pour affecter une valeur de base de donn?es ? un
 						// Combobox
 						zone_comb.addItem(list_zone_tr.get(i)+" "+list_zone_tr.get(i + 1));
 						i++;
@@ -353,7 +353,7 @@ public class zone extends JFrame implements ActionListener {
 					JOptionPane
 							.showMessageDialog(
 									null,
-									"Vous devez d'abord s�lectionner le poste que vous voulez supprimer",
+									"Vous devez d'abord s?lectionner le poste que vous voulez supprimer",
 									"", JOptionPane.INFORMATION_MESSAGE);
 				} else {
 					((DefaultTableModel) tab.table.getModel())
@@ -424,7 +424,7 @@ public class zone extends JFrame implements ActionListener {
 				}
 				if (comb == true) {
 					JOptionPane.showMessageDialog(null,
-							"Veuillez d'abord S�lectionner une Zone \n");
+							"Veuillez d'abord S?lectionner une Zone \n");
 				} else if (tab.table.getRowCount() == 0) {
 					JOptionPane.showMessageDialog(null,
 							"Vous devez  d'abord ajouter un poste ", "",
@@ -477,11 +477,11 @@ public class zone extends JFrame implements ActionListener {
 					}
 
 					if (desc2 == true) {
-						msg += "Veuillez remplir la d�signation \n";
+						msg += "Veuillez remplir la d?signation \n";
 					} else if (valid_j == true) {
 						msg += "Un Champ dans le tableau est vide \n";
 					} else if (repet2 == true) {
-						msg += "Il existe plusieurs ou un poste dupliqu�. \n";
+						msg += "Il existe plusieurs ou un poste dupliqu?. \n";
 					}
 
 					if (!msg.equals("")) {
@@ -490,13 +490,13 @@ public class zone extends JFrame implements ActionListener {
 
 					else {
 						JOptionPane.showMessageDialog(null,
-								"La Zone a �t� bien modifi�e");
+								"La Zone a ?t? bien modifi?e");
 						designation.setText("");
 						zone_comb.removeAllItems();
-						zone_comb.addItem("--S�lectionner une Zone--");
+						zone_comb.addItem("--S?lectionner une Zone--");
 						list_zone_tr=use.select_zone_code();
 						for (int i = 0; i < list_zone_tr.size(); i++) {
-							// Pour affecter une valeur de base de donn�es � un
+							// Pour affecter une valeur de base de donn?es ? un
 							// Combobox
 							zone_comb.addItem(list_zone_tr.get(i)+" "+list_zone_tr.get(i + 1));
 							i++;
@@ -525,7 +525,7 @@ public class zone extends JFrame implements ActionListener {
          //   System.out.println("dddddd"+existe);
 				if (existe == false) {
 					JOptionPane.showMessageDialog(null,
-							"Cette Zone existe d�j�", "",
+							"Cette Zone existe d?j?", "",
 							JOptionPane.INFORMATION_MESSAGE);
 					but_sauv.setVisible(false);
 					but_modif.setVisible(true);
@@ -572,7 +572,7 @@ public class zone extends JFrame implements ActionListener {
 				//use.select_zone_jtext(designation.getText());
 				if (existe == false) {
 					JOptionPane.showMessageDialog(null,
-							"Cette Zone existe d�j�", "",
+							"Cette Zone existe d?j?", "",
 							JOptionPane.INFORMATION_MESSAGE);
 				} else if (tab.table.getRowCount() == 0) {
 					JOptionPane.showMessageDialog(null,
@@ -616,14 +616,14 @@ public class zone extends JFrame implements ActionListener {
 								designation.getText(), description.getText());
 
 						JOptionPane.showMessageDialog(null,
-								"La zone a �t� bien ajout�e");
+								"La zone a ?t? bien ajout?e");
 						designation.setText("");
 						zone_comb.enable();
 						zone_comb.removeAllItems();
-						zone_comb.addItem("--S�lectionner une Zone--");
+						zone_comb.addItem("--S?lectionner une Zone--");
 						list_zone_tr=use.select_zone_code();
 						for (int i = 0; i < list_zone_tr.size(); i++) {
-							// Pour affecter une valeur de base de donn�es � un
+							// Pour affecter une valeur de base de donn?es ? un
 							// Combobox
 							zone_comb.addItem(list_zone_tr.get(i)
 									+ " " + list_zone_tr.get(i + 1));
@@ -632,13 +632,13 @@ public class zone extends JFrame implements ActionListener {
 					}
 
 					if (desc == true) {
-						msg += "Veuillez remplir la d�signation \n";
+						msg += "Veuillez remplir la d?signation \n";
 					} else if (valid == true) {
 						msg += "Un Champ dans le tableau est vide \n";
 					} else if (co_bo1 == false) {
-						msg += "L'effectif de poste doit �tre un nombre\n";
+						msg += "L'effectif de poste doit ?tre un nombre\n";
 					} else if (repet == true) {
-						msg += "Il existe un ou plusieur postes dupliqu�s \n";
+						msg += "Il existe un ou plusieur postes dupliqu?s \n";
 					}
 					if (!msg.equals("")) {
 						JOptionPane.showMessageDialog(null, msg);
@@ -1069,7 +1069,7 @@ public class zone extends JFrame implements ActionListener {
 				String om = tab.table.getValueAt(l, k).toString();
                // System.out.println(om);
 				if (om.trim().length() == 0
-						|| om.equals("---S�lectionner un Poste-----"))
+						|| om.equals("---S?lectionner un Poste-----"))
 
 				{
 					msg = "";

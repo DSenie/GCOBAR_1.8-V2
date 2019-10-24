@@ -126,7 +126,7 @@ public class CConnect {
 		          //           |
 		 stmt.executeUpdate(Pquery); 
        	    stmt.close();
-       	// System.out.println("mise � jour  " +nbMaj+ "  effectu�e"); 
+       	// System.out.println("mise à jour  " +nbMaj+ "  effectuée");
        	} 
         catch (SQLException e) { 
        	   

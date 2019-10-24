@@ -507,14 +507,14 @@ public class zone_process extends JFrame implements ActionListener {
 				action();
 				}
 		});
-		
+
 		profils_comb.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				action();
+
+
 			}});
 
-		
-		  
 		
 		try {
 			UIManager.setLookAndFeel(laf);

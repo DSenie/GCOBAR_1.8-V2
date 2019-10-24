@@ -44,6 +44,7 @@ public class AutoCompleteComboBox extends JPanel {
      * If all column heads are wider than the column's cells'
      * contents, then you can just use column.sizeWidthToFit().
      */
+
     private void initColumnSizes(JTable table) {
         MyTableModel model = (MyTableModel) table.getModel();
         TableColumn column = null;

@@ -7,6 +7,7 @@ import javax.swing.text.*;
 public class AutoCompleteComboBox_jcomb extends PlainDocument {
     JComboBox comboBox;
     ComboBoxModel model;
+
     JTextComponent editor;
     // flag to indicate if setSelectedItem has been called
     // subsequent calls to remove/insertString should be ignored
