@@ -154,18 +154,18 @@ public class imp_zone_produit extends JFrame {
 		  produit_comb = new jcombo(list_p.toArray());
 //	   	    selectioncomb.selectproduit(produit_jcom  ,this,log);
 	   	   
-	   	//produit_jcom.addItem("--Sï¿½lectionner un Produit--");
+	   	//produit_jcom.addItem("--Sélectionner un Produit--");
 	   	list_produit_tr=prod.select_produit_code();
 
 		 for(int i=0;i<list_produit_tr.size();i++)
 		 {
-		        //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+		        //Pour affecter une valeur de base de données é un Combobox
 			 produit_comb.addItem(list_produit_tr.get(i)+" "+list_produit_tr.get(i+1));
 			  i++;
 		 }
 		 produit_comb.setWide(true);
 		 
-		  list_po = new ArrayList<String>(Arrays.asList(new String[]{"---Sï¿½lectionner un Article-----"}));
+		  list_po = new ArrayList<String>(Arrays.asList(new String[]{"---Sélectionner un Article-----"}));
 		  article_comb = new jcombo(list_po.toArray());
 			selectioncomb.selectarticle_etq(article_comb, enie, autre, this, logi_prio);
 		 
@@ -215,8 +215,8 @@ public class imp_zone_produit extends JFrame {
 		imp_bom.addActionListener(new ActionListener() {
 	 			public void actionPerformed(ActionEvent event) {// dispose();
 	 				msg="";
-	 				if (produit_comb.getSelectedIndex()==0){msg+="veuillez sï¿½lectionner un produit \n";}
-	 				if (article_comb.getSelectedIndex()==0){msg+="veuillez sï¿½lectionner un article \n";}
+	 				if (produit_comb.getSelectedIndex()==0){msg+="veuillez sélectionner un produit \n";}
+	 				if (article_comb.getSelectedIndex()==0){msg+="veuillez sélectionner un article \n";}
 	 				if(msg.equals("")){
 	 				att= new Thread(){
 	 					public void run(){

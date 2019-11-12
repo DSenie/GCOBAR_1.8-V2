@@ -68,7 +68,7 @@ public class list_portable extends JFrame {
 	private static final long serialVersionUID = 1L;
 	public String Chemin = "c:\\GCOBAR\\";
 	public  String bdd = Chemin+Utilitaire.InitBdd()+".accdb";	
-    Object [] entete={"Code/Designation","modï¿½le","couleur","serial_number","code","ARPT"};
+    Object [] entete={"Code/Designation","modèle","couleur","serial_number","code","ARPT"};
     final Tableau tab=new Tableau(entete);
 
     final JTextField filterText = new JTextField("Recherche");
@@ -152,13 +152,13 @@ public class list_portable extends JFrame {
 		             img.paintIcon(this, g,0, 0);
 		             }  } ;
 
-		             dimension_comb.addItem("--- Sï¿½lectionner la dimension de l'etiquette ----");
+		             dimension_comb.addItem("--- Sélectionner la dimension de l'etiquette ----");
 
 						list_dimension=imp.select_dimension_etq("etq_portable");
 					 	  
 						   for(int i=0;i<list_dimension.size();i++)
 						   {
-						          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+						          //Pour affecter une valeur de base de données é un Combobox
 							   dimension_comb.addItem(list_dimension.get(i));
 							   
 						   }
@@ -391,7 +391,7 @@ public class list_portable extends JFrame {
 	                  } }}  
 		   		    	 else{
 	                		  
-	                		  JOptionPane.showMessageDialog(null, "Vous devez choisir un type d'ï¿½tiquette");
+	                		  JOptionPane.showMessageDialog(null, "Vous devez choisir un type d'étiquette");
 	                	  }
 	                  }});
 		     
@@ -406,7 +406,7 @@ public class list_portable extends JFrame {
 	                	   att = new Thread(){
 	  	 					public void run(){
 	  	 						int reponse = JOptionPane.showConfirmDialog(
-	  	 						        null, "Operation terminï¿½e. Voulez-vous ouvrir le fichier Excel ?",
+	  	 						        null, "Operation terminée. Voulez-vous ouvrir le fichier Excel ?",
 	  	 						        "Confirmation",
 	  	 						        JOptionPane.YES_NO_OPTION,
 	  	 						        JOptionPane.QUESTION_MESSAGE);
@@ -446,7 +446,7 @@ public class list_portable extends JFrame {
 		 	        			
 
 		 	        			Cell cellB2 = row1.createCell((short) 2);
-		 	        			cellB2.setCellValue("Modï¿½le");
+		 	        			cellB2.setCellValue("Modèle");
 		 	        			cellStyle = worksheet.createCellStyle();
 		 	        			cellStyle.setFillForegroundColor(HSSFColor.LIGHT_CORNFLOWER_BLUE.index);
 		 	        			cellStyle.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);

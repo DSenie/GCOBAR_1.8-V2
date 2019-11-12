@@ -425,7 +425,7 @@ public class list_fiche extends JFrame {
 		 	        			cellB7.setCellStyle(cellStyle);
 		 	        			
 		 	        			/*Cell cellB8 = row1.createCell((short) 7);
-		 	        			cellB8.setCellValue("Carte Mï¿½re");
+		 	        			cellB8.setCellValue("Carte Mére");
 		 	        			cellStyle = worksheet.createCellStyle();
 		 	        			cellStyle.setFillForegroundColor(HSSFColor.LIGHT_CORNFLOWER_BLUE.index);
 		 	        			cellStyle.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
@@ -433,7 +433,7 @@ public class list_fiche extends JFrame {
 		 	        			
 		 	        			
 		 	        			Cell cellB9 = row1.createCell((short) 8);
-		 	        			cellB9.setCellValue("Modï¿½le carte Mï¿½re");
+		 	        			cellB9.setCellValue("Modéle carte Mére");
 		 	        			cellStyle = worksheet.createCellStyle();
 		 	        			cellStyle.setFillForegroundColor(HSSFColor.LIGHT_CORNFLOWER_BLUE.index);
 		 	        			cellStyle.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
@@ -447,7 +447,7 @@ public class list_fiche extends JFrame {
 		 	        			cellB10.setCellStyle(cellStyle);
 		 	        			
 		 	        			Cell cellB11 = row1.createCell((short) 10);
-		 	        			cellB11.setCellValue("Modï¿½le Dalle");
+		 	        			cellB11.setCellValue("Modéle Dalle");
 		 	        			cellStyle = worksheet.createCellStyle();
 		 	        			cellStyle.setFillForegroundColor(HSSFColor.LIGHT_CORNFLOWER_BLUE.index);
 		 	        			cellStyle.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
@@ -664,7 +664,7 @@ public class list_fiche extends JFrame {
 ////	                								 JasperDesign jasperDesign = JRXmlLoader.load("C:\\GCOBAR\\CODE\\report1.jrxml");
 ////	                								 JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
 ////
-////	                		// - Paramï¿½tres ï¿½ envoyer au rapport
+////	                		// - Paramétres é envoyer au rapport
 ////	                		Map parameters = new HashMap();
 ////	                		// parameters.put("2200000004");
 ////	                		parameters.put("serial",tab.getTable().getValueAt(selectedRow, 4));
@@ -672,7 +672,7 @@ public class list_fiche extends JFrame {
 ////	                		// - Execution du rapport
 ////	                		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, CConnect.getInstance(bdd));
 ////
-////	                		// - Crï¿½ation du rapport au format PDF
+////	                		// - Création du rapport au format PDF
 ////	                		JasperExportManager.exportReportToPdfFile(jasperPrint, "C:\\GCOBAR\\CODE\\fichesuiveuse"+tab.getTable().getValueAt(selectedRow, 4)+".pdf");
 ////	                		} catch (JRException s) {
 ////	                		// TODO Auto-generated catch block

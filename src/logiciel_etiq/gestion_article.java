@@ -219,7 +219,7 @@ public class gestion_article {
 		    String query = "SELECT code_article,designation FROM article where code_article='"+code_article+"' or designation='"+designation+"'"; 
 		    
 		    if(CConnect.Requete(query, bdd).size()>1){
-		      JOptionPane.showMessageDialog(null,"Cette article existe dï¿½jï¿½."); 
+		      JOptionPane.showMessageDialog(null,"Cette article existe déjà.");
 		    //  System.out.println("ghghghghg");
 		    }
 		    
@@ -238,7 +238,7 @@ public class gestion_article {
 		    	    		+ ""+indice+",'"+model+"')"; 
 		    	CConnect.Insert(insert,bdd);
 		        
-		        JOptionPane.showMessageDialog(null,""+designation+" a ï¿½tï¿½ bien ajoutï¿½");
+		        JOptionPane.showMessageDialog(null,""+designation+" a été bien ajouté");
 
 			     }  
 			
@@ -252,7 +252,7 @@ public class gestion_article {
 		  String query = "SELECT designation FROM article where  designation='"+designation+"'"; 
 		  
 		    if(CConnect.Requete(query, bdd).size()>1){
-		      JOptionPane.showMessageDialog(null,"Cette article existe dï¿½jï¿½."); 
+		      JOptionPane.showMessageDialog(null,"Cette article existe déjà.");
 		      
 		    }
 		    
@@ -278,7 +278,7 @@ public class gestion_article {
 
 		    	
 		    	CConnect.Insert(update,bdd);	 
-		        JOptionPane.showMessageDialog(null,""+designation+" a ï¿½tï¿½ bien modifiï¿½");
+		        JOptionPane.showMessageDialog(null,""+designation+" a été bien modifié");
 		    }
 			} 
 		public boolean setdelete(String code_article,String designation){
@@ -296,7 +296,7 @@ public class gestion_article {
 			  
 			  String update2= "delete  from  nomoclature where code_article='"+code_article+"'"; 
 			  CConnect.Insert(update2,bdd);
-		        JOptionPane.showMessageDialog(null,""+designation+" a ï¿½tï¿½ bien supprimï¿½");
+		        JOptionPane.showMessageDialog(null,""+designation+" a été bien supprimé");
 
 			  return true;
 			//  setDefaultCloseOperation(javax.swing.JFrame.DO_NOTHING_ON_CLOSE);	

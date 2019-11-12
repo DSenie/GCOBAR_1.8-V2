@@ -126,7 +126,7 @@ public class zone_process extends JFrame implements ActionListener {
 
 	private Java2sAutoComboBox poste_comb;
 	final JButton buttonOk = new JButton("Ajouter ");
-	private Object[] entete = { "Code/Intitulï¿½ Poste", "Effectif de Poste" };
+	private Object[] entete = { "Code/Intitulé Poste", "Effectif de Poste" };
 	private final Tableau tab = new Tableau(entete);
 	//private gestion_user use = new gestion_user();
 	private gestion_zone zone = new gestion_zone();
@@ -153,22 +153,22 @@ public class zone_process extends JFrame implements ActionListener {
 	public void composant(final String log) {
 		
 		
-//		zone_comb.addItem("--Sï¿½lectionner une Zone--");
+//		zone_comb.addItem("--Sélectionner une Zone--");
 //		list_zone_tr=use.select_zone_code();
 //		for (int i = 0; i < list_zone_tr.size(); i++) {
-//			// Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox
+//			// Pour affecter une valeur de base de données é un Combobox
 //			zone_comb.addItem(list_zone_tr.get(i)+" "+list_zone_tr.get(i + 1));
 //			i++;
 //		}
 		
 		
-		  list_z = new ArrayList<Object>(Arrays.asList(new String[]{"---Sï¿½lectionner une Zone-----"}));
+		  list_z = new ArrayList<Object>(Arrays.asList(new String[]{"---Sélectionner une Zone-----"}));
 		  zone_comb = new jcombo(list_z.toArray());
 	       selectioncomb.selectzone(zone_comb ,this,log);	      
 	     
 		
 		list_pro = new ArrayList<String>(
-				Arrays.asList(new String[] { "---Sï¿½lectionner un Produit-----" }));
+				Arrays.asList(new String[] { "---Sélectionner un Produit-----" }));
 				produit_comb = new jcombo(list_pro.toArray());
 				selectioncomb.selectproduit(produit_comb ,this,log);
 				
@@ -177,7 +177,7 @@ public class zone_process extends JFrame implements ActionListener {
 		selectioncomb.selectprocess(profils_comb  ,this,log);	
 		
 		
-		   list_p = new ArrayList<Object>(Arrays.asList(new String[]{"---Sï¿½lectionner un Poste-----"}));
+		   list_p = new ArrayList<Object>(Arrays.asList(new String[]{"---Sélectionner un Poste-----"}));
 					//zone_comb = new jcombo(list_z.toArray());
 				   // selectioncomb.selectzone_chaine1(this,log,tab,list_z);
 
@@ -192,7 +192,7 @@ public class zone_process extends JFrame implements ActionListener {
 		if(!selectioncomb.prv.contains("zone_process"))
 		selectioncomb.prv.add("zone_process");
 //		for (int i = 0; i < imp.select_poste_code().size(); i++) {
-//			// Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox
+//			// Pour affecter une valeur de base de données é un Combobox
 //			poste_comb.addItem(imp.select_poste_code().get(i)+" "+imp.select_poste_code().get(i + 1));
 //			i++;
 //		}
@@ -313,12 +313,12 @@ public class zone_process extends JFrame implements ActionListener {
 			//	use.select_zone_jtext(designation.getText());
 				msg = "";
 				if (zone_comb.getSelectedIndex() == 0) {
-					msg += "Vous Devez d'abord Sï¿½lectionner une zone\n";
+					msg += "Vous Devez d'abord Sélectionner une zone\n";
 				} else if (produit_comb.getSelectedIndex() == 0) {
-					msg += "Vous Devez d'abord Sï¿½lectionner un produit\n";
+					msg += "Vous Devez d'abord Sélectionner un produit\n";
 				}
 				else if (profils_comb.getSelectedIndex() == 0) {
-					msg += "Vous Devez d'abord Sï¿½lectionner un process\n";
+					msg += "Vous Devez d'abord Sélectionner un process\n";
 				}
 				if (!msg.equals("")) {
 					JOptionPane.showMessageDialog(null, msg);
@@ -327,7 +327,7 @@ public class zone_process extends JFrame implements ActionListener {
 					String zone_fi = parts[0]; // 004
 					zone.setupdate_zone_tab_delete(zone_fi, profils_prod_c);
 					poste_comb.enable();
-					JOptionPane.showMessageDialog(null,"La Zone du process a ï¿½tï¿½ bien supprimï¿½e");
+					JOptionPane.showMessageDialog(null,"La Zone du process a été bien supprimée");
 				}
 			}
 		});
@@ -338,7 +338,7 @@ public class zone_process extends JFrame implements ActionListener {
 					JOptionPane
 							.showMessageDialog(
 									null,
-									"Vous devez d'abord sï¿½lectionner le poste que vous voulez supprimer",
+									"Vous devez d'abord sélectionner le poste que vous voulez supprimer",
 									"", JOptionPane.INFORMATION_MESSAGE);
 				} else {
 					((DefaultTableModel) tab.table.getModel())
@@ -401,12 +401,12 @@ public class zone_process extends JFrame implements ActionListener {
 				
 				// System.out.print(designation.getText()+" "+use.exist_des);
 				if (zone_comb.getSelectedIndex() == 0) {
-					msg += "Vous Devez d'abord Sï¿½lectionner une zone\n";
+					msg += "Vous Devez d'abord Sélectionner une zone\n";
 				} else if (produit_comb.getSelectedIndex() == 0) {
-					msg += "Vous Devez d'abord Sï¿½lectionner un produit\n";
+					msg += "Vous Devez d'abord Sélectionner un produit\n";
 				}
 				else if (profils_comb.getSelectedIndex() == 0) {
-					msg += "Vous Devez d'abord Sï¿½lectionner un process\n";
+					msg += "Vous Devez d'abord Sélectionner un process\n";
 				}
 				else if (tab.table.getRowCount() == 0) {
 					JOptionPane.showMessageDialog(null,
@@ -462,9 +462,9 @@ public class zone_process extends JFrame implements ActionListener {
 				 if (valid_j == true) {
 						msg += "Un Champ dans le tableau est vide \n";
 					} else if (co_bo2 == false) {
-						msg += "L'effectif de postes doit ï¿½tre un nombre ou diffï¿½rent de zero \n";
+						msg += "L'effectif de postes doit etre un nombre ou différent de zero \n";
 					} else if (repet2 == true) {
-						msg += "Il existe plusieurs ou un poste dupliquï¿½. \n";
+						msg += "Il existe plusieurs ou un poste dupliqué. \n";
 					}
 
 					if (!msg.equals("")) {
@@ -472,7 +472,7 @@ public class zone_process extends JFrame implements ActionListener {
 					}
 
 					else {
-						JOptionPane.showMessageDialog(null,"La Zone du process a ï¿½tï¿½ bien modifiï¿½e");
+						JOptionPane.showMessageDialog(null,"La Zone du process a été bien modifiée");
 						
 					}
 				}
@@ -746,7 +746,7 @@ public class zone_process extends JFrame implements ActionListener {
 				String om = tab.table.getValueAt(l, k).toString();
                // System.out.println(om);
 				if (om.trim().length() == 0
-						|| om.equals("---Sï¿½lectionner un Poste-----"))
+						|| om.equals("---Sélectionner un Poste-----"))
 
 				{
 					msg = "";

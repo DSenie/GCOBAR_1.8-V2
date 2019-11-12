@@ -177,7 +177,7 @@ public class netoyer extends JFrame {
 		selectioncomb.selectarticle_etq(article_comb1, enie, autre, this, logi_prio);
 
 		list_c = new ArrayList<String>(
-				Arrays.asList(new String[] { "--Sï¿½lectionner une Chaine--" }));
+				Arrays.asList(new String[] { "--Sélectionner une Chaine--" }));
 		chaine_comb = new jcombo(list_c.toArray());
 		selectioncomb.selectchaine(chaine_comb, this, logi_prio);
 		
@@ -297,7 +297,7 @@ public class netoyer extends JFrame {
 					// code_jtext.setText(code);
 				 	 imp.nettoyer_serial(code_jtext.getText().toString());
                           
-					 JOptionPane.showMessageDialog(null, "Les ï¿½tiquettes ont ï¿½tï¿½ bien nettoyer");
+					 JOptionPane.showMessageDialog(null, "Les étiquettes ont été bien nettoyer");
 					 retour.setEnabled(true);
 					 valid_ajou.setEnabled(true);
 					

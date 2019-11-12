@@ -63,7 +63,7 @@ public class gestion_fournisseur {
 		if (reponse== JOptionPane.YES_OPTION){
 		String update2= "delete from fournisseur where code_fourniss='"+code+"'"; 
 		CConnect.Insert(update2,bdd);
-		JOptionPane.showMessageDialog(null,"Le fournisseur a ï¿½tï¿½ bien supprimï¿½");
+		JOptionPane.showMessageDialog(null,"Le fournisseur a été bien supprimé");
 
 		}}
 	public void setupdate_fourniss(String code,String designation){
@@ -79,7 +79,7 @@ public class gestion_fournisseur {
 	String query = "SELECT * FROM fournisseur where code_fourniss='"+code+"'"; 
 
 	if(CConnect.Requete(query, bdd).size()>=1){
-	JOptionPane.showMessageDialog(null,"Ce fournisseur existe dï¿½jï¿½");
+	JOptionPane.showMessageDialog(null,"Ce fournisseur existe déjà");
 	exist=true;
 	return exist;
 	}
@@ -131,7 +131,7 @@ return resultat;
              
 			 
 			 
-	         if(rech.equals("")&&code.equals("Code rï¿½fï¿½rence")){	 
+	         if(rech.equals("")&&code.equals("Code référence")){
 	        	 String query2 = "select code_ref,"
               	 		+ "designation "
               	 		+ " from reference ";
@@ -155,7 +155,7 @@ return resultat;
 	     			return resultat;
 	     			}
 	         
-           if(!rech.equals("")&&code.equals("Code rï¿½fï¿½rence")){	 
+           if(!rech.equals("")&&code.equals("Code réfèrence")){
         	 //  System.out.println("hhhhhhh"+rech);
         	   String query5 = "select code_ref,"
              	 		+ "designation "

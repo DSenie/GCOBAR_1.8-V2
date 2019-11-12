@@ -15,66 +15,66 @@ public class gestion_recap {
 //		 						+ " and   personelle.poste=Poste.Code_Poste and personelle.poste='"+poste+"' "
 //		 								+ "and  personelle.Matricule like '%"+rech+"%' or  personelle.nom like '%"+rech+"%' or personelle.prenom like '%"+rech+"%'"
 //		 										+ "or personelle.num_tel like '%"+rech+"%' or personelle.type like '%"+rech+"%'";
-//		 if(rech.equals("")&&(chaine.equals("---Sï¿½lectionner")||zone.equals("---Sï¿½lectionner")||(poste.equals("---Sï¿½lectionner")))){
+//		 if(rech.equals("")&&(chaine.equals("---Sélectionner")||zone.equals("---Sélectionner")||(poste.equals("---Sélectionner")))){
 //			query= query.replace("  personelle.Matricule like '%"+rech+"%' or  personelle.nom like '%"+rech+"%' or personelle.prenom like '%"+rech+"%'"
 //						+ "or personelle.num_tel like '%"+rech+"%' or personelle.type like '%"+rech+"%'", "");
 //		 }else 
 //			
-//		 if(chaine.equals("---Sï¿½lectionner")){
+//		 if(chaine.equals("---Sélectionner")){
 //			 query= query.replace(" personelle.N_chaine=Chaine.code_chaine and personelle.N_chaine='"+chaine+"' "
 //		 				+ " and", "");
 //		 }
-//		 if(zone.equals("---Sï¿½lectionner")){
+//		 if(zone.equals("---Sélectionner")){
 //			 query= query.replace(" personelle.zone=zone.Code_Zone and personelle.zone='"+zone+"'"
 //		 						+ " and", "");}
-//			 else if(!zone.equals("---Sï¿½lectionner")&&(poste.equals("---Sï¿½lectionner"))){
+//			 else if(!zone.equals("---Sélectionner")&&(poste.equals("---Sélectionner"))){
 //				 
 //			 }
 //		 
-//		 if(poste.equals("---Sï¿½lectionner")){
+//		 if(poste.equals("---Sélectionner")){
 //			 query= query.replace("personelle.poste=Poste.Code_Poste and personelle.poste='"+poste+"' "
 //		 								+ "and ", "");
 //		 }
 		
 		 String query = "select Matricule,nom,prenom,num_tel,type from personelle where ";
-		 if(!rech.equals("")&&chaine.equals("---Sï¿½lectionner")&&zone.equals("---Sï¿½lectionner")&&(poste.equals("---Sï¿½lectionner"))){	 
+		 if(!rech.equals("")&&chaine.equals("---Sélectionner")&&zone.equals("---Sélectionner")&&(poste.equals("---Sélectionner"))){
 			 
 			 query=query.concat(" Matricule like '%"+rech+"%' or  nom like '%"+rech+"%' or prenom like '%"+rech+"%'"
 	 										+ " or num_tel like '%"+rech+"%' or type like '%"+rech+"%'");
 		 }
 		 
 		 
-         if(rech.equals("")&&!chaine.equals("---Sï¿½lectionner")&&zone.equals("---Sï¿½lectionner")&&poste.equals("---Sï¿½lectionner")){	 
+         if(rech.equals("")&&!chaine.equals("---Sélectionner")&&zone.equals("---Sélectionner")&&poste.equals("---Sélectionner")){
 			
 			 query=query.concat(" N_chaine='"+chaine+"'");
 			 //System.out.println("jjjjjjjjjjj"+query);
 		 }
          
-       if(rech.equals("")&&chaine.equals("---Sï¿½lectionner")&&!zone.equals("---Sï¿½lectionner")&&poste.equals("---Sï¿½lectionner")){	 
+       if(rech.equals("")&&chaine.equals("---Sélectionner")&&!zone.equals("---Sélectionner")&&poste.equals("---Sélectionner")){
 			 
 			 query=query.concat(" zone='"+zone+"'");
 		 }
          
-       if(rech.equals("")&&chaine.equals("---Sï¿½lectionner")&&zone.equals("---Sï¿½lectionner")&&!poste.equals("---Sï¿½lectionner")){	 
+       if(rech.equals("")&&chaine.equals("---Sélectionner")&&zone.equals("---Sélectionner")&&!poste.equals("---Sélectionner")){
 			 
 			 query=query.concat("   poste='"+poste+"'");
 		 }
        
-       if(!rech.equals("")&&!chaine.equals("---Sï¿½lectionner")&&zone.equals("---Sï¿½lectionner")&&poste.equals("---Sï¿½lectionner")){	 
+       if(!rech.equals("")&&!chaine.equals("---Sélectionner")&&zone.equals("---Sélectionner")&&poste.equals("---Sélectionner")){
 			 
 			 query=query.concat(" Matricule like '%"+rech+"%' or  nom like '%"+rech+"%' or prenom like '%"+rech+"%'"
 	 										+ " or num_tel like '%"+rech+"%' or type like '%"+rech+"%' and "
 	 												+ "  N_chaine='"+chaine+"'");
 		 }
        
-       if(!rech.equals("")&&chaine.equals("---Sï¿½lectionner")&&!zone.equals("---Sï¿½lectionner")&&poste.equals("---Sï¿½lectionner")){	 
+       if(!rech.equals("")&&chaine.equals("---Sélectionner")&&!zone.equals("---Sélectionner")&&poste.equals("---Sélectionner")){
 			 
 			 query=query.concat(" Matricule like '%"+rech+"%' or  nom like '%"+rech+"%' or prenom like '%"+rech+"%'"
 	 										+ " or num_tel like '%"+rech+"%' or type like '%"+rech+"%' and"
 	 												+ "  zone='"+zone+"'");
 		 }
        
-       if(!rech.equals("")&&chaine.equals("---Sï¿½lectionner")&&zone.equals("---Sï¿½lectionner")&&!poste.equals("---Sï¿½lectionner")){	 
+       if(!rech.equals("")&&chaine.equals("---Sélectionner")&&zone.equals("---Sélectionner")&&!poste.equals("---Sélectionner")){
 			 
 			 query=query.concat("  Matricule like '%"+rech+"%' or  nom like '%"+rech+"%' or prenom like '%"+rech+"%'"
 	 										+ " or num_tel like '%"+rech+"%' or type like '%"+rech+"%' "
@@ -82,31 +82,31 @@ public class gestion_recap {
 		 }
        
        
-       if(rech.equals("")&&!chaine.equals("---Sï¿½lectionner")&&!zone.equals("---Sï¿½lectionner")&&poste.equals("---Sï¿½lectionner")){	 
+       if(rech.equals("")&&!chaine.equals("---Sélectionner")&&!zone.equals("---Sélectionner")&&poste.equals("---Sélectionner")){
 			 
 			 query=query.concat("  N_chaine='"+chaine+"' and zone='"+zone+"'");
 		 }
        
-       if(rech.equals("")&&!chaine.equals("---Sï¿½lectionner")&&zone.equals("---Sï¿½lectionner")&&!poste.equals("---Sï¿½lectionner")){	 
+       if(rech.equals("")&&!chaine.equals("---Sélectionner")&&zone.equals("---Sélectionner")&&!poste.equals("---Sélectionner")){
 			 
 			 query=query.concat("  N_chaine='"+chaine+"' and"
 			 		+ "  poste='"+poste+"'");
 		 }
        
-       if(rech.equals("")&&chaine.equals("---Sï¿½lectionner")&&!zone.equals("---Sï¿½lectionner")&&!poste.equals("---Sï¿½lectionner")){	 
+       if(rech.equals("")&&chaine.equals("---Sélectionner")&&!zone.equals("---Sélectionner")&&!poste.equals("---Sélectionner")){
 			 
 			 query=query.concat("  zone='"+zone+"' and"
 			 		+ "  poste='"+poste+"'");
 		 }
        
-       if(!rech.equals("")&&!chaine.equals("---Sï¿½lectionner")&&!zone.equals("---Sï¿½lectionner")&&poste.equals("---Sï¿½lectionner")){	 
+       if(!rech.equals("")&&!chaine.equals("---Sélectionner")&&!zone.equals("---Sélectionner")&&poste.equals("---Sélectionner")){
 			 
 			 query=query.concat("  Matricule like '%"+rech+"%' or  nom like '%"+rech+"%' or prenom like '%"+rech+"%'"
 	 										+ " or num_tel like '%"+rech+"%' or type like '%"+rech+"%' "
 	 												+ " and zone='"+zone+"' and"
 			 		+ " N_chaine='"+chaine+"'");
 		 }
-       if(!rech.equals("")&&!chaine.equals("---Sï¿½lectionner")&&zone.equals("---Sï¿½lectionner")&&!poste.equals("---Sï¿½lectionner")){	 
+       if(!rech.equals("")&&!chaine.equals("---Sélectionner")&&zone.equals("---Sélectionner")&&!poste.equals("---Sélectionner")){
 			 
 			 query=query.concat("  Matricule like '%"+rech+"%' or  nom like '%"+rech+"%' or prenom like '%"+rech+"%'"
 	 										+ " or num_tel like '%"+rech+"%' or type like '%"+rech+"%' "
@@ -114,7 +114,7 @@ public class gestion_recap {
 			 		+ "  N_chaine='"+chaine+"'");
 		 }
        
-       if(!rech.equals("")&&chaine.equals("---Sï¿½lectionner")&&!zone.equals("---Sï¿½lectionner")&&!poste.equals("---Sï¿½lectionner")){	 
+       if(!rech.equals("")&&chaine.equals("---Sélectionner")&&!zone.equals("---Sélectionner")&&!poste.equals("---Sélectionner")){
 			 
 			 query=query.concat("  Matricule like '%"+rech+"%' or  nom like '%"+rech+"%' or prenom like '%"+rech+"%'"
 	 										+ " or num_tel like '%"+rech+"%' or type like '%"+rech+"%' "
@@ -122,14 +122,14 @@ public class gestion_recap {
 			 		+ "  zone='"+zone+"'");
 		 }
        
-       if(rech.equals("")&&!chaine.equals("---Sï¿½lectionner")&&!zone.equals("---Sï¿½lectionner")&&!poste.equals("---Sï¿½lectionner")){	 
+       if(rech.equals("")&&!chaine.equals("---Sélectionner")&&!zone.equals("---Sélectionner")&&!poste.equals("---Sélectionner")){
 			 
 			 query=query.concat(" N_chaine='"+chaine+"' "
 	 												+ "  and poste='"+poste+"' and"
 			 		+ "  zone='"+zone+"'");
 		 }
        
-       if(!rech.equals("")&&!chaine.equals("---Sï¿½lectionner")&&!zone.equals("---Sï¿½lectionner")&&!poste.equals("---Sï¿½lectionner")){	 
+       if(!rech.equals("")&&!chaine.equals("---Sélectionner")&&!zone.equals("---Sélectionner")&&!poste.equals("---Sélectionner")){
 			 
 			 query=query.concat("Matricule like '%"+rech+"%' or  nom like '%"+rech+"%' or prenom like '%"+rech+"%'"
 	 										+ " or num_tel like '%"+rech+"%' or type like '%"+rech+"%' and   N_chaine='"+chaine+"' "

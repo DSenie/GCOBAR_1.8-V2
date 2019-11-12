@@ -135,7 +135,7 @@ public void composant(){
 	outil_comb = new jcombo(list_o.toArray());
 	list_outil_tr=otl.select_outil_code();
 	   for(int i=0;i<list_outil_tr.size();i++)
-	   {    //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+	   {    //Pour affecter une valeur de base de données é un Combobox
 		  outil_comb.addItem(list_outil_tr.get(i)+" "+list_outil_tr.get(i+1));
 		   i++;
 	   }
@@ -257,7 +257,7 @@ valid_modif.setVisible(false);
   	list_outil_tr=otl.select_outil_code();
 	   for(int i=0;i<list_outil_tr.size();i++)
 	   {
-	          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+	          //Pour affecter une valeur de base de données é un Combobox
 		   outil_comb.addItem(list_outil_tr.get(i)+" "+list_outil_tr.get(i+1));
 		   i++;
 	   }
@@ -307,7 +307,7 @@ valid_modif.setVisible(false);
 	            	   msg="";
 	            	   desc=false;
 	            	   if(outil_comb.getSelectedIndex()==0){
-	                	msg+="Vous Devez D'abord Sï¿½lectionner un outil \n";
+	                	msg+="Vous Devez D'abord Sélectionner un outil \n";
 	                   }
 	            	   else if(intitule.getText().equals("")) {	desc=true;
 	                          msg+="Veuillez remplir l'intitule \n";
@@ -320,14 +320,14 @@ valid_modif.setVisible(false);
  		  	            	}
 	            	 	else{
 	    	            	 otl.setupdate_outil(outil.getText(), intitule.getText());
-	    	            	 JOptionPane.showMessageDialog(null,"L'outil a ï¿½tï¿½ bien modifier");
+	    	            	 JOptionPane.showMessageDialog(null,"L'outil a été bien modifier");
 	   	    	             intitule.setText("");
 	    	            		 outil_comb.removeAllItems();
 	    	            	  	 outil_comb.addItem("---Selectionner un outil-----");
 	    	            	  	list_outil_tr=otl.select_outil_code();
 	    	            		   for(int i=0;i<list_outil_tr.size();i++)
 	    	            		   {
-	    	            		          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+	    	            		          //Pour affecter une valeur de base de données é un Combobox
 	    	            			   outil_comb.addItem(list_outil_tr.get(i)+" "+list_outil_tr.get(i+1));
 	    	            			   i++;
 	    	            		   }
@@ -349,7 +349,7 @@ valid_modif.setVisible(false);
               otl.outillage(intitule.getText());
 
               if(otl.ex==true){
-              	 JOptionPane.showMessageDialog(null, "Cet outil existe dï¿½ja", "",
+              	 JOptionPane.showMessageDialog(null, "Cet outil existe déja", "",
               	 JOptionPane.INFORMATION_MESSAGE);
               	   but_sauv.setVisible(false);
                    but_modif.setVisible(true);
@@ -386,7 +386,7 @@ valid_modif.setVisible(false);
                       msg+="Veuillez remplir l'intitule \n";}
         	 	else if(outil.getText().equals("")) {	desc=true;
                 msg+="Veuillez remplir le code outil \n";}
-        	 	else if (otl.ex==true) {msg+="Cet outil existe dï¿½ja \n";}
+        	 	else if (otl.ex==true) {msg+="Cet outil existe déja \n";}
         	 	else{
         	 		
         	  exist= otl.ajouter_outil(outil.getText(), intitule.getText());
@@ -395,7 +395,7 @@ valid_modif.setVisible(false);
         	  	list_outil_tr=otl.select_outil_code();
         		   for(int i=0;i<list_outil_tr.size();i++)
         		   {
-        		          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+        		          //Pour affecter une valeur de base de données é un Combobox
         			   outil_comb.addItem(list_outil_tr.get(i)+" "+list_outil_tr.get(i+1));
         			   i++;
         		   }
@@ -405,7 +405,7 @@ valid_modif.setVisible(false);
         	 	}
         	 	
         	 	if(exist==false&&desc==false&&otl.ex==false){
-        	 		JOptionPane.showMessageDialog(null,"L'outil a ï¿½tï¿½ bien ajouter");
+        	 		JOptionPane.showMessageDialog(null,"L'outil a été bien ajouter");
         	 		 outil_comb.enable();
                      intitule.setText("");
         	 	}

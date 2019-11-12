@@ -83,7 +83,7 @@ public void composant(){
 
 
 	final gestion_fournisseur forn=new gestion_fournisseur();
-	  Object [] entete={"code rï¿½fï¿½rence ou famille","designation"};
+	  Object [] entete={"code réfèrence ou famille","designation"};
 	    final Tableau tab=new Tableau(entete);
 	    JScrollPane p=new JScrollPane(tab);
 		   tab.setStyle(2);
@@ -104,8 +104,8 @@ public void composant(){
 	   selectioncomb.prv.add("recap_codification");
 		   
 		   code_combo.addItem("---Selectionner une Codification-----");
-		          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
-			   code_combo.addItem("Code rï¿½fï¿½rence");
+		          //Pour affecter une valeur de base de données é un Combobox
+			   code_combo.addItem("Code réfèrence");
 			   code_combo.addItem("Code famille");
 
 
@@ -120,7 +120,7 @@ public void composant(){
 		                	 if(rech_jtext.getText().equals("")&&code_combo.getSelectedIndex()==0
 		                			 ){
 		                		 JOptionPane.showMessageDialog(null, 
-		      	 	      				"Vous devez au moins selectionner un critï¿½re", "",
+		      	 	      				"Vous devez au moins selectionner un critére", "",
 		      	 	  		        JOptionPane.INFORMATION_MESSAGE);
 		                	 }
 		                	 else{
@@ -136,7 +136,7 @@ public void composant(){
 		           			
 		           		 if(code_combo.getSelectedIndex()==1){
 	                		// forn.select();
-	                		 list_recap_code=forn.recherche("Code rï¿½fï¿½rence",rech_jtext.getText());
+	                		 list_recap_code=forn.recherche("Code réfèrence",rech_jtext.getText());
 	                		 for(i=0;i<list_recap_code.size();i=i+2){tab.ajouter();}
 	                			int j=1;
 	                			int l = 0; i=1;
@@ -193,7 +193,7 @@ public void composant(){
 		           				
 		                	 if(tab.table.getRowCount()==0){
 		                		 JOptionPane.showMessageDialog(null, 
-			      	 	      				"rï¿½fï¿½rence ou code famille inexistant", "",
+			      	 	      				"réfèrence ou code famille inexistant", "",
 			      	 	  		        JOptionPane.INFORMATION_MESSAGE);
 		                	 }
 		           		 co =  "Nombre  :  "+tab.table.getRowCount();
@@ -315,7 +315,7 @@ public void composant(){
 	    recherche.setFont(new Font("Comic Sans MS", Font.BOLD, 13));
 	    recherche.setPreferredSize(new Dimension(120, 33));
 	     
-    setTitle("Recherche avancï¿½" );
+    setTitle("Recherche avancée" );
     setSize(1000, 600);
     setLocationRelativeTo(null);          
     setVisible(true);

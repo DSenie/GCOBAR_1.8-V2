@@ -155,22 +155,22 @@ gestion_produit prod=new gestion_produit();
 		  produit_comb = new jcombo(list_p.toArray());
 //	   	    selectioncomb.selectproduit(produit_jcom  ,this,log);
 	   	   
-	   	//produit_jcom.addItem("--Sï¿½lectionner un Produit--");
+	   	//produit_jcom.addItem("--Sélectionner un Produit--");
 	   	list_produit_tr=prod.select_produit_code();
 
 		 for(int i=0;i<list_produit_tr.size();i++)
 		 {
-		        //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+		        //Pour affecter une valeur de base de données é un Combobox
 			 produit_comb.addItem(list_produit_tr.get(i)+" "+list_produit_tr.get(i+1));
 			  i++;
 		 }
 		 produit_comb.setWide(true);
 		 
-		  list_po = new ArrayList<String>(Arrays.asList(new String[]{"---Sï¿½lectionner un Poste-----"}));
+		  list_po = new ArrayList<String>(Arrays.asList(new String[]{"---Sélectionner un Poste-----"}));
 		  poste_comb = new jcombo(list_po.toArray());
 	      selectioncomb.selectposte(poste_comb ,this,logi_prio);
 		 
-		  num_poste.addItem("--Sï¿½lectionner un Numero de Poste--");
+		  num_poste.addItem("--Sélectionner un Numero de Poste--");
 
 
 	
@@ -178,7 +178,7 @@ gestion_produit prod=new gestion_produit();
 				public void actionPerformed(ActionEvent e) {
 					int profil=0;
 					num_poste.removeAllItems();
-					num_poste.addItem("--Sï¿½lectionner un Numero de Poste--");
+					num_poste.addItem("--Sélectionner un Numero de Poste--");
 					 String[] part_poste = poste_comb.getSelectedItem().toString().split(" ");
 				     String part1 = part_poste[0];
 				     String[] part_prod = produit_comb.getSelectedItem().toString().split(" ");
@@ -192,7 +192,7 @@ gestion_produit prod=new gestion_produit();
 				    // System.out.println("rrrrr"+list_poste_num);
 					 for(int i=1;i<=list_poste_num;i++)
 					   {
-					          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+					          //Pour affecter une valeur de base de données é un Combobox
 						   num_poste.addItem("Poste "+i);
 						
 					   }}
@@ -240,9 +240,9 @@ gestion_produit prod=new gestion_produit();
 		imp_bom.addActionListener(new ActionListener() {
 	 			public void actionPerformed(ActionEvent event) {// dispose();
 	 				msg="";
-	 				if (produit_comb.getSelectedIndex()==0){msg+="veuillez sï¿½lectionner un produit \n";}
-	 				if (poste_comb.getSelectedIndex()==0){msg+="veuillez sï¿½lectionner un poste \n";}
-	 				if (num_poste.getSelectedIndex()==0){msg+="veuillez sï¿½lectionner un numï¿½ro de poste \n";}
+	 				if (produit_comb.getSelectedIndex()==0){msg+="veuillez sélectionner un produit \n";}
+	 				if (poste_comb.getSelectedIndex()==0){msg+="veuillez sélectionner un poste \n";}
+	 				if (num_poste.getSelectedIndex()==0){msg+="veuillez sélectionner un numéro de poste \n";}
 	 				if(msg.equals("")){
 	 				att= new Thread(){
 	 					public void run(){

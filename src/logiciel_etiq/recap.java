@@ -106,16 +106,16 @@ public void composant(final String log){
 	   
 	  
 
-	      list_z = new ArrayList<String>(Arrays.asList(new String[]{"---Sï¿½lectionner une Zone-----"}));
+	      list_z = new ArrayList<String>(Arrays.asList(new String[]{"---Sélectionner une Zone-----"}));
 	      zone_combo = new jcombo(list_z.toArray());
 	      selectioncomb.selectzone(zone_combo ,this,log);
 	      
-	       list_c = new ArrayList<String>(Arrays.asList(new String[]{"---Sï¿½lectionner une Chaine-----"}));
+	       list_c = new ArrayList<String>(Arrays.asList(new String[]{"---Sélectionner une Chaine-----"}));
 	       chaine_combo = new jcombo(list_c.toArray());
 			selectioncomb.selectchaine(chaine_combo,this,log);
 	 	   
 	 	   
-	 	  list_p = new ArrayList<String>(Arrays.asList(new String[]{"---Sï¿½lectionner un Poste-----"}));
+	 	  list_p = new ArrayList<String>(Arrays.asList(new String[]{"---Sélectionner un Poste-----"}));
 	      poste_combo = new jcombo(list_p.toArray());
 	      selectioncomb.selectposte(poste_combo ,this,log);
 	      selectioncomb.prv.add("recap");
@@ -125,7 +125,7 @@ public void composant(final String log){
 		                	 if(rech_jtext.getText().equals("")&&zone_combo.getSelectedIndex()==0&&poste_combo.getSelectedIndex()==0
 		                			 &&chaine_combo.getSelectedIndex()==0){
 		                		 JOptionPane.showMessageDialog(null, 
-		      	 	      				"Vous devez au moins sï¿½lectionner un critï¿½re", "",
+		      	 	      				"Vous devez au moins sélectionner un critère", "",
 		      	 	  		        JOptionPane.INFORMATION_MESSAGE);
 		                	 }
 		                	 else{
@@ -296,7 +296,7 @@ public void composant(final String log){
 	    recherche.setFont(new Font("Comic Sans MS", Font.BOLD, 13));
 	    recherche.setPreferredSize(new Dimension(120, 33));
 	     
-    setTitle("Recherche avancï¿½" );
+    setTitle("Recherche avancée" );
     setSize(1000, 600);
     setLocationRelativeTo(null);          
     setVisible(true);

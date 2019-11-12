@@ -135,7 +135,7 @@ public String Chemin = "c:\\GCOBAR\\";
     private JButton valid_ajou=new JButton("Valider");
     private JButton valid_modif=new JButton("Valider");
     private JButton imp_fiche=new JButton("Imprimer La fiche");
-    private JButton imp_etq=new JButton("Imprimer L'ï¿½tiquette");
+    private JButton imp_etq=new JButton("Imprimer L'étiquette");
     private JButton retour=new JButton("Retour");
     
     
@@ -176,7 +176,7 @@ public String Chemin = "c:\\GCOBAR\\";
 			
 			list_ar = new ArrayList<String>(Arrays.asList(new String[]{"---Selectionner un article-----"}));
 			article_comb = new jcombo(list_ar.toArray());
-			list_c = new ArrayList<String>(Arrays.asList(new String[]{"--Sï¿½lectionner une Chaine--"}));
+			list_c = new ArrayList<String>(Arrays.asList(new String[]{"--Sélectionner une Chaine--"}));
 			chaine_comb = new jcombo(list_c.toArray());
 			list_p = new ArrayList<String>(Arrays.asList(new String[]{"---Selectionner un Poste-----"}));
 			poste_comb = new jcombo(list_p.toArray());
@@ -336,7 +336,7 @@ public String Chemin = "c:\\GCOBAR\\";
 //			                if(vaidCheck()==false){
 //					        		   msg+="Un Champ dans le tableau est vide \n";
 //					        	   }			    	        
-if (rep==false)     		   msg+="Il existe un ou plusieur articles dupliquï¿½s \n";				  	           		  
+if (rep==false)     		   msg+="Il existe un ou plusieur articles dupliqués \n";
 
 else  if(imp.exist.equals("non")){
 			            	    	  msg+="Ce Produit n'existe pas \n";
@@ -355,7 +355,7 @@ else  if(imp.exist.equals("non")){
                             int qte =Integer.parseInt(tab2.table.getValueAt(i, 3).toString());
 			  		         imp.ajouter_imprim_compo(code_art,code_jtext.getText(),codeart,sn,qte);
                               }			    
-			            	 JOptionPane.showMessageDialog(null,""+des+" "+code_jtext.getText()+" a ï¿½tï¿½ bien modifiï¿½");
+			            	 JOptionPane.showMessageDialog(null,""+des+" "+code_jtext.getText()+" a été bien modifié");
 			            	 imp_etq.setVisible(true);
 					       	 imp_fiche.setVisible(true);
 				              }
@@ -389,9 +389,9 @@ else  if(imp.exist.equals("non")){
 			            	   for(int i=0;i<tab2.table.getRowCount();i++){
 					             		  String col2= tab2.table.getValueAt(i, 3).toString();
 					             		  if(isValid(col2)==false){  
-					             			  msg+="La quantite dans le tableau doit ï¿½tre un nombre\n";		  
+					             			  msg+="La quantite dans le tableau doit étre un nombre\n";
 					             		  }}
-		  	           		if (rep==false)   msg+="Il existe un ou plusieur articles dupliquï¿½s \n";				  	           		  
+		  	           		if (rep==false)   msg+="Il existe un ou plusieur articles dupliqués \n";
 
 		  	           		else if(article_comb.getSelectedIndex()==0){msg+="Veuillez selectionner un article \n";}            	
 				              else if(poste_comb.getSelectedIndex()==0){msg+="Veuillez selectionner un poste \n";}
@@ -435,7 +435,7 @@ else  if(imp.exist.equals("non")){
 						      imp_fiche.setVisible(true);
 			            		 }
 			
-						      JOptionPane.showMessageDialog(null,"l'ï¿½tiquette a "+des+"  a ï¿½tï¿½ bien ajoutï¿½");
+						      JOptionPane.showMessageDialog(null,"l'étiquette a "+des+"  a été bien ajouté");
 
 			            	  }
 			            	  else{JOptionPane.showMessageDialog(null,msg);}

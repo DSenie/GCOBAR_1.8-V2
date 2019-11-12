@@ -72,7 +72,7 @@ public class gestion_outil {
 		if (reponse== JOptionPane.YES_OPTION){
 		String update2= "delete from outillage where code_outil='"+code+"'"; 
 		CConnect.Insert(update2,bdd);
-		JOptionPane.showMessageDialog(null,"L'outil a ï¿½tï¿½ bien supprimï¿½");
+		JOptionPane.showMessageDialog(null,"L'outil a été bien supprimé");
 
 		}}
 	
@@ -89,7 +89,7 @@ public class gestion_outil {
 	String query = "SELECT * FROM outillage where code_outil='"+code+"'"; 
 
 	if(CConnect.Requete(query, bdd).size()>=1){
-	JOptionPane.showMessageDialog(null,"Cet outil existe dï¿½jï¿½");
+	JOptionPane.showMessageDialog(null,"Cet outil existe déjà");
 	exist=true;
 	return exist;
 	}

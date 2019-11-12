@@ -157,7 +157,7 @@ public class selectioncomb {
 		 	list_article_tr=imp.select_article_code_etq("enie");
 	//artic.select_article_code("enie");
 			for(int i=0;i<list_article_tr.size();i++)
-			   {  //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+			   {  //Pour affecter une valeur de base de donn?es ? un Combobox 
 				   article_comb.addItem(list_article_tr.get(i)+" "+list_article_tr.get(i+1));
 				   i++;
 			   }
@@ -176,7 +176,7 @@ public class selectioncomb {
 			        	   list_article_tr=imp.select_article_code_etq("enie");
 			    		   for(int i=0;i<list_article_tr.size();i++)
 			    		   {
-			    		          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+			    		          //Pour affecter une valeur de base de donn?es ? un Combobox 
 			    			   article_comb.addItem(list_article_tr.get(i)+" "+list_article_tr.get(i+1));
 			    			   i++;
 			    		   }
@@ -193,7 +193,7 @@ public class selectioncomb {
 			        	   list_article_tr=imp.select_article_code_etq("autre");
 			    		   for(int i=0;i<list_article_tr.size();i++)
 			    		   {
-			    		          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+			    		          //Pour affecter une valeur de base de donn?es ? un Combobox 
 			    			   article_comb.addItem(list_article_tr.get(i)+" "+list_article_tr.get(i+1));
 			    			   i++;
 			    		   }
@@ -235,7 +235,7 @@ public class selectioncomb {
 							        	   list_article_tr=imp.select_article_code_etq("enie");
 							    		   for(int i=0;i<list_article_tr.size();i++)
 							    		   {
-							    		          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+							    		          //Pour affecter une valeur de base de donn?es ? un Combobox 
 							    			   article_comb.addItem(list_article_tr.get(i)+" "+list_article_tr.get(i+1));
 							    			   i++;
 							    		   }
@@ -252,7 +252,7 @@ public class selectioncomb {
 
 							    		   for(int i=0;i<list_article_tr.size();i++)
 							    		   {
-							    		          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+							    		          //Pour affecter une valeur de base de donn?es ? un Combobox 
 							    			   article_comb.addItem(list_article_tr.get(i)+" "+list_article_tr.get(i+1));
 							    			   i++;
 							    		   }
@@ -277,7 +277,7 @@ public class selectioncomb {
          list_composant_tr=imp.select_article_composant();
  //artic.select_article_code("enie");
          for(int i=0;i<list_composant_tr.size();i++)
-            {  //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+            {  //Pour affecter une valeur de base de donn?es ? un Combobox 
              composant_comb.addItem(list_composant_tr.get(i)+" "+list_composant_tr.get(i+1));
                 i++;
             }
@@ -331,7 +331,7 @@ public class selectioncomb {
 		 	list_article_tout=imp.select_article_tout();
 	          //artic.select_article_code("enie");
 			for(int i=0;i<list_article_tout.size();i++)
-			   {  //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+			   {  //Pour affecter une valeur de base de donn?es ? un Combobox 
 				   article_comb.addItem(list_article_tout.get(i)+" "+list_article_tout.get(i+1));
 				   i++;
 			   }
@@ -366,7 +366,7 @@ public class selectioncomb {
 							        	   list_article_tout=imp.select_article_tout();
 							    		   for(int i=0;i<list_article_tout.size();i++)
 							    		   {
-							    		          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+							    		          //Pour affecter une valeur de base de donn?es ? un Combobox 
 							    			   article_comb.addItem(list_article_tout.get(i)+" "+list_article_tout.get(i+1));
 							    			   i++;
 							    		   }
@@ -392,7 +392,7 @@ public class selectioncomb {
 		 	list_article_tr_phone=imp.select_article_code_etqphone();
 	          //artic.select_article_code("enie");
 			for(int i=0;i<list_article_tr_phone.size();i++)
-			   {  //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+			   {  //Pour affecter une valeur de base de donn?es ? un Combobox 
 				   article_comb.addItem(list_article_tr_phone.get(i)+" "+list_article_tr_phone.get(i+1));
 				   i++;
 			   }
@@ -433,7 +433,7 @@ public class selectioncomb {
 							        	   list_article_tr=imp.select_article_code_etqphone();
 							    		   for(int i=0;i<list_article_tr.size();i++)
 							    		   {
-							    		          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+							    		          //Pour affecter une valeur de base de donn?es ? un Combobox 
 							    			   article_comb.addItem(list_article_tr.get(i)+" "+list_article_tr.get(i+1));
 							    			   i++;
 							    		   }
@@ -459,7 +459,7 @@ public class selectioncomb {
 		      list_article_tr_tpe=imp.select_article_code_tpe();
 	          //artic.select_article_code("enie");
 			for(int i=0;i<list_article_tr_tpe.size();i++)
-			   {  //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+			   {  //Pour affecter une valeur de base de donn?es ? un Combobox 
 				   article_comb.addItem(list_article_tr_tpe.get(i)+" "+list_article_tr_tpe.get(i+1));
 				   i++;
 			   }
@@ -500,7 +500,7 @@ public class selectioncomb {
                       list_article_tpe=imp.select_article_code_etqphone();
 							    		   for(int i=0;i<list_article_tpe.size();i++)
 							    		   {
-							    		          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+							    		          //Pour affecter une valeur de base de donn?es ? un Combobox 
 							    			   article_comb.addItem(list_article_tpe.get(i)+" "+list_article_tpe.get(i+1));
 							    			   i++;
 							    		   }
@@ -521,13 +521,13 @@ public class selectioncomb {
 	public static void selectprocess(final jcombo process_comb ,final JFrame frame ,final String log){
 	   //   resultat=prod.select_profils();
 
-	// chaine_comb.addItem("--Sï¿½lectionner une Chaine--");
+	// chaine_comb.addItem("--S?lectionner une Chaine--");
 		
 		  // fourniss_comb.addItem("---Selectionner un fournisseur-----");
 		list_process=prod.select_profils();
 		   for(int i=0;i<list_process.size();i++)
 		   {
-		          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+		          //Pour affecter une valeur de base de donn?es ? un Combobox 
 			   process_comb.addItem(list_process.get(i));
 			   
 		   }
@@ -540,7 +540,7 @@ public class selectioncomb {
 	       resultat=use.selection_profils(log);
 	 	   list_article_tr=artic.select_article_code(enie);
 		   for(int i=0;i<list_article_tr.size();i++)
-		   {  //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+		   {  //Pour affecter une valeur de base de donn?es ? un Combobox 
 			   list_a.add(list_article_tr.get(i)+" "+list_article_tr.get(i+1));
 			   i++;
 		   }
@@ -579,7 +579,7 @@ public class selectioncomb {
 						        	   list_article_tr=artic.select_article_code("enie");
 						    		   for(int i=0;i<list_article_tr.size();i++)
 						    		   {
-						    		          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+						    		          //Pour affecter une valeur de base de donn?es ? un Combobox 
 						    			   list_a.add(list_article_tr.get(i)+" "+list_article_tr.get(i+1));
 						    			   i++;
 						    		   }
@@ -603,7 +603,7 @@ public class selectioncomb {
 	 	list_article_tr=imp.select_article_code("enie");
 //artic.select_article_code("enie");
 		for(int i=0;i<list_article_tr.size();i++)
-		   {  //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+		   {  //Pour affecter une valeur de base de donn?es ? un Combobox 
 			   article_comb.addItem(list_article_tr.get(i)+" "+list_article_tr.get(i+1));
 			   i++;
 		   }
@@ -622,7 +622,7 @@ public class selectioncomb {
 		        	   list_article_tr=artic.select_article_code("enie");
 		    		   for(int i=0;i<list_article_tr.size();i++)
 		    		   {
-		    		          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+		    		          //Pour affecter une valeur de base de donn?es ? un Combobox 
 		    			   article_comb.addItem(list_article_tr.get(i)+" "+list_article_tr.get(i+1));
 		    			   i++;
 		    		   }
@@ -639,7 +639,7 @@ public class selectioncomb {
 		        	   list_article_tr=artic.select_article_code("autre");
 		    		   for(int i=0;i<list_article_tr.size();i++)
 		    		   {
-		    		          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+		    		          //Pour affecter une valeur de base de donn?es ? un Combobox 
 		    			   article_comb.addItem(list_article_tr.get(i)+" "+list_article_tr.get(i+1));
 		    			   i++;
 		    		   }
@@ -681,7 +681,7 @@ public class selectioncomb {
 						        	   list_article_tr=artic.select_article_code("enie");
 						    		   for(int i=0;i<list_article_tr.size();i++)
 						    		   {
-						    		          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+						    		          //Pour affecter une valeur de base de donn?es ? un Combobox 
 						    			   article_comb.addItem(list_article_tr.get(i)+" "+list_article_tr.get(i+1));
 						    			   i++;
 						    		   }
@@ -698,7 +698,7 @@ public class selectioncomb {
 
 						    		   for(int i=0;i<list_article_tr.size();i++)
 						    		   {
-						    		          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+						    		          //Pour affecter une valeur de base de donn?es ? un Combobox 
 						    			   article_comb.addItem(list_article_tr.get(i)+" "+list_article_tr.get(i+1));
 						    			   i++;
 						    		   }
@@ -719,13 +719,13 @@ public class selectioncomb {
 		public static void selectfourniss(final jcombo fourniss_comb ,final JFrame frame ,final String log){
 		      resultat=use.selection_profils(log);
 
-		// chaine_comb.addItem("--Sï¿½lectionner une Chaine--");
+		// chaine_comb.addItem("--S?lectionner une Chaine--");
 			
 			  // fourniss_comb.addItem("---Selectionner un fournisseur-----");
 		  	list_fourniss_tr=frns.select_fournisseur_code();
 			   for(int i=0;i<list_fourniss_tr.size();i++)
 			   {
-			          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+			          //Pour affecter une valeur de base de donn?es ? un Combobox 
 				 fourniss_comb.addItem(list_fourniss_tr.get(i)+" "+list_fourniss_tr.get(i+1));
 				   i++;
 			   }
@@ -761,7 +761,7 @@ public class selectioncomb {
 
 		  	        	 for(int i=0;i<list_fourniss_tr.size();i++)
 		  			   {
-		  			          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+		  			          //Pour affecter une valeur de base de donn?es ? un Combobox 
 		  				 fourniss_comb.addItem(list_fourniss_tr.get(i)+" "+list_fourniss_tr.get(i+1));
 		  				   i++;
 		  			   }
@@ -777,15 +777,15 @@ public class selectioncomb {
 		public static void selectrefer(final jcombo ref_comb ,final JFrame frame ,final String log){
 		      resultat=use.selection_profils(log);
 
-			// chaine_comb.addItem("--Sï¿½lectionner une Chaine--");
+			// chaine_comb.addItem("--S?lectionner une Chaine--");
 				
 				  // fourniss_comb.addItem("---Selectionner un fournisseur-----");
-			 // 	ref_comb.addItem("---Selectionner une rï¿½fï¿½rence-----");
+			 // 	ref_comb.addItem("---Selectionner une r?f?rence-----");
 				list_ref_tr=gestref.select_reference_code();
 
 			   for(int i=0;i<list_ref_tr.size();i++)
 			   {
-			          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+			          //Pour affecter une valeur de base de donn?es ? un Combobox 
 				   ref_comb.addItem(list_ref_tr.get(i)+" "+list_ref_tr.get(i+1));
 				   i++;
 			   }
@@ -816,12 +816,12 @@ public class selectioncomb {
 			  	        public void windowClosing(WindowEvent e){
 			  	
 			  	        	ref_comb.removeAllItems();
-			  	        	ref_comb.addItem("---Selectionner une rï¿½fï¿½rence-----");
+			  	        	ref_comb.addItem("---Selectionner une r?f?rence-----");
 			  	        	list_ref_tr=gestref.select_reference_code();
 
 			  	        	 for(int i=0;i<list_ref_tr.size();i++)
 			  			   {
-			  			          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+			  			          //Pour affecter une valeur de base de donn?es ? un Combobox 
 			  				   ref_comb.addItem(list_ref_tr.get(i)+" "+list_ref_tr.get(i+1));
 			  				   i++;
 			  			   }
@@ -837,14 +837,14 @@ public class selectioncomb {
 	public static void selectgener(final jcombo codegener_comb ,final JFrame frame ,final String log){
 	      resultat=use.selection_profils(log);
 
-			//chaine_comb.addItem("--Sï¿½lectionner une Chaine--");
+			//chaine_comb.addItem("--S?lectionner une Chaine--");
 				
 				  // fourniss_comb.addItem("---Selectionner un fournisseur-----");
       	list_gener_tr=codegen.select_famille_code();
 
 		 for(int i=0;i<list_gener_tr.size();i++)
 	  	   {
-	  	          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+	  	          //Pour affecter une valeur de base de donn?es ? un Combobox 
 	  		 codegener_comb.addItem(list_gener_tr.get(i)+" "+list_gener_tr.get(i+1));
 	  		   i++;
 	  	   }
@@ -880,7 +880,7 @@ public class selectioncomb {
 
 			  	        	 for(int i=0;i<list_gener_tr.size();i++)
 			  		  	   {
-			  		  	          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+			  		  	          //Pour affecter une valeur de base de donn?es ? un Combobox 
 			  		  		 codegener_comb.addItem(list_gener_tr.get(i)+" "+list_gener_tr.get(i+1));
 			  		  		   i++;
 			  		  	   }
@@ -896,13 +896,13 @@ public class selectioncomb {
 		public static void selectfamille(final jcombo famille_comb ,final JFrame frame ,final String log){
 		      resultat=use.selection_profils(log);
 
-			// chaine_comb.addItem("--Sï¿½lectionner une Chaine--");
+			// chaine_comb.addItem("--S?lectionner une Chaine--");
 				
 				  // fourniss_comb.addItem("---Selectionner un fournisseur-----");
 			list_famille_tr=familart.select_artfamille_code();
 			for(int i=0;i<list_famille_tr.size();i++)
 			   {
-			          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+			          //Pour affecter une valeur de base de donn?es ? un Combobox 
 				  famille_comb.addItem(list_famille_tr.get(i)+" "+list_famille_tr.get(i+1));
 				   i++;
 			   }
@@ -939,7 +939,7 @@ public class selectioncomb {
 
 			  	        	for(int i=0;i<list_famille_tr.size();i++)
 			 			   {
-			 			          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+			 			          //Pour affecter une valeur de base de donn?es ? un Combobox 
 			 				  famille_comb.addItem(list_famille_tr.get(i)+" "+list_famille_tr.get(i+1));
 			 				   i++;
 			 			   }
@@ -958,12 +958,12 @@ public class selectioncomb {
 		public static void selectchaine(final jcombo chaine_comb ,final JFrame frame ,final String log){
 		      resultat=use.selection_profils(log);
 
-			// chaine_comb.addItem("--Sï¿½lectionner une Chaine--");
+			// chaine_comb.addItem("--S?lectionner une Chaine--");
 			list_chaine_tr=chain.select_chaine_code();
 
 			 for(int i=0;i<list_chaine_tr.size();i++)
 			 {
-			        //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+			        //Pour affecter une valeur de base de donn?es ? un Combobox 
 				   chaine_comb.addItem(list_chaine_tr.get(i)+" "+list_chaine_tr.get(i+1));
 				   i++;
 			 }
@@ -997,12 +997,12 @@ public class selectioncomb {
 					  	   
 					  	    
 			  	           chaine_comb.removeAllItems();
-			  	          chaine_comb.addItem("--Sï¿½lectionner une Chaine--");
+			  	          chaine_comb.addItem("--S?lectionner une Chaine--");
 			  			list_chaine_tr=chain.select_chaine_code();
 
 			  	          for(int i=0;i<list_chaine_tr.size();i++)
 						   {
-						          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+						          //Pour affecter une valeur de base de donn?es ? un Combobox 
 							   chaine_comb.addItem(list_chaine_tr.get(i)+" "+list_chaine_tr.get(i+1));
 							   i++;
 						   }
@@ -1024,7 +1024,7 @@ public class selectioncomb {
 
 			 for(int i=0;i<list_poste_tr.size();i++)
 			 {
-			        //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+			        //Pour affecter une valeur de base de donn?es ? un Combobox 
 				  poste_comb.addItem(list_poste_tr.get(i)+" "+list_poste_tr.get(i+1));
 				  i++;
 			 }
@@ -1051,11 +1051,11 @@ public class selectioncomb {
 				  	        public void windowClosing(WindowEvent e){
 						
 								poste_comb.removeAllItems();
-								poste_comb.addItem("---Sï¿½lectionner un Poste-----");
+								poste_comb.addItem("---Sélectionner un Poste-----");
 								list_poste_tr=imp.select_poste_code();
 					 			   for(int i=0;i<list_poste_tr.size();i++)
 								   {
-								          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+								          //Pour affecter une valeur de base de donn?es ? un Combobox 
 									  poste_comb.addItem(list_poste_tr.get(i)+" "+list_poste_tr.get(i+1));
 									   i++;
 								   }
@@ -1079,7 +1079,7 @@ public class selectioncomb {
 
 			 for(int i=0;i<list_produit_tr.size();i++)
 			 {
-			        //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+			        //Pour affecter une valeur de base de donn?es ? un Combobox 
 				  produit_comb.addItem(list_produit_tr.get(i)+" "+list_produit_tr.get(i+1));
 				  i++;
 			 }
@@ -1106,11 +1106,11 @@ public class selectioncomb {
 //				  	        public void windowClosing(WindowEvent e){
 //						
 //				  	        	produit_comb.removeAllItems();
-//				  	        	produit_comb.addItem("---Sï¿½lectionner un Produit-----");
+//				  	        	produit_comb.addItem("---S?lectionner un Produit-----");
 //				  				list_produit_tr=prod.select_produit_code();
 //					 			   for(int i=0;i<list_produit_tr.size();i++)
 //								   {
-//								          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+//								          //Pour affecter une valeur de base de donn?es ? un Combobox 
 //					 				  produit_comb.addItem(list_produit_tr.get(i)+" "+list_produit_tr.get(i+1));
 //									   i++;
 //								   }
@@ -1132,7 +1132,7 @@ public class selectioncomb {
 
 			 for(int i=0;i<list_profil_tr.size();i++)
 			 {
-			        //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+			        //Pour affecter une valeur de base de donn?es ? un Combobox 
 				 profil_comb.addItem(list_profil_tr.get(i));
 				  i++;
 			 }
@@ -1159,11 +1159,11 @@ public class selectioncomb {
 //				  	        public void windowClosing(WindowEvent e){
 //						
 //				  	        	profil_comb.removeAllItems();
-//				  	        	profil_comb.addItem("---Sï¿½lectionner un Profil-----");
+//				  	        	profil_comb.addItem("---S?lectionner un Profil-----");
 					             //list_profil_tr=prod.select_profil_code();
 //					 			   for(int i=0;i<list_profil_tr.size();i++)
 //								   {
-//								          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+//								          //Pour affecter une valeur de base de donn?es ? un Combobox 
 //					 				  profil_comb.addItem(list_profil_tr.get(i));
 //									   i++;
 //								   }
@@ -1186,7 +1186,7 @@ public class selectioncomb {
 
 		 for(int i=0;i<list_poste_tr.size();i++)
 		 {
-		        //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+		        //Pour affecter une valeur de base de donn?es ? un Combobox 
 			 list_p.add(list_poste_tr.get(i)+" "+list_poste_tr.get(i+1));
 			  i++;
 		 }
@@ -1212,11 +1212,11 @@ public class selectioncomb {
 			  	        public void windowClosing(WindowEvent e){
 							
 			  	        	list_p.clear();
-			  	        	list_p.add("---Sï¿½lectionner un Poste-----");
+			  	        	list_p.add("---Sélectionner un Poste-----");
 							list_poste_tr=imp.select_poste_code();
 				 			   for(int i=0;i<list_poste_tr.size();i++)
 							   {
-							          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+							          //Pour affecter une valeur de base de donn?es ? un Combobox 
 				 				  list_p.add(list_poste_tr.get(i)+" "+list_poste_tr.get(i+1));
 								   i++;
 							   }
@@ -1227,7 +1227,7 @@ public class selectioncomb {
 		 					    	poste_comb.setSelectedIndex(0);
 		 					  	    int col=tab.table.getSelectedColumn();
 		 					  	  int row=tab.table.getSelectedRow();
-		 					  	  tab.table.setValueAt("---Sï¿½lectionner un Poste-----", row, col);
+		 					  	  tab.table.setValueAt("---Sélectionner un Poste-----", row, col);
 		 					  	
 			  	        }});
 			  	 	 }}});
@@ -1240,7 +1240,7 @@ public class selectioncomb {
 //
 //			 for(int i=0;i<list_poste_tr.size();i++)
 //			 {
-//			        //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+//			        //Pour affecter une valeur de base de donn?es ? un Combobox 
 //				  poste_comb.addItem(list_poste_tr.get(i)+" "+list_poste_tr.get(i+1));
 //				  i++;
 //			 }
@@ -1263,11 +1263,11 @@ public class selectioncomb {
 //								varbool=true;
 //
 //								poste_comb.removeAllItems();
-//								poste_comb.addItem("---Sï¿½lectionner un Poste-----");
+//								poste_comb.addItem("---S?lectionner un Poste-----");
 //								list_poste_tr=imp.select_poste_code();
 //					 			   for(int i=0;i<list_poste_tr.size();i++)
 //								   {
-//								          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+//								          //Pour affecter une valeur de base de donn?es ? un Combobox 
 //									  poste_comb.addItem(list_poste_tr.get(i)+" "+list_poste_tr.get(i+1));
 //									   i++;
 //								   }
@@ -1285,10 +1285,10 @@ public class selectioncomb {
 		 		      resultat=use.selection_profils(log);
 
 		 				 list_tache_tr=tach.select_tache_code();
-		 					// chaine_comb.addItem("--Sï¿½lectionner une Chaine--");
+		 					// chaine_comb.addItem("--S?lectionner une Chaine--");
 		 						 for(int i=0;i<list_tache_tr.size();i++)
 		 				    	   {
-		 				    	          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+		 				    	          //Pour affecter une valeur de base de donn?es ? un Combobox 
 		 							list_t.add(list_tache_tr.get(i)+" "+list_tache_tr.get(i+1));
 		 				    		   i++;
 		 				    	   }
@@ -1318,12 +1318,12 @@ public class selectioncomb {
 		 					  	   
 		 					  	     // code_jtext.setText("");
 		 					  	         list_t.clear();
-		 					  	      list_t.add("--Sï¿½lectionner une Tache--");
+		 					  	      list_t.add("--Sélectionner une Tache--");
 		 								 list_tache_tr=tach.select_tache_code();
 
 		 					  	        for(int i=0;i<list_tache_tr.size();i++)
 		 						    	   {
-		 						    	  //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+		 						    	  //Pour affecter une valeur de base de donn?es ? un Combobox 
 		 					  	        	list_t.add(list_tache_tr.get(i)+" "+list_tache_tr.get(i+1));
 		 						    		   i++;
 		 						    	   }
@@ -1332,7 +1332,7 @@ public class selectioncomb {
 		 					    	tache_comb.setSelectedIndex(0);
 		 					  	    int col=tab.table.getSelectedColumn();
 		 					  	  int row=tab.table.getSelectedRow();
-		 					  	  tab.table.setValueAt("--Sï¿½lectionner une Tache--", row, col);
+		 					  	  tab.table.setValueAt("--Sélectionner une Tache--", row, col);
 		 					  	        }});
 		 					  		 }   }});
 		 					}
@@ -1344,10 +1344,10 @@ public class selectioncomb {
 			   resultat=use.selection_profils(log);
 
 				 list_zone_tr=use.select_zone_code();
-					// chaine_comb.addItem("--Sï¿½lectionner une Chaine--");
+					// chaine_comb.addItem("--S?lectionner une Chaine--");
 						 for(int i=0;i<list_zone_tr.size();i++)
 				    	   {
-				    	          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+				    	          //Pour affecter une valeur de base de donn?es ? un Combobox 
 							 list_z.add(list_zone_tr.get(i)+" "+list_zone_tr.get(i+1));
 				    		   i++;
 				    	   }
@@ -1376,14 +1376,14 @@ public class selectioncomb {
 			  	      
 			  	     list_z.clear();
 			  	   
-		  	         list_z.add("--Sï¿½lectionner une Zone--");
+		  	         list_z.add("--Sélectionner une Zone--");
 		  	        
 		  	    
 						 list_zone_tr=use.select_zone_code();
 
 			  	        for(int i=0;i<list_zone_tr.size();i++)
 				    	   {
-				    	  //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+				    	  //Pour affecter une valeur de base de donn?es ? un Combobox 
 			  	        	list_z.add(list_zone_tr.get(i)+" "+list_zone_tr.get(i+1));
 				    		   i++;
 				    	   }
@@ -1393,7 +1393,7 @@ public class selectioncomb {
 			  	   zone_comb.setSelectedIndex(0);
 			  	    int col=tab.table.getSelectedColumn();
 			  	  int row=tab.table.getSelectedRow();
-			  	  tab.table.setValueAt("--Sï¿½lectionner une Zone--", row, col);
+			  	  tab.table.setValueAt("--Sélectionner une Zone--", row, col);
 			  	          }});   
 			  	  }    }});
 		   
@@ -1406,10 +1406,10 @@ public static void selectzone_chaine(final Java2sAutoComboBox zone_comb ,final J
 		      resultat=use.selection_profils(log);
 
 				 list_zone_tr=use.select_zone_code();
-					// chaine_comb.addItem("--Sï¿½lectionner une Chaine--");
+					// chaine_comb.addItem("--S?lectionner une Chaine--");
 						 for(int i=0;i<list_zone_tr.size();i++)
 				    	   {
-				    	          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+				    	          //Pour affecter une valeur de base de donn?es ? un Combobox 
 							 list_z.add(list_zone_tr.get(i)+" "+list_zone_tr.get(i+1));
 				    		   i++;
 				    	   }
@@ -1439,12 +1439,12 @@ public static void selectzone_chaine(final Java2sAutoComboBox zone_comb ,final J
 					  	   
 					  	     // code_jtext.setText("");
 					  	        zone_comb.removeAllItems();
-					  	        zone_comb.addItem("--Sï¿½lectionner une Zone--");
+					  	        zone_comb.addItem("--Sélectionner une Zone--");
 								 list_zone_tr=use.select_zone_code();
 
 					  	        for(int i=0;i<list_zone_tr.size();i++)
 						    	   {
-						    	  //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+						    	  //Pour affecter une valeur de base de donn?es ? un Combobox 
 						    	zone_comb.addItem(list_zone_tr.get(i)+" "+list_zone_tr.get(i+1));
 						    		   i++;
 						    	   }
@@ -1458,10 +1458,10 @@ public static void selectzone_chaine(final Java2sAutoComboBox zone_comb ,final J
 		 public static void selecttache(final jcombo tache_comb ,final JFrame frame ,final String log ){
 		      resultat=use.selection_profils(log);
 		      list_tache_tr=tach.select_tache_code();
-				// chaine_comb.addItem("--Sï¿½lectionner une Chaine--");
+				// chaine_comb.addItem("--S?lectionner une Chaine--");
 					 for(int i=0;i<list_tache_tr.size();i++)
 			    	   {
-			    	          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+			    	          //Pour affecter une valeur de base de donn?es ? un Combobox 
 						 tache_comb.addItem(list_tache_tr.get(i)+" "+list_tache_tr.get(i+1));
 			    		   i++;
 			    	   }
@@ -1472,10 +1472,10 @@ public static void selectzone_chaine(final Java2sAutoComboBox zone_comb ,final J
 		public static void selectzone(final jcombo zone_comb ,final JFrame frame ,final String log ){
 		      resultat=use.selection_profils(log);
 			 list_zone_tr=use.select_zone_code();
-				// chaine_comb.addItem("--Sï¿½lectionner une Chaine--");
+				// chaine_comb.addItem("--S?lectionner une Chaine--");
 					 for(int i=0;i<list_zone_tr.size();i++)
 			    	   {
-			    	          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+			    	          //Pour affecter une valeur de base de donn?es ? un Combobox 
 			    		   zone_comb.addItem(list_zone_tr.get(i)+" "+list_zone_tr.get(i+1));
 			    		   i++;
 			    	   }
@@ -1500,12 +1500,12 @@ public static void selectzone_chaine(final Java2sAutoComboBox zone_comb ,final J
 		
 				  	     // code_jtext.setText("");
 				  	        zone_comb.removeAllItems();
-				  	        zone_comb.addItem("--Sï¿½lectionner une Zone--");
+				  	        zone_comb.addItem("--Sélectionner une Zone--");
 							 list_zone_tr=use.select_zone_code();
 
 				  	        for(int i=0;i<list_zone_tr.size();i++)
 					    	   {
-					    	  //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+					    	  //Pour affecter une valeur de base de donn?es ? un Combobox 
 					    	zone_comb.addItem(list_zone_tr.get(i)+" "+list_zone_tr.get(i+1));
 					    		   i++;
 					    	   }
@@ -1519,7 +1519,7 @@ public static void selectzone_chaine(final Java2sAutoComboBox zone_comb ,final J
 		        public void windowClosing(WindowEvent e){
 					//call the object of NewWindow and set visible true
 		        	int reponse = JOptionPane.showConfirmDialog(
-		                      null, "Voulez-vous vraiment quitter cette fenï¿½tre ?",
+		                      null, "Voulez-vous vraiment quitter cette fenétre ?",
 		                      "Confirmation",
 		                      JOptionPane.YES_NO_OPTION,
 		                      JOptionPane.QUESTION_MESSAGE);
@@ -1642,7 +1642,7 @@ public static void selectzone_chaine(final Java2sAutoComboBox zone_comb ,final J
 //	        public void windowClosing(WindowEvent e){
 //	        	
 //	              int reponse = JOptionPane.showConfirmDialog(
-//	                                   null, "Voulez-vous vraiment quitter cette fenï¿½tre ?",
+//	                                   null, "Voulez-vous vraiment quitter cette fen?tre ?",
 //	                                   "Confirmation",
 //	                                   JOptionPane.YES_NO_OPTION,
 //	                                   JOptionPane.QUESTION_MESSAGE);
@@ -1699,12 +1699,12 @@ public static void selectzone_chaine(final Java2sAutoComboBox zone_comb ,final J
 		 @SuppressWarnings("unchecked")
 			public static void selectprofils(final jcombo profils_comb ,final JFrame frame ,final String log){
 				
-				// chaine_comb.addItem("--Sï¿½lectionner une Chaine--");
+				// chaine_comb.addItem("--S?lectionner une Chaine--");
 			 list_profil=profil.select_profils();
 
 				 for(int i=0;i<list_profil.size();i++)
 				 {
-				        //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+				        //Pour affecter une valeur de base de donn?es ? un Combobox 
 					 profils_comb.addItem(list_profil.get(i)+" "+list_profil.get(i+1));
 					   i++;
 				 }
@@ -1733,12 +1733,12 @@ public static void selectzone_chaine(final Java2sAutoComboBox zone_comb ,final J
 				  	        public void windowClosing(WindowEvent e){
 				  	         // code_jtext.setText("");
 				  	        	profils_comb.removeAllItems();
-				  	        	profils_comb.addItem("--Sï¿½lectionner un profils--");
+				  	        	profils_comb.addItem("--Sélectionner un profils--");
 				  	        	 list_profil=profil.select_profils();
 
 				  	          for(int i=0;i<list_profil.size();i++)
 							   {
-							          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+							          //Pour affecter une valeur de base de donn?es ? un Combobox 
 				  	        	profils_comb.addItem(list_profil.get(i)+" "+list_profil.get(i+1));
 								   i++;
 							   }
@@ -1782,19 +1782,19 @@ public static void selectzone_chaine(final Java2sAutoComboBox zone_comb ,final J
 				 JasperDesign jasperDesign = JRXmlLoader.load(model);
 				 JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
 
-// - Paramï¿½tres ï¿½ envoyer au rapport
+// - Param?tres ? envoyer au rapport
 // parameters.put("2200000004");
 System.out.println(parameters.toString());
   
 // - Execution du rapport
 JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, CConnect.getInstance(bdd));
 
-// - Crï¿½ation du rapport au format PDF
+// - Cr?ation du rapport au format PDF
 JasperExportManager.exportReportToPdfFile(jasperPrint, parcour );
 controlPanel.remove(titr);
 frame.setVisible(false);
 int reponse = JOptionPane.showConfirmDialog(
-        null, "Operation terminï¿½e. Voulez-vous ouvrir le pdf?",
+        null, "Operation terminée. Voulez-vous ouvrir le pdf?",
         "Confirmation",
         JOptionPane.YES_NO_OPTION,
         JOptionPane.QUESTION_MESSAGE);
@@ -1838,7 +1838,7 @@ p.printStackTrace();
     controlPanel.remove(titr);
     frame.setVisible(false);
     int reponse = JOptionPane.showConfirmDialog(
-        null, "Operation terminï¿½e. Voulez-vous ouvrir le pdf?",
+        null, "Operation terminée. Voulez-vous ouvrir le pdf?",
         "Confirmation",
         JOptionPane.YES_NO_OPTION,
         JOptionPane.QUESTION_MESSAGE);
@@ -1885,7 +1885,7 @@ public static void imprimer(ArrayList<String> object,String bdd,String parcour,S
 			 JasperDesign jasperDesign = JRXmlLoader.load(model);
 			 JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
 
-//- Paramï¿½tres ï¿½ envoyer au rapport
+//- Param?tres ? envoyer au rapport
 Map<String, Object> parameters = new HashMap<String, Object>();
 //parameters.put("2200000004");
 parameters.put("serial",object);
@@ -1893,13 +1893,13 @@ parameters.put("serial",object);
 //- Execution du rapport
 JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, CConnect.getInstance(bdd));
 
-//- Crï¿½ation du rapport au format PDF
+//- Cr?ation du rapport au format PDF
 
 JasperExportManager.exportReportToPdfFile(jasperPrint, parcour );
 controlPanel.remove(titr);
 frame.setVisible(false);
 int reponse = JOptionPane.showConfirmDialog(
-    null, "Operation terminï¿½e. Voulez-vous ouvrir le pdf?",
+    null, "Operation terminée. Voulez-vous ouvrir le pdf?",
     "Confirmation",
     JOptionPane.YES_NO_OPTION,
     JOptionPane.QUESTION_MESSAGE);
@@ -1949,7 +1949,7 @@ public static void imprimer(String param,ArrayList<String> object,String bdd,Str
 			 JasperDesign jasperDesign = JRXmlLoader.load(model);
 			 JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
 
-//- Paramï¿½tres ï¿½ envoyer au rapport
+//- Param?tres ? envoyer au rapport
 Map<String, Object> parameters = new HashMap<String, Object>();
 //parameters.put("2200000004");
 parameters.put(param,object);
@@ -1957,13 +1957,13 @@ parameters.put(param,object);
 //- Execution du rapport
 JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, CConnect.getInstance(bdd));
 
-//- Crï¿½ation du rapport au format PDF
+//- Cr?ation du rapport au format PDF
 
 JasperExportManager.exportReportToPdfFile(jasperPrint, parcour );
 controlPanel.remove(titr);
 frame.setVisible(false);
 int reponse = JOptionPane.showConfirmDialog(
-    null, "Operation terminï¿½e. Voulez-vous ouvrir le pdf?",
+    null, "Operation terminée. Voulez-vous ouvrir le pdf?",
     "Confirmation",
     JOptionPane.YES_NO_OPTION,
     JOptionPane.QUESTION_MESSAGE);

@@ -75,14 +75,14 @@ public class gestion_user {
 	public void setinsert(String matri,String nom,String prenom,String login,String password,String prio,String role,int code_p){
     String query = "SELECT matricule,priorite FROM user where matricule='"+matri+"'"; 
     if(CConnect.Requete(query, bdd).size()>1){
-      JOptionPane.showMessageDialog(null,"Cette personne existe dï¿½jï¿½.");
+      JOptionPane.showMessageDialog(null,"Cette personne existe déjà.");
        	
     }
     else{
     	  String insert = "insert into user(matricule,nom,prenom,login,password,priorite,role,profils) values('"+matri+"','"+nom.toLowerCase()+"','"+prenom.toLowerCase()+"'"
     	    + ",'"+login+"','"+password+"','"+prio+"','"+role+"',"+code_p+")"; 
     	CConnect.Insert(insert,bdd);
-        JOptionPane.showMessageDialog(null,""+nom+" "+prenom+" a ï¿½tï¿½ bien ajoutï¿½");
+        JOptionPane.showMessageDialog(null,""+nom+" "+prenom+" a été bien ajouté");
 	     }  
 	}
 	
@@ -92,7 +92,7 @@ public class gestion_user {
 	    	  		+ "password='"+password+"', priorite='"+prio+"', role='"+role+"'" 
 	    	  		+ "where matricule='"+matri+"'"; 
 	    	  CConnect.Insert(update,bdd);
-	    	  JOptionPane.showMessageDialog(null,""+nom+" "+prenom+" a ï¿½tï¿½ bien modifiï¿½");
+	    	  JOptionPane.showMessageDialog(null,""+nom+" "+prenom+" a été bien modifié");
 		  
 }
 	
@@ -154,8 +154,8 @@ public boolean admin(String login){
 
 	}return vrai;
        
-    //Crï¿½ation d'un objet Statement
-    //L'objet ResultSet contient le rï¿½sultat de la requï¿½te SQL
+    //Création d'un objet Statement
+    //L'objet ResultSet contient le résultat de la requéte SQL
    
 	  
 }
@@ -299,7 +299,7 @@ if (reponse== JOptionPane.YES_OPTION){
 	String update2= "delete from Zone_Post where Code_Zone='"+code+"'"; 
 	CConnect.Insert(update,bdd);
 	  CConnect.Insert(update2,bdd);
-	  JOptionPane.showMessageDialog(null,"La zone a ï¿½tï¿½ bien supprimï¿½e");
+	  JOptionPane.showMessageDialog(null,"La zone a été bien supprimée");
 	  return true;
 }
 return false;}

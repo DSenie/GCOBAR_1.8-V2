@@ -262,10 +262,10 @@ public class etiquette_embalage_tpe extends JFrame implements ActionListener {
     
     private JLabel article_lab = new JLabel("Article");
     private JLabel modele_lab = new JLabel("Modele");
-    private JLabel qte_lab = new JLabel("Quantitï¿½");
+    private JLabel qte_lab = new JLabel("Quantité");
     private JLabel gw_lab = new JLabel("G.W");
     private JLabel sizecart_lab = new JLabel("Carton Size");
-    private JLabel parcel_lab = new JLabel("Parcel Nï¿½");
+    private JLabel parcel_lab = new JLabel("Parcel N°");
    
     
 
@@ -283,7 +283,7 @@ public class etiquette_embalage_tpe extends JFrame implements ActionListener {
     private JComboBox gw_comb =new JComboBox();
 
 
-    private Object[] entete = {"Nï¿½","Code IMEI1/ID" ,"Serial Number"};
+    private Object[] entete = {"N°","Code IMEI1/ID" ,"Serial Number"};
     private final Tableau tab = new Tableau(entete);
 
     private JScrollPane p = new JScrollPane(tab);
@@ -315,13 +315,13 @@ public class etiquette_embalage_tpe extends JFrame implements ActionListener {
     public void composant(final String log) {
     	 id_radio.setSelected(true);
 
-    	dimension_comb.addItem("--Sï¿½lectionner la dimension de l'etiquette--");
+    	dimension_comb.addItem("--Sélectionner la dimension de l'etiquette--");
 
  		list_dimension=imp.select_dimension_etq("etq_tpe_emballage");
  	 	  
  		   for(int i=0;i<list_dimension.size();i++)
  		   {
- 		          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+ 		          //Pour affecter une valeur de base de donn?es ? un Combobox 
  			   dimension_comb.addItem(list_dimension.get(i));
  			   
  		   }
@@ -345,7 +345,7 @@ public class etiquette_embalage_tpe extends JFrame implements ActionListener {
                       
                                for(int i=0;i<list_size.size();i++)
                                {
-                                      //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+                                      //Pour affecter une valeur de base de donn?es ? un Combobox 
                                    sizecart_comb.addItem(list_size.get(i));
                                    
                                }
@@ -367,7 +367,7 @@ public class etiquette_embalage_tpe extends JFrame implements ActionListener {
        						select_palette=imp.select_palette("PT");
        						  for(int i=0;i<select_palette.size();i++)
        						   {
-       						          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+       						          //Pour affecter une valeur de base de donn?es ? un Combobox 
        							   palette_comb.addItem(select_palette.get(i));
        							   
        						   }
@@ -386,7 +386,7 @@ public class etiquette_embalage_tpe extends JFrame implements ActionListener {
                                       
                                                for(int i=0;i<list_gw.size();i++)
                                                {
-                                                      //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+                                                      //Pour affecter une valeur de base de donn?es ? un Combobox 
                                                    gw_comb.addItem(list_gw.get(i));
                                                }
                         
@@ -619,7 +619,7 @@ public class etiquette_embalage_tpe extends JFrame implements ActionListener {
                     JOptionPane
                             .showMessageDialog(
                                     null,
-                                    "Vous devez d'abord sï¿½lectionner la ligne que vous voulez supprimer",
+                                    "Vous devez d'abord sélectionner la ligne que vous voulez supprimer",
                                     "", JOptionPane.INFORMATION_MESSAGE);
                 } else {
                     ((DefaultTableModel) tab.table.getModel())
@@ -690,7 +690,7 @@ public class etiquette_embalage_tpe extends JFrame implements ActionListener {
                     msg = "";
                 
                 if (article_comb.getSelectedIndex() == 0) {
-                    msg += "Vous Devez  Sï¿½lectionner un Article\n";
+                    msg += "Vous Devez  Sélectionner un Article\n";
                 } 
                 else if (gw_comb.getSelectedItem()==null) {
                     
@@ -719,7 +719,7 @@ public class etiquette_embalage_tpe extends JFrame implements ActionListener {
                     for (int j = i + 1; j < tab.table.getRowCount(); j++) {
                         int p=i+1; int g=j+1;
                     if ( tab.table.getValueAt(i,1).toString().equals(tab.table.getValueAt(j, 1).toString())    ) {
-                            msg += "les Ligne "+p+ " et "+g+" sont  dupliquï¿½. \n";
+                            msg += "les Ligne "+p+ " et "+g+" sont  dupliqué. \n";
                                         }
                     }
                     }
@@ -742,7 +742,7 @@ public class etiquette_embalage_tpe extends JFrame implements ActionListener {
                     if (tab.table.getValueAt(i, 2).toString().equals(tab.table.getValueAt(j, 2).toString())||
                         tab.table.getValueAt(i,1).toString().equals(tab.table.getValueAt(j, 1).toString())
                         ) {
-                        msg += " Les Ligne "+p+" et "+g+" sont  dupliquï¿½. \n";
+                        msg += " Les Ligne "+p+" et "+g+" sont  dupliqué. \n";
                                     }
                                 }
                             }}
@@ -769,7 +769,7 @@ public class etiquette_embalage_tpe extends JFrame implements ActionListener {
              System.out.println(tab.table.getValueAt(i, 0).toString());
               imp.update_emei_tpe(parcel_jtext.getText(),tab.table.getValueAt(i, 1).toString(), tab.table.getValueAt(i, 2).toString()); 
                             }
-                        JOptionPane.showMessageDialog(null,"L'etiquette a ï¿½tï¿½ bien modifiï¿½e");
+                        JOptionPane.showMessageDialog(null,"L'etiquette a été bien modifiée");
                         
                         imp_embalage.setVisible(true);
                         valid_modif.setVisible(false);
@@ -791,7 +791,7 @@ public class etiquette_embalage_tpe extends JFrame implements ActionListener {
                 msg = "";
                 
                 if (article_comb.getSelectedIndex() == 0) {
-                    msg += "Vous Devez  Sï¿½lectionner un Article\n";
+                    msg += "Vous Devez  Sélectionner un Article\n";
                 } 
                 else if (gw_comb.getSelectedItem()==null) {
                     
@@ -823,7 +823,7 @@ public class etiquette_embalage_tpe extends JFrame implements ActionListener {
                          for (int j = i + 1; j < tab.table.getRowCount(); j++) {
                              int p=i+1; int g=j+1;
                          if ( tab.table.getValueAt(i,1).toString().equals(tab.table.getValueAt(j, 1).toString())    ) {
-                                 msg += "les Ligne "+p+ " et "+g+" sont  dupliquï¿½. \n";
+                                 msg += "les Ligne "+p+ " et "+g+" sont  dupliqué. \n";
                                              }
                          }
                          
@@ -846,7 +846,7 @@ public class etiquette_embalage_tpe extends JFrame implements ActionListener {
                          if (tab.table.getValueAt(i, 2).toString().equals(tab.table.getValueAt(j, 2).toString())||
                              tab.table.getValueAt(i,1).toString().equals(tab.table.getValueAt(j, 1).toString())
                              ) {
-                             msg += " Les Ligne "+p+" et "+g+" sont  dupliquï¿½. \n";
+                             msg += " Les Ligne "+p+" et "+g+" sont  dupliqué. \n";
                                          }
                                      }
                                  }}
@@ -877,7 +877,7 @@ public class etiquette_embalage_tpe extends JFrame implements ActionListener {
                                    tab.table.getValueAt(i, 2).toString() );  
                            }
                     
-                    JOptionPane.showMessageDialog(null, "l'etiquette a ï¿½tï¿½ bien ajouter");
+                    JOptionPane.showMessageDialog(null, "l'etiquette a été bien ajouter");
                     imp_embalage.setVisible(true);
                     valid_ajou.setVisible(false);
                     but_ajouter.setVisible(false);
@@ -1060,7 +1060,7 @@ public class etiquette_embalage_tpe extends JFrame implements ActionListener {
                 	     JOptionPane
 							.showMessageDialog(
 									null,
-									" Vous dever choisir la dimension de l'ï¿½tiquette ",
+									" Vous dever choisir la dimension de l'étiquette ",
 									"", JOptionPane.INFORMATION_MESSAGE);
                   }else{
                         String parcel=parcel_jtext.getText().replace("/","_");

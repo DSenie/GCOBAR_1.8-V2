@@ -80,14 +80,14 @@ public class menu extends JFrame{
     private JMenuItem list_palette = new JMenuItem("Liste Palette");
 
     
-    private  JMenu televisseur= new  JMenu("Etiquette Tï¿½lï¿½viseur");
+    private  JMenu televisseur= new  JMenu("Etiquette Téléviseur");
     private  JMenu portable= new  JMenu("Etiquette Portable");
     private  JMenu tpe= new  JMenu("Etiquette TPE");
     private  JMenu composant= new  JMenu("Etiquette Composant");
     private  JMenu palette= new  JMenu("Etiquette Palette");
     private  JMenu recherche= new  JMenu("Recherche");
 
-    private JMenuItem rech_detail = new JMenuItem("Recherche detaillï¿½");
+    private JMenuItem rech_detail = new JMenuItem("Recherche detaillé");
 
     
     private JMenuItem etiquette_composant = new JMenuItem("Etiquette Composant");
@@ -109,7 +109,7 @@ public class menu extends JFrame{
     private JMenuItem list_chaine = new JMenuItem("Recherche");
     
     private JMenu codification = new JMenu(" Codification ");
-	private  JMenuItem cod_ref= new  JMenuItem("Code rï¿½fï¿½rence");
+	private  JMenuItem cod_ref= new  JMenuItem("Code réfèrence");
 	private  JMenuItem cod_gener= new  JMenuItem("Code Famille");
 	private  JMenuItem rech= new  JMenuItem("Recherche");
 
@@ -129,7 +129,11 @@ public class menu extends JFrame{
 			private  JMenuItem prod_t= new  JMenuItem("tache Process");
 			private  JMenuItem prod_c= new  JMenuItem("Chaine Process");
 			private  JMenuItem prod_o= new  JMenuItem("Edition Otillage");
-			
+
+
+
+    private JMenuItem palette_tpe = new JMenuItem("Palette  TPE");
+    private JMenuItem list_palette_portable = new JMenuItem("List Palette Portable");
 			
 		    private JMenuItem imp_palette = new JMenuItem("Etiquette palette");
 
@@ -174,7 +178,7 @@ public class menu extends JFrame{
 
 		   new File("C:\\GCOBAR\\monfichier.txt").delete();
 		   int reponse = JOptionPane.showConfirmDialog(
-	                null, "Voulez-vous quitter dï¿½finitivement l'application ?",
+	                null, "Voulez-vous quitter définitivement l'application ?",
 	                "Confirmation",
 	                JOptionPane.YES_NO_OPTION,
 	                JOptionPane.QUESTION_MESSAGE);
@@ -211,7 +215,7 @@ public class menu extends JFrame{
 
 	   if( !selectioncomb.prv.contains("menu"))
 	   selectioncomb.prv.add("menu");
-	   msg=new JLabel("<HTML> Bienvenue "+logi_prio +", <br> veuillez entrer tout les information nï¿½cessaire.</HTML>");
+	   msg=new JLabel("<HTML> Bienvenue "+logi_prio +", <br> veuillez entrer tout les information nécessaire.</HTML>");
 		  setTitle("Gestion de production");
           setSize(1000, 600);
           setLocationRelativeTo(null);
@@ -328,14 +332,14 @@ public class menu extends JFrame{
           imp.add(portable);
           imp.add(tpe);
           imp.add(composant);
-          imp.add(palette);
+      //    imp.add(palette);
           imp.add(recherche);
           recherche.add(rech_detail);
 
           composant.add(etiquette_composant);
           composant.add(list_composant);
 
-          //Ajout d'un sï¿½parateur
+          //Ajout d'un séparateur
           imp.addSeparator();
 
 
@@ -360,21 +364,46 @@ public class menu extends JFrame{
           tpe.add(list_etq_tpe);
 
 
-          palette.add(imp_palette);
-          palette.add(list_palette);
+        //  palette.add(imp_palette);
+        //  palette.add(list_palette);
 
           tpe.add(etiquette_caution_tpe);
         //  imp.add(imp_bom);
          // imp.add(imp_effect);
           article.add(list_art);
 
-          rech_detail.addActionListener(
+
+
+
+        portable.add(list_palette_portable);
+        tpe.add(palette_tpe);
+
+
+        rech_detail.addActionListener(
                   new ActionListener() {
                   public void actionPerformed(ActionEvent e) {
                 	  Recherche_general caut=  new  Recherche_general(logi_prio);
                 	  caut.setVisible(true);
                   dispose();
                   } });
+        palette_tpe.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        list_palette_tpe pal=  new  list_palette_tpe(logi_prio);
+                        pal.setVisible(true);
+                        dispose();
+                    } });
+
+
+        list_palette_portable.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        list_palette_portable phonpallete;
+                        phonpallete = new  list_palette_portable(logi_prio);
+                        phonpallete.setVisible(true);
+                        dispose();
+                    } });
+
           imp_palette.addActionListener(
                   new ActionListener() {
                   public void actionPerformed(ActionEvent e) {

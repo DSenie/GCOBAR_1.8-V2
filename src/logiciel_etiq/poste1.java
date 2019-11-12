@@ -102,13 +102,13 @@ private JTextField poste_fi=new JTextField();
 private JLabel comb_lab=new JLabel("Poste");
 private JLabel poste_lab=new JLabel("Code Poste");
 private JTextField designation=new JTextField();
-private JLabel designation_lab=new JLabel("Dï¿½signation");
+private JLabel designation_lab=new JLabel("Désignation");
 private JTextArea description=new JTextArea();
 private JLabel description_lab=new JLabel("Description");
 private jcombo poste_comb;
 private Java2sAutoComboBox tache_comb;
 
-private Object [] entete={"Code/Dï¿½signation Tache","Dï¿½signation"};
+private Object [] entete={"Code/Désignation Tache","Désignation"};
 private final Tableau tab=new Tableau(entete);
 private gestion_poste pos= new  gestion_poste();
 
@@ -135,13 +135,13 @@ public void composant(final String log){
 	
 	 tab.allowEdition1=false;
 	 
-	 list_t = new ArrayList<Object>(Arrays.asList(new String[]{"--Sï¿½lectionner un Poste--"}));
+	 list_t = new ArrayList<Object>(Arrays.asList(new String[]{"--Sélectionner un Poste--"}));
 	 poste_comb = new jcombo(list_t.toArray());
    
      list_poste_tr=pos.select_poste_code();	  
 	   for(int i=0;i<list_poste_tr.size();i++)
 	   {
-	          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+	          //Pour affecter une valeur de base de données é un Combobox
 		   poste_comb.addItem(list_poste_tr.get(i)+" "+list_poste_tr.get(i+1));
 		   i++;
 	   }
@@ -149,7 +149,7 @@ public void composant(final String log){
 	   // list_zone_tr=use.select_zone_code();
 	   
 	   // list_zone_tr=use.select_zone_code();
-	   list_t = new ArrayList<Object>(Arrays.asList(new String[]{"---Sï¿½lectionner une Tache-----"}));
+	   list_t = new ArrayList<Object>(Arrays.asList(new String[]{"---Sélectionner une Tache-----"}));
 		//zone_comb = new jcombo(list_z.toArray());
 	   // selectioncomb.selectzone_chaine1(this,log,tab,list_z);
 
@@ -171,7 +171,7 @@ public void composant(final String log){
 		
 //		 for(int i=0;i<list_zone_tr.size();i++)
 //  	   {
-//  	          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+//  	          //Pour affecter une valeur de base de données é un Combobox
 //  		   zone_comb.addItem(list_zone_tr.get(i)+" "+list_zone_tr.get(i+1));
 //  		   i++;
 //  	   }
@@ -301,7 +301,7 @@ public void composant(final String log){
 
             msg="";
             if(poste_comb.getSelectedIndex()==0){
-	          msg+="Vous Devez d'abord Sï¿½lectionner un Poste \n";
+	          msg+="Vous Devez d'abord Sélectionner un Poste \n";
 	         }
             else if(existe==true){
             	 msg+="Ce Poste n'existe pas \n";
@@ -313,11 +313,11 @@ public void composant(final String log){
   	         pos.setdelete_poste(poste_fi.getText(),designation.getText());
   	         designation.setText("");
   	         poste_comb.removeAllItems();
-  	         poste_comb.addItem("--Sï¿½lectionner un Poste--");
+  	         poste_comb.addItem("--Sélectionner un Poste--");
   	         list_poste_tr=pos.select_poste_code();
 	         for(int i=0;i<list_poste_tr.size();i++)
 	         {
-	          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+	          //Pour affecter une valeur de base de données é un Combobox
 		      poste_comb.addItem(list_poste_tr.get(i)+" "+list_poste_tr.get(i+1));
 		      i++;
 	         }
@@ -328,7 +328,7 @@ public void composant(final String log){
              new ActionListener() { 
              public void actionPerformed(ActionEvent e) {
              if(tab.table.getSelectedRow()==-1){
-             JOptionPane.showMessageDialog(null, "Vous devez d'abord sï¿½lectionner la tache que vous voulez supprimer", "",
+             JOptionPane.showMessageDialog(null, "Vous devez d'abord sélectionner la tache que vous voulez supprimer", "",
      	 	 JOptionPane.INFORMATION_MESSAGE);
                 	                           }
              else{
@@ -418,20 +418,20 @@ public void composant(final String log){
 	  	     	}
 		  	   
 		  	    
-		  		if(desc2==true) {msg+="Veuillez remplir la dï¿½signation \n";}
+		  		if(desc2==true) {msg+="Veuillez remplir la désignation \n";}
 		  		else  if(valid_j==true) { msg+="Un Champ dans le tableau est vide \n";}
-		  		else if(repet2==true){ msg+="Il existe une ou plusieurs Taches dupliquï¿½es \n"; }
+		  		else if(repet2==true){ msg+="Il existe une ou plusieurs Taches dupliquées \n"; }
 		  		
 		  		if(!msg.equals("")){JOptionPane.showMessageDialog(null,msg); }
 		  		
 		  		else{
-		  	    JOptionPane.showMessageDialog(null,"Le Poste a ï¿½tï¿½ bien modifiï¿½");
+		  	    JOptionPane.showMessageDialog(null,"Le Poste a été bien modifié");
 		  	    designation.setText("");
 		  		poste_comb.removeAllItems();
-		  		poste_comb.addItem("--Sï¿½lectionner une Poste--");
+		  		poste_comb.addItem("--Sélectionner une Poste--");
 		  		list_poste_tr=pos.select_poste_code();
 		  		for(int i=0;i<list_poste_tr.size();i++){
-		  		 //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+		  		 //Pour affecter une valeur de base de données é un Combobox
 		  		 poste_comb.addItem(list_poste_tr.get(i)+" "+list_poste_tr.get(i+1));
 		  		 i++; }}
 	 	  	     }}});
@@ -463,7 +463,7 @@ public void composant(final String log){
               pan_but_poste.setVisible(true);
               
               if(existe==false){
-             	 JOptionPane.showMessageDialog(null, "Ce Poste existe dï¿½jï¿½", "",
+             	 JOptionPane.showMessageDialog(null, "Ce Poste existe déjà", "",
              	 JOptionPane.INFORMATION_MESSAGE);
              	 but_sauv.setVisible(false);
                   but_modif.setVisible(true);
@@ -512,7 +512,7 @@ public void composant(final String log){
  	    		desc=false;
  	    		//use.select_chaine_jtext(designation.getText());
  	       if(existe==false){
- 	              	 JOptionPane.showMessageDialog(null, "Ce Poste existe dï¿½jï¿½", "",
+ 	              	 JOptionPane.showMessageDialog(null, "Ce Poste existe déjà", "",
  	              	 JOptionPane.INFORMATION_MESSAGE);}
  	       else if(tab.table.getRowCount()==0){ 
  	    	   JOptionPane.showMessageDialog(null,"Vous devez d'abord ajouter une Zone.", "",
@@ -546,12 +546,12 @@ public void composant(final String log){
 	  	 	   }
                
                if(repet==false&&desc==false&&valid==false   ) {
-                JOptionPane.showMessageDialog(null,"Le Poste a ï¿½tï¿½ bien ajoutï¿½e");
+                JOptionPane.showMessageDialog(null,"Le Poste a été bien ajoutée");
                 designation.setText("");
                poste_comb.enable();
                 //System.out.println(use.select_chaine_code().get(i));
                poste_comb.removeAllItems();
-               poste_comb.addItem("--Sï¿½lectionner un Poste--");
+               poste_comb.addItem("--Sélectionner un Poste--");
 	  		  list_poste_tr=pos.select_poste_code();
 			   for(int i=0;i<list_poste_tr.size();i++)
 			   {
@@ -559,9 +559,9 @@ public void composant(final String log){
 				   i++;
 			   }
 			   }
-	  		 	if(desc==true) {msg+="Veuillez remplir la dï¿½signation \n"; }
+	  		 	if(desc==true) {msg+="Veuillez remplir la désignation \n"; }
 	  		 	else if(valid==true) { msg+="Un Champ dans le tableau est vide \n";}
-	  		 	else if(repet==true){msg+="Il existe plusieurs ou des taches dupliquï¿½es. \n";}
+	  		 	else if(repet==true){msg+="Il existe plusieurs ou des taches dupliquées. \n";}
 		  		if(!msg.equals("")){JOptionPane.showMessageDialog(null,msg);}
 	  		   }}});
    
@@ -1010,7 +1010,7 @@ for (int k=0;k<tab.table.getColumnCount();k++)
 String om=tab.table.getValueAt(l,k).toString();
 
 
-if(om.trim().length()==0||om.equals("---Sï¿½lectionner une zone-----"))
+if(om.trim().length()==0||om.equals("---Sélectionner une zone-----"))
 
 {
 	msg="";

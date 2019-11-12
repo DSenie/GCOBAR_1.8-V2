@@ -143,8 +143,8 @@ public class profils extends JFrame implements ActionListener{
 	private JPanel code_check_pan = new JPanel();	
 	private JPanel code_pan = new JPanel();
 	private JCheckBox code = new JCheckBox("Codification");
-	private JCheckBox code_ref = new JCheckBox("Code rï¿½fï¿½rence");
-	private JCheckBox code_gener = new JCheckBox("Code gï¿½nerique");
+	private JCheckBox code_ref = new JCheckBox("Code réfèrence");
+	private JCheckBox code_gener = new JCheckBox("Code génerique");
 	private JCheckBox rech = new JCheckBox("Recharche");
 
 	
@@ -260,7 +260,7 @@ public class profils extends JFrame implements ActionListener{
 				police2, Color.white);
 		article_pan.setBorder(titlart);
 		
-		TitledBorder titlimp = new TitledBorder(border, "Imprimï¿½",
+		TitledBorder titlimp = new TitledBorder(border, "Imprimé",
 				TitledBorder.DEFAULT_POSITION, TitledBorder.DEFAULT_POSITION,
 				police2, Color.white);
 		imp_pan.setBorder(titlimp);
@@ -521,14 +521,14 @@ public class profils extends JFrame implements ActionListener{
 			prof.selection(nom_p.getText());
 			if(i<2){msg+="veuillez cocher au moins 2 case \n";}
 			else if(nom_p.getText().equals("")) {msg+="Veuillez remplir le nom du profil \n";}
-			else if(prof.ex==false){msg+="le nom du profil ne peut pas ï¿½tre modifiï¿½ \n";}
+			else if(prof.ex==false){msg+="le nom du profil ne peut pas étre modifié \n";}
 			  if(msg.equals("")){
 			   prof.modif_profils(p,ep,lp,c,ec,lc,ch,z,pers,epers,lpers,us,eus,lus,profil,
 					cd,cd_f,cd_g,cd_rech,
 					art,eart,t,
 					im,et,fi,lfi,nom_p.getText(),four,efour,lfour);
 			  if(prof.exist==false)
-			 JOptionPane.showMessageDialog(null,"Le profils a ï¿½tï¿½ bien modifiï¿½e");
+			 JOptionPane.showMessageDialog(null,"Le profils a été bien modifiée");
 			  }
 			  else{JOptionPane.showMessageDialog(null,msg);}
 			
@@ -604,7 +604,7 @@ public class profils extends JFrame implements ActionListener{
 					art,eart,t,
 					im,et,fi,lfi,nom_p.getText(),four,efour,lfour);
 			  if(prof.exist==false)
-			 JOptionPane.showMessageDialog(null,"Le profils a ï¿½tï¿½ bien ajoutï¿½e");
+			 JOptionPane.showMessageDialog(null,"Le profils a été bien ajoutée");
 			  }
 			  else{JOptionPane.showMessageDialog(null,msg);}
 			

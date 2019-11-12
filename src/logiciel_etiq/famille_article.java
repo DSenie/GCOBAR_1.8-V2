@@ -100,7 +100,7 @@ private  jcombo artfamille_comb;
 
 private JLabel artfamille_lab=new JLabel("Code famille article");
 private JTextField cartfamilleence=new JTextField();
-private JLabel designation_lab=new JLabel("Dï¿½signation");
+private JLabel designation_lab=new JLabel("Désignation");
 private JTextField designation=new JTextField();
 private static String laf="com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel";
 
@@ -133,7 +133,7 @@ public void composant(){
 	list_artfamil_tr=artfamil.select_artfamille_code();
 	   for(int i=0;i<list_artfamil_tr.size();i++)
 	   {
-	          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+	          //Pour affecter une valeur de base de donn?es ? un Combobox 
 		  artfamille_comb.addItem(list_artfamil_tr.get(i)+" "+list_artfamil_tr.get(i+1));
 		   i++;
 	   }
@@ -259,7 +259,7 @@ valid_modif.setVisible(false);
   	list_artfamil_tr=artfamil.select_artfamille_code();
 	for(int i=0;i<list_artfamil_tr.size();i++)
 	   {
-	          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+	          //Pour affecter une valeur de base de donn?es ? un Combobox 
 		   artfamille_comb.addItem(list_artfamil_tr.get(i)+" "+list_artfamil_tr.get(i+1));
 		   i++;
 	   }
@@ -307,9 +307,9 @@ valid_modif.setVisible(false);
 	            	   msg="";
 	            	   desc=false;
 	            	   artfamil.type(designation.getText());
-	            	   if (artfamil.ex==true) {msg+="Ce type article existe dï¿½ja \n";}
+	            	   if (artfamil.ex==true) {msg+="Ce type article existe déja \n";}
 	            	   else if(artfamille_comb.getSelectedIndex()==0){
-	        	      				msg+="Vous Devez D'abord Sï¿½lectionner un type article\n";
+	        	      				msg+="Vous Devez D'abord Sélectionner un type article\n";
 	                   }
 	            	   else if(designation.getText().equals("")) {	desc=true;
 	                          msg+="Veuillez remplir l'intitule \n";
@@ -322,14 +322,14 @@ valid_modif.setVisible(false);
  		  	            	}
 	            	 	else{
 	    	            	artfamil.setupdate_artfamille(cartfamilleence.getText(), designation.getText());
-	    	            	 JOptionPane.showMessageDialog(null,"Le Type article a ï¿½tï¿½ bien modifier");
+	    	            	 JOptionPane.showMessageDialog(null,"Le Type article a été bien modifier");
 	    	            	 designation.setText("");
 	    	            		artfamille_comb.removeAllItems();
 	    	            	  	 artfamille_comb.addItem("---Selectionner un type article-----");
 	    	            	  	list_artfamil_tr=artfamil.select_artfamille_code();
 	    	            		   for(int i=0;i<list_artfamil_tr.size();i++)
 	    	            		   {
-	    	            		          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+	    	            		          //Pour affecter une valeur de base de donn?es ? un Combobox 
 	    	            			   artfamille_comb.addItem(list_artfamil_tr.get(i)+" "+list_artfamil_tr.get(i+1));
 	    	            			   i++;
 	    	            		   }cartfamilleence.setText(artfamil.afficher_code_artfamille());
@@ -350,7 +350,7 @@ valid_modif.setVisible(false);
                 artfamil.type(designation.getText());
 
                  if(artfamil.ex==true){
-                 	 JOptionPane.showMessageDialog(null, "Ce Type exist dï¿½ja", "",
+                 	 JOptionPane.showMessageDialog(null, "Ce Type exist déja", "",
                  	 JOptionPane.INFORMATION_MESSAGE);
                  	   but_sauv.setVisible(false);
                       but_modif.setVisible(true);
@@ -386,7 +386,7 @@ valid_modif.setVisible(false);
         	   
         	 	if(designation.getText().equals("")) {	desc=true;
                       msg+="Veuillez remplir la designation \n";}
-        	 	else if (artfamil.ex==true) {msg+="Ce type article existe dï¿½ja \n";}
+        	 	else if (artfamil.ex==true) {msg+="Ce type article existe déja \n";}
         	 	else{
         	 		
         	  exist= artfamil.ajouter_artfamille(cartfamilleence.getText(), designation.getText());
@@ -394,7 +394,7 @@ valid_modif.setVisible(false);
         	  	 artfamille_comb.addItem("---Selectionner un type article-----");
         		   for(int i=0;i<artfamil.select_artfamille_code().size();i++)
         		   {
-        		          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+        		          //Pour affecter une valeur de base de donn?es ? un Combobox 
         			   artfamille_comb.addItem(artfamil.select_artfamille_code().get(i)+" "+artfamil.select_artfamille_code().get(i+1));
         			   i++;
         		   }
@@ -402,7 +402,7 @@ valid_modif.setVisible(false);
         	 	
         	 	}
         	 	 if(exist==false&&desc==false&&artfamil.ex==false){
-              	   JOptionPane.showMessageDialog(null,"Le Type a ï¿½tï¿½ bien ajouter");
+              	   JOptionPane.showMessageDialog(null,"Le Type a été bien ajouter");
               	   artfamille_comb.enable();
                    designation.setText("");
                  }

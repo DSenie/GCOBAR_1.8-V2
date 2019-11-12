@@ -108,7 +108,7 @@ public class etiquette_composant extends JFrame {
 	private JPanel pan_qtebobine = new JPanel();
 	private JPanel pan_qtebobine_jtext = new JPanel();
 	private JPanel pan_qtebobine_lab = new JPanel();
-	private JLabel qtebobine_lab = new JLabel("Quantitï¿½ par Bobine");
+	private JLabel qtebobine_lab = new JLabel("Quantité par Bobine");
 	private JTextField qtebobine_jtext=new JTextField();
 	
 	private JPanel pan_carton = new JPanel();
@@ -122,7 +122,7 @@ public class etiquette_composant extends JFrame {
 	private JPanel pan_qteglobale = new JPanel();
 	private JPanel pan_qteglobale_jtext = new JPanel();
 	private JPanel pan_qteglobale_lab = new JPanel();
-	private JLabel qteglobale_lab = new JLabel("Quantitï¿½ Globale");
+	private JLabel qteglobale_lab = new JLabel("Quantité Globale");
 	private JTextField qteglobale_jtext=new JTextField();
 	
 
@@ -130,7 +130,7 @@ public class etiquette_composant extends JFrame {
 	private JPanel pan_nbrcarton = new JPanel();
 	private JPanel pan_nbrcarton_jtext = new JPanel();
 	private JPanel pan_nbrcarton_lab = new JPanel();
-	private JLabel nbrcarton_lab = new JLabel("Quantitï¿½ de carton");
+	private JLabel nbrcarton_lab = new JLabel("Quantité de carton");
 	private JTextField nbrcarton_jtext=new JTextField();
 
 
@@ -157,7 +157,7 @@ public class etiquette_composant extends JFrame {
 	private JButton but_modif = new JButton("Modifier");
 	private JButton valid_ajou = new JButton("Valider");
 	private JButton valid_modif = new JButton("Valider");
-	private JButton imp_etq = new JButton("Imprimer L'ï¿½tiquette");
+	private JButton imp_etq = new JButton("Imprimer L'étiquette");
 	private JButton retour = new JButton("Retour");
 	
 	ArrayList <String>list_dimension= new ArrayList<String>() ;
@@ -208,13 +208,13 @@ public class etiquette_composant extends JFrame {
 		selectioncomb.select_composant(article_comb, this, logi_prio);
 		
 		
-		dimension_comb.addItem("--- Sï¿½lectionner la dimension de l'etiquette ----");
+		dimension_comb.addItem("--- Sélectionner la dimension de l'etiquette ----");
 
 		list_dimension=imp.select_dimension_etq("etq_composant");
 	 	  
 		   for(int i=0;i<list_dimension.size();i++)
 		   {
-		          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+		          //Pour affecter une valeur de base de donn?es ? un Combobox 
 			   dimension_comb.addItem(list_dimension.get(i));
 			   
 		   }
@@ -486,7 +486,7 @@ public class etiquette_composant extends JFrame {
 	                    msg = "";
 					
 					if (article_comb.getSelectedIndex() == 0) {
-						msg += "Vous Devez  Sï¿½lectionner un Article\n";
+						msg += "Vous Devez  Sélectionner un Article\n";
 					} 
 					
 					
@@ -499,16 +499,16 @@ public class etiquette_composant extends JFrame {
 					} 
 					
 					else if (qtebobine_jtext.getText().equals("")) {
-						msg += "Vous Devez remplire la quantitï¿½ de bobines \n";
+						msg += "Vous Devez remplire la quantité de bobines \n";
 					} 
 					else if (isValid(qtebobine_jtext.getText()) == false) {
-						msg += "La quantitï¿½ doit etre un nombre \n";
+						msg += "La quantité doit etre un nombre \n";
 					}
 					else if (isValid(nbrbobine_jtext.getText()) == false) {
 						msg += "La nombre de bobine doit etre un nombre \n";
 					}
 					else if (dimension_comb.getSelectedIndex() == 0) {
-						msg += "Vous Devez  Sï¿½lectionner une dimension\n";
+						msg += "Vous Devez  Sélectionner une dimension\n";
 					} 
 					
 					
@@ -542,7 +542,7 @@ public class etiquette_composant extends JFrame {
 				
 
 			
-							JOptionPane.showMessageDialog(null,"L'etiquette a ï¿½tï¿½ bien modifiï¿½e");
+							JOptionPane.showMessageDialog(null,"L'etiquette a été bien modifiée");
 							
 							imp_etq.setVisible(true);
 							valid_modif.setVisible(false);
@@ -572,9 +572,9 @@ public class etiquette_composant extends JFrame {
 				else if (nbrbobine_jtext.equals("")) {
 					msg += "Veuillez saisir le nombre de Bobine par carton \n";
 				} else if (qtebobine_jtext.getText().equals("")) {
-					msg += "Veuillez remplir la quantitï¿½  \n";
+					msg += "Veuillez remplir la quantité  \n";
 				} else if (isValid(qtebobine_jtext.getText()) == false) {
-					msg += "La quantitï¿½ doit etre un nombre \n";
+					msg += "La quantité doit etre un nombre \n";
 				}
 				else if (isValid(nbrbobine_jtext.getText()) == false) {
 					msg += "La nombre de bobine doit etre un nombre \n";
@@ -584,10 +584,9 @@ public class etiquette_composant extends JFrame {
 				if (msg.equals("")) {
 					String etq=null;String serie="";
 					action_carton();
-					 retour.setEnabled(false);
-					 valid_ajou.setEnabled(false);
+
 		
-                    JLabel titr=new JLabel("la crï¿½ation de "+nbrbobine_jtext.getText()+" etiquette");
+                    JLabel titr=new JLabel("la création de "+nbrbobine_jtext.getText()+" etiquette");
                     titr.setFont( titr.getFont().deriveFont(Font.BOLD|Font.ITALIC) );
                   
                     UIManager.put("nimbusOrange", (new Color(70,130,180)));
@@ -638,11 +637,10 @@ public class etiquette_composant extends JFrame {
 			
 						
                           valid_ajou.setVisible(false);
-                          but_sauv.setVisible(true);
-                          retour.setVisible(false);
-					      JOptionPane.showMessageDialog(null, "l'ï¿½tiquette a " + des	+ "  a ï¿½tï¿½ bien ajoutï¿½");
-					 retour.setEnabled(true);
-					 valid_ajou.setEnabled(true);
+                          but_sauv.setVisible(false);
+                          retour.setVisible(true);
+					      JOptionPane.showMessageDialog(null, "l'étiquette a " + des	+ "  a été bien ajouté");
+
 					imp_etq.setVisible(true);
 				} else {
 					JOptionPane.showMessageDialog(null, msg);

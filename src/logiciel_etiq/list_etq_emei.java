@@ -147,13 +147,13 @@ public class list_etq_emei extends JFrame {
 		   tab.setStyle(2);
 		   
 		   
-		   dimension_comb.addItem("--- Sï¿½lectionner la dimension de l'etiquette ----");
+		   dimension_comb.addItem("--- Sélectionner la dimension de l'etiquette ----");
 
 			list_dimension=imp.select_dimension_etq("etq_portable_forn");
 		 	  
 			   for(int i=0;i<list_dimension.size();i++)
 			   {
-			          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+			          //Pour affecter une valeur de base de données é un Combobox
 				   dimension_comb.addItem(list_dimension.get(i));
 				   
 			   }
@@ -387,7 +387,7 @@ public class list_etq_emei extends JFrame {
 	                  } } }
 	                	  else{
 	                		  
-	                		  JOptionPane.showMessageDialog(null, "Vous devez choisir un type d'ï¿½tiquette");
+	                		  JOptionPane.showMessageDialog(null, "Vous devez choisir un type d'étiquette");
 	                	  }
 	                  }});
 		     
@@ -400,7 +400,7 @@ public class list_etq_emei extends JFrame {
 	                	   att = new Thread(){
 	  	 					public void run(){
 	  	 						int reponse = JOptionPane.showConfirmDialog(
-	  	 						        null, "Operation terminï¿½e. Voulez-vous ouvrir le fichier Excel ?",
+	  	 						        null, "Operation terminée. Voulez-vous ouvrir le fichier Excel ?",
 	  	 						        "Confirmation",
 	  	 						        JOptionPane.YES_NO_OPTION,
 	  	 						        JOptionPane.QUESTION_MESSAGE);
@@ -425,7 +425,7 @@ public class list_etq_emei extends JFrame {
 		 	          			Row row1 = sheet.createRow((short)0);
 
 		 	          			Cell cellA1 = row1.createCell((short) 0);
-		 	        			cellA1.setCellValue("Modï¿½le");
+		 	        			cellA1.setCellValue("Modèle");
 		 	        			CellStyle cellStyle = worksheet.createCellStyle();
 		 	        			cellStyle.setFillForegroundColor(HSSFColor.LIGHT_CORNFLOWER_BLUE.index);
 		 	        			cellStyle.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);

@@ -133,14 +133,14 @@ private JTextField zone_fi=new JTextField();
 private JLabel comb_lab=new JLabel("Chaine");
 private JLabel chaine_lab=new JLabel("Code Chaine");
 private JTextField designation=new JTextField();
-private JLabel designation_lab=new JLabel("Dï¿½signation");
+private JLabel designation_lab=new JLabel("Désignation");
 private JTextArea description=new JTextArea();
 private JLabel description_lab=new JLabel("Description");
 private jcombo chaine_comb;
 private Java2sAutoComboBox zone_comb;
 JButton but = new JButton("eeee");
 
-private Object [] entete={"Code/Dï¿½signation Zone","Dï¿½signation"};
+private Object [] entete={"Code/Désignation Zone","Désignation"};
 private final Tableau tab=new Tableau(entete);
 private gestion_chaine use= new  gestion_chaine();
 private JScrollPane p=new JScrollPane(tab);
@@ -165,19 +165,19 @@ Chaine(final String log){
 public void composant(final String log){
 	  tab.allowEdition1=false;
       final  Font police2 = new Font("Comic Sans MS", Font.BOLD|Font.ITALIC,18);
-	  list_c = new ArrayList<Object>(Arrays.asList(new String[]{"--Sï¿½lectionner une Chaine--"}));
+	  list_c = new ArrayList<Object>(Arrays.asList(new String[]{"--Sélectionner une Chaine--"}));
 	  chaine_comb = new jcombo(list_c.toArray());
 	  list_chaine_tr=use.select_chaine_code();
 	  
 	   for(int i=0;i<list_chaine_tr.size();i++)
 	   {
-	          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+	          //Pour affecter une valeur de base de données à un Combobox
 		   chaine_comb.addItem(list_chaine_tr.get(i)+" "+list_chaine_tr.get(i+1));
 		   i++;
 	   }
 	   
 	   // list_zone_tr=use.select_zone_code();
-	    list_z = new ArrayList<Object>(Arrays.asList(new String[]{"---Sï¿½lectionner une zone-----"}));
+	    list_z = new ArrayList<Object>(Arrays.asList(new String[]{"---Sélectionner une zone-----"}));
 		//zone_comb = new jcombo(list_z.toArray());
 	   // selectioncomb.selectzone_chaine1(this,log,tab,list_z);
 
@@ -199,7 +199,7 @@ public void composant(final String log){
 		
 //		 for(int i=0;i<list_zone_tr.size();i++)
 //  	   {
-//  	          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+//  	          //Pour affecter une valeur de base de donn?es ? un Combobox 
 //  		   zone_comb.addItem(list_zone_tr.get(i)+" "+list_zone_tr.get(i+1));
 //  		   i++;
 //  	   }
@@ -329,7 +329,7 @@ public void composant(final String log){
 
             msg="";
             if(chaine_comb.getSelectedIndex()==0){
-	          msg+="Vous Devez d'abord Sï¿½lectionner une Chaine \n";
+	          msg+="Vous Devez d'abord Sélectionner une Chaine \n";
 	         }
             else if(existe==true){
             	 msg+="Cette Chaine n'existe pas \n";
@@ -341,11 +341,11 @@ public void composant(final String log){
   	         use.setdelete_chaine(zone_fi.getText(),designation.getText());
   	         designation.setText("");
   	         chaine_comb.removeAllItems();
-  	         chaine_comb.addItem("--Sï¿½lectionner une Chaine--");
+  	         chaine_comb.addItem("--Sélectionner une Chaine--");
   	        list_chaine_tr=use.select_chaine_code();
 	         for(int i=0;i<list_chaine_tr.size();i++)
 	         {
-	          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+	          //Pour affecter une valeur de base de données à un Combobox
 		      chaine_comb.addItem(list_chaine_tr.get(i)+" "+list_chaine_tr.get(i+1));
 		      i++;
 	         }
@@ -356,7 +356,7 @@ public void composant(final String log){
              new ActionListener() { 
              public void actionPerformed(ActionEvent e) {
              if(tab.table.getSelectedRow()==-1){
-             JOptionPane.showMessageDialog(null, "Vous devez d'abord sï¿½lectionner la zone que vous voulez supprimer", "",
+             JOptionPane.showMessageDialog(null, "Vous devez d'abord sélectionner la zone que vous voulez supprimer", "",
      	 	 JOptionPane.INFORMATION_MESSAGE);
                 	                           }
              else{
@@ -446,20 +446,20 @@ public void composant(final String log){
 	  	     	}
 		  	   
 		  	    
-		  		if(desc2==true) {msg+="Veuillez remplir la dï¿½signation \n";}
+		  		if(desc2==true) {msg+="Veuillez remplir la désignation \n";}
 		  		else  if(valid_j==true) { msg+="Un Champ dans le tableau est vide \n";}
-		  		else if(repet2==true){ msg+="Il existe une ou plusieurs zones dupliquï¿½es \n"; }
+		  		else if(repet2==true){ msg+="Il existe une ou plusieurs zones dupliquées \n"; }
 		  		
 		  		if(!msg.equals("")){JOptionPane.showMessageDialog(null,msg); }
 		  		
 		  		else{
-		  	    JOptionPane.showMessageDialog(null,"La Chaine a ï¿½tï¿½ bien modifiï¿½");
+		  	    JOptionPane.showMessageDialog(null,"La Chaine a été bien modifié");
 		  	    designation.setText("");
 		  		chaine_comb.removeAllItems();
-		  		chaine_comb.addItem("--Sï¿½lectionner une Chaine--");
+		  		chaine_comb.addItem("--Sélectionner une Chaine--");
 		  		list_chaine_tr=use.select_chaine_code();
 		  		for(int i=0;i<list_chaine_tr.size();i++){
-		  		 //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+		  		 //Pour affecter une valeur de base de données à un Combobox
 		  		 chaine_comb.addItem(list_chaine_tr.get(i)+" "+list_chaine_tr.get(i+1));
 		  		 i++; }}
 	 	  	     }}});
@@ -491,7 +491,7 @@ public void composant(final String log){
               pan_but_poste.setVisible(true);
               
               if(existe==false){
-             	 JOptionPane.showMessageDialog(null, "Cette Chaine existe dï¿½jï¿½", "",
+             	 JOptionPane.showMessageDialog(null, "Cette Chaine existe déja", "",
              	 JOptionPane.INFORMATION_MESSAGE);
              	 but_sauv.setVisible(false);
                   but_modif.setVisible(true);
@@ -539,7 +539,7 @@ public void composant(final String log){
  	    		desc=false;
  	    		//use.select_chaine_jtext(designation.getText());
  	       if(existe==false){
- 	              	 JOptionPane.showMessageDialog(null, "Cette Chaine existe dï¿½jï¿½", "",
+ 	              	 JOptionPane.showMessageDialog(null, "Cette Chaine existe déja", "",
  	              	 JOptionPane.INFORMATION_MESSAGE);}
  	       else if(tab.table.getRowCount()==0){ 
  	    	   JOptionPane.showMessageDialog(null,"Vous devez d'abord ajouter une Zone.", "",
@@ -574,12 +574,12 @@ public void composant(final String log){
 	  	 	   }
                
                if(repet==false&&desc==false&&valid==false   ) {
-                JOptionPane.showMessageDialog(null,"La chaï¿½ne a ï¿½tï¿½ bien ajoutï¿½e");
+                JOptionPane.showMessageDialog(null,"La chaine a été bien ajoutée");
                 designation.setText("");
                 chaine_comb.enable();
                 //System.out.println(use.select_chaine_code().get(i));
 	  		    chaine_comb.removeAllItems();
-	  		    chaine_comb.addItem("--Sï¿½lectionner une Chaine--");
+	  		    chaine_comb.addItem("--Sélectionner une Chaine--");
 	  		  list_chaine_tr=use.select_chaine_code();
 			   for(int i=0;i<list_chaine_tr.size();i++)
 			   {
@@ -587,9 +587,9 @@ public void composant(final String log){
 				   i++;
 			   }
 			   }
-	  		 	if(desc==true) {msg+="Veuillez remplir la dï¿½signation \n"; }
+	  		 	if(desc==true) {msg+="Veuillez remplir la désignation \n"; }
 	  		 	else if(valid==true) { msg+="Un Champ dans le tableau est vide \n";}
-	  		 	else if(repet==true){msg+="Il existe plusieurs ou des zones dupliquï¿½es. \n";}
+	  		 	else if(repet==true){msg+="Il existe plusieurs ou des zones dupliquées. \n";}
 		  		if(!msg.equals("")){JOptionPane.showMessageDialog(null,msg);}
 	  		   }}});
    
@@ -603,10 +603,10 @@ public void composant(final String log){
           // if(zone_comb.hasFocus()){ 
         	
         	if(zone_comb.getSelectedIndex()!=0){
-        		 System.out.println("eeeeeeï¿½");
+
         		  String[] parts = zone_comb.getSelectedItem().toString().split(" ");
                   String part1 = parts[0]; // 004
-                  System.out.println("eeeeeeï¿½"+part1);
+
             String des = zone_comb.getSelectedItem().toString().replace(part1+" ", ""); 	
          //   String des = zone_comb.getSelectedItem().toString().substring(4);
             if(tab.table.getSelectedRow()>=0 )
@@ -1039,7 +1039,7 @@ for (int k=0;k<tab.table.getColumnCount();k++)
 String om=tab.table.getValueAt(l,k).toString();
 
 
-if(om.trim().length()==0||om.equals("---Sï¿½lectionner une zone-----"))
+if(om.trim().length()==0||om.equals("---Sélectionner une zone-----"))
 
 {
 	msg="";

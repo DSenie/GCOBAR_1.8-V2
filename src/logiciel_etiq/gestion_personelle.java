@@ -52,7 +52,7 @@ public class gestion_personelle {
 
 	    String query = "SELECT Matricule FROM personelle where Matricule='"+matri+"'"; 
 	    if(CConnect.Requete(query, bdd).size()>1){
-	      JOptionPane.showMessageDialog(null,"Cette personne existe dï¿½jï¿½."); 
+	      JOptionPane.showMessageDialog(null,"Cette personne existe déjà.");
 	      
 	    }
 	    else{
@@ -61,7 +61,7 @@ public class gestion_personelle {
 	    	    + ",'"+num_tel+"','"+n_chaine+"','"+poste+"','"+type+"','"+zone+"')"; 
 	    	CConnect.Insert(insert,bdd);
 	        
-	        JOptionPane.showMessageDialog(null,""+nom+" "+prenom+" a ï¿½tï¿½ bien ajoutï¿½");
+	        JOptionPane.showMessageDialog(null,""+nom+" "+prenom+" a été bien ajouté");
 
 		     }  
 		
@@ -75,7 +75,7 @@ public class gestion_personelle {
 	    	  		+ "N_chaine='"+n_chaine+"', poste='"+poste+"', type='"+type+"', zone='"+zone+"'"
 	    	  		+ "where Matricule='"+matri+"'"; 
 	    	  CConnect.Insert(update,bdd);
-	    	  JOptionPane.showMessageDialog(null,""+nom+" "+prenom+" a ï¿½tï¿½ bien modifiï¿½");
+	    	  JOptionPane.showMessageDialog(null,""+nom+" "+prenom+" a été bien modifié");
 		  
 }
 

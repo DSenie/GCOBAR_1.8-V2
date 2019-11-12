@@ -68,7 +68,7 @@ public class imprimer_bom extends JFrame {
 	private JPanel pan_model = new JPanel();
 	private JPanel pan_model_comb = new JPanel();
 	private JPanel pan_model_lab = new JPanel();
-	private JLabel model_lab = new JLabel("Liste des Modï¿½le");
+	private JLabel model_lab = new JLabel("Liste des Modéle");
 	private List<String> list_m;
 
 	
@@ -141,13 +141,13 @@ public class imprimer_bom extends JFrame {
 		
 
 	
-		     list_m = new ArrayList<String>(Arrays.asList(new String[]{"---Selectionner un modï¿½le-----"}));
+		     list_m = new ArrayList<String>(Arrays.asList(new String[]{"---Selectionner un modèle-----"}));
 		     model_comb = new jcombo(list_m.toArray());
 		     list_model_tr=art.select_model();	
 		    
 		     for(int i=0;i<list_model_tr.size();i++)
 			   {
-			          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+			          //Pour affecter une valeur de base de données é un Combobox
 		    	 model_comb.addItem(list_model_tr.get(i));
 			   }
 		     model_comb.setWide(true);
@@ -194,8 +194,8 @@ public class imprimer_bom extends JFrame {
 		imp_bom.addActionListener(new ActionListener() {
 	 			public void actionPerformed(ActionEvent event) {// dispose();
 	 				msg="";
-	 				if (article_comb.getSelectedIndex()==0){msg+="veuillez sï¿½lectionner un article \n";}
-	 				if (model_comb.getSelectedIndex()==0){msg+="veuillez sï¿½lectionner un modele \n";}
+	 				if (article_comb.getSelectedIndex()==0){msg+="veuillez sélectionner un article \n";}
+	 				if (model_comb.getSelectedIndex()==0){msg+="veuillez sélectionner un modele \n";}
 	 				if(msg.equals("")){
 	 				att= new Thread(){
 	 					@SuppressWarnings("unused")

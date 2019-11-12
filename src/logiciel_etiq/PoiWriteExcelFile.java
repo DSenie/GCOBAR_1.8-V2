@@ -109,7 +109,7 @@ public class PoiWriteExcelFile {
 			cellB7.setCellStyle(cellStyle);
 			
 			Cell cellB8 = row1.createCell((short) 8);
-			cellB8.setCellValue("Carte Mï¿½re");
+			cellB8.setCellValue("Carte Mére");
 			cellStyle = worksheet.createCellStyle();
 			cellStyle.setFillForegroundColor(HSSFColor.LIGHT_CORNFLOWER_BLUE.index);
 			cellStyle.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
@@ -117,7 +117,7 @@ public class PoiWriteExcelFile {
 			
 			
 			Cell cellB9 = row1.createCell((short) 9);
-			cellB9.setCellValue("Modï¿½le carte Mï¿½re");
+			cellB9.setCellValue("Modèle carte Mère");
 			cellStyle = worksheet.createCellStyle();
 			cellStyle.setFillForegroundColor(HSSFColor.LIGHT_CORNFLOWER_BLUE.index);
 			cellStyle.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
@@ -131,7 +131,7 @@ public class PoiWriteExcelFile {
 			cellB10.setCellStyle(cellStyle);
 			
 			Cell cellB11 = row1.createCell((short) 11);
-			cellB11.setCellValue("Modï¿½le Dalle");
+			cellB11.setCellValue("Modèle Dalle");
 			cellStyle = worksheet.createCellStyle();
 			cellStyle.setFillForegroundColor(HSSFColor.LIGHT_CORNFLOWER_BLUE.index);
 			cellStyle.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);

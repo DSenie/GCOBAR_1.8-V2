@@ -102,7 +102,7 @@ public class connection_user  extends JFrame implements ActionListener{
       protected String a;
       protected String l="";
       protected String msg="";
-      protected  JLabel prenom = new JLabel("Prï¿½nom");
+      protected  JLabel prenom = new JLabel("Prénom");
       protected JTextField prenom1= new  JTextField();
       protected  JLabel login = new JLabel("User");
       protected JTextField login1= new  JTextField();
@@ -303,13 +303,13 @@ public class connection_user  extends JFrame implements ActionListener{
                   	    else{  l="Responsable fin chaine";   } 
                 	    msg="";
                     	 if(nom1.getText().equals("")){ msg+="veuillez saisir le nom \n";}
-                    	 else  	 if (!nom1.getText().matches("[a-zA-Zï¿½]*")){
-                       		 msg+="veuillez vï¿½rifier le nom \n";
+                    	 else  	 if (!nom1.getText().matches("[a-zA-Z]*")){
+                       		 msg+="veuillez vérifier le nom \n";
                          }
                     	 
-                    	 else if(prenom1.getText().equals("")){msg+="veuillez saisir le prï¿½nom \n";}
-                    	 else   if (!prenom1.getText().matches("[a-zA-Zï¿½]*")){
-                       		 msg+="veuillez vï¿½rifier le prï¿½nom \n";
+                    	 else if(prenom1.getText().equals("")){msg+="veuillez saisir le prénom \n";}
+                    	 else   if (!prenom1.getText().matches("[a-zA-Z]*")){
+                       		 msg+="veuillez vérifier le prénom \n";
                          }
                        	 
                     	 else if(login1.getText().equals("")){msg+="veuillez saisir le login \n";}                  	 
@@ -394,13 +394,13 @@ public class connection_user  extends JFrame implements ActionListener{
                 	else{  l="Responsable fin chaine";   } 
                 	  msg="";
                	 if(nom1.getText().equals("")){ msg+="veuillez saisir le nom \n";}
-               	 else  	 if (!nom1.getText().matches("[a-zA-Zï¿½]*")){
-               		 msg+="veuillez vï¿½rifier le nom \n";
+               	 else  	 if (!nom1.getText().matches("[a-zA-Z]*")){
+               		 msg+="veuillez vérifier le nom \n";
                  }
-               	 else if(prenom1.getText().equals("")){msg+="veuillez saisir le prï¿½nom \n";}
+               	 else if(prenom1.getText().equals("")){msg+="veuillez saisir le prénom \n";}
                	 else if(profils_comb.getSelectedIndex()==0){msg+="veuillez selectionner un profils \n";}
                	 
-               	 else if (!prenom1.getText().matches("[a-zA-Zï¿½]*")){ msg+="veuillez vï¿½rifier le prï¿½nom \n";   }
+               	 else if (!prenom1.getText().matches("[a-zA-Z]*")){ msg+="veuillez vérifier le prénom \n";   }
  
                	 
                	 else  if(login1.getText().equals("")){msg+="veuillez saisir le login \n";}
@@ -743,7 +743,7 @@ public void matricule(){
 		           	 TitledBorder titl2 = new TitledBorder ( border, "Ajouter", TitledBorder.DEFAULT_POSITION,
 		           	 TitledBorder.DEFAULT_POSITION, police2, Color.white);
 		           	paneluser.setBorder(titl2);
-		           	 JOptionPane.showMessageDialog(null,"Cette personne existe dï¿½jï¿½."); 
+		           	 JOptionPane.showMessageDialog(null,"Cette personne existe déja.");
 		           	 ajouter.setVisible(false);
 		    		 modifier.setVisible(true);
 		    		 Supprimer.setVisible(true);

@@ -135,7 +135,7 @@ public void composant(){
 	fourniss_comb = new jcombo(list_f.toArray());
 	list_fourniss_tr=forn.select_fournisseur_code();
 	   for(int i=0;i<list_fourniss_tr.size();i++)
-	   {    //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+	   {    //Pour affecter une valeur de base de donn?es ? un Combobox 
 		  fourniss_comb.addItem(list_fourniss_tr.get(i)+" "+list_fourniss_tr.get(i+1));
 		   i++;
 	   }
@@ -257,7 +257,7 @@ valid_modif.setVisible(false);
   	list_fourniss_tr=forn.select_fournisseur_code();
 	   for(int i=0;i<list_fourniss_tr.size();i++)
 	   {
-	          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+	          //Pour affecter une valeur de base de donn?es ? un Combobox 
 		   fourniss_comb.addItem(list_fourniss_tr.get(i)+" "+list_fourniss_tr.get(i+1));
 		   i++;
 	   }
@@ -308,7 +308,7 @@ valid_modif.setVisible(false);
 	            	   desc=false;
 	            	   if(fourniss_comb.getSelectedIndex()==0){
 	                	
-	        	      				msg+="Vous Devez D'abord Sï¿½lectionner un fournisseur \n";
+	        	      				msg+="Vous Devez D'abord Sélectionner un fournisseur \n";
 	        	  		       
 	                   }
 	            	   else if(intitule.getText().equals("")) {	desc=true;
@@ -324,14 +324,14 @@ valid_modif.setVisible(false);
  		  	            	}
 	            	 	else{
 	    	            	 forn.setupdate_fourniss(fourniss.getText(), intitule.getText());
-	    	            	 JOptionPane.showMessageDialog(null,"Le fournisseur a ï¿½tï¿½ bien modifier");
+	    	            	 JOptionPane.showMessageDialog(null,"Le fournisseur a été bien modifier");
 	   	    	             intitule.setText("");
 	    	            		 fourniss_comb.removeAllItems();
 	    	            	  	 fourniss_comb.addItem("---Selectionner un fournisseur-----");
 	    	            	  	list_fourniss_tr=forn.select_fournisseur_code();
 	    	            		   for(int i=0;i<list_fourniss_tr.size();i++)
 	    	            		   {
-	    	            		          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+	    	            		          //Pour affecter une valeur de base de donn?es ? un Combobox 
 	    	            			   fourniss_comb.addItem(list_fourniss_tr.get(i)+" "+list_fourniss_tr.get(i+1));
 	    	            			   i++;
 	    	            		   }
@@ -353,7 +353,7 @@ valid_modif.setVisible(false);
               forn.fournisseur(intitule.getText());
 
               if(forn.ex==true){
-              	 JOptionPane.showMessageDialog(null, "Ce fournisseur existe dï¿½ja", "",
+              	 JOptionPane.showMessageDialog(null, "Ce fournisseur existe déja", "",
               	 JOptionPane.INFORMATION_MESSAGE);
               	   but_sauv.setVisible(false);
                    but_modif.setVisible(true);
@@ -390,7 +390,7 @@ valid_modif.setVisible(false);
                       msg+="Veuillez remplir l'intitule \n";}
         	 	else if(fourniss.getText().equals("")) {	desc=true;
                 msg+="Veuillez remplir le code fournisseur \n";}
-        	 	else if (forn.ex==true) {msg+="Ce Fournisseur existe dï¿½ja \n";}
+        	 	else if (forn.ex==true) {msg+="Ce Fournisseur existe déja \n";}
         	 	else{
         	 		
         	  exist= forn.ajouter_fourniss(fourniss.getText(), intitule.getText());
@@ -399,7 +399,7 @@ valid_modif.setVisible(false);
         	  	list_fourniss_tr=forn.select_fournisseur_code();
         		   for(int i=0;i<list_fourniss_tr.size();i++)
         		   {
-        		          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+        		          //Pour affecter une valeur de base de donn?es ? un Combobox 
         			   fourniss_comb.addItem(list_fourniss_tr.get(i)+" "+list_fourniss_tr.get(i+1));
         			   i++;
         		   }
@@ -409,7 +409,7 @@ valid_modif.setVisible(false);
         	 	}
         	 	
         	 	if(exist==false&&desc==false&&forn.ex==false){
-        	 		JOptionPane.showMessageDialog(null,"Le fournisseur a ï¿½tï¿½ bien ajouter");
+        	 		JOptionPane.showMessageDialog(null,"Le fournisseur a été bien ajouter");
         	 		 fourniss_comb.enable();
                      intitule.setText("");
         	 	}

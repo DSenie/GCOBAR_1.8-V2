@@ -94,7 +94,7 @@ public class composant_prod extends JFrame {
 			public void windowClosing(WindowEvent e){
 	        	
 	              int reponse = JOptionPane.showConfirmDialog(
-	                                   null, "Voulez-vous vraiment quitter cette fenï¿½tre ?",
+	                                   null, "Voulez-vous vraiment quitter cette fenétre ?",
 	                                   "Confirmation",
 	                                   JOptionPane.YES_NO_OPTION,
 	                                   JOptionPane.QUESTION_MESSAGE);

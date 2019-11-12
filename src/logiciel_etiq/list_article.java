@@ -40,7 +40,7 @@ public class list_article extends JFrame{
 	private static final long serialVersionUID = 1L;
 	private JPanel panel;
 	private static String laf="com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel";
-	private  Object [] entete={"Code/designation  article","Fournisseur","Code Produit","Prix","Modï¿½le","Quantite","Position"};
+	private  Object [] entete={"Code/designation  article","Fournisseur","Code Produit","Prix","Modèle","Quantite","Position"};
 	private  final Tableau tab=new Tableau(entete);
 	private jcombo article_comb;
 	 int a;
@@ -95,7 +95,7 @@ public void composant(){
 	     
 	     for(int i=0;i<list_article_tr.size();i++)
 		   {
-		          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+		          //Pour affecter une valeur de base de données é un Combobox
 			   article_comb.addItem(list_article_tr.get(i)+" "+list_article_tr.get(i+1));
 			   i++;
 		   }
@@ -400,7 +400,7 @@ public  void remplir_art(String fabr ,jcombo article_comb){
 	list_article_tr=art.select_article_code(fabr);
 for(int i=0;i<list_article_tr.size();i++)
 {
-       //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+       //Pour affecter une valeur de base de données é un Combobox
 	article_comb.addItem(list_article_tr.get(i)+" "+list_article_tr.get(i+1));
 	   i++;
 }}

@@ -200,17 +200,17 @@ public void composant(final String log){
      if(!selectioncomb.prv.contains("changement")){
 			//System.out.println("eeeeee");
 		 selectioncomb.prv.add("changement");}
-     list_z = new ArrayList<String>(Arrays.asList(new String[]{"---Sï¿½lectionner une Zone-----"}));
+     list_z = new ArrayList<String>(Arrays.asList(new String[]{"---Sélectionner une Zone-----"}));
 	 zone_combo = new jcombo(list_z.toArray());
      selectioncomb.selectzone(zone_combo ,this,log);
      
-       list_c = new ArrayList<String>(Arrays.asList(new String[]{"---Sï¿½lectionner une Chaine-----"}));
+       list_c = new ArrayList<String>(Arrays.asList(new String[]{"---Sélectionner une Chaine-----"}));
 	   chaine_combo = new jcombo(list_c.toArray());
 	   selectioncomb.selectchaine(chaine_combo,this,log);
 	   list_poste_tr=pos.select_poste_code();
 	   for(int i=0;i<list_poste_tr.size();i++)
 	   {
-	      //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+	      //Pour affecter une valeur de base de données à un Combobox
 		   poste_combo.addItem(list_poste_tr.get(i)+" "+list_poste_tr.get(i+1));
 		   i++;
 	   }
@@ -272,7 +272,7 @@ public void composant(final String log){
 		           list_persvol_tr=use.select_volant(zone);
 	   for(int i=0;i<list_persvol_tr.size();i++)
 	   {
-	          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+	          //Pour affecter une valeur de base de données à un Combobox
 		   vol_combo.addItem(list_persvol_tr.get(i)+" "+list_persvol_tr.get(i+1)+" "+list_persvol_tr.get(i+2));
 		  i= i+2;
 	   }  
@@ -313,7 +313,7 @@ public void composant(final String log){
 	      		if (reponse== JOptionPane.YES_OPTION){
 		     	//  System.out.println(partc1+" "+partz1+" ");
 		     	  chang.delete_changement(chaine, zone, picker.getEditor().getText());
-		 		 JOptionPane.showMessageDialog(null,"Suppression rï¿½ussie");   
+		 		 JOptionPane.showMessageDialog(null,"Suppression réussie");
 		 		chaine_combo.setSelectedIndex(0);
 	 	  		zone_combo.setSelectedIndex(0);
 	 	  	   picker.setDate(Calendar.getInstance().getTime());
@@ -337,7 +337,7 @@ public void composant(final String log){
 	 	    	if(chaine_combo.getSelectedIndex()==0){  comb=true; }
 	 	  		if(zone_combo.getSelectedIndex()==0){  zomb=true; }	
 	 	  		if(comb==true || zomb==true){JOptionPane.showMessageDialog(null, 
-	 	  				"Vous Devez d'abord Sï¿½lectionner une chaine ou une zone \n", "",
+	 	  				"Vous Devez d'abord Sélectionner une chaine ou une zone \n", "",
 	 	  		        JOptionPane.INFORMATION_MESSAGE);  }
 	 	  	    else if(tab.table.getRowCount()==0){ JOptionPane.showMessageDialog(null, 
 	 	      			"Vous devez d'abord ajouter un changement ", "",
@@ -376,7 +376,7 @@ public void composant(final String log){
       		
 	 	    	if(valid_j==false) {msg+="Un Champ dans le tableau est vide \n";}
 	 	    	else if(valid_heure==false){ msg+="Heure non valid ou heure debut est superieure a celle de fin \n";}
-	 	    	else if(repet2==true){ msg+="Il existe un ou plusieurs changement dupliquï¿½es \n";  }
+	 	    	else if(repet2==true){ msg+="Il existe un ou plusieurs changement dupliquées \n";  }
 	 	    	
 		  		if(!msg.equals("")){JOptionPane.showMessageDialog(null,msg); }
 		  		if(repet2==false&&valid_j==true&&comb==false&&zomb==false&&valid_heure==true){
@@ -392,7 +392,7 @@ public void composant(final String log){
 		  	             heur_f =tab.table.getValueAt(i, 4).toString();
 		  		         chang.ajouter_changement(chaine, zone, post_f,perm_f,vol_f,  picker.getEditor().getText(), heur_d, heur_f);
 		  		     		        }
-		  		     JOptionPane.showMessageDialog(null,"Ajout  rï¿½ussit");
+		  		     JOptionPane.showMessageDialog(null,"Ajout  réussit");
 		  		     }
 			  	    	}}});
 	 
@@ -412,7 +412,7 @@ public void composant(final String log){
 	 	  	 if(zone_combo.getSelectedIndex()==0){  zomb=true; }	
 	 	  	 if(comb==true || zomb==true){	
 	 	  		JOptionPane.showMessageDialog(null, 
-	 	      	"Vous Devez d'abord Sï¿½lectionner une chaine ou une zone \n", "",
+	 	      	"Vous Devez d'abord Sélectionner une chaine ou une zone \n", "",
 	 	  		JOptionPane.INFORMATION_MESSAGE);  	    
               }else{
 	          LineBorder border = new LineBorder ( Color.white, 1, true );
@@ -451,7 +451,7 @@ public void composant(final String log){
 	 	  		 if(zone_combo.getSelectedIndex()==0){  zomb=true; }	
 	 	  		 if(comb==true || zomb==true){	
 	 	  			JOptionPane.showMessageDialog(null, 
-	 	      		"Vous Devez d'abord Sï¿½lectionner une chaine ou une zone \n", "",
+	 	      		"Vous Devez d'abord Sélectionner une chaine ou une zone \n", "",
 	 	  		     JOptionPane.INFORMATION_MESSAGE);  	    
                                               }
 	 	  	   else if(tab.table.getRowCount()==0){ JOptionPane.showMessageDialog(null, 
@@ -490,14 +490,14 @@ public void composant(final String log){
    		
 		if(valid_j==false) {msg+="Un Champ dans le tableau est vide \n";}
 		else if(valid_heure==false) {msg+="Heure non valid ou heure debut est superieure a celle de fin \n";}
-		else if(repet2==true){msg+="Il existe une ou plusieurs changement dupliquï¿½es \n";}
+		else if(repet2==true){msg+="Il existe une ou plusieurs changement dupliquées \n";}
 		
         if(!msg.equals("")){JOptionPane.showMessageDialog(null,msg);  }
 		  		            	
 		if(repet2==false&&valid_j==true&&comb==false&&zomb==false&&valid_heure==true){
 		  		
 		  		chang.Update_changement(chaine, zone, post_f, perm_f,vol_f,  picker.getEditor().getText(), heur_d, heur_f);
-		  		JOptionPane.showMessageDialog(null,"Modification rï¿½ussite");
+		  		JOptionPane.showMessageDialog(null,"Modification réussite");
 
 	    }}}});
 	 
@@ -511,7 +511,7 @@ public void composant(final String log){
 	 	  	 if(zone_combo.getSelectedIndex()==0){  zomb=true; }	
 	 	  	 if(comb==true || zomb==true){	
 	 	  		 JOptionPane.showMessageDialog(null, 
-	 	      	 "Vous Devez d'abord Sï¿½lectionner une chaine ou une zone \n", "",
+	 	      	 "Vous Devez d'abord Sélectionner une chaine ou une zone \n", "",
 	 	  		  JOptionPane.INFORMATION_MESSAGE);  	    
              }else{
               LineBorder border = new LineBorder ( Color.white, 1, true );
@@ -540,7 +540,7 @@ public void composant(final String log){
              public void actionPerformed(ActionEvent e) {
              if(tab.table.getSelectedRow()==-1){
                 JOptionPane.showMessageDialog(null, 
-     	 	    "Vous devez d'abord sï¿½lectionner la zone ", "",
+     	 	    "Vous devez d'abord sélectionner la zone ", "",
      	 	  	JOptionPane.INFORMATION_MESSAGE);
                 	 }
                else{
@@ -554,7 +554,7 @@ public void composant(final String log){
 	            msg="";
 	         	if(zone_combo.getSelectedIndex()==0&&chaine_combo.getSelectedIndex()==0){
 		        	  JOptionPane.showMessageDialog(null, 
-		 	      	  "Vous Devez d'abord Sï¿½lectionner une chaine ou une zone \n", "",
+		 	      	  "Vous Devez d'abord Sélectionner une chaine ou une zone \n", "",
 		 	  		   JOptionPane.INFORMATION_MESSAGE);
 		          }
 		         else{
@@ -605,7 +605,7 @@ public void composant(final String log){
 		    	 list_perm_tr=use.select_permanant(poste1);
 		 	 for(int i=0;i<list_perm_tr.size();i++)
 		 	   {
-		 	          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+		 	          //Pour affecter une valeur de base de données à un Combobox
 		 		perm_combo.addItem(list_perm_tr.get(i)+" "+list_perm_tr.get(i+1)+" "+list_perm_tr.get(i+2));
 		 		   i=i+2;
 		 	   }}

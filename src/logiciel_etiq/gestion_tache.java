@@ -168,7 +168,7 @@ public class gestion_tache {
 	if (reponse== JOptionPane.YES_OPTION){
 		String update2= "delete from tache where code_tache='"+code+"'"; 
 		CConnect.Insert(update2,bdd);
-	  	JOptionPane.showMessageDialog(null,"La Tache a ï¿½tï¿½ bien supprimï¿½");
+	  	JOptionPane.showMessageDialog(null,"La Tache a été bien supprimé");
 
 	}}
 	
@@ -182,7 +182,7 @@ public class gestion_tache {
 		exist=false;
 		String query = "SELECT * FROM tache where code_tache='"+tache+"' "; 
         if(CConnect.Requete(query, bdd).size()>=1){
-		      	JOptionPane.showMessageDialog(null,"Cette Tache existe dï¿½jï¿½");
+		      	JOptionPane.showMessageDialog(null,"Cette Tache existe déjà");
 		      	exist=true;
 		      	return exist;
 		    }

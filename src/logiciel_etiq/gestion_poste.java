@@ -99,7 +99,7 @@ public class gestion_poste {
 		exist=false;
 		String query = "SELECT * FROM Poste where Code_Poste='"+poste+"' "; 
         if(CConnect.Requete(query, bdd).size()>=1){
-		      	JOptionPane.showMessageDialog(null,"Ce Poste existe dï¿½jï¿½");
+		      	JOptionPane.showMessageDialog(null,"Ce Poste existe déjà");
 		      	exist=true;
 		      	return exist;
 		    }
@@ -143,7 +143,7 @@ public class gestion_poste {
 //	if (reponse== JOptionPane.YES_OPTION){
 //		String update2= "delete from Poste where Code_Poste='"+code+"'"; 
 //		CConnect.Insert(update2,bdd);
-//	  	JOptionPane.showMessageDialog(null,"Le Poste a ï¿½tï¿½ bien supprimï¿½");
+//	  	JOptionPane.showMessageDialog(null,"Le Poste a été bien supprimé");
 //
 //	}}
 	
@@ -160,7 +160,7 @@ public class gestion_poste {
 		CConnect.Insert(update,bdd);
 		CConnect.Insert(update1,bdd);
 
-		JOptionPane.showMessageDialog(null,"Le Poste a ï¿½tï¿½ bien supprimï¿½e");
+		JOptionPane.showMessageDialog(null,"Le Poste a été bien supprimée");
 	}
 	}
 	

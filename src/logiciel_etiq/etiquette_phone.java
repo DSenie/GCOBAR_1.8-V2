@@ -28,12 +28,7 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -97,8 +92,14 @@ public class etiquette_phone extends JFrame {
     private JPanel pan_num = new JPanel();
     private JPanel pan_num_comb = new JPanel();
     private JPanel pan_num_lab = new JPanel();
+
     private JLabel num_lab = new JLabel("ARPT");
-    private JTextField num_jtext=new JTextField("/TR/AGR/PC/ARPT/");
+
+
+    Calendar calendar = new GregorianCalendar();
+    int year = calendar.get(Calendar.YEAR);
+
+    private JTextField num_jtext=new JTextField("/TR/AGR/PC/ARPT/"+year);
 
     private JPanel pan_dimension = new JPanel();
     private JPanel pan_dimension_lab = new JPanel();
@@ -125,7 +126,7 @@ public class etiquette_phone extends JFrame {
     private JPanel pan_model = new JPanel();
     private JPanel pan_model_jtext = new JPanel();
     private JPanel pan_model_lab = new JPanel();
-    private JLabel model_lab = new JLabel("Modï¿½l");
+    private JLabel model_lab = new JLabel("Modèle");
     
     private JTextField model_jtext = new JTextField();
 
@@ -152,7 +153,7 @@ public class etiquette_phone extends JFrame {
     private JButton but_sauv = new JButton("Ajouter");
     private JButton valid_ajou = new JButton("Valider");
     
-    private JButton imp_etq = new JButton("Imprimer L'ï¿½tiquette");
+    private JButton imp_etq = new JButton("Imprimer L'étiquette");
     //private JButton imp_arpt = new JButton("Imprimer ARPT");
     private JButton retour = new JButton("Retour");
     
@@ -188,13 +189,13 @@ public class etiquette_phone extends JFrame {
           color_comb.setEditable(true);
           
           
-            dimension_comb.addItem("--- SÃ©lectionner la dimension de l'etiquette ----");
+            dimension_comb.addItem("--- Sélectionner la dimension de l'etiquette ----");
 
             list_dimension=imp.select_dimension_etq("etq_portable");
               
                for(int i=0;i<list_dimension.size();i++)
                {
-                      //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+                      //Pour affecter une valeur de base de donn?es ? un Combobox 
                    dimension_comb.addItem(list_dimension.get(i));
                    
                }
@@ -214,7 +215,7 @@ public class etiquette_phone extends JFrame {
           list_c=imp.select_color();
                for(int i=0;i<list_c.size();i++)
                {
-                      //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+                      //Pour affecter une valeur de base de donn?es ? un Combobox 
                    color_comb.addItem(list_c.get(i));
                    
                }
@@ -295,13 +296,14 @@ public class etiquette_phone extends JFrame {
             @Override
             public void focusLost(FocusEvent evt) {
                 String code=null;
-                 int n = 4; // nbre de caractï¿½res
+                 int n = 4; // nbre de caract?res
                   int length = num_jtext.getText().length();
                   String anne = num_jtext.getText().substring(length -n, length);
                 code = "SN" + model_jtext.getText() +anne+conteur;
                 serial_jtext.setText(code);
                 }
             });
+
         article_comb.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String code=null;
@@ -312,16 +314,15 @@ public class etiquette_phone extends JFrame {
                     
                     code_jtext.setText("");
                     cont_jtext.setText("");
-                     int n = 4; // nbre de caractï¿½res
+                     int n = 4; // nbre de caract?res
                       int length = num_jtext.getText().length();
                      String anne = num_jtext.getText().substring(length -n, length);
-                     
                      conteur="00000";
                     code = "SN" + model_jtext.getText() +anne+conteur;
                     serial_jtext.setText(code);
                 } else {
             
-                 int n = 4; // nbre de caractï¿½res
+                 int n = 4; // nbre de caract?res
                   int length = num_jtext.getText().length();
                   String anne = num_jtext.getText().substring(length -n, length);
                   if (article_comb.getSelectedItem()!=null) {
@@ -353,14 +354,14 @@ public class etiquette_phone extends JFrame {
                 String des=art[1];
                 String code;
                 conteur =imp.afficher_conteurportable(arti);
-                 int n1 = 4; // nbre de caractï¿½res
+                 int n1 = 4; // nbre de caract?res
                   int length1 = num_jtext.getText().length();
                   String anne1 = num_jtext.getText().substring(length1 -n1, length1);
             //  conteur =imp.afficher_conteur(arti,code_chaine,date_picker.getDate(),indic);65654
                 //System.out.println(date_picker.getDate()+" "+anne+" "+" "+week+" "+jour);
                 
                 
-                 int n = 4; // nbre de caractï¿½res
+                 int n = 4; // nbre de caract?res
                   int length = num_jtext.getText().length();
                  String anne = num_jtext.getText().substring(length -n, length);
                 System.out.println("eee"+anne+"rrrr");
@@ -383,7 +384,7 @@ public class etiquette_phone extends JFrame {
                 }
                 
                 else if (anne.equals("    ")) {
-                    msg += "veillez remplir l'annï¿½e \n";
+                    msg += "veillez remplir l'année \n";
                 }
                 
                 if (msg.equals("")) {  
@@ -397,7 +398,7 @@ public class etiquette_phone extends JFrame {
                     progressBar = new JProgressBar(af_cont,af_cont+co-1);
                     progressBar.setValue(0);
                     
-                    JLabel titr=new JLabel("la crï¿½ation de "+co+" etiquette");
+                    JLabel titr=new JLabel("la création de "+co+" etiquette");
                     titr.setFont( titr.getFont().deriveFont(Font.BOLD|Font.ITALIC) );
                     frame.add(controlPanel);
                     titr.setFont(police2);
@@ -416,7 +417,7 @@ public class etiquette_phone extends JFrame {
                         valid_ajou.setVisible(false);
                         but_sauv.setVisible(true);
                         retour.setVisible(false);
-                        JOptionPane.showMessageDialog(null, "l'ï¿½tiquette a " + des  + "  a ï¿½tï¿½ bien ajoutï¿½");
+                        JOptionPane.showMessageDialog(null, "l'étiquette a " + des  + "  a été bien ajouté");
                       retour.setEnabled(true);
                       valid_ajou.setEnabled(true);
                       imp_etq.setVisible(true);
@@ -466,7 +467,7 @@ public class etiquette_phone extends JFrame {
                         //String[] arti = article_comb.getSelectedItem().toString().split(" ");
                         String code = code_jtext.getText().replaceAll("\\/","_"); // 004
                         String parcour ;String model;
-                        int n = 5; // nbre de caractï¿½res
+                        int n = 5; // nbre de caract?res
                          int length = serial_jtext.getText().length();
                         int conteur=Integer.parseInt(serial_jtext.getText().substring(length -n, length))-1;
                        
@@ -515,7 +516,7 @@ public class etiquette_phone extends JFrame {
                 }}
                   else{
                       
-                      JOptionPane.showMessageDialog(null, "Vous devez choisir un type d'ï¿½tiquette");
+                      JOptionPane.showMessageDialog(null, "Vous devez choisir un type d'étiquette");
                   }
                     }}; 
                     

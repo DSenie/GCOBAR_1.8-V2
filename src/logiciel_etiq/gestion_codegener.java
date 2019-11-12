@@ -51,7 +51,7 @@ JOptionPane.QUESTION_MESSAGE);
 if (reponse== JOptionPane.YES_OPTION){
 String update2= "delete from categ_composant where code_gener='"+code+"'"; 
 CConnect.Insert(update2,bdd);
-JOptionPane.showMessageDialog(null,"La famille a ï¿½tï¿½ bien supprimï¿½");
+JOptionPane.showMessageDialog(null,"La famille a été bien supprimé");
 
 }}
 
@@ -72,7 +72,7 @@ exist=false;
 String query = "SELECT * FROM categ_composant where code_gener='"+code+"'"; 
 
 if(CConnect.Requete(query, bdd).size()>=1){
-JOptionPane.showMessageDialog(null,"Cette famille existe dï¿½jï¿½");
+JOptionPane.showMessageDialog(null,"Cette famille existe déjà");
 exist=true;
 return exist;
 }

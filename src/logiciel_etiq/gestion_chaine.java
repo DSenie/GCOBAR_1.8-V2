@@ -95,7 +95,7 @@ public class gestion_chaine {
 		CConnect.Insert(update,bdd);
 		CConnect.Insert(update1,bdd);
 
-		JOptionPane.showMessageDialog(null,"La Chaine a ï¿½tï¿½ bien supprimï¿½e");
+		JOptionPane.showMessageDialog(null,"La Chaine a été bien supprimée");
 	}
 	}
 	
@@ -105,7 +105,7 @@ public void ajouter_chaine(String chaine,String desig,String des)
 {
 	 String query = "SELECT * FROM Chaine where code_chaine='"+chaine+"' OR designation_chaine='"+chaine+"' "; 
       if(CConnect.Requete(query, bdd).size()>=1){
-	      	JOptionPane.showMessageDialog(null,"Cette Chaine  existe dï¿½jï¿½.");
+	      	JOptionPane.showMessageDialog(null,"Cette Chaine  existe déjà.");
 	    }
 	  else{
 	     try {	

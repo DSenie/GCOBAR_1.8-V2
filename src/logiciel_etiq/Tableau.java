@@ -37,7 +37,7 @@ public class Tableau extends JPanel implements ICustomTable, ConstantesStyles, S
 	private static final long serialVersionUID = -1572744239267031822L;
 
 	/**
-	 * La JTable affich�e
+	 * La JTable affich?e
 	 */
 	JTable table;
 	static TableRowSorter<TableModel> sorter;
@@ -73,7 +73,7 @@ public class Tableau extends JPanel implements ICustomTable, ConstantesStyles, S
 		 // list_bdd=art.select_article_codenomo(fabr,famille);
 		    for(int i=0;i<list_bdd.size();i++)
 		     {
-		          //Pour affecter une valeur de base de donn�es � un Combobox 
+		          //Pour affecter une valeur de base de donn?es ? un Combobox 
 		    	list.add(list_bdd.get(i)+" "+list_bdd.get(i+1));
 			   i++;
 		     }
@@ -386,14 +386,14 @@ else if (reponse==0){
 	/**
 	 * Procedure qui permet d'ajouter une ligne
 	 * @param donnees
-	 * 	la ligne � ajouter
+	 * 	la ligne ? ajouter
 	 */
 	public void ajouterLigne(Object[] donnees){
 		((DefaultTableModel)(table.getModel())).addRow(donnees);
 	}
 
 	/**
-	 * Methode d'acces � la table
+	 * Methode d'acces ? la table
 	 * @return la table contenue dans le panel
 	 */
 	public JTable getTable() {
@@ -603,7 +603,7 @@ else if (reponse==0){
 		}
 		
 		/**
-		 * Retourne la valeur � l'emplacement sp�cifi�
+		 * Retourne la valeur ? l'emplacement sp?cifi?
 		 */
 		public Object getValueAt(int row, int col) {
 			return this.data[row][col];

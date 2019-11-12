@@ -166,12 +166,12 @@ public class process_tache extends JFrame implements ActionListener {
 
 	private Java2sAutoComboBox tache_comb;
 	final JButton buttonOk = new JButton("Ajouter ");
-	private Object[] entete = { "Code/Intitulï¿½ Tache" ,"article","Temp normal","Marge","Temps Total"};
+	private Object[] entete = { "Code/Intitulé Tache" ,"article","Temp normal","Marge","Temps Total"};
 	private final Tableau tab = new Tableau(entete);
 	private gestion_poste pos = new gestion_poste();
 	private gestion_zone zone = new gestion_zone();
 
-	private Object[] entet_article = { "Article","Nï¿½ D'ORIGNIE", "Nï¿½ ENIE","DESIGNATION","COEF","POSITION"};
+	private Object[] entet_article = { "Article","N° D'ORIGNIE", "N° ENIE","DESIGNATION","COEF","POSITION"};
 	private final Tableau tab_article = new Tableau(entet_article);
 	
 	
@@ -235,26 +235,26 @@ public class process_tache extends JFrame implements ActionListener {
 		 
 		 
 		  
-		  list_p = new ArrayList<Object>(Arrays.asList(new String[]{"---Sï¿½lectionner un Poste-----"}));
+		  list_p = new ArrayList<Object>(Arrays.asList(new String[]{"---Sélectionner un Poste-----"}));
 		  poste_comb = new jcombo(list_p.toArray());
 	      selectioncomb.selectposte(poste_comb ,this,log);
 	      
 		
 		  
-		  numero_poste_comb.addItem("--Sï¿½lectionner un Numero de Poste--");
+		  numero_poste_comb.addItem("--Sélectionner un Numero de Poste--");
 		  
 		   
 			  
 			   
 			   list_article= new ArrayList<Object>(
-						Arrays.asList(new String[] { "---Sï¿½lectionner un Article -----" }));
+						Arrays.asList(new String[] { "---Sélectionner un Article -----" }));
 			          article_comb = new Java2sAutoComboBox(list_article);
 						selectioncomb.selectarticle_process(article_comb ,"enie",this,log,list_article);
 						 article_comb.setDataList(list_article);
 						
 						
 						        list_article2= new ArrayList<Object>(
-								Arrays.asList(new String[] { "---Sï¿½lectionner un Article -----" }));
+								Arrays.asList(new String[] { "---Sélectionner un Article -----" }));
 						        
 						        article_comb2 = new Java2sAutoComboBox(list_article2);
 								selectioncomb.selectarticle_process(article_comb2,"enie",this,log,list_article2);
@@ -267,7 +267,7 @@ public class process_tache extends JFrame implements ActionListener {
 			   marg.addItem("15%");
 				
 		        list_pro = new ArrayList<String>(
-				Arrays.asList(new String[] { "---Sï¿½lectionner un Produit-----" }));
+				Arrays.asList(new String[] { "---Sélectionner un Produit-----" }));
 				produit_comb = new jcombo(list_pro.toArray());
 				selectioncomb.selectproduit(produit_comb ,this,log);
 				
@@ -278,7 +278,7 @@ public class process_tache extends JFrame implements ActionListener {
 		selectioncomb.selectprocess(profils_comb  ,this,log);	
 		
 		
-		  list_p = new ArrayList<Object>(Arrays.asList(new String[]{"---Sï¿½lectionner une Tache-----"}));
+		  list_p = new ArrayList<Object>(Arrays.asList(new String[]{"---Sélectionner une Tache-----"}));
 			//zone_comb = new jcombo(list_z.toArray());
 		   // selectioncomb.selectzone_chaine1(this,log,tab,list_z);
 
@@ -293,7 +293,7 @@ public class process_tache extends JFrame implements ActionListener {
 		if(!selectioncomb.prv.contains("process_tache"))
 		selectioncomb.prv.add("process_tache");
 //		for (int i = 0; i < imp.select_poste_code().size(); i++) {
-//			// Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox
+//			// Pour affecter une valeur de base de données é un Combobox
 //			poste_comb.addItem(imp.select_poste_code().get(i)+" "+imp.select_poste_code().get(i + 1));
 //			i++;
 //		}
@@ -514,7 +514,7 @@ public class process_tache extends JFrame implements ActionListener {
 					JOptionPane
 							.showMessageDialog(
 									null,
-									"Vous devez d'abord sï¿½lectionner l'article que vous voulez supprimer",
+									"Vous devez d'abord sélectionner l'article que vous voulez supprimer",
 									"", JOptionPane.INFORMATION_MESSAGE);
 				} else {
 					((DefaultTableModel) tab_article.table.getModel())
@@ -529,7 +529,7 @@ public class process_tache extends JFrame implements ActionListener {
 					JOptionPane
 							.showMessageDialog(
 									null,
-									"Vous devez d'abord sï¿½lectionner l'observation que vous voulez supprimer",
+									"Vous devez d'abord sélectionner l'observation que vous voulez supprimer",
 									"", JOptionPane.INFORMATION_MESSAGE);
 				} else {
 					((DefaultTableModel) tab_observation.table.getModel())
@@ -553,9 +553,9 @@ public class process_tache extends JFrame implements ActionListener {
 			//	use.select_zone_jtext(designation.getText());
 				msg = "";
 				if (poste_comb.getSelectedIndex() == 0) {
-					msg += "Vous Devez d'abord Sï¿½lectionner un poste\n";
+					msg += "Vous Devez d'abord Sélectionner un poste\n";
 				} else if (produit_comb.getSelectedIndex() == 0) {
-					msg += "Vous Devez d'abord Sï¿½lectionner un produit\n";
+					msg += "Vous Devez d'abord Sélectionner un produit\n";
 				}
 				
 				if (!msg.equals("")) {
@@ -579,7 +579,7 @@ public class process_tache extends JFrame implements ActionListener {
 					JOptionPane
 							.showMessageDialog(
 									null,
-									"Vous devez d'abord sï¿½lectionner la tache que vous voulez supprimer",
+									"Vous devez d'abord sélectionner la tache que vous voulez supprimer",
 									"", JOptionPane.INFORMATION_MESSAGE);
 				} else {
 					((DefaultTableModel) tab.table.getModel())
@@ -621,12 +621,12 @@ public class process_tache extends JFrame implements ActionListener {
 
 				
 				if (poste_comb.getSelectedIndex() == 0) {
-					msg += "Vous Devez d'abord Sï¿½lectionner un poste\n";
+					msg += "Vous Devez d'abord Sélectionner un poste\n";
 				} else if (produit_comb.getSelectedIndex() == 0) {
-					msg += "Vous Devez d'abord Sï¿½lectionner un produit\n";
+					msg += "Vous Devez d'abord Sélectionner un produit\n";
 				}
 				else if (profils_comb.getSelectedIndex() == 0) {
-					msg += "Vous Devez d'abord Sï¿½lectionner un process\n";
+					msg += "Vous Devez d'abord Sélectionner un process\n";
 				}
 				
 				 else if (tab.table.getRowCount() == 0) {
@@ -657,7 +657,7 @@ public class process_tache extends JFrame implements ActionListener {
 
 				if (tab.table.getValueAt(i, 0).toString().equals(tab.table.getValueAt(j, 0).toString())&&
 						tab.table.getValueAt(i,1).toString().equals(tab.table.getValueAt(j, 1).toString())	) {
-				  msg += "Il existe plusieurs ou un tache dupliquï¿½. \n";
+				  msg += "Il existe plusieurs ou un tache dupliqué. \n";
 								}
 							}
 						}}
@@ -666,7 +666,7 @@ public class process_tache extends JFrame implements ActionListener {
 							for (int j = i + 1; j < tab_article.table.getRowCount(); j++) {
 
 				if (tab_article.table.getValueAt(i, 0).toString().equals(tab_article.table.getValueAt(j, 0).toString())) {
-				  msg += "Il existe plusieurs ou un article dupliquï¿½. \n";
+				  msg += "Il existe plusieurs ou un article dupliqué. \n";
 								}
 							}
 						}}
@@ -675,7 +675,7 @@ public class process_tache extends JFrame implements ActionListener {
 							for (int j = i + 1; j < tab_observation.table.getRowCount(); j++) {
 
 				if (tab_observation.table.getValueAt(i, 0).toString().equals(tab_observation.table.getValueAt(j, 0).toString())) {
-				  msg += "Il existe plusieurs ou un observation dupliquï¿½. \n";
+				  msg += "Il existe plusieurs ou un observation dupliqué. \n";
 								}
 							}
 						}}
@@ -749,7 +749,7 @@ public class process_tache extends JFrame implements ActionListener {
 						//System.out.println("rrrr5"+tab_observation.table.getValueAt(i, 0).toString());
 						 tache.insert_observation_process(code_t, tab_observation.table.getValueAt(i, 0).toString());
 								}							
-						JOptionPane.showMessageDialog(null,"Les Tache du process a ï¿½tï¿½ bien modifiï¿½e");
+						JOptionPane.showMessageDialog(null,"Les Tache du process a été bien modifiée");
 						
 					}
 				
@@ -842,7 +842,7 @@ public class process_tache extends JFrame implements ActionListener {
 				
 				action();
 				numero_poste_comb.removeAllItems();
-				numero_poste_comb.addItem("--Sï¿½lectionner un Numero de Poste--");
+				numero_poste_comb.addItem("--Sélectionner un Numero de Poste--");
 				 String[] part_poste = poste_comb.getSelectedItem().toString().split(" ");
 			     String part1 = part_poste[0];
 			     int ncode=tache.select_profils_ncode(profils_comb.getSelectedItem().toString());
@@ -855,7 +855,7 @@ public class process_tache extends JFrame implements ActionListener {
 			    // System.out.println("rrrrr"+list_poste_num);
 				   for(int i=1;i<=list_poste_num;i++)
 				   {
-				          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+				          //Pour affecter une valeur de base de données é un Combobox
 					   numero_poste_comb.addItem("Poste "+i);
 					
 				   }}
@@ -1206,7 +1206,7 @@ public class process_tache extends JFrame implements ActionListener {
 				String om = tab.table.getValueAt(l, k).toString();
               //  System.out.println("gggg"+om);
 				if (om.trim().length() == 0
-						|| om.equals("---Sï¿½lectionner un Poste-----"))
+						|| om.equals("---Sélectionner un Poste-----"))
 
 				{
 					msg = "";

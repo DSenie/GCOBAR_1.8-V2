@@ -73,7 +73,7 @@ public class list_etqpalette extends JFrame {
 	private static final long serialVersionUID = 1L;
 	public String Chemin = "c:\\GCOBAR\\";
 	public  String bdd = Chemin+Utilitaire.InitBdd()+".accdb";	
-    Object [] entete={"Parcel","Code/Designation","modï¿½le","G.W","N.W","Carton Size","Date","parcel carton"};
+    Object [] entete={"Parcel","Code/Designation","modèle","G.W","N.W","Carton Size","Date","parcel carton"};
     final Tableau tab=new Tableau(entete);
     String date_jour;
 	 JMenuItem menuItem4 = new JMenuItem("Exporter en excel" );
@@ -131,13 +131,13 @@ public class list_etqpalette extends JFrame {
 	    		 
 	   public void composant(){
 		   
-		   dimension_comb.addItem("--- Sï¿½lectionner la dimension de l'etiquette ----");
+		   dimension_comb.addItem("--- Sélectionner la dimension de l'etiquette ----");
 
 			list_dimension=imp.select_dimension_etq("etq_palette");
 		 	  
 			   for(int i=0;i<list_dimension.size();i++)
 			   {
-			          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+			          //Pour affecter une valeur de base de données é un Combobox
 				   dimension_comb.addItem(list_dimension.get(i));
 				   
 			   }
@@ -323,7 +323,7 @@ public class list_etqpalette extends JFrame {
 			                	   att = new Thread(){
 			  	 					public void run(){
 			  	 						int reponse = JOptionPane.showConfirmDialog(
-			  	 						        null, "Operation terminï¿½e. Voulez-vous ouvrir le fichier Excel ?",
+			  	 						        null, "Operation terminée. Voulez-vous ouvrir le fichier Excel ?",
 			  	 						        "Confirmation",
 			  	 						        JOptionPane.YES_NO_OPTION,
 			  	 						        JOptionPane.QUESTION_MESSAGE);
@@ -371,7 +371,7 @@ public class list_etqpalette extends JFrame {
 				 	        			cellB2.setCellStyle(cellStyle);
 				 	        			
 				 	        			Cell cellB4 = row1.createCell((short) 3);
-				 	        			cellB4.setCellValue("Modï¿½le");
+				 	        			cellB4.setCellValue("Modèle");
 				 	        			cellStyle = worksheet.createCellStyle();
 				 	        			cellStyle.setFillForegroundColor(HSSFColor.LIGHT_CORNFLOWER_BLUE.index);
 				 	        			cellStyle.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
@@ -643,7 +643,7 @@ public class list_etqpalette extends JFrame {
 	                  } } }
 	                	  else{
 	                		  
-	                		  JOptionPane.showMessageDialog(null, "Vous devez choisir un type d'ï¿½tiquette");
+	                		  JOptionPane.showMessageDialog(null, "Vous devez choisir un type d'étiquette");
 	                	  }
 	                  }});
 		   
@@ -686,7 +686,7 @@ public class list_etqpalette extends JFrame {
 ////	                								 JasperDesign jasperDesign = JRXmlLoader.load("C:\\GCOBAR\\CODE\\report1.jrxml");
 ////	                								 JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
 ////
-////	                		// - Paramï¿½tres ï¿½ envoyer au rapport
+////	                		// - Paramétres é envoyer au rapport
 ////	                		Map parameters = new HashMap();
 ////	                		// parameters.put("2200000004");
 ////	                		parameters.put("serial",tab.getTable().getValueAt(selectedRow, 4));
@@ -694,7 +694,7 @@ public class list_etqpalette extends JFrame {
 ////	                		// - Execution du rapport
 ////	                		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, CConnect.getInstance(bdd));
 ////
-////	                		// - Crï¿½ation du rapport au format PDF
+////	                		// - Création du rapport au format PDF
 ////	                		JasperExportManager.exportReportToPdfFile(jasperPrint, "C:\\GCOBAR\\CODE\\fichesuiveuse"+tab.getTable().getValueAt(selectedRow, 4)+".pdf");
 ////	                		} catch (JRException s) {
 ////	                		// TODO Auto-generated catch block

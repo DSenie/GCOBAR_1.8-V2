@@ -1,0 +1,31 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="GCOBAR:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/GCOBAR_jar</output-path>
+    <root id="archive" name="GCOBAR.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="module-output" name="GCOBAR" />
+      <element id="extracted-dir" path="C:/GCOBAR/JAR/utiliser/commons-logging-1.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="C:/GCOBAR/JAR/utiliser/jasperreports-5.6.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="C:/GCOBAR/JAR/utiliser/core-3.3.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="C:/GCOBAR/JAR/utiliser/commons-beanutils-1.8.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="C:/GCOBAR/JAR/utiliser/poi-3.15.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="C:/GCOBAR/JAR/utiliser/junit-4.12.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="C:/GCOBAR/JAR/utiliser/poi-ooxml-3.15.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="C:/GCOBAR/JAR/utiliser/commons-logging-1.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="C:/GCOBAR/JAR/utiliser/commons-codec-1.10.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="C:/GCOBAR/JAR/utiliser/swingx-0.9.4.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="C:/GCOBAR/JAR/utiliser/javase-3.3.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="C:/GCOBAR/JAR/utiliser/poi-ooxml-schemas-3.15.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="C:/GCOBAR/JAR/utiliser/barbecue-1.5-beta1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="C:/GCOBAR/JAR/utiliser/commons-collections4-4.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="C:/GCOBAR/JAR/utiliser/tools.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="C:/GCOBAR/JAR/utiliser/commons-digester-2.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="C:/GCOBAR/JAR/utiliser/commons-collections-3.2.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="C:/GCOBAR/JAR/utiliser/iText-2.1.7.js2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="C:/GCOBAR/JAR/utiliser/xmlbeans-2.6.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="C:/GCOBAR/JAR/utiliser/swingx-all-1.6.3.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

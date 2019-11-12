@@ -17,7 +17,7 @@ public class gestion_changement {
 		 + " and date_change=Format('"+date+"','dd/MM/yy') and heure_debut='"+heure_d+"' and heure_fin='"+heure_f+"'"; 
 		
 		if(CConnect.Requete(query, bdd).size()>=1){
-		    JOptionPane.showMessageDialog(null,"Ce changement est dï¿½jï¿½ effectuï¿½.");
+		    JOptionPane.showMessageDialog(null,"Ce changement est déjà effectué.");
 		    exist=true;
 		    return exist;
 		    }

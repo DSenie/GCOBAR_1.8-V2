@@ -706,7 +706,7 @@ public class Recherche_general extends JFrame {
 							att = new Thread(){
 								public void run(){
 									int reponse = JOptionPane.showConfirmDialog(
-											null, "Operation terminï¿½e. Voulez-vous ouvrir le fichier Excel ?",
+											null, "Operation terminée. Voulez-vous ouvrir le fichier Excel ?",
 											"Confirmation",
 											JOptionPane.YES_NO_OPTION,
 											JOptionPane.QUESTION_MESSAGE);
@@ -839,7 +839,7 @@ public class Recherche_general extends JFrame {
 						att = new Thread(){
 							public void run(){
 								int reponse = JOptionPane.showConfirmDialog(
-										null, "Operation terminï¿½e. Voulez-vous ouvrir le fichier Excel ?",
+										null, "Operation terminée. Voulez-vous ouvrir le fichier Excel ?",
 										"Confirmation",
 										JOptionPane.YES_NO_OPTION,
 										JOptionPane.QUESTION_MESSAGE);

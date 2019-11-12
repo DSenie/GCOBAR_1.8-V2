@@ -133,7 +133,7 @@ public void composant(){
 	
 	   for(int i=0;i<list_famille_tr.size();i++)
 	   {
-	          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+	          //Pour affecter une valeur de base de données à un Combobox
 		  famille_comb.addItem(list_famille_tr.get(i)+" "+list_famille_tr.get(i+1));
 		   i++;
 	   }
@@ -256,7 +256,7 @@ valid_modif.setVisible(false);
   	list_famille_tr=famil.select_famille_code();
 	   for(int i=0;i<list_famille_tr.size();i++)
 	   {
-	          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+	          //Pour affecter une valeur de base de données à un Combobox
 		   famille_comb.addItem(list_famille_tr.get(i)+" "+list_famille_tr.get(i+1));
 		   i++;
 	   }
@@ -303,7 +303,7 @@ valid_modif.setVisible(false);
 	            	   desc=false;
 	            	   if(famille_comb.getSelectedIndex()==0){
 	                	
-	        	      				msg+="Vous Devez D'abord Sï¿½lectionner une famille \n";
+	        	      				msg+="Vous Devez D'abord Sélectionner une famille \n";
 	        	  		       
 	                   }
 	            	   else if(designation.getText().equals("")) {	desc=true;
@@ -319,7 +319,7 @@ valid_modif.setVisible(false);
  		  	            	}
 	            	 	else{
 	    	            	famil.setupdate_famille(famille.getText(), designation.getText());
-	    	            	 JOptionPane.showMessageDialog(null,"La famille a ï¿½tï¿½ bien modifier");
+	    	            	 JOptionPane.showMessageDialog(null,"La famille a été bien modifier");
 	   	    	          designation.setText("");
 		    	          famille.setText("");
 
@@ -328,7 +328,7 @@ valid_modif.setVisible(false);
 	    	            	  	list_famille_tr=famil.select_famille_code();
 	    	            		   for(int i=0;i<list_famille_tr.size();i++)
 	    	            		   {
-	    	            		          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+	    	            		          //Pour affecter une valeur de base de données à un Combobox
 	    	            			   famille_comb.addItem(list_famille_tr.get(i)+" "+list_famille_tr.get(i+1));
 	    	            			   i++;
 	    	            		   }
@@ -348,7 +348,7 @@ valid_modif.setVisible(false);
                 //famil.famille(designation.getText(),famille.getText());
                 
                 if(existe==true){
-                	 JOptionPane.showMessageDialog(null, "Cette famille existe dï¿½ja", "",
+                	 JOptionPane.showMessageDialog(null, "Cette famille existe déja", "",
                 	 JOptionPane.INFORMATION_MESSAGE);
                 	   but_sauv.setVisible(false);
                      but_modif.setVisible(true);
@@ -387,7 +387,7 @@ valid_modif.setVisible(false);
                       msg+="Veuillez remplir la designation \n";}
         	 	else if(famille.getText().equals("")) {	desc=true;
                 msg+="Veuillez remplir le code famille \n";}
-        	 	else if (existe==true) {msg+="Cette famille existe dï¿½ja \n";}
+        	 	else if (existe==true) {msg+="Cette famille existe déja \n";}
         	 	else{
         	 		
         	 famil.ajouter_famille(famille.getText(), designation.getText());
@@ -396,14 +396,14 @@ valid_modif.setVisible(false);
         	  	list_famille_tr=famil.select_famille_code();
         		   for(int i=0;i<list_famille_tr.size();i++)
         		   {
-        		          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+        		          //Pour affecter une valeur de base de données à un Combobox
         			   famille_comb.addItem(list_famille_tr.get(i)+" "+list_famille_tr.get(i+1));
         			   i++;
         		   }
         	 	
         	 	}
         	 	 if(desc==false&&existe==false){
-              	   JOptionPane.showMessageDialog(null,"La famille a ï¿½tï¿½ bien ajouter");
+              	   JOptionPane.showMessageDialog(null,"La famille a été bien ajouter");
               	  famille_comb.enable();
                      designation.setText("");
                      famille.setText("");

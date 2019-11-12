@@ -48,7 +48,7 @@ public class codification_refer extends JFrame implements ActionListener{
         
           if (e.getActionCommand().equals(CTRL_J)){
         	  LineBorder border = new LineBorder ( Color.white, 1, true );
-           	 TitledBorder titl2 = new TitledBorder ( border, "Edition rï¿½fï¿½rence", TitledBorder.DEFAULT_POSITION,
+           	 TitledBorder titl2 = new TitledBorder ( border, "Edition réfèrence", TitledBorder.DEFAULT_POSITION,
               TitledBorder.DEFAULT_POSITION, police2, Color.white);
               pan_form.setBorder(titl2);
              refer_comb.enable(); 
@@ -94,12 +94,12 @@ private JButton valid_modif=new JButton("Valider");
 private JButton valid_supp=new JButton("Valider");
 private JButton retour=new JButton("Retour");
 	
-private JLabel lab_combo=new JLabel("Liste des rï¿½fï¿½rences");
+private JLabel lab_combo=new JLabel("Liste des réfèrences");
 private  jcombo refer_comb;
 
-private JLabel refer_lab=new JLabel("Chiffre de rï¿½fï¿½rence");
+private JLabel refer_lab=new JLabel("Chiffre de réfèrence");
 private JTextField creference=new JTextField();	
-private	JLabel designation_lab=new JLabel("Dï¿½signation");
+private	JLabel designation_lab=new JLabel("Désignation");
 private	JTextField designation=new JTextField();
 private  static gestion_reference ref=new gestion_reference();
 private static List<String> list_ref;
@@ -123,12 +123,12 @@ composant();
 
 @SuppressWarnings("deprecation")
 public void composant(){
-	list_ref= new ArrayList<String>(Arrays.asList(new String[]{"---Selectionner une rï¿½fï¿½rence-----"}));
+	list_ref= new ArrayList<String>(Arrays.asList(new String[]{"---Selectionner une réfèrence-----"}));
 	refer_comb = new jcombo(list_ref.toArray());
 	list_refer_tr=ref.select_reference_code();
 	   for(int i=0;i<list_refer_tr.size();i++)
 	   {
-	          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+	          //Pour affecter une valeur de base de données à un Combobox
 		  refer_comb.addItem(list_refer_tr.get(i)+" "+list_refer_tr.get(i+1));
 		   i++;
 	   }
@@ -163,7 +163,7 @@ valid_modif.setVisible(false);
   	designation.enable();
 
 	LineBorder border = new LineBorder ( Color.white, 1, true );
-	TitledBorder titl2 = new TitledBorder ( border, "Edition rï¿½fï¿½rence", TitledBorder.DEFAULT_POSITION,
+	TitledBorder titl2 = new TitledBorder ( border, "Edition réfèrence", TitledBorder.DEFAULT_POSITION,
     TitledBorder.DEFAULT_POSITION, police2, Color.white);
     pan_form.setBorder(titl2);
       
@@ -171,7 +171,7 @@ valid_modif.setVisible(false);
             new ActionListener() { 
             public void actionPerformed(ActionEvent e) {
              LineBorder border = new LineBorder ( Color.white, 1, true );
-          	 TitledBorder titl2 = new TitledBorder ( border, "Edition rï¿½fï¿½rence", TitledBorder.DEFAULT_POSITION,
+          	 TitledBorder titl2 = new TitledBorder ( border, "Edition réfèrence", TitledBorder.DEFAULT_POSITION,
              TitledBorder.DEFAULT_POSITION, police2, Color.white);
              pan_form.setBorder(titl2);
             creference.setText(ref.afficher_code_reference());
@@ -205,7 +205,7 @@ valid_modif.setVisible(false);
     	 //  System.out.println("dddddd"+existe);
 
            if(existe==false){
-            	JOptionPane.showMessageDialog(null, "Cette rï¿½fï¿½rence n'existe pas", "",
+            	JOptionPane.showMessageDialog(null, "Cette réfèrence n'existe pas", "",
             	JOptionPane.INFORMATION_MESSAGE);
             	but_sauv.setVisible(true);
                but_modif.setVisible(false);
@@ -234,9 +234,9 @@ valid_modif.setVisible(false);
                // ref.reference(designation.getText());
 
             	   if(refer_comb.getSelectedIndex()==0){
-	      				msg+="Vous Devez D'abord Selectionner une rï¿½fï¿½rence \n";
+	      				msg+="Vous Devez D'abord Selectionner une réfèrence \n";
                       }
-            	   else if(existe==false){msg+="Cette Rï¿½fï¿½rence n'existe pas \n";}
+            	   else if(existe==false){msg+="Cette réfèrence n'existe pas \n";}
             	if(!msg.equals("")){
 	            		
 	  	            	JOptionPane.showMessageDialog(null,msg);                                                                            
@@ -245,12 +245,12 @@ valid_modif.setVisible(false);
   	ref.delete_reference(creference.getText(),designation.getText());
     designation.setText("");
   	refer_comb.removeAllItems();
-  	refer_comb.addItem("---Selectionner une rï¿½fï¿½rence-----");
+  	refer_comb.addItem("---Selectionner une réfèrence-----");
 	list_refer_tr=ref.select_reference_code();
 
 	for(int i=0;i<list_refer_tr.size();i++)
 	   {
-	          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+	          //Pour affecter une valeur de base de donn?es ? un Combobox 
 		   refer_comb.addItem(list_refer_tr.get(i)+" "+list_refer_tr.get(i+1));
 		   i++;
 	   }
@@ -297,7 +297,7 @@ valid_modif.setVisible(false);
 	            	   msg="";
 	            	   desc=false;
 	            	   if(refer_comb.getSelectedIndex()==0){
-	        	      				msg+="Vous Devez D'abord Sï¿½lectionner une rï¿½fï¿½rence\n";
+	        	      				msg+="Vous Devez D'abord Sélectionner une réfèrence\n";
 	                   }
 	            	   else if(designation.getText().equals("")) {	
 	                          msg+="Veuillez remplir l'intitule \n";
@@ -309,15 +309,15 @@ valid_modif.setVisible(false);
  		  	            	}
 	            	 	else{
 	    	            	ref.setupdate_reference(creference.getText(), designation.getText());
-	    	            	 JOptionPane.showMessageDialog(null,"La rï¿½fï¿½rence a ï¿½tï¿½ bien modifier");
+	    	            	 JOptionPane.showMessageDialog(null,"La réfèrence a été bien modifier");
 	   	    	             designation.setText("");
 	    	            		refer_comb.removeAllItems();
-	    	            	  	 refer_comb.addItem("---Selectionner une rï¿½fï¿½rence-----");
+	    	            	  	 refer_comb.addItem("---Selectionner une réfèrence-----");
 	    	            	 	list_refer_tr=ref.select_reference_code();
 
 	    	            		   for(int i=0;i<list_refer_tr.size();i++)
 	    	            		   {
-	    	            		          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+	    	            		          //Pour affecter une valeur de base de donn?es ? un Combobox 
 	    	            			   refer_comb.addItem(list_refer_tr.get(i)+" "+list_refer_tr.get(i+1));
 	    	            			   i++;
 	    	            		   }
@@ -338,7 +338,7 @@ valid_modif.setVisible(false);
                 // ref.reference(designation.getText());
 
                  if(existe==true){
-                 	 JOptionPane.showMessageDialog(null, "Cette rï¿½fï¿½rence existe dï¿½ja", "",
+                 	 JOptionPane.showMessageDialog(null, "Cette réfèrence existe déja", "",
                  	 JOptionPane.INFORMATION_MESSAGE);
                  	   but_sauv.setVisible(false);
                       but_modif.setVisible(true);
@@ -375,16 +375,16 @@ valid_modif.setVisible(false);
            	  
         	 	if(designation.getText().equals("")) {	desc=true;
                       msg+="Veuillez remplir la designation \n";}
-        	 	else if (existe==true) {msg+="Cette rï¿½fï¿½rence existe dï¿½ja \n";}
+        	 	else if (existe==true) {msg+="Cette réfèrence existe déja \n";}
         	 	else{
         	 		
         	   ref.ajouter_reference(creference.getText(), designation.getText());
         	   refer_comb.removeAllItems();
-        	  	 refer_comb.addItem("---Selectionner une rï¿½fï¿½rence-----");
+        	  	 refer_comb.addItem("---Selectionner une réfèrence-----");
         	  	list_refer_tr=ref.select_reference_code();
         		   for(int i=0;i<list_refer_tr.size();i++)
         		   {
-        		          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+        		          //Pour affecter une valeur de base de donn?es ? un Combobox 
         			   refer_comb.addItem(list_refer_tr.get(i)+" "+list_refer_tr.get(i+1));
         			   i++;
         		   }
@@ -393,7 +393,7 @@ valid_modif.setVisible(false);
         	 	
         	 	
                 if(desc==false&&existe==false){
-             	   JOptionPane.showMessageDialog(null,"La rï¿½fï¿½rence a ï¿½tï¿½ bien ajouter");
+             	   JOptionPane.showMessageDialog(null,"La réfèrence a été bien ajouter");
              	   refer_comb.enable();
                    designation.setText("");
                 }
@@ -410,7 +410,7 @@ valid_modif.setVisible(false);
         	   String part1="";
         	   String part2="";
         	   LineBorder border = new LineBorder ( Color.white, 1, true );
-               TitledBorder titl2 = new TitledBorder ( border, "Edition rï¿½fï¿½rence", TitledBorder.DEFAULT_POSITION,
+               TitledBorder titl2 = new TitledBorder ( border, "Edition réfèrence", TitledBorder.DEFAULT_POSITION,
                TitledBorder.DEFAULT_POSITION, police2, Color.white);
                pan_form.setBorder(titl2);
               
@@ -476,7 +476,7 @@ valid_modif.setVisible(false);
            public void actionPerformed(ActionEvent e) {
            refer_comb.enable();
            LineBorder border = new LineBorder ( Color.white, 1, true );
-           TitledBorder titl2 = new TitledBorder ( border, "Edition rï¿½fï¿½rence", TitledBorder.DEFAULT_POSITION,
+           TitledBorder titl2 = new TitledBorder ( border, "Edition réfèrence", TitledBorder.DEFAULT_POSITION,
            TitledBorder.DEFAULT_POSITION, police2, Color.white);
            pan_form.setBorder(titl2);
            existe=ref.reference(designation.getText());
@@ -629,7 +629,7 @@ valid_modif.setVisible(false);
   	pan_refer.setLayout(new BoxLayout(pan_refer,BoxLayout.X_AXIS));
   	pan_designation.setLayout(new BoxLayout(pan_designation,BoxLayout.X_AXIS));
 
-    setTitle("Gestion des Rï¿½fï¿½rences" );
+    setTitle("Gestion des Réfèrences" );
     setSize(1000, 600);
     setLocationRelativeTo(null);          
     setVisible(true);

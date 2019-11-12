@@ -98,9 +98,9 @@ private JButton valid_supp=new JButton("Valider");
 private JButton retour=new JButton("Retour");
 	
 private JLabel tache_lab=new JLabel("Code Tache");
-private JLabel lab_combo=new JLabel("Tache_Intitulï¿½");
+private JLabel lab_combo=new JLabel("Tache_Intitulé");
 private	JTextField tache=new JTextField();
-private	JLabel intitule_lab=new JLabel("Intitulï¿½");
+private	JLabel intitule_lab=new JLabel("Intitulé");
 private	JTextField intitule=new JTextField();
 protected jcombo tache_comb;
 private static gestion_tache tach=new gestion_tache();
@@ -126,7 +126,7 @@ try{
 	}
 
 
-list_t = new ArrayList<Object>(Arrays.asList(new String[]{"---Sï¿½lectionner une Tache-----"}));
+list_t = new ArrayList<Object>(Arrays.asList(new String[]{"---Sélectionner une Tache-----"}));
 tache_comb = new jcombo(list_t.toArray());
  selectioncomb.selecttache(tache_comb ,this,log);	      
  tache_comb.addActionListener(
@@ -298,7 +298,7 @@ valid_modif.setVisible(false);
           tach.tache(intitule.getText());
                
            if(tache_comb.getSelectedIndex()==0){
-	      				msg+="Vous Devez D'abord Sï¿½lectionner un Tache \n";
+	      				msg+="Vous Devez D'abord Sélectionner un Tache \n";
           }
            else if(tach.ex==false){msg+="Cette Tache n'existe pas \n";}
            
@@ -309,7 +309,7 @@ valid_modif.setVisible(false);
   	       tach.delete_tache(tache.getText(),intitule.getText());
   	       intitule.setText("");
   	       tache_comb.removeAllItems();
-  	       tache_comb.addItem("---Sï¿½lectionner une Tache-----");
+  	       tache_comb.addItem("---Sélectionner une Tache-----");
   	     list_tache_tr=tach.select_tache_code();
 	   for(int i=0;i<list_tache_tr.size();i++)
 	   {
@@ -362,20 +362,20 @@ valid_modif.setVisible(false);
 	            msg="";
 	            desc=false;
 	            if(tache_comb.getSelectedIndex()==0){
-	                msg+="Vous Devez D'abord Sï¿½lectionner une Tache \n";
+	                msg+="Vous Devez D'abord Sélectionner une Tache \n";
 	        	  	                                    }
 	            else if(intitule.getText().equals("")) {	
-	                msg+="Veuillez remplir l'intitulï¿½ \n";
+	                msg+="Veuillez remplir l'intitulé \n";
 	            	 	}
 	            if(!msg.equals("")){
  		  	           JOptionPane.showMessageDialog(null,msg);                                                                            
  		  	            	}
 	            else{
 	    	          tach.setupdate_tache(tache.getText(), intitule.getText());
-	    	          JOptionPane.showMessageDialog(null,"La Tache a ï¿½tï¿½ bien modifiï¿½");
+	    	          JOptionPane.showMessageDialog(null,"La Tache a été bien modifié");
 	    	          intitule.setText("");
 	    	          tache_comb.removeAllItems();
-	    	          tache_comb.addItem("---Sï¿½lectionner une Tache-----");
+	    	          tache_comb.addItem("---Sélectionner une Tache-----");
 	    	          list_tache_tr=tach.select_tache_code();
 	    	          for(int i=0;i<list_tache_tr.size();i++){
 	    	        	  tache_comb.addItem(list_tache_tr.get(i)+" "+list_tache_tr.get(i+1));
@@ -396,7 +396,7 @@ valid_modif.setVisible(false);
               tach.tache(intitule.getText());
 
               if(tach.ex==true){
-              	 JOptionPane.showMessageDialog(null, "Cette Tache existe dï¿½jï¿½", "",
+              	 JOptionPane.showMessageDialog(null, "Cette Tache existe déjà", "",
               	 JOptionPane.INFORMATION_MESSAGE);
               	   but_sauv.setVisible(false);
                    but_modif.setVisible(true);
@@ -430,12 +430,12 @@ valid_modif.setVisible(false);
         	msg="";
         	desc=false;
         	if(intitule.getText().equals("")) {	desc=true;
-                   msg+="Veuillez remplir l'intitulï¿½ \n";}
-        	else if (tach.ex==true) {msg+="Cette Tache existe dï¿½jï¿½ \n";}
+                   msg+="Veuillez remplir l'intitulé \n";}
+        	else if (tach.ex==true) {msg+="Cette Tache existe déjà \n";}
         	else{
         	 exist= tach.ajouter_tache(tache.getText(), intitule.getText());
         	 tache_comb.removeAllItems();
-        	 tache_comb.addItem("---Sï¿½lectionner une Tache-----");
+        	 tache_comb.addItem("---Sélectionner une Tache-----");
         	 list_tache_tr=tach.select_tache_code();
              for(int i=0;i<list_tache_tr.size();i++){
             	 tache_comb.addItem(list_tache_tr.get(i)+" "+list_tache_tr.get(i+1));
@@ -444,7 +444,7 @@ valid_modif.setVisible(false);
         	 }
         	 	
            if(exist==false&&desc==false&&tach.ex==false){
-        	   JOptionPane.showMessageDialog(null,"La Tache a ï¿½tï¿½ bien ajoutï¿½");
+        	   JOptionPane.showMessageDialog(null,"La Tache a été bien ajouté");
         	   tache_comb.enable();
                intitule.setText("");
            }

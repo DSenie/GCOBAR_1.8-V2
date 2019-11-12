@@ -32,7 +32,7 @@ public class Tableau_fiche extends JPanel implements ICustomTable, ConstantesSty
 	private static final long serialVersionUID = -1572744239267031822L;
 
 	/**
-	 * La JTable affich�e
+	 * La JTable affich?e
 	 */
 	JTable table;
 	static TableRowSorter<TableModel> sorter;
@@ -56,9 +56,9 @@ public class Tableau_fiche extends JPanel implements ICustomTable, ConstantesSty
 	/**
 	 * Constructeur de tableau
 	 * @param entetes
-	 * 	La ligne des entetes (definit entre autres le nombre de colonnes � afficher)
+	 * 	La ligne des entetes (definit entre autres le nombre de colonnes ? afficher)
 	 * @param editable
-	 * 	booleen vrai si les cellules sont �ditables
+	 * 	booleen vrai si les cellules sont ?ditables
 	 */
 	public Tableau_fiche(final Object[] entetes){//, final boolean editable
 		setLayout(new GridLayout(1, 0));
@@ -320,14 +320,14 @@ if (reponse==0){
 	/**
 	 * Procedure qui permet d'ajouter une ligne
 	 * @param donnees
-	 * 	la ligne � ajouter
+	 * 	la ligne ? ajouter
 	 */
 	public void ajouterLigne(Object[] donnees){
 		((DefaultTableModel)(table.getModel())).addRow(donnees);
 	}
 
 	/**
-	 * Methode d'acces � la table
+	 * Methode d'acces ? la table
 	 * @return la table contenue dans le panel
 	 */
 	public JTable getTable() {
@@ -540,7 +540,7 @@ if (reponse==0){
 		}
 		
 		/**
-		 * Retourne la valeur � l'emplacement sp�cifi�
+		 * Retourne la valeur ? l'emplacement sp?cifi?
 		 */
 		public Object getValueAt(int row, int col) {
 			return this.data[row][col];

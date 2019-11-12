@@ -223,7 +223,7 @@ private static ArrayList<String> list_type=new ArrayList<String>();
 
 	 for(int i=0;i<list_type.size();i++)
 	 {
-	        //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+	        //Pour affecter une valeur de base de donn?es ? un Combobox
 		  type_jcom.addItem(list_type.get(i));
 
 	 }
@@ -232,7 +232,7 @@ private static ArrayList<String> list_type=new ArrayList<String>();
  	 list_profil=prod.select_profils();
 		   for(int i=0;i<list_profil.size();i++)
 		   {
-		          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+		          //Pour affecter une valeur de base de données é un Combobox
 			   profil_jcom.addItem(list_profil.get(i));
 			   
 		   }
@@ -244,12 +244,12 @@ private static ArrayList<String> list_type=new ArrayList<String>();
    	   produit_jcom = new jcombo(list_pro.toArray());
 //   	    selectioncomb.selectproduit(produit_jcom  ,this,log);
    	   
-   	//produit_jcom.addItem("--Sï¿½lectionner un Produit--");
+   	//produit_jcom.addItem("--Sélectionner un Produit--");
    	list_produit_tr=prod.select_produit_code();
 
 	 for(int i=0;i<list_produit_tr.size();i++)
 	 {
-	        //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+	        //Pour affecter une valeur de base de données é un Combobox
 		  produit_jcom.addItem(list_produit_tr.get(i)+" "+list_produit_tr.get(i+1));
 		  i++;
 	 }
@@ -485,7 +485,7 @@ private static ArrayList<String> list_type=new ArrayList<String>();
 //							msg += "Vous Devez selectionner  un type\n";
 //						}
 //						else if (model.getText().equals("")) {
-//							msg += "Vous Devez saisir le modï¿½le\n";
+//							msg += "Vous Devez saisir le modéle\n";
 //						}
 					
 						else if(!isValid(quantite_jtext.getText())){msg+="La quantite doit etre un nombre \n";}
@@ -505,11 +505,11 @@ private static ArrayList<String> list_type=new ArrayList<String>();
            			numcontrat.getText());
 		        	JOptionPane.showMessageDialog(null, "Le produit a ete bien ajouter");
 		        	produit_jcom.removeAllItems();
-		        	produit_jcom.addItem("--Sï¿½lectionner un Produit--");
+		        	produit_jcom.addItem("--Sélectionner un Produit--");
 		           	list_produit_tr=prod.select_produit_code();
 		        	 for(int i=0;i<list_produit_tr.size();i++)
 		        	 {
-		        	        //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+		        	        //Pour affecter une valeur de base de données é un Combobox
 		        		  produit_jcom.addItem(list_produit_tr.get(i)+" "+list_produit_tr.get(i+1));
 		        		  i++;
 		        	 }
@@ -564,11 +564,11 @@ private static ArrayList<String> list_type=new ArrayList<String>();
 			            Integer.parseInt(quantite_jtext.getText()),part_profi,type_jcom.getSelectedItem().toString(),code_jtext.getText(),numcontrat.getText());
 		        	   JOptionPane.showMessageDialog(null, "Le produit a ete bien modifier");
 		        	   produit_jcom.removeAllItems();
-			        	produit_jcom.addItem("--Sï¿½lectionner un Produit--");
+			        	produit_jcom.addItem("--Sélectionner un Produit--");
 			           	list_produit_tr=prod.select_produit_code();
 			        	 for(int i=0;i<list_produit_tr.size();i++)
 			        	 {
-			        	        //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+			        	        //Pour affecter une valeur de base de données é un Combobox
 			        		  produit_jcom.addItem(list_produit_tr.get(i)+" "+list_produit_tr.get(i+1));
 			        		  i++;
 			        	 }
@@ -587,11 +587,11 @@ valid_supp.addActionListener(
         	JOptionPane.showMessageDialog(null, "Le produit a ete bien supprimer");
         	
         	produit_jcom.removeAllItems();
-        	produit_jcom.addItem("--Sï¿½lectionner un Produit--");
+        	produit_jcom.addItem("--Sélectionner un Produit--");
            	list_produit_tr=prod.select_produit_code();
         	 for(int i=0;i<list_produit_tr.size();i++)
         	 {
-        	        //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+        	        //Pour affecter une valeur de base de données é un Combobox
         		  produit_jcom.addItem(list_produit_tr.get(i)+" "+list_produit_tr.get(i+1));
         		  i++;
         	 }

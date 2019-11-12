@@ -82,7 +82,7 @@ public class etiquette extends JFrame {
 	private JPanel pan_model_lab = new JPanel();
 	private JPanel pan_poste_comb = new JPanel();
 	private JPanel pan_poste_lab = new JPanel();
-	private JLabel model_lab = new JLabel("Liste des Modï¿½le ");
+	private JLabel model_lab = new JLabel("Liste des Modèle ");
 	private JLabel poste_lab = new JLabel("Liste des poste ");
 	private List<String> list_p;
 	private jcombo model_comb;
@@ -148,7 +148,7 @@ public class etiquette extends JFrame {
 	private JButton but_modif = new JButton("Modifier");
 	private JButton valid_ajou = new JButton("Valider");
 	private JButton valid_modif = new JButton("Valider");
-	private JButton imp_etq = new JButton("Imprimer L'ï¿½tiquette");
+	private JButton imp_etq = new JButton("Imprimer L'étiquette");
 	private JButton retour = new JButton("Retour");
 	private String conteur = null;
     private static ArrayList<String> list_model_tr=new ArrayList<String>();
@@ -194,7 +194,7 @@ public class etiquette extends JFrame {
 		article_comb = new jcombo(list_ar.toArray());
 		selectioncomb.selectarticle_etq(article_comb, enie, autre, this, logi_prio);
 		list_c = new ArrayList<String>(
-				Arrays.asList(new String[] { "--Sï¿½lectionner une Chaine--" }));
+				Arrays.asList(new String[] { "--Sélectionner une Chaine--" }));
 		chaine_comb = new jcombo(list_c.toArray());
 		selectioncomb.selectchaine(chaine_comb, this, logi_prio);
 		list_p = new ArrayList<String>(Arrays.asList(new String[]{"---Selectionner un Poste-----"}));
@@ -203,12 +203,12 @@ public class etiquette extends JFrame {
 
 		
 		
-		list_p = new ArrayList<String>(Arrays.asList(new String[]{"---Selectionner un modï¿½le-----"}));
+		list_p = new ArrayList<String>(Arrays.asList(new String[]{"---Selectionner un modèle-----"}));
 	     model_comb = new jcombo(list_p.toArray());
 	     list_model_tr=art.select_model();		     
 	     for(int i=0;i<list_model_tr.size();i++)
 		   {
-		          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+		          //Pour affecter une valeur de base de donn?es ? un Combobox 
 	    	 model_comb.addItem(list_model_tr.get(i));
 			   i++;
 		   }
@@ -340,7 +340,7 @@ public class etiquette extends JFrame {
 				}
 				
 //				else if (model_comb.getSelectedIndex() == 0) {
-//					msg += "Veuillez selectionner un modï¿½le \n";
+//					msg += "Veuillez selectionner un mod?le \n";
 //				}
 				
 				else if (chaine_comb.getSelectedIndex() == 0) {
@@ -375,7 +375,7 @@ public class etiquette extends JFrame {
 					assqc_jtext.setText("" + imp.count_assqc);
 					actqc_jtext.setText("" + imp.count_actqc);
 
-                    JLabel titr=new JLabel("la crï¿½ation de "+co+" etiquette");
+                    JLabel titr=new JLabel("la création de "+co+" etiquette");
                     titr.setFont( titr.getFont().deriveFont(Font.BOLD|Font.ITALIC) );
                   
                     UIManager.put("nimbusOrange", (new Color(70,130,180)));
@@ -445,7 +445,7 @@ public class etiquette extends JFrame {
                           valid_ajou.setVisible(false);
                           but_sauv.setVisible(true);
                           retour.setVisible(false);
-					JOptionPane.showMessageDialog(null, "l'ï¿½tiquette a " + des	+ "  a ï¿½tï¿½ bien ajoutï¿½");
+					JOptionPane.showMessageDialog(null, "l'étiquette a " + des	+ "  a été bien ajouté");
 					 retour.setEnabled(true);
 					 valid_ajou.setEnabled(true);
 					imp_etq.setVisible(true);
@@ -468,8 +468,8 @@ public class etiquette extends JFrame {
 						String code = arti[0].replaceAll("\\/","_"); // 004
 						String date=date_picker.getEditor().getText().replaceAll("\\/", "_");
 						String parcour ;String model;
-						
-			if(simple.isSelected()){			
+
+			if(simple.isSelected()){
 				 parcour = "C:\\GCOBAR\\pdf\\etq_simple\\"+code_jtext.getText()+"_"+code+"_"+chaine+"_"+date +"_Etiquette_simple"+".pdf";
 				 model = "C:\\GCOBAR\\CODE\\reporttest.jrxml";
 				//imp.update_imp_s("1");
@@ -482,14 +482,14 @@ public class etiquette extends JFrame {
                 UIManager.put("nimbusOrange", (new Color(70,130,180)));
 
 				try {
-					if(simple.isSelected()){	
+					if(simple.isSelected()){
 						new BufferedReader(new FileReader("C:\\GCOBAR\\pdf\\etq_simple\\"+code_jtext.getText()+"_"+code+"_"+chaine+"_"+date +"_Etiquette_simple"+".pdf"));
-					imp.update_imp_s("1");
+				//	imp.update_imp_s("1");
 					try {
 						Desktop.getDesktop().open(
 								new File("C:\\GCOBAR\\pdf\\etq_simple\\"+code_jtext.getText()+"_"+code+"_"+chaine+"_"+date+"_Etiquette_simple"+".pdf"));
-						imp.update_imp_s("1");
-						
+					//	imp.update_imp_s("1");
+
 					} catch (IOException p) {
 						// TODO Auto-generated catch block
 						p.printStackTrace();
@@ -512,17 +512,17 @@ public class etiquette extends JFrame {
 					parameters.put("serial", code_text);
 					//parameters.put("model", model_comb.getSelectedItem());
 					selectioncomb.imprimer( bdd, parcour,model,parameters);
-					 if(simple.isSelected()){	
+					 if(simple.isSelected()){
 						imp.update_imp_s("1");}
 					 else{imp.update_imp_c("1");	}
 					imp.delete_imp();
 					 //controlPanel.remove(progressBar);
 				}
-				
-					}}; 
-					
+
+					}};
+
 					att.start();
-					
+
 			}
 		});
 		but_sauv.setVisible(true);

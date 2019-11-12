@@ -87,7 +87,7 @@ public class personelle extends JFrame implements ActionListener{
 	   protected JTextField nom1= new  JTextField();
 	   protected final Font police2 = new Font("Comic Sans MS", Font.BOLD|Font.ITALIC,18);
 
-	   protected JLabel prenom = new JLabel("Prï¿½nom");
+	   protected JLabel prenom = new JLabel("Prénom");
 	   protected JTextField prenom1= new  JTextField();
 	   protected JLabel num_tl = new JLabel("telephone");
 	   protected JTextField num_tel1= new  JTextField();
@@ -179,17 +179,17 @@ public class personelle extends JFrame implements ActionListener{
 	                                   }
 	       mat1= new  JFormattedTextField(num);
 		
-	          list_z = new ArrayList<String>(Arrays.asList(new String[]{"---Sï¿½lectionner une Zone-----"}));
+	          list_z = new ArrayList<String>(Arrays.asList(new String[]{"---Sélectionner une Zone-----"}));
 		      zone = new jcombo(list_z.toArray());
 		       selectioncomb.selectzone(zone ,this,log);	      
 		     
 		     
-		       list_c = new ArrayList<String>(Arrays.asList(new String[]{"---Sï¿½lectionner une Chaine-----"}));
+		       list_c = new ArrayList<String>(Arrays.asList(new String[]{"---Sélectionner une Chaine-----"}));
 		       num_chaine = new jcombo(list_c.toArray());
 			   selectioncomb.selectchaine(num_chaine,this,log);
 		 	   
 		 	   
-		 	  list_p = new ArrayList<String>(Arrays.asList(new String[]{"---Sï¿½lectionner un Poste-----"}));
+		 	  list_p = new ArrayList<String>(Arrays.asList(new String[]{"---Sélectionner un Poste-----"}));
 		      poste = new jcombo(list_p.toArray());
 		      selectioncomb.selectposte(poste ,this,log);
 	      
@@ -255,7 +255,7 @@ public class personelle extends JFrame implements ActionListener{
                	  msg="";
                	 if(nom1.getText().equals("")){ msg+="Veuillez saisir le nom \n";}
             	 else{
-            	 if (!nom1.getText().matches("[a-zA-Zï¿½]*")){
+            	 if (!nom1.getText().matches("[a-zA-Z]*")){
                		 msg+="veuillez verifier le nom \n";
                  }
                	 else{msg=msg.replace("Veuillez verifier le nom \n", "");}
@@ -263,17 +263,17 @@ public class personelle extends JFrame implements ActionListener{
                	 
             	 if(prenom1.getText().equals("")){msg+="Veuillez saisir le prenom \n";}
             	 else{
-            	 if (!prenom1.getText().matches("[a-zA-Zï¿½]*")){
+            	 if (!prenom1.getText().matches("[a-zA-Z]*")){
                		 msg+="Veuillez verifier le prenom \n";
                  }
                	 else{msg=msg.replace("Veuillez verifier le prenom \n", "");}
             	 }
             		perso.selection(mat1.getText());
 		           	
-		          if(mat1.getText().equals(perso.Matricule)){msg+="Cette personne existe dï¿½ja \n";}
-		          else if(zone.getSelectedIndex()==0){msg+="veuillez sï¿½lectionner une zone \n";}
-            	 else if(poste.getSelectedIndex()==0){msg+="veuillez sï¿½lectionner un poste \n";}
-            	 else  if(num_chaine.getSelectedIndex()==0){msg+="veuillez sï¿½lectionner une chaine \n";}            	 
+		          if(mat1.getText().equals(perso.Matricule)){msg+="Cette personne existe déja \n";}
+		          else if(zone.getSelectedIndex()==0){msg+="veuillez sélectionner une zone \n";}
+            	 else if(poste.getSelectedIndex()==0){msg+="veuillez sélectionner un poste \n";}
+            	 else  if(num_chaine.getSelectedIndex()==0){msg+="veuillez sélectionner une chaine \n";}
               	 else  if(!isValid(mat1.getText())){msg+="Le matricule doit etre un nombre \n";}
                     if(msg.equals("")){
                         		  String[] parts = num_chaine.getSelectedItem().toString().split(" ");
@@ -292,7 +292,7 @@ public class personelle extends JFrame implements ActionListener{
                                                          		  partp1,
                                                          		   s
                                                          		 , partz1);
-                                                     //  JOptionPane.showMessageDialog(null,nom1+" "+ prenom1+"a ï¿½tï¿½ bien ajouter");
+                                                     //  JOptionPane.showMessageDialog(null,nom1+" "+ prenom1+"a été bien ajouter");
                                                             }
                            else{JOptionPane.showMessageDialog(null,msg);}
                  }
@@ -345,26 +345,26 @@ public class personelle extends JFrame implements ActionListener{
              	 else{
                     	 if(nom1.getText().equals("")){ msg+="veuillez saisir le nom \n";}
                     	 else{msg=msg.replace("veuillez saisir le nom \n", "");
-                    	 if (!nom1.getText().matches("[a-zA-Zï¿½]*")){
+                    	 if (!nom1.getText().matches("[a-zA-Z]*")){
                        		 msg+="veuillez verifier le nom \n";
                          }
                        	 else{msg=msg.replace("veuillez verifier le nom \n", "");}
                     	 }
                     	 if(prenom1.getText().equals("")){msg+="veuillez saisir le prenom \n";}
                     	 else{msg=msg.replace("veuillez saisir le prenom \n", "");
-                    	 if (!prenom1.getText().matches("[a-zA-Zï¿½]*")){
+                    	 if (!prenom1.getText().matches("[a-zA-Z]*")){
                        		 msg+="veuillez verifier le prenom \n";
                          }
                        	 else{msg=msg.replace("veuillez verifier le prenom \n", "");}
                     	 }
-                    	 if(zone.getSelectedIndex()==0){msg+="veuillez sï¿½lectionner une zone \n";}
-                    	 else{msg=msg.replace("veuillez sï¿½lectionner une zone \n", "");}
-                    	 if(poste.getSelectedIndex()==0){msg+="veuillez sï¿½lectionner un poste \n";}
-                    	 else{msg=msg.replace("veuillez sï¿½lectionner un poste \n", "");}
-                      	 if(num_chaine.getSelectedIndex()==0){msg+="veuillez sï¿½lectionner une chaine \n";}
-                    	 else{msg=msg.replace("veuillez sï¿½lectionner une chaine \n", "");}
+                    	 if(zone.getSelectedIndex()==0){msg+="veuillez sélectionner une zone \n";}
+                    	 else{msg=msg.replace("veuillez sélectionner une zone \n", "");}
+                    	 if(poste.getSelectedIndex()==0){msg+="veuillez sélectionner un poste \n";}
+                    	 else{msg=msg.replace("veuillez sélectionner un poste \n", "");}
+                      	 if(num_chaine.getSelectedIndex()==0){msg+="veuillez sélectionner une chaine \n";}
+                    	 else{msg=msg.replace("veuillez sélectionner une chaine \n", "");}
                     	 if(!isValid(mat1.getText())){msg+="Le matricule doit etre un nombre \n";}
-                    	 else{msg=msg.replace("Le matricule doit ï¿½tre un nombre \n", "");}
+                    	 else{msg=msg.replace("Le matricule doit étre un nombre \n", "");}
                                  if(msg.equals("")){
                                 	 String[] parts = num_chaine.getSelectedItem().toString().split(" ");
                            		  String part1 = parts[0]; // 004
@@ -382,7 +382,7 @@ public class personelle extends JFrame implements ActionListener{
                                                             		partp1,
                                                             		 s
                                                             		 , partz1);
-                                 	//JOptionPane.showMessageDialog(null,nom1+" "+ prenom1+"a ï¿½tï¿½ bien modifier");
+                                 	//JOptionPane.showMessageDialog(null,nom1+" "+ prenom1+"a été bien modifier");
 
                	   
                                  }    else{JOptionPane.showMessageDialog(null,msg);}
@@ -461,7 +461,7 @@ public class personelle extends JFrame implements ActionListener{
 }
                 	  else{         	 
                	   perso.setdelete(mat1.getText(),nom1.getText()+""+prenom1.getText());
-         //      	JOptionPane.showMessageDialog(null,nom1+" "+ prenom1+"a ï¿½tï¿½ bien supprimer");               	
+         //      	JOptionPane.showMessageDialog(null,nom1+" "+ prenom1+"a été bien supprimer");
             	  }
                   }});
 		 composant();
@@ -782,7 +782,7 @@ public class personelle extends JFrame implements ActionListener{
 		           	 TitledBorder titl2 = new TitledBorder ( border, "Edition", TitledBorder.DEFAULT_POSITION,
 		           	 TitledBorder.DEFAULT_POSITION, police2, Color.white);
 		           	 panelpers.setBorder(titl2);
-		           	 JOptionPane.showMessageDialog(null,"Cette personne existe dï¿½jï¿½."); 
+		           	 JOptionPane.showMessageDialog(null,"Cette personne existe déjà.");
 		           	 ajout.setVisible(false);
 		    		 modif.setVisible(true);
 		    		 supp.setVisible(true);

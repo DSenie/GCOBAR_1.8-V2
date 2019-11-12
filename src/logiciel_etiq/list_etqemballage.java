@@ -72,7 +72,7 @@ public class list_etqemballage extends JFrame {
 	private static final long serialVersionUID = 1L;
 	public String Chemin = "c:\\GCOBAR\\";
 	public  String bdd = Chemin+Utilitaire.InitBdd()+".accdb";	
-    Object [] entete={"Parcel","Code/Designation","modï¿½le","couleur","delivery","G.W","N.W","Carton Size","commentaire","Date","Imei1","Imei2"};
+    Object [] entete={"Parcel","Code/Designation","modèle","couleur","delivery","G.W","N.W","Carton Size","commentaire","Date","Imei1","Imei2"};
     final Tableau tab=new Tableau(entete);
     String date_jour;
 	 JMenuItem menuItem4 = new JMenuItem("Exporter en excel" );
@@ -458,7 +458,7 @@ public class list_etqemballage extends JFrame {
 	                	   att = new Thread(){
 	  	 					public void run(){
 	  	 						int reponse = JOptionPane.showConfirmDialog(
-	  	 						        null, "Operation terminï¿½e. Voulez-vous ouvrir le fichier Excel ?",
+	  	 						        null, "Operation terminée. Voulez-vous ouvrir le fichier Excel ?",
 	  	 						        "Confirmation",
 	  	 						        JOptionPane.YES_NO_OPTION,
 	  	 						        JOptionPane.QUESTION_MESSAGE);
@@ -506,7 +506,7 @@ public class list_etqemballage extends JFrame {
 		 	        			cellB2.setCellStyle(cellStyle);
 		 	        			
 		 	        			Cell cellB4 = row1.createCell((short) 3);
-		 	        			cellB4.setCellValue("Modï¿½le");
+		 	        			cellB4.setCellValue("Modèle");
 		 	        			cellStyle = worksheet.createCellStyle();
 		 	        			cellStyle.setFillForegroundColor(HSSFColor.LIGHT_CORNFLOWER_BLUE.index);
 		 	        			cellStyle.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
@@ -710,7 +710,7 @@ public class list_etqemballage extends JFrame {
 ////	                								 JasperDesign jasperDesign = JRXmlLoader.load("C:\\GCOBAR\\CODE\\report1.jrxml");
 ////	                								 JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
 ////
-////	                		// - Paramï¿½tres ï¿½ envoyer au rapport
+////	                		// - Paramétres é envoyer au rapport
 ////	                		Map parameters = new HashMap();
 ////	                		// parameters.put("2200000004");
 ////	                		parameters.put("serial",tab.getTable().getValueAt(selectedRow, 4));
@@ -718,7 +718,7 @@ public class list_etqemballage extends JFrame {
 ////	                		// - Execution du rapport
 ////	                		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, CConnect.getInstance(bdd));
 ////
-////	                		// - Crï¿½ation du rapport au format PDF
+////	                		// - Création du rapport au format PDF
 ////	                		JasperExportManager.exportReportToPdfFile(jasperPrint, "C:\\GCOBAR\\CODE\\fichesuiveuse"+tab.getTable().getValueAt(selectedRow, 4)+".pdf");
 ////	                		} catch (JRException s) {
 ////	                		// TODO Auto-generated catch block

@@ -39,7 +39,7 @@ public class gestion_profils {
 		 String query = "SELECT * FROM profils where nom_profils='"+nom_p+"'"; 
 		    if(CConnect.Requete(query, bdd).size()>1){
 		    	exist=true;
-		      JOptionPane.showMessageDialog(null,"Ce nom de profils existe dï¿½jï¿½.");
+		      JOptionPane.showMessageDialog(null,"Ce nom de profils existe déjà.");
 		       	
 		    }
 		    else{ 

@@ -79,7 +79,7 @@ public class etiquette_portable_forn extends JFrame {
 		private JPanel pan_model = new JPanel();
 		private JPanel pan_model_jtext = new JPanel();
 		private JPanel pan_model_lab = new JPanel();
-		private JLabel model_lab = new JLabel("Modï¿½l");
+		private JLabel model_lab = new JLabel("Modèle");
 		
 		private JTextField model_jtext = new JTextField();
 		
@@ -133,7 +133,7 @@ public class etiquette_portable_forn extends JFrame {
 	private JButton valid_ajou = new JButton("Valider");
 	
 	
-	private JButton imp_etq = new JButton("Imprimer L'ï¿½tiquette");
+	private JButton imp_etq = new JButton("Imprimer L'étiquette");
 
 	private JButton retour = new JButton("Retour");
 	
@@ -169,13 +169,13 @@ public class etiquette_portable_forn extends JFrame {
 		    date_jour = dateFormat.format(actuelle);
 			   
 			   
-		dimension_comb.addItem("--- Sï¿½lectionner la dimension de l'etiquette ----");
+		dimension_comb.addItem("--- Sélectionner la dimension de l'etiquette ----");
 
 		list_dimension=imp.select_dimension_etq("etq_portable_forn");
 	 	  
 		   for(int i=0;i<list_dimension.size();i++)
 		   {
-		          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+		          //Pour affecter une valeur de base de donn?es ? un Combobox 
 			   dimension_comb.addItem(list_dimension.get(i));
 			   
 		   }
@@ -196,7 +196,7 @@ public class etiquette_portable_forn extends JFrame {
 	 	  list_c=imp.select_color();
 			   for(int i=0;i<list_c.size();i++)
 			   {
-			          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+			          //Pour affecter une valeur de base de donn?es ? un Combobox 
 				   color_comb.addItem(list_c.get(i));
 				   
 			   }
@@ -399,7 +399,7 @@ public class etiquette_portable_forn extends JFrame {
 							,imei1_jtext.getText(),imei2_jtext.getText(),
 							date_jour);
 
-				    	JOptionPane.showMessageDialog(null, "l'ï¿½tiquette portable " + imei1_jtext.getText()	+ "  a ï¿½tï¿½ bien ajoutï¿½");
+				    	JOptionPane.showMessageDialog(null, "l'étiquette portable " + imei1_jtext.getText()	+ "  a été bien ajouté");
 
 				} else {
 					JOptionPane.showMessageDialog(null, msg);
@@ -459,7 +459,7 @@ public class etiquette_portable_forn extends JFrame {
 
 					 //controlPanel.remove(progressBar);
 				}}
-						 else{  JOptionPane.showMessageDialog(null, "Vous devez choisir un type d'ï¿½tiquette");}
+						 else{  JOptionPane.showMessageDialog(null, "Vous devez choisir un type d'étiquette");}
 				
 					}}; 
 					

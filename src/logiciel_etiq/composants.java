@@ -96,7 +96,7 @@ public class composants extends JFrame {
 				public void windowClosing(WindowEvent e){
 		        	
 		              int reponse = JOptionPane.showConfirmDialog(
-		                                   null, "Voulez-vous vraiment quitter cette fenï¿½tre ?",
+		                                   null, "Voulez-vous vraiment quitter cette fenétre ?",
 		                                   "Confirmation",
 		                                   JOptionPane.YES_NO_OPTION,
 		                                   JOptionPane.QUESTION_MESSAGE);
@@ -257,7 +257,7 @@ public class composants extends JFrame {
 	  	            		 }
 	  	           }
 	  	           
-	  	    	 if(co_bo1==true&&cf_bo1==true) JOptionPane.showMessageDialog(null,"Les Composants ont ï¿½tï¿½ bien ajoutï¿½s");
+	  	    	 if(co_bo1==true&&cf_bo1==true) JOptionPane.showMessageDialog(null,"Les Composants ont été bien ajoutés");
 	 	  	   	if(co_bo1==false||cf_bo1==false){
 	          		 msg+="Le coef ou l'indice doit etre un nombre \n";
 	 	  	           }
@@ -318,20 +318,20 @@ public class composants extends JFrame {
   	 }  	
 	            		 
 	            		}
-	  	      	 if(co_bo==true&&cf_bo==true&&(tab.table.getRowCount()!=0)) JOptionPane.showMessageDialog(null,"Modification rï¿½ussie");
+	  	      	 if(co_bo==true&&cf_bo==true&&(tab.table.getRowCount()!=0)) JOptionPane.showMessageDialog(null,"Modification réussie");
 	  	      	 
 	  	
 	  	            	
 	  	   	if(co_bo==false||cf_bo==false){
-         		 msgm+="Le coef ou l'indice doit ï¿½tre  un nombre \n";
+         		 msgm+="Le coef ou l'indice doit étre  un nombre \n";
 	  	           }
          	  else {
-         	  msgm+=msgm.replace("Le coef ou l'indice doit ï¿½tre  un nombre \n","");}
+         	  msgm+=msgm.replace("Le coef ou l'indice doit étre  un nombre \n","");}
 	  	   	if(tab.table.getRowCount()==0){
-       		 msgm+="Vous devez d'abord sï¿½lectionner un composant. \n";
+       		 msgm+="Vous devez d'abord sélectionner un composant. \n";
 	  	           }
        	  else {
-       	  msgm+=msgm.replace("Vous devez d'abord sï¿½lectionner un composant. \n","");
+       	  msgm+=msgm.replace("Vous devez d'abord sélectionner un composant. \n","");
 	  	            	}
 	  	            	}
 	  	            	
@@ -378,11 +378,11 @@ public class composants extends JFrame {
 	  	            	 if(tab.table.getSelectedRow()==-1){
 	  	            		 
 	  	            		 JOptionPane.showMessageDialog(null, 
-	      	 	      				"Vous devez d'abord sï¿½lectionner le composant que vous voulez supprimer", "",
+	      	 	      				"Vous devez d'abord sélectionner le composant que vous voulez supprimer", "",
 	      	 	  		        JOptionPane.INFORMATION_MESSAGE);
 	  	            	 }
 	  	            	 else{
-	  	            	int ligne = tab.table.getSelectedRow();//Si tu veut la ligne selectionnï¿½e
+	  	            	int ligne = tab.table.getSelectedRow();//Si tu veut la ligne selectionn?e
 	            		  comp.delete_composant(tab.table.getValueAt(ligne,2).toString());
 	            		  ((DefaultTableModel) tab.table.getModel()).removeRow(tab.table.getSelectedRow());
 	  	            	 }   }});

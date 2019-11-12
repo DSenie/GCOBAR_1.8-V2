@@ -78,7 +78,7 @@ public class etiquette_tpe extends JFrame {
 		private JPanel pan_model = new JPanel();
 		private JPanel pan_model_jtext = new JPanel();
 		private JPanel pan_model_lab = new JPanel();
-		private JLabel model_lab = new JLabel("Modï¿½l");
+		private JLabel model_lab = new JLabel("Modèle");
 		
 		private JTextField model_jtext = new JTextField();
 		
@@ -148,7 +148,7 @@ public class etiquette_tpe extends JFrame {
 	
 	
 	
-	private JButton imp_etq = new JButton("Imprimer L'ï¿½tiquette");
+	private JButton imp_etq = new JButton("Imprimer L'étiquette");
 	
 
 	private JButton retour = new JButton("Retour");
@@ -203,13 +203,13 @@ public class etiquette_tpe extends JFrame {
 //		imp.conteur(date_picker.getDate());
 			
 			
-			dimension_comb.addItem("--- Sï¿½lectionner la dimension de l'etiquette ----");
+			dimension_comb.addItem("--- Sélectionner la dimension de l'etiquette ----");
 
 			list_dimension=imp.select_dimension_etq("etq_tpe");
 		 	  
 			   for(int i=0;i<list_dimension.size();i++)
 			   {
-			          //Pour affecter une valeur de base de donnï¿½es ï¿½ un Combobox 
+			          //Pour affecter une valeur de base de donn?es ? un Combobox 
 				   dimension_comb.addItem(list_dimension.get(i));
 				   
 			   }
@@ -409,7 +409,7 @@ public class etiquette_tpe extends JFrame {
 
 					imp.insert_etq_tpe(arti,code_jtext.getText(),arpt_jtext.getText(),date_picker.getEditor().getText());
 
-				    	JOptionPane.showMessageDialog(null, "l'ï¿½tiquette TPE " + code_jtext.getText()	+ "  a ï¿½tï¿½ bien ajoutï¿½");
+				    	JOptionPane.showMessageDialog(null, "l'étiquette TPE " + code_jtext.getText()	+ "  a été bien ajouté");
 
 				} else {
 					JOptionPane.showMessageDialog(null, msg);
@@ -456,7 +456,7 @@ public class etiquette_tpe extends JFrame {
 
 					imp.modif_etq_tpe(arti,code_jtext.getText(),arpt_jtext.getText(),date_picker.getEditor().getText().toString());
 
-				    	JOptionPane.showMessageDialog(null, "l'ï¿½tiquette TPE " + code_jtext.getText()	+ "  a ï¿½tï¿½ bien modifiï¿½");
+				    	JOptionPane.showMessageDialog(null, "l'étiquette TPE " + code_jtext.getText()	+ "  a été bien modifié");
 
 				} else {
 					JOptionPane.showMessageDialog(null, msg);
@@ -519,7 +519,7 @@ public class etiquette_tpe extends JFrame {
 						}
 	                	  else{
 	                		  
-	                		  JOptionPane.showMessageDialog(null, "Vous devez choisir un type d'ï¿½tiquette");
+	                		  JOptionPane.showMessageDialog(null, "Vous devez choisir un type d'étiquette");
 	                	  }
 					}}; 
 					

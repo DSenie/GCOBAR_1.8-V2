@@ -186,8 +186,8 @@ System.out.println("hhhhhhhhhhhh"+resultat);
 	  ArrayList <String>resultat= new ArrayList<String>() ;
  	    String query5 = "SELECT model, couleur, imei1,imei2,date_imp FROM etiq_fournisseur "
  	    		+ "where  imei1='"+imei1+"' or  imei2='"+imei2+"' ";
- 	    		//+ "where intitule='poste pr�paration 1' or "
- 	    	//	+ "intitule='poste pr�paration 2'  " ; 
+ 	    		//+ "where intitule='poste pr?paration 1' or "
+ 	    	//	+ "intitule='poste pr?paration 2'  " ; 
 	    if(CConnect.Requete(query5, bdd).size()>=1){
 
 		      //System.out.println(resultat.size()+"hyh"+(String) CConnect.Requete(query5,bdd).get(0));  
@@ -203,8 +203,8 @@ System.out.println("hhhhhhhhhhhh"+resultat);
 	  ArrayList <String>resultat= new ArrayList<String>() ;
  	    String query5 = "SELECT model, etiquette_tpe.code_article, article.designation,arpt,date_tpe FROM etiquette_tpe, article  "
  	    		+ "where  code_tpe='"+code+"' and etiquette_tpe.code_article=article.code_article ";
- 	    		//+ "where intitule='poste pr�paration 1' or "
- 	    	//	+ "intitule='poste pr�paration 2'  " ; 
+ 	    		//+ "where intitule='poste pr?paration 1' or "
+ 	    	//	+ "intitule='poste pr?paration 2'  " ; 
 	    if(CConnect.Requete(query5, bdd).size()>=1){
 
 		      //System.out.println(resultat.size()+"hyh"+(String) CConnect.Requete(query5,bdd).get(0));  
@@ -221,8 +221,8 @@ System.out.println("hhhhhhhhhhhh"+resultat);
 	  ArrayList <String>resultat= new ArrayList<String>() ;
  	    String query5 = "SELECT model, couleur, imei1,imei2,date_imp FROM etiq_fournisseur "
  	    		;
- 	    		//+ "where intitule='poste pr�paration 1' or "
- 	    	//	+ "intitule='poste pr�paration 2'  " ; 
+ 	    		//+ "where intitule='poste pr?paration 1' or "
+ 	    	//	+ "intitule='poste pr?paration 2'  " ; 
 	    if(CConnect.Requete(query5, bdd).size()>=1){
 
 		      //System.out.println(resultat.size()+"hyh"+(String) CConnect.Requete(query5,bdd).get(0));  
@@ -310,8 +310,8 @@ System.out.println("hhhhhhhhhhhh"+resultat);
 		
 		  ArrayList <String>resultat= new ArrayList<String>() ;
 	   	    String query5 = "SELECT Code_Poste,Intitule FROM Poste ";
-	   	    		//+ "where intitule='poste pr�paration 1' or "
-	   	    	//	+ "intitule='poste pr�paration 2'  " ; 
+	   	    		//+ "where intitule='poste pr?paration 1' or "
+	   	    	//	+ "intitule='poste pr?paration 2'  " ; 
 		    if(CConnect.Requete(query5, bdd).size()>=1){
 
 			      //System.out.println(resultat.size()+"hyh"+(String) CConnect.Requete(query5,bdd).get(0));  
@@ -336,7 +336,7 @@ System.out.println("hhhhhhhhhhhh"+resultat);
 		   list_affiche_cont= CConnect.Requete(query2, bdd);
 		   if(list_affiche_cont.size()>=1){  
 	   serial=list_affiche_cont.get(0);
-	  // int n = 5; // nbre de caract�res
+	  // int n = 5; // nbre de caract?res
 	 //  int length = list_affiche_cont.get(0).length();
 	   cont = Integer.parseInt(serial.substring(1, 5));
 	   System.out.println("bbbbbbbb "+cont);
@@ -360,7 +360,7 @@ System.out.println("hhhhhhhhhhhh"+resultat);
 		   list_affiche_cont= CConnect.Requete(query2, bdd);
 		   if(list_affiche_cont.size()>=1){  
 	   serial=list_affiche_cont.get(0);
-	   int n = 5; // nbre de caract�res
+	   int n = 5; // nbre de caract?res
 	   int length = list_affiche_cont.get(0).length();
 	   cont = Integer.parseInt(list_affiche_cont.get(0).substring(length -n, length));
 	    cont=cont+1;
@@ -1707,9 +1707,122 @@ System.out.println("hhhhhhhhhhhh"+resultat);
 			       CConnect.Requete(query3, bdd);
 			return code;
 			}
-			
-			
-			
-			  
-		
+
+
+	public String nbr_palette_portable(String filter,String datedebut,String datefin)
+	{
+		String resultat="0";
+
+		String insert = "SELECT Count(*) AS N FROM (SELECT DISTINCT  parcel_palette "
+				+ "from palette,article,imp_emballage,emei_table  "
+				+ " where palette.id_pal=imp_emballage.id_palette and article.code_article = imp_emballage.code_article and imp_emballage.parcel = emei_table.parcel_code and "
+				+ "imp_emballage.date_emb BETWEEN Format('"+datedebut+"','dd/MM/yyyy') and Format('"+datefin+"','dd/MM/yyyy') and"
+				+ " (imei1 like '%"+filter+"%' or imei2 like '%"+filter+"%' or imp_emballage.parcel like '%"+filter+"%' or"
+				+ " article.designation like '%"+filter+"%' or  article.code_article like '%"+filter+"%' or couleur like '%"+filter+"%'))";
+		if(CConnect.Requete(insert,bdd).size()>0)
+			resultat=CConnect.Requete(insert,bdd).get(0).toString();
+		//System.out.println("eeee edfsf\\"+resultat);
+		return  resultat;
+	}
+	public ArrayList<String> recherche_palette_tpe(String filter,String datedebut,String datefin)
+	{
+		ArrayList <String>resultat= new ArrayList<String>() ;
+
+		String insert = "select article.code_article, article.designation, parcel_palette, imp_emballage_tpe.parcel, emei_tpe.sn, emei_tpe.imei  "
+				+ "from palette,article,imp_emballage_tpe,emei_tpe "
+				+ " where palette.id_pal=imp_emballage_tpe.id_palette and article.code_article = imp_emballage_tpe.code_article"
+				+ " and imp_emballage_tpe.parcel = emei_tpe.parcel  "
+				+ " and imp_emballage_tpe.date_emb BETWEEN Format('"+datedebut+"','dd/MM/yyyy') and Format('"+datefin+"','dd/MM/yyyy')  "
+				+ "AND( imei like '%"+filter+"%' or emei_tpe.sn like '%"+filter+"%' or  imp_emballage_tpe.parcel  like '%"+filter+"%'"
+				+ " or article.code_article like '%"+filter+"%' or article.designation like '%"+filter+"%')"
+				;
+		// System.out.println("eeee edfsf\\"+insert);
+		resultat=CConnect.Requete(insert,bdd);
+		System.out.println("eeee edfsf88888mmmm\\"+resultat);
+		return  resultat;
+	}
+
+
+	public String nbr_carton_portable(String filter,String datedebut,String datefin)
+	{
+		String resultat="0";
+
+		String insert = "SELECT Count(*) AS N FROM (SELECT DISTINCT imp_emballage.parcel "
+				+ "from palette,article,imp_emballage,emei_table  "
+				+ " where palette.id_pal=imp_emballage.id_palette and article.code_article = imp_emballage.code_article and imp_emballage.parcel = emei_table.parcel_code and "
+				+ "imp_emballage.date_emb BETWEEN Format('"+datedebut+"','dd/MM/yyyy') and Format('"+datefin+"','dd/MM/yyyy') and"
+				+ " (imei1 like '%"+filter+"%' or imei2 like '%"+filter+"%' or imp_emballage.parcel like '%"+filter+"%' or"
+				+ " article.designation like '%"+filter+"%' or  article.code_article like '%"+filter+"%' or couleur like '%"+filter+"%'))";
+		if(CConnect.Requete(insert,bdd).size()>0)
+			resultat=CConnect.Requete(insert,bdd).get(0).toString();
+		// System.out.println("eeee edfsf\\"+resultat);
+		return  resultat;
+	}
+	public ArrayList<String> recherche_palette_portable(String filter,String datedebut,String datefin)
+	{
+		ArrayList <String>resultat= new ArrayList<String>() ;
+
+		String insert = "select article.code_article, article.designation, parcel_palette, imp_emballage.parcel, emei_table.imei1, emei_table.imei2 , imp_emballage.couleur "
+				+ "from palette,article,imp_emballage,emei_table  "
+				+ " where palette.id_pal=imp_emballage.id_palette and article.code_article = imp_emballage.code_article and imp_emballage.parcel = emei_table.parcel_code and "
+				+ "imp_emballage.date_emb BETWEEN Format('"+datedebut+"','dd/MM/yyyy') and Format('"+datefin+"','dd/MM/yyyy') and"
+				+ " (imei1 like '%"+filter+"%' or imei2 like '%"+filter+"%' or imp_emballage.parcel like '%"+filter+"%' or"
+				+ " article.designation like '%"+filter+"%' or  article.code_article like '%"+filter+"%' or couleur like '%"+filter+"%')";
+
+		resultat=CConnect.Requete(insert,bdd);
+		// System.out.println("eeee edfsf\\"+resultat);
+		return  resultat;
+	}
+
+
+	public String nbr_carton_palette_potable (String palette_parcel){
+
+		String select ="select count(*) from imp_emballage,palette where id_pal=id_palette and parcel_palette= '"+palette_parcel+"'";
+		return  CConnect.Requete(select,bdd).get(0);
+	}
+
+	public String nbr_palette_tpe(String filter,String datedebut,String datefin)
+	{
+		String resultat="0";
+
+		String insert = "SELECT Count(*) AS N FROM (SELECT DISTINCT  palette.parcel_palette "
+				+ "from palette,article,imp_emballage_tpe,emei_tpe "
+				+ " where palette.id_pal=imp_emballage_tpe.id_palette and article.code_article = imp_emballage_tpe.code_article"
+				+ " and imp_emballage_tpe.parcel = emei_tpe.parcel  "
+				+ " and imp_emballage_tpe.date_emb BETWEEN Format('"+datedebut+"','dd/MM/yyyy') and Format('"+datefin+"','dd/MM/yyyy')  "
+				+ "AND( imei like '%"+filter+"%' or emei_tpe.sn like '%"+filter+"%' or  imp_emballage_tpe.parcel  like '%"+filter+"%'"
+				+ " or article.code_article like '%"+filter+"%' or article.designation like '%"+filter+"%'))";
+		if(CConnect.Requete(insert,bdd).size()>0)
+			resultat=CConnect.Requete(insert,bdd).get(0).toString();
+		System.out.println("pal"+resultat);
+		return  resultat;
+	}
+	public String nbr_carton_tpe(String filter,String datedebut,String datefin)
+	{
+		String resultat="0";
+
+
+		String insert = "SELECT Count(*) AS N FROM (SELECT DISTINCT imp_emballage_tpe.parcel  "
+				+ "from palette,article,imp_emballage_tpe,emei_tpe "
+				+ " where palette.id_pal=imp_emballage_tpe.id_palette and article.code_article = imp_emballage_tpe.code_article"
+				+ " and imp_emballage_tpe.parcel = emei_tpe.parcel  "
+				+ " and imp_emballage_tpe.date_emb BETWEEN Format('"+datedebut+"','dd/MM/yyyy') and Format('"+datefin+"','dd/MM/yyyy')  "
+				+ "AND( imei like '%"+filter+"%' or emei_tpe.sn like '%"+filter+"%' or  imp_emballage_tpe.parcel  like '%"+filter+"%'"
+				+ " or article.code_article like '%"+filter+"%' or article.designation like '%"+filter+"%'))";
+		// System.out.println("eeee edfsf\\"+resultat);
+		if(CConnect.Requete(insert,bdd).size()>0)
+			resultat=CConnect.Requete(insert,bdd).get(0).toString();
+		return  resultat;
+	}
+
+
+	public String nbr_carton_palette_tpe (String palette_parcel){
+		String resultat="0";
+		String insert ="SELECT Count(*)  from imp_emballage_tpe,palette where id_pal=id_palette and parcel_palette= '"+palette_parcel+"'";
+		//System.out.println(insert);
+		resultat=CConnect.Requete(insert,bdd).get(0);
+		// System.out.println("selcty"+resultat);
+
+		return resultat;
+	}
 }

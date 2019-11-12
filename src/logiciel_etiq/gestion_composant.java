@@ -47,7 +47,7 @@ public void ajouter_composant(String CODE_ORIGINE,int INDICE,String CODE_ENIE,St
 {
 	 String query = "SELECT * FROM composant where CODE_ORIGINE="+CODE_ORIGINE+""; 
 	    if(CConnect.Requete(query, bdd).size()>1){
-	      	JOptionPane.showMessageDialog(null,"Ce composant  existe dï¿½jï¿½.");
+	      	JOptionPane.showMessageDialog(null,"Ce composant  existe déjà.");
 	       
 	    }
 	    else{

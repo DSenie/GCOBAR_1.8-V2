@@ -70,7 +70,7 @@ JOptionPane.QUESTION_MESSAGE);
 if (reponse== JOptionPane.YES_OPTION){
 String update2= "delete from famille_article where code_famille='"+code+"'"; 
 CConnect.Insert(update2,bdd);
-JOptionPane.showMessageDialog(null,"Le type article a ï¿½tï¿½ bien supprimï¿½");
+JOptionPane.showMessageDialog(null,"Le type article a été bien supprimé");
 
 }}
 
@@ -91,7 +91,7 @@ exist=false;
 String query = "SELECT * FROM famille_article where code_famille='"+code+"'"; 
 
 if(CConnect.Requete(query, bdd).size()>=1){
-JOptionPane.showMessageDialog(null,"Ce type article existe dï¿½jï¿½");
+JOptionPane.showMessageDialog(null,"Ce type article existe déjà");
 exist=true;
 return exist;
 }

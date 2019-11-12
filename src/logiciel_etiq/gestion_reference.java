@@ -73,7 +73,7 @@ JOptionPane.QUESTION_MESSAGE);
 if (reponse== JOptionPane.YES_OPTION){
 String update2= "delete from reference where code_ref="+code+""; 
 CConnect.Insert(update2,bdd);
-JOptionPane.showMessageDialog(null,"La rï¿½fï¿½rence a ï¿½tï¿½ bien supprimï¿½");
+JOptionPane.showMessageDialog(null,"La réfèrence a été bien supprimé");
 
 }}
 
@@ -94,7 +94,7 @@ exist=false;
 String query = "SELECT * FROM reference where code_ref='"+reference+"'"; 
 
 if(CConnect.Requete(query, bdd).size()>=1){
-JOptionPane.showMessageDialog(null,"Cette rï¿½fï¿½rence existe dï¿½jï¿½");
+JOptionPane.showMessageDialog(null,"Cette réfèrence existe déjà");
 exist=true;
 return exist;
 }
