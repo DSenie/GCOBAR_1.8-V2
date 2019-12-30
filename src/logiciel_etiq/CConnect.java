@@ -93,14 +93,14 @@ public class CConnect {
 		         String Ligne;
 		         
 		         while(encore) 
-		         {   
-		         Ligne ="";
-		         for(int i = 1; i <= nCols; i++) 
-		         { 
-		        	 Ligne=Ligne+results.getString(i)+",";
-		         } 
-		       
-	        	 presultat.add(Ligne); 
+		         {
+					 Ligne ="";
+					 for(int i = 1; i <= nCols; i++)
+					 {
+						 Ligne=Ligne+results.getString(i)+",";
+					 }
+
+					 presultat.add(Ligne);
 		         //System.out.print(presultat);
 		         encore = results.next(); 
 		         } 
