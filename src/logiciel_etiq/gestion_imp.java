@@ -9,7 +9,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.zip.DataFormatException;
 
-import javax.swing.JOptionPane;
+import javax.swing.*;
 
 
 public class gestion_imp {
@@ -89,16 +89,16 @@ String date_emb;
 			   	    		+ " and  emei_table.parcel_code=imp_emballage.parcel"
 			   	    		+ " and (parcel='"+champ+"' or imp_emballage.code_article='"+champ+"' or designation='"+champ+"'or model='"+champ+"'"
 			   	    				+ " or couleur='"+champ+"' or delivery='"+champ+"' or gw='"+champ+"' or  nw='"+champ+"' or carton_size='"+champ+"' "
-			   	    						+ " or commentaire='"+champ+"'  or imei1='"+champ+"' or imei2='"+champ+"'";
+			   	    						+ " or commentaire='"+champ+"'  or imei1='"+champ+"' or imei2='"+champ+"' or date_emb like Format('%"+champ+"%','dd-MM-yyyy')";
 			   	    							
-			   	    		if(isdate(champ)){
+			   	    	/*	if(isdate(champ)){
    								query5+= " or date_emb=Format('"+champ+"','dd-MM-yyyy')";
 
-			   	    		}
+			   	    		}*/
 			   	    								
 			   	    		query5+= " ) ";
 			   	    		query5+= "   order by date_emb DESC" ;
-			   	    		; 
+
 			   	    
 			   	    
 			        resultat=CConnect.Requete(query5,bdd);
@@ -182,22 +182,22 @@ System.out.println("hhhhhhhhhhhh"+resultat);
         
         
         
-  public  ArrayList <String> ajouter_imprim_fourn(String imei1,String imei2){
+  public  ArrayList <String> ajouter_imprim_fourn(String imei1, String imei2){
 	  ArrayList <String>resultat= new ArrayList<String>() ;
  	    String query5 = "SELECT model, couleur, imei1,imei2,date_imp FROM etiq_fournisseur "
- 	    		+ "where  imei1='"+imei1+"' or  imei2='"+imei2+"' ";
- 	    		//+ "where intitule='poste pr?paration 1' or "
- 	    	//	+ "intitule='poste pr?paration 2'  " ; 
+ 	    		+ "where  imei1='"+imei1+"' or imei2='"+imei2+"' ";
+
 	    if(CConnect.Requete(query5, bdd).size()>=1){
-
-		      //System.out.println(resultat.size()+"hyh"+(String) CConnect.Requete(query5,bdd).get(0));  
-
       resultat=CConnect.Requete(query5,bdd);
 	    }
       return resultat;       
 
 	    	   }
-  
+
+
+
+
+
   
   public  ArrayList <String> remplir_etq_tpe(String code){
 	  ArrayList <String>resultat= new ArrayList<String>() ;
@@ -221,11 +221,8 @@ System.out.println("hhhhhhhhhhhh"+resultat);
 	  ArrayList <String>resultat= new ArrayList<String>() ;
  	    String query5 = "SELECT model, couleur, imei1,imei2,date_imp FROM etiq_fournisseur "
  	    		;
- 	    		//+ "where intitule='poste pr?paration 1' or "
- 	    	//	+ "intitule='poste pr?paration 2'  " ; 
-	    if(CConnect.Requete(query5, bdd).size()>=1){
 
-		      //System.out.println(resultat.size()+"hyh"+(String) CConnect.Requete(query5,bdd).get(0));  
+	    if(CConnect.Requete(query5, bdd).size()>=1){
 
       resultat=CConnect.Requete(query5,bdd);
 	    }
@@ -275,8 +272,28 @@ System.out.println("hhhhhhhhhhhh"+resultat);
 			   CConnect.Insert(insert,bdd);   
 		      
 	}
-	
-	
+
+
+    public void update_phone_fournisseur(String model,String couleur,String imei1,String imei2,String date)
+    {
+    	/*System.out.println(date);
+        String insert = "update  etiq_fournisseur set model='"+model+"', couleur='"+couleur+"',date_imp='"+date+"' " +
+                "where  imei1='"+imei1+"' or  imei2='"+imei2+"' ";
+        CConnect.Insert(insert,bdd);*/
+		delete_phone_fournisseur(  imei1,  imei2 );
+		insert_phone_fournisseur(model, couleur, imei1, imei2, date);
+
+    }
+
+          public void delete_phone_fournisseur(String  imei1, String imei2 ){
+			  String delete= "delete from etiq_fournisseur where imei1='"+imei1+"' or  imei1='"+imei2+"' or imei2='"+imei1+"' or  imei2='"+imei2+"' ";
+
+			  CConnect.Insert(delete,bdd);
+
+          }
+
+
+
 	public void insert_etq_tpe(String code_article,String code_tpe,String arpt,String date)
 	{  
 		 String insert = "insert into etiquette_tpe (code_article,code_tpe,arpt,date_tpe)"
@@ -893,6 +910,20 @@ System.out.println("hhhhhhhhhhhh"+resultat);
 			return resultat;  
 			
 		}
+
+
+
+    public ArrayList<String> select_modele(){
+        ArrayList <String>resultat= new ArrayList<String>() ;
+        String query5 = "SELECT distinct model from etiq_fournisseur";
+        //System.out.println(CConnect.Requete(query5, bdd));
+        //	+ " and (code_famille='F02' or code_famille='F03') " ;
+        if(CConnect.Requete(query5, bdd).size()>=1){
+            resultat=CConnect.Requete(query5,bdd);
+        }
+        return resultat;
+
+    }
 		
 		public ArrayList<String> select_size_tpe(){
 			ArrayList <String>resultat= new ArrayList<String>() ;
@@ -1049,15 +1080,35 @@ System.out.println("hhhhhhhhhhhh"+resultat);
 		     
 		       
 		}
+		/*ouii*/
 		
-		public ArrayList<String> select(){
-		    ArrayList <String>resultat= new ArrayList<String>() ;
-		   	    String query5 = "SELECT designation,Intitule,designation_chaine,Format(date_fiche,'dd/MM/yyyy'),serial_number,code_commercial "
-		   	    		+ " from article,Poste,Chaine,fiche_suiveuse"
-		   	    		+ " where article.code_article=fiche_suiveuse.code_article and Poste.Code_Poste=fiche_suiveuse.code_poste"
-		   	    		+ " and Chaine.code_chaine=fiche_suiveuse.code_chaine"; 
-		        resultat=CConnect.Requete(query5,bdd);
-		        return resultat;  
+		public ArrayList<String> select(String filter,String date_d,String date_f){
+			ArrayList <String>  resultat= new ArrayList<String>() ;;
+		   	 /*   String query5 = "SELECT designation,designation_chaine,Format(date_fiche,'dd/MM/yyyy'), serial_number, code_commercial, fiche_suiveuse.code_article"
+		   	    		+ " from article,Chaine,fiche_suiveuse"
+		   	    		+ " where article.code_article=fiche_suiveuse.code_article "
+		   	    		+ " and Chaine.code_chaine=fiche_suiveuse.code_chaine  and (date_fiche between Format('"+date_d+"', 'dd/MM/yyyy')" +
+						"AND Format('"+date_f+"', 'dd/MM/yyyy'))" ;*/
+
+
+			String query5 = "SELECT designation, designation_chaine, date_fiche, serial_number, code_commercial, fiche_suiveuse.code_article"+
+			" FROM article, Chaine, fiche_suiveuse"
+			+" WHERE article.code_article=fiche_suiveuse.code_article"
+			+" and Chaine.code_chaine=fiche_suiveuse.code_chaine and "+
+			" date_fiche BETWEEN Format('"+date_d+"', 'dd/MM/yyyy') AND Format('"+date_f+"', 'dd/MM/yyyy')"
+			+"and (fiche_suiveuse.code_article like '%"+filter+"%'or serial_number like '%"+filter+"%' or " +
+			"code_commercial like '%"+filter+"%'  or  designation like '%"+filter+"%' or fiche_suiveuse.code_chaine like '%"+filter+"%'  )  ";
+
+
+		/*	String query5 = "SELECT designation,designation_chaine,Format(date_fiche,'dd/MM/yyyy'), serial_number, code_commercial, code_article "
+					+ " from recap_fiche where (date_fiche between Format('"+date_d+"', 'dd/MM/yyyy') AND Format('"+date_f+"', 'dd/MM/yyyy')) order by date_fiche DESC ";*/
+
+		resultat=CConnect.Requete(query5,bdd);
+            System.out.println(filter+" code "+date_d+" offf "+resultat);
+
+
+
+		        return resultat;
 		}
 		
 		public ArrayList<String> select_portable(){
@@ -1067,8 +1118,7 @@ System.out.println("hhhhhhhhhhhh"+resultat);
 		   	    		+ " where article.code_article=imp_portable.code_article"
 		   	    		; 
 		        resultat=CConnect.Requete(query5,bdd);
-		     
-		        return resultat;  
+		        return resultat;
 
 		}
 		

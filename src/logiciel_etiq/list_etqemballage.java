@@ -184,11 +184,11 @@ public class list_etqemballage extends JFrame {
 
 		         				String date_s = list_rech.get(l+10).toLowerCase(); 
 		         				System.out.println(date_s);
-		                   		SimpleDateFormat dt = new SimpleDateFormat("yyyyy-MM-dd hh:mm:ss"); 
+		                   		SimpleDateFormat dt = new SimpleDateFormat("yyyyy-MM-dd hh:mm:ss");
 		                   		 String date_i;
 								try {
 									Date date = dt.parse(date_s);
-									SimpleDateFormat dt1 = new SimpleDateFormat("dd-MM-yyyy");
+									SimpleDateFormat dt1 = new SimpleDateFormat("dd/MM/yyyy");
 			                   		 date_i=dt1.format(date);
 			                   		System.out.println(date_i);
 			                   		 tab.getTable().setValueAt(date_i, j1-1,9);
@@ -291,9 +291,9 @@ public class list_etqemballage extends JFrame {
         			 tab.getTable().setValueAt(list_fiche.get(l+9).toLowerCase(), j-1,8);
         			 if(list_fiche.get(l+10)!=null){
         				String date_s = list_fiche.get(l+10).toLowerCase(); 
-                  		SimpleDateFormat dt = new SimpleDateFormat("yyyyy-MM-dd hh:mm:ss"); 
+                  		SimpleDateFormat dt = new SimpleDateFormat("yyyyy-MM-dd hh:mm:ss");
                   		Date date = dt.parse(date_s); 
-                  		SimpleDateFormat dt1 = new SimpleDateFormat("dd-MM-yyyy");
+                  		SimpleDateFormat dt1 = new SimpleDateFormat("dd/MM/yyyy");
                   		String date_i=dt1.format(date);
                   		 tab.getTable().setValueAt(date_i, j-1,9);
         			 
@@ -415,7 +415,7 @@ public class list_etqemballage extends JFrame {
 		   		    		if(!listrc.contains((String) tab.table.getValueAt(selection[i], 0))){
 		   		    			String parcel=tab.table.getValueAt(selection[i], 0).toString().replace("/", "_");
 		   		    	    listrc.add(parcel);
-		   		    	 listrc1.add((String) tab.table.getValueAt(selection[i], 0));
+		   		    	     listrc1.add((String) tab.table.getValueAt(selection[i], 0));
 		   		    		}
 //		   		    		if(!listrc1.contains((String) tab.table.getValueAt(selection[i], 0))){
 //		   		    			
@@ -605,6 +605,7 @@ public class list_etqemballage extends JFrame {
 		          	           		 String part_art1 = part_art[0]; 
 		          	           		  
 		          	                  String part_art2 = tab.table.getValueAt(selection[i], 1).toString().replaceAll(part_art1+" ", "");
+
  		                			if(j==1){		       
  		          	                    cell.setCellValue((String) part_art1);
  		                			}

@@ -965,7 +965,9 @@ public class list_palette_portable extends JFrame {
 
 
 
-        //list_rech=imp.select_emei_table(filterText.getText());
+        //list_rech=imp.select_emei_table(filterText.getTe
+        //
+        // xt());
         for(int i1=0;i1<list_rech.size();i1=i1+7){ tab.ajouter();}
         int j1=1;
         int l1 = 0; i1=1;
@@ -976,7 +978,7 @@ public class list_palette_portable extends JFrame {
                 tab.getTable().setValueAt(list_rech.get(l1+3).toLowerCase(), j1-1, 2);
                 tab.getTable().setValueAt(list_rech.get(l1+4).toLowerCase(), j1-1, 3);
                 tab.getTable().setValueAt(list_rech.get(l1+5).toLowerCase(), j1-1,4);
-                tab.getTable().setValueAt(list_rech.get(l1+5).toLowerCase(), j1-1,5);
+                tab.getTable().setValueAt(list_rech.get(l1+6).toLowerCase(), j1-1,5);
 
                 i1=i1+1; l1=l1+7;
             }

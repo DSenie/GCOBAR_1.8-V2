@@ -1854,74 +1854,74 @@ p.printStackTrace();
     //TODO Auto-generated catch block
     p.printStackTrace();
     }	              	  
-        }	
-   	
+        }
 
-public static void imprimer(ArrayList<String> object,String bdd,String parcour,String model){
-	try{
-		 JPanel controlPanel = new JPanel();
-		 JFrame frame = new JFrame();
-		 frame.add(controlPanel);
+
+
+
+	public static void imprimer(ArrayList<String> object,String bdd,String parcour,String model){
+		try{
+			JPanel controlPanel = new JPanel();
+			JFrame frame = new JFrame();
+			frame.add(controlPanel);
 			frame.setUndecorated(true);
-			
-         JLabel titr=new JLabel("Veuillez patienter ....");
-         titr.setFont( titr.getFont().deriveFont(Font.BOLD|Font.ITALIC) );
-        // progressBar.setStringPainted(true);
-         UIManager.put("nimbusOrange", (new Color(70,130,180)));
-         
-        
-         titr.setFont(police2);
+
+			JLabel titr=new JLabel("Veuillez patienter ....");
+			titr.setFont( titr.getFont().deriveFont(Font.BOLD|Font.ITALIC) );
+			// progressBar.setStringPainted(true);
+			UIManager.put("nimbusOrange", (new Color(70,130,180)));
+
+
+			titr.setFont(police2);
 			controlPanel.add(titr);
 			//controlPanel.add(progressBar);
 			controlPanel.setBorder(BorderFactory.createEmptyBorder(20, 0, 0,0));
 
-		//	progressBar.setPreferredSize( new Dimension (200, 25));
+			//	progressBar.setPreferredSize( new Dimension (200, 25));
 			frame.setSize(300, 70);
 			frame.setLocationRelativeTo(null);
 			frame.setVisible(true);
-		 
-	//	"C:\\GCOBAR\\CODE\\fichesuiveuse"+code_jtext.getText()+".pdf"
-  	  // JasperReport jasperReport = (JasperReport) JRLoader.loadObject("C:\\GCOBAR\\CODE\\reportC.jrxml");
-			 JasperDesign jasperDesign = JRXmlLoader.load(model);
-			 JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
 
-//- Param?tres ? envoyer au rapport
-Map<String, Object> parameters = new HashMap<String, Object>();
+			//	"C:\\GCOBAR\\CODE\\fichesuiveuse"+code_jtext.getText()+".pdf"
+			// JasperReport jasperReport = (JasperReport) JRLoader.loadObject("C:\\GCOBAR\\CODE\\reportC.jrxml");
+			JasperDesign jasperDesign = JRXmlLoader.load(model);
+			JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+
+//- Paramètres à envoyer au rapport
+			Map<String, Object> parameters = new HashMap<String, Object>();
 //parameters.put("2200000004");
-parameters.put("serial",object);
+			parameters.put("serial",object);
 
 //- Execution du rapport
-JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, CConnect.getInstance(bdd));
+			JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, CConnect.getInstance(bdd));
 
-//- Cr?ation du rapport au format PDF
+//- Création du rapport au format PDF
 
-JasperExportManager.exportReportToPdfFile(jasperPrint, parcour );
-controlPanel.remove(titr);
-frame.setVisible(false);
-int reponse = JOptionPane.showConfirmDialog(
-    null, "Operation terminée. Voulez-vous ouvrir le pdf?",
-    "Confirmation",
-    JOptionPane.YES_NO_OPTION,
-    JOptionPane.QUESTION_MESSAGE);
-	if (reponse==JOptionPane.YES_OPTION){
-try {
-Desktop.getDesktop().open(new File(parcour));
-} catch (IOException p) {
+			JasperExportManager.exportReportToPdfFile(jasperPrint, parcour );
+			controlPanel.remove(titr);
+			frame.setVisible(false);
+			int reponse = JOptionPane.showConfirmDialog(
+					null, "Operation terminée. Voulez-vous ouvrir le pdf?",
+					"Confirmation",
+					JOptionPane.YES_NO_OPTION,
+					JOptionPane.QUESTION_MESSAGE);
+			if (reponse==JOptionPane.YES_OPTION){
+				try {
+					Desktop.getDesktop().open(new File(parcour));
+				} catch (IOException p) {
 //TODO Auto-generated catch block
-p.printStackTrace();
-}
+					p.printStackTrace();
+				}
+			}
+		} catch (JRException p) {
+//TODO Auto-generated catch block
+			p.printStackTrace();
+		}
 	}
-} catch (JRException p) {
-//TODO Auto-generated catch block
-p.printStackTrace();
-}	              	  
-    }
-	
-	
 
 
 
-public static void imprimer(String param,ArrayList<String> object,String bdd,String parcour,String model){
+	public static void imprimer(String param,ArrayList<String> object,String bdd,String parcour,String model){
 	try{
 		 JPanel controlPanel = new JPanel();
 		 JFrame frame = new JFrame();

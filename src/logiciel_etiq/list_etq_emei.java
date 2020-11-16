@@ -229,8 +229,10 @@ public class list_etq_emei extends JFrame {
 					 tab.getTable().setValueAt(list_fiche.get(l+1).toLowerCase(), j-1, 1);
 					 tab.getTable().setValueAt(list_fiche.get(l+2).toLowerCase(), j-1, 2);
              		 tab.getTable().setValueAt(list_fiche.get(l+3).toLowerCase(), j-1,3);
-             		 
-              		String date_s = list_fiche.get(l+4).toLowerCase(); 
+					 if(list_fiche.get(l+4)!=null)
+					 tab.getTable().setValueAt(list_fiche.get(l+4).toLowerCase(), j-1,4);
+
+				/*	 String date_s = list_fiche.get(l+4).toLowerCase();
               		String date_i="";
               		
              		if(date_s==null){
@@ -239,7 +241,9 @@ public class list_etq_emei extends JFrame {
              		SimpleDateFormat dt1 = new SimpleDateFormat("dd-MM-yyyy");
              		date_i=dt1.format(date);
              		}
-             		 tab.getTable().setValueAt(date_i, j-1,4);
+
+             		System.out.println(date_i);
+             		 tab.getTable().setValueAt(date_i, j-1,4);*/
 
            			 i=i+1; l=l+5;
 				 }

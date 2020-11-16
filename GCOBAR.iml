@@ -6,7 +6,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Data" isTestSource="false" generated="true" />
     </content>
-    <orderEntry type="jdk" jdkName="1.7 (2)" jdkType="JavaSDK" />
+    <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">
       <library>
@@ -185,6 +185,15 @@
       <library>
         <CLASSES>
           <root url="jar://C:/GCOBAR/JAR/utiliser/xmlbeans-2.6.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/GCOBAR/JAR/utiliser/joda-time-2.2.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
