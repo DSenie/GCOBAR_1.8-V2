@@ -409,6 +409,7 @@ public class list_etqemballage extends JFrame {
 	                  new ActionListener() { 
 	                  public void actionPerformed(ActionEvent e) {
 	                	  listrc.clear();
+						  BufferedReader bfr = null ;
 	  	                int[] selection = tab.table.getSelectedRows() ;
 	                	  int z =selection.length;
 		   		    	    for (int i=0; i<z; i++) {
@@ -426,19 +427,26 @@ public class list_etqemballage extends JFrame {
 	                	  if(selectedRow!=-1){
 	                		  String parcour= "C:\\GCOBAR\\pdf\\etq_emballage\\"+listrc+"etq_emballage.pdf";
 								String model ="C:\\GCOBAR\\CODE\\etiquette_emballage_list.jrxml";
-	                		  try{
+							  File fichier = new File(parcour);
+							  fichier.delete();
 
-                            new BufferedReader(new FileReader("C:\\GCOBAR\\pdf\\etq_emballage\\"+listrc+"etq_emballage.pdf"));
-	                			  try {
-	    	                		  Desktop.getDesktop().open(new File("C:\\GCOBAR\\pdf\\etq_emballage\\"+listrc+"etq_emballage.pdf"));
+							  try {
 
-	    	                		  //cop(new File(bdd),new File(save.getSelectedFile().getPath().replace(".accdb", ".naw")));
-	    	                		  //cop(new File("C:\\GEFACT\\factpro\\"+code_jtext.getText().replace("/", "")+".pdf"),new File("C:\\GCOBAR\\CODE BARRE\\"+code_jtext.getText().replace("/", "")+" "+date+".fpc"));
-	    	                		  } catch (IOException p) {
-	    	                		  // TODO Auto-generated catch block
-	    	                		  p.printStackTrace();
-	    	                		  }
-	                			} catch (FileNotFoundException fnfe) {
+								  //
+								  bfr=    new BufferedReader(new FileReader(parcour));
+								  bfr.close();
+								  System.out.println("buffer");
+
+								  try {
+									  Desktop.getDesktop().open(new File(parcour));
+									  System.out.println("desk");
+
+								  } catch (IOException p) {
+									  // TODO Auto-generated catch block
+									  p.printStackTrace();
+								  }}
+
+							catch (FileNotFoundException fnfe) {
 	                				
 	                				
 	                	  selectioncomb.imprimer(listrc1,bdd,parcour,model);
@@ -446,7 +454,10 @@ public class list_etqemballage extends JFrame {
 
 	
 	                	  
-	                  } }            
+	                  } catch (IOException e1) {
+								  e1.printStackTrace();
+							  }
+						  }
 	                  }});
 		     
 		     

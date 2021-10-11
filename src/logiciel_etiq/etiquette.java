@@ -195,8 +195,10 @@ public class etiquette extends JFrame {
 		selectioncomb.selectarticle_etq(article_comb, enie, autre, this, logi_prio);
 		list_c = new ArrayList<String>(
 				Arrays.asList(new String[] { "--Sélectionner une Chaine--" }));
+
 		chaine_comb = new jcombo(list_c.toArray());
 		selectioncomb.selectchaine(chaine_comb, this, logi_prio);
+
 		list_p = new ArrayList<String>(Arrays.asList(new String[]{"---Selectionner un Poste-----"}));
 		poste_comb = new jcombo(list_p.toArray());
 		selectioncomb.selectposte( poste_comb,this,logi_prio);

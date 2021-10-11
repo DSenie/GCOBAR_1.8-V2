@@ -244,9 +244,18 @@ public class list_composant extends JFrame {
 				 i=1;
 				j=j+1;		
 				}
-		
 
-				  try{
+		   count.setText(" Nombre de bobine: "+tab.table.getRowCount());
+		   int somme=0;
+		   for(int i=0;i<tab.table.getRowCount();i++){
+			   somme+= Integer.parseInt(tab.table.getValueAt(i, 4).toString() );
+		   }
+
+		   qte_carton.setText("Quantité global :"+somme);
+
+
+
+		   try{
 				   		UIManager.setLookAndFeel(laf);
 				   		SwingUtilities.updateComponentTreeUI(this);
 				   	}

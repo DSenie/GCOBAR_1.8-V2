@@ -179,8 +179,21 @@ public class etiquette_portable_forn extends JFrame {
 			e1.printStackTrace();
 		}
 
-        imei2_jtext= new  JFormattedTextField(num);
-		imei1_jtext= new  JFormattedTextField(num);
+
+		MaskFormatter num2 = null;
+		try {
+			num2 = new MaskFormatter("###############");
+
+		}
+		catch (ParseException e1) {
+			e1.printStackTrace();
+		}
+
+
+
+
+		imei2_jtext= new  JFormattedTextField(num);
+		imei1_jtext= new  JFormattedTextField(num2);
 
 
 
@@ -327,40 +340,39 @@ public class etiquette_portable_forn extends JFrame {
             }
         });
 
-		imei2_jtext.addMouseListener(new MouseAdapter(){
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if(imei2_jtext.getText().trim().equals(""))
-				imei2_jtext.setText("");
+
+		imei1_jtext.addKeyListener(new KeyAdapter() {
+			public void keyPressed(KeyEvent evt) {
+
+				if(imei1_jtext.getText().trim().length()==0){
+					imei1_jtext.setText("");
+				}
+
+				imei(evt);
+
+                if(imei1_jtext.getText().trim().length()==15&&evt.getKeyCode()== KeyEvent.VK_ENTER)
+				{
+					imei2_jtext.requestFocus();
+				}
+
+
+
 			}
 		});
 
-
-		imei1_jtext.addMouseListener(new MouseAdapter(){
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if(imei1_jtext.getText().trim().equals("")){
-					System.out.println("eoooo rahi khawya");
-					imei1_jtext.setText("");}
-			}
-		});
-		System.out.println("butmodif  "+but_modif.isVisible()+"  valid_modif  "+valid_modif.isVisible());
-
-
-			imei2_jtext.addKeyListener(new KeyAdapter() {
+		imei2_jtext.addKeyListener(new KeyAdapter() {
 				public void keyPressed(KeyEvent evt) {
-					if(!but_modif.isVisible() || !valid_modif.isVisible()) {
-						imei(evt);}
+
+					if(imei2_jtext.getText().trim().length()==0){
+						imei2_jtext.setText("");
+					}
+						imei(evt);
+
 				}
 			});
 
 
-			imei1_jtext.addKeyListener(new KeyAdapter() {
-				public void keyPressed(KeyEvent evt) {
-					if(!but_modif.isVisible() || !valid_modif.isVisible()) {
-					imei(evt);}
-				}
-			});
+
 
 
 
@@ -405,6 +417,7 @@ public class etiquette_portable_forn extends JFrame {
 					   validationChamp();
 
 						if (msg.equals("")) {
+							selectioncomb.closePdf();
 
                             retour.setVisible(true);
                             valid_ajou.setVisible(false);
@@ -413,8 +426,8 @@ public class etiquette_portable_forn extends JFrame {
                             valid_modif.setVisible(false);
                             but_modif.setVisible(false);
 
-
-                            imp.update_phone_fournisseur(model_jtext.getSelectedItem().toString(),color_comb.getSelectedItem().toString(),imei1_jtext.getText(),imei2_jtext.getText(), date_jour);
+                            imp.delete_phone_fournisseur(imei1_jtext.getText(),imei2_jtext.getText());
+                            imp.insert_phone_fournisseur(model_jtext.getSelectedItem().toString(),color_comb.getSelectedItem().toString(),imei1_jtext.getText(),imei2_jtext.getText(), date_jour);
 
                             JOptionPane.showMessageDialog(null, "l'étiquette portable " + imei1_jtext.getText()	+ "  a été bien Modifier");
 
@@ -444,7 +457,8 @@ public class etiquette_portable_forn extends JFrame {
 				att= new Thread(){
 					public void run(){
 						 if(dimension_comb.getSelectedIndex()!=0){
-				String parcour ;String model;
+
+                             String parcour ;String model;
 			    parcour = "C:\\GCOBAR\\pdf\\etq_portable_fournisseur\\"+dimension_comb.getSelectedItem()+imei1_jtext.getText()+
 			    		"_imei2"+imei1_jtext.getText()+"_"+"_Etiquette_portable"+".pdf";
 				 model = "C:\\GCOBAR\\CODE\\"+report;
@@ -471,16 +485,31 @@ public class etiquette_portable_forn extends JFrame {
 					}}
 				
 				catch (FileNotFoundException fnfe) {
-					
-					listrc1.add(imei1_jtext.getText());
+
+                    listrc1.add(imei1_jtext.getText());
 					System.out.println("fffffff"+listrc1);
 				//	parameters.put("serial",imei1_jtext.getText());
 					//parameters.put("imei2",imei2_jtext.getText());
+                     selectioncomb.closePdf();
 					 selectioncomb.imprimer("imei1",listrc1,bdd,parcour,model);
 					 listrc1.clear();
 					//imp.setupdate_portable();
 
 					 //controlPanel.remove(progressBar);
+
+
+
+
+
+					imei1_jtext.setText("");
+					imei2_jtext.setText("");
+
+					but_sauv.setVisible(true);
+					imp_etq.setVisible(false);
+					valid_ajou.setVisible(false);
+					retour.setVisible(false);
+					valid_modif.setVisible(false);
+                    but_modif.setVisible(false);
 				}}
 						 else{  JOptionPane.showMessageDialog(null, "Vous devez choisir un type d'étiquette");}
 				
@@ -751,10 +780,14 @@ public class etiquette_portable_forn extends JFrame {
 
 
 public void  imei(KeyEvent evt){
-		if(evt.getKeyCode() == evt.VK_ENTER){
-            System.out.println("jjjjjjjj");
+	//imei1_jtext.setText("");
+	//imei2_jtext.setText("");
+
+	imei1_jtext.setFocusLostBehavior(JFormattedTextField.PERSIST);
+		if(evt.getKeyCode() == evt.VK_ENTER && (!but_modif.isVisible() && !valid_modif.isVisible()) ){
+		    System.out.println(but_modif.isVisible() +"jjjjjjjbbb"+valid_modif.isVisible());
 			ArrayList <String> resultat= new ArrayList<String>();
-			if(!imei1_jtext.getText().equals("")||!imei2_jtext.getText().equals("")){
+			if(!imei1_jtext.getText().trim().equals("")||!imei2_jtext.getText().trim().equals("")){
 				resultat=imp.ajouter_imprim_fourn(imei1_jtext.getText(),imei2_jtext.getText());
 				if(resultat.size()>0){
 					model_jtext.setSelectedItem(resultat.get(0));
@@ -764,13 +797,12 @@ public void  imei(KeyEvent evt){
 					imp_etq.setVisible(true);
 					but_sauv.setVisible(false);
 					retour.setVisible(true);
+
 					valid_ajou.setVisible(false);
 					valid_modif.setVisible(false);
 					but_modif.setVisible(true);
 				}
 				else{
-
-
 					imp_etq.setVisible(false);
 					but_sauv.setVisible(true);
 					retour.setVisible(true);
@@ -785,11 +817,20 @@ public void  imei(KeyEvent evt){
 
 
 public void validationChamp(){
-	if (imei1_jtext.getText().equals("")) {
+	if (imei1_jtext.getText().trim().equals("")) {
 		msg += "Veuillez remplir  le Imei 1  \n";
 	}
-	if (imei2_jtext.getText().equals("")) {
+	else if (imei2_jtext.getText().trim().equals("")) {
 		msg += "Veuillez remplir  le Imei 2  \n";
+	}
+
+	else if(imei1_jtext.getText().trim().length()<15)
+	{
+		msg += "Le code imei 1 doit contenir 15 nombres  \n";
+	}
+	else if(imei2_jtext.getText().trim().length()<15)
+	{
+		msg += "Le code imei 1 doit contenir 15 nombres  \n";
 	}
 	else if (color_comb.getSelectedIndex() == 0) {
 		msg += "Veuillez selectionner une couleur \n";

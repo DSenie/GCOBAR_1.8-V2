@@ -207,8 +207,8 @@ public class list_palette_portable extends JFrame {
         datefinText.setDate(Calendar.getInstance().getTime());
         datedebutText.setFormats(new SimpleDateFormat("dd/MM/yyyy"));
         datefinText.setFormats(new SimpleDateFormat("dd/MM/yyyy"));
-        datedebutText.getEditor().setEditable(false);
-        datefinText.getEditor().setEditable(false);
+        datedebutText.getEditor().setEditable(true);
+        datefinText.getEditor().setEditable(true);
 
         //articlecombo.addItem("TV");
         articlecombo.addItem("Portable");
@@ -639,6 +639,7 @@ public class list_palette_portable extends JFrame {
         menuItem.addActionListener(
                 new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
+                        BufferedReader bfr = null ;
                         listrc.clear();
                         listpal.clear();
                         if(dimension_comb.getSelectedIndex()!=0){
@@ -669,13 +670,16 @@ public class list_palette_portable extends JFrame {
                                 String parcour= "C:\\GCOBAR\\pdf\\etq_portable\\"+dimension_comb.getSelectedItem()+listrc.get(0).toString().replaceAll("\\/", "_")
                                         +"_"+listrc.get(j-1).toString().replaceAll("\\/", "_")+"_"+z+"_"+"etq_portable.pdf";
                                 String model ="C:\\GCOBAR\\CODE\\"+report;
-                                try{
+                                File fichier = new File(parcour);
+                                fichier.delete();
 
-                                    new BufferedReader(new FileReader("C:\\GCOBAR\\pdf\\etq_portable\\"+dimension_comb.getSelectedItem()+listrc.get(0).toString().replaceAll("\\/", "_")
-                                            +"_"+listrc.get(j-1).toString().replaceAll("\\/", "_")+"_"+z+"_"+"etq_portable.pdf"));
+                                try{
+                                    bfr=    new BufferedReader(new FileReader(parcour));
+                                    bfr.close();
+                                    System.out.println("buffer");
+
                                     try {
-                                        Desktop.getDesktop().open(new File("C:\\GCOBAR\\pdf\\etq_portable\\"+dimension_comb.getSelectedItem()+listrc.get(0).toString().replaceAll("\\/", "_")
-                                                +"_"+listrc.get(j-1).toString().replaceAll("\\/", "_")+"_"+z+"_"+"etq_portable.pdf"));
+                                        Desktop.getDesktop().open(new File(parcour));
 
                                         //cop(new File(bdd),new File(save.getSelectedFile().getPath().replace(".accdb", ".naw")));
                                         //cop(new File("C:\\GEFACT\\factpro\\"+code_jtext.getText().replace("/", "")+".pdf"),new File("C:\\GCOBAR\\CODE BARRE\\"+code_jtext.getText().replace("/", "")+" "+date+".fpc"));
@@ -698,7 +702,10 @@ public class list_palette_portable extends JFrame {
 
 
 
-                                } }}
+                                } catch (IOException e1) {
+                                    e1.printStackTrace();
+                                }
+                            }}
                         else{
 
                             JOptionPane.showMessageDialog(null, "Vous devez choisir un type d'étiquette");
@@ -958,11 +965,21 @@ public class list_palette_portable extends JFrame {
             filtre=filterText.getText().trim();
 
 
+if(!filtre.equals("")){
+    list_rech=imp.recherche_palette_portable(filtre, datedebut, datefin);
 
-        list_rech=imp.recherche_palette_portable(filtre, datedebut, datefin);
+}
+else{
+    list_rech=imp.recherche_palette_portable_vide( datedebut, datefin);
+
+}
 
         System.out.println("hada 3lah"+list_rech);
 
+
+        for (int i = rows - 1; i >= 0; i--) {
+            ((DefaultTableModel) tab.table.getModel()).removeRow(i);
+        }
 
 
         //list_rech=imp.select_emei_table(filterText.getTe

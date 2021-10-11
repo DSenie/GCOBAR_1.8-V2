@@ -60,7 +60,7 @@ public class menu extends JFrame{
     private JMenu imp = new JMenu("Imprime");
    // private JMenuItem imp_cod = new JMenuItem("Fiche Suiveuse");
     private JMenuItem imp_etiq = new JMenuItem("Etiquette");
-    private JMenuItem net = new JMenuItem("Notoyer etiquette");
+    private JMenuItem net = new JMenuItem("nettoyer etiquette");
     private JMenuItem list_imp = new JMenuItem("Liste Fiche Suiveuse");
     private JMenuItem imp_phon = new JMenuItem("Etiquette Portable");
     private JMenuItem list_port = new JMenuItem("Liste etiquette portable");
@@ -379,6 +379,27 @@ public class menu extends JFrame{
         tpe.add(palette_tpe);
 
 
+        imp_phon_embalage.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        etiquette_embalage phon=  new  etiquette_embalage(logi_prio);
+                        //etiquette_embalage_retour phon=  new  etiquette_embalage_retour(logi_prio);
+                        phon.setVisible(true);
+                        dispose();
+                    } });
+
+        etiquette_embalage_tpe.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        etiquette_embalage_tpe tpe=  new  etiquette_embalage_tpe(logi_prio);
+                        //etiquette_embalage_tpe_retour tpe=  new  etiquette_embalage_tpe_retour(logi_prio);
+                        tpe.setVisible(true);
+                        dispose();
+                    } });
+
+
+
+
         rech_detail.addActionListener(
                   new ActionListener() {
                   public void actionPerformed(ActionEvent e) {
@@ -499,13 +520,7 @@ public class menu extends JFrame{
                   dispose();
                   } });
 
-          etiquette_embalage_tpe.addActionListener(
-                  new ActionListener() {
-                  public void actionPerformed(ActionEvent e) {
-                	  etiquette_embalage_tpe tpe=  new  etiquette_embalage_tpe(logi_prio);
-                  tpe.setVisible(true);
-                  dispose();
-                  } });
+
 
 
           list_port_fourn.addActionListener(
@@ -525,13 +540,6 @@ public class menu extends JFrame{
 
 
 
-          imp_phon_embalage.addActionListener(
-                  new ActionListener() {
-                  public void actionPerformed(ActionEvent e) {
-                  etiquette_embalage phon=  new  etiquette_embalage(logi_prio);
-                  phon.setVisible(true);
-                  dispose();
-                  } });
 
           imp_phon_embalage_list.addActionListener(
                   new ActionListener() {
@@ -960,4 +968,3 @@ public class menu extends JFrame{
 	 	}
 }
 		
- 

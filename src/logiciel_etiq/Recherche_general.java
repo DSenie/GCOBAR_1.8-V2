@@ -167,6 +167,8 @@ public class Recherche_general extends JFrame {
 
 
 	public void composant(){
+
+
 		if(!selectioncomb.prv.contains("list_etqemballage")){
 			//System.out.println("list_fiche"+selectioncomb.prv);
 			selectioncomb.prv.add("list_etqemballage");}
@@ -188,8 +190,8 @@ public class Recherche_general extends JFrame {
 		  datefinText.setDate(Calendar.getInstance().getTime());
 		  datedebutText.setFormats(new SimpleDateFormat("dd/MM/yyyy"));
 		  datefinText.setFormats(new SimpleDateFormat("dd/MM/yyyy"));
-		  datedebutText.getEditor().setEditable(false);
-		  datefinText.getEditor().setEditable(false);
+		  datedebutText.getEditor().setEditable(true);
+		  datefinText.getEditor().setEditable(true);
 
 		//articlecombo.addItem("TV");
 		articlecombo.addItem("Portable");

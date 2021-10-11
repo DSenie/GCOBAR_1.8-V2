@@ -1919,6 +1919,13 @@ p.printStackTrace();
 		}
 	}
 
+	public static void closePdf(){
+		try {
+			Runtime.getRuntime().exec("cmd /c taskkill /f /im acrord32.exe");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 
 	public static void imprimer(String param,ArrayList<String> object,String bdd,String parcour,String model){

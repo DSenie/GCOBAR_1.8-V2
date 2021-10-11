@@ -915,6 +915,13 @@ public class list_palette_tpe extends JFrame {
 
 
 
+        for (int i = rows - 1; i >= 0; i--) {
+            ((DefaultTableModel) tab.table.getModel()).removeRow(i);
+        }
+
+
+
+
         //list_rech=imp.select_emei_table(filterText.getText());
         for(int i1=0;i1<list_rech.size();i1=i1+6){ tab.ajouter();}
         int j1=1;

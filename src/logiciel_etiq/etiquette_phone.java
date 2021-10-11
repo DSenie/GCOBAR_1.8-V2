@@ -208,7 +208,7 @@ public class etiquette_phone extends JFrame {
         Arrays.asList(new String[] { "---Selectionner un article-----" }));
         article_comb = new jcombo(list_ar.toArray());
         selectioncomb.selectarticle_etqphone(article_comb, this, logi_prio);
-        
+
         article_comb.setSelectedIndex(0);
           list_c = new ArrayList<String>(Arrays.asList(new String[]{"---Selectionner une couleur-----"}));
           color_comb.addItem("---Selectionner une couleur-----");
@@ -329,11 +329,19 @@ public class etiquette_phone extends JFrame {
                 String[] art = article_comb.getSelectedItem().toString().split(" ");
                 String arti = art[0]; // 004
                   
-                String model=imp.select_model(arti);
-                model_jtext.setText(model);
-                code_jtext.setText(model+"/"+arti);
+                String model=imp.select_model(arti).trim();
+
+                String article_sanscaractair=arti;
+                if(arti.contains("-"))
+                    article_sanscaractair=arti.replace("-","");
+                if(arti.contains("/"))
+                    article_sanscaractair=arti.split("/")[0];
+
+
+                      model_jtext.setText(model);
+                code_jtext.setText(model.replace(" ","")+"/"+article_sanscaractair);
                 conteur =imp.afficher_conteurportable(arti);
-                code = "SN" + model_jtext.getText() +anne+conteur;
+                code = "SN" + model_jtext.getText().replace(" ","") +anne+conteur;
                 serial_jtext.setText(code);
                   }
             }   
@@ -432,7 +440,7 @@ public class etiquette_phone extends JFrame {
                               code_jtext.getText(),code, num_jtext.getText());
                          serial_jtext.setText(code);
                          list_serial.add(code);
-                      progressBar.setValue(i);
+                         progressBar.setValue(i);
                         progressBar.setStringPainted(true);
                         frame.validate();
                         frame.setVisible(true);
@@ -461,7 +469,9 @@ public class etiquette_phone extends JFrame {
                 att= new Thread(){
                     public void run(){
                          if(dimension_comb.getSelectedIndex()!=0){
-                        String serial_text=serial_jtext.getText().substring(0, 8);
+                             selectioncomb.closePdf();
+
+                             String serial_text=serial_jtext.getText().substring(0, 8);
                         //int indice=article_comb.getSelectedIndex();
                         
                         //String[] arti = article_comb.getSelectedItem().toString().split(" ");
@@ -507,7 +517,7 @@ public class etiquette_phone extends JFrame {
                         listrc=list_serial;
                     }
                     System.out.println(listrc);
-                    
+
                     selectioncomb.imprimer("serial",listrc, bdd, parcour,model);
                     listrc.clear();
                                    

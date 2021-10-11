@@ -285,8 +285,9 @@ public class etiquette_composant extends JFrame {
 			}
 		});
 
-		
-		but_modif.addActionListener(new ActionListener() {
+
+		but_modif
+				.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				LineBorder border = new LineBorder(Color.white, 1, true);
 				TitledBorder titl2 = new TitledBorder(border, "Modifier",
@@ -482,6 +483,9 @@ public class etiquette_composant extends JFrame {
 
 			valid_modif.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+                    list_imp.clear();
+
+                    selectioncomb.closePdf();
 				//	use.select_zone_jtext(designation.getText());
 	                    msg = "";
 					
@@ -508,7 +512,7 @@ public class etiquette_composant extends JFrame {
 						msg += "La nombre de bobine doit etre un nombre \n";
 					}
 					else if (dimension_comb.getSelectedIndex() == 0) {
-						msg += "Vous Devez  Sélectionner une dimension\n";
+						msg += "Vous Devez  Sélectionner une dimension \n";
 					} 
 					
 					
@@ -520,8 +524,10 @@ public class etiquette_composant extends JFrame {
 						else{
 			  String[] art = article_comb.getSelectedItem().toString().split(" ");
 			  String arti = art[0]; // 004
-		
-				imp.update_composant(carton_jtext.getText(),arti,qtebobine_jtext.getText(),nbrbobine_jtext.getText()
+
+                            list_imp.add(carton_jtext.getText());
+
+                            imp.update_composant(carton_jtext.getText(),arti,qtebobine_jtext.getText(),nbrbobine_jtext.getText()
 				,id_jtext.getText(),recherche_jtext.getText());
 		
 				imp.delete_composant_bobine(carton_jtext.getText());
@@ -579,9 +585,11 @@ public class etiquette_composant extends JFrame {
 				else if (isValid(nbrbobine_jtext.getText()) == false) {
 					msg += "La nombre de bobine doit etre un nombre \n";
 				}
-				
-				
-				if (msg.equals("")) {
+				else if (dimension_comb.getSelectedIndex() == 0) {
+					msg += "Vous Devez  Sélectionner une dimension \n";
+				}
+
+					if (msg.equals("")) {
 					String etq=null;String serie="";
 					action_carton();
 
@@ -661,11 +669,13 @@ public class etiquette_composant extends JFrame {
 		imp_etq.addActionListener(
                 new ActionListener() { 
                 public void actionPerformed(ActionEvent e) {
-
-                	BufferedReader bfr = null ;	
+                  System.out.println("ffffffff"+list_imp);
+                	BufferedReader bfr = null ;
                 
               	  if(list_imp.size()!=0){
-              		  String parcour= "C:\\GCOBAR\\pdf\\etq_composant\\"+dimension_comb.getSelectedItem()+list_imp.get(0)+"_"+list_imp.size()+"etq_composant.pdf";
+                      System.out.println("ttttt");
+
+                      String parcour= "C:\\GCOBAR\\pdf\\etq_composant\\"+dimension_comb.getSelectedItem()+list_imp.get(0)+"_"+list_imp.size()+"etq_composant.pdf";
 							String model ="C:\\GCOBAR\\CODE\\"+report;
 							
 							 File fichier = new File(parcour);

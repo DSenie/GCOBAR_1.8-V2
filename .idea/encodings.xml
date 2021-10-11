@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding" addBOMForNewFiles="with NO BOM">
+    <file url="file://$USER_HOME$/IdeaProjects/ProjetRecrutement/src/app/app.component.css" charset="UTF-8" />
+    <file url="file://$USER_HOME$/IdeaProjects/ProjetRecrutement/src/app/app.component.html" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/logiciel_etiq/AutoCompleteComboBox.java" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/src/logiciel_etiq/AutoCompleteComboBox_jcomb.java" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/src/logiciel_etiq/CConnect.java" charset="windows-1252" />
@@ -26,7 +28,7 @@
     <file url="file://$PROJECT_DIR$/src/logiciel_etiq/etiquette.java" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/src/logiciel_etiq/etiquette_composant.java" charset="ISO-8859-1" />
     <file url="file://$PROJECT_DIR$/src/logiciel_etiq/etiquette_embalage.java" charset="windows-1252" />
-    <file url="file://$PROJECT_DIR$/src/logiciel_etiq/etiquette_embalage_tpe.java" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/src/logiciel_etiq/etiquette_embalage_tpe.java" charset="ISO-8859-1" />
     <file url="file://$PROJECT_DIR$/src/logiciel_etiq/etiquette_palette.java" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/src/logiciel_etiq/etiquette_phone.java" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/src/logiciel_etiq/etiquette_portable_forn.java" charset="windows-1252" />

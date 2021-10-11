@@ -172,6 +172,11 @@ public class list_portable extends JFrame {
 	                  tab.sorter.setRowFilter(null);
 	                  } else {
 	                   tab.sorter.setRowFilter(RowFilter.regexFilter(text.toLowerCase()));
+
+
+
+
+						  count.setText("Le Nombre Des Fiches :  "+tab.table.getRowCount());
 	                  }
 			      }
 

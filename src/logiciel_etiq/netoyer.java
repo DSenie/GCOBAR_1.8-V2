@@ -56,15 +56,10 @@ public class netoyer extends JFrame {
 	private JPanel pan_article_lab = new JPanel();
 	private JLabel article_lab = new JLabel("Liste des Articles");
 	
-	private JPanel pan_article1 = new JPanel();
-	private JPanel pan_article_comb1 = new JPanel();
-	private JPanel pan_article_lab1 = new JPanel();
-	private JLabel article_lab1 = new JLabel("Liste des Articles");
-	
+
 	
 	private List<String> list_ar;
 	private jcombo article_comb;
-	private jcombo article_comb1;
 	private jcombo chaine_comb;
 
 	
@@ -95,13 +90,13 @@ public class netoyer extends JFrame {
 	
 	private JPanel pan_cont = new JPanel();
 	private JPanel pan_cont_jtext = new JPanel();
-	private JLabel cont_lab = new JLabel("Conteur");
+	private JLabel cont_lab = new JLabel("Conteur Debut");
 	private JTextField cont_jtext = new JTextField();
 	private JPanel pan_cont_lab = new JPanel();
 
 	private JPanel pan_cont1 = new JPanel();
 	private JPanel pan_cont_jtext1 = new JPanel();
-	private JLabel cont_lab1 = new JLabel("Conteur");
+	private JLabel cont_lab1 = new JLabel("Conteur Fin");
 	private JTextField cont_jtext1 = new JTextField();
 	private JPanel pan_cont_lab1 = new JPanel();
 
@@ -171,10 +166,8 @@ public class netoyer extends JFrame {
 	
 		
 		article_comb = new jcombo(list_ar.toArray());
-		article_comb1 = new jcombo(list_ar.toArray());
 
 		selectioncomb.selectarticle_etq(article_comb, enie, autre, this, logi_prio);
-		selectioncomb.selectarticle_etq(article_comb1, enie, autre, this, logi_prio);
 
 		list_c = new ArrayList<String>(
 				Arrays.asList(new String[] { "--Sélectionner une Chaine--" }));
@@ -210,15 +203,13 @@ public class netoyer extends JFrame {
 		but_net.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				LineBorder border = new LineBorder(Color.white, 1, true);
-				TitledBorder titl2 = new TitledBorder(border, "Ajouter",
+				TitledBorder titl2 = new TitledBorder(border, "Netoyer",
 				TitledBorder.DEFAULT_POSITION,
 				TitledBorder.DEFAULT_POSITION, police2, Color.white);
-				
 				pan.setBorder(titl2);
 				but_net.setVisible(false);
 				valid_ajou.setVisible(true);
 				retour.setVisible(true);
-				valid_ajou.setVisible(true);
 			}
 		});
 
@@ -243,36 +234,9 @@ public class netoyer extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				att= new Thread(){
 			    public void run(){
-				msg = "";
-				cal.setTime(date_picker.getDate());
-				String date = format1.format(cal.getTime());
-				String[] date_s = date.toString().split("/");
-				String anne = date_s[2].substring(2); // 004
-				
-				String[] part_c = chaine_comb.getSelectedItem().toString().split(" ");
-				String cc = part_c[0].substring(2); // 004
-				String[] art = article_comb.getSelectedItem().toString().split(" ");
-				String arti = art[0]; // 004
-				
-				cal.setFirstDayOfWeek(Calendar.SUNDAY);
-				
-				int week1 = cal.get(Calendar.WEEK_OF_YEAR);
-				String week = formatter.format(week1);
-				int jour1 = cal.get(Calendar.DAY_OF_WEEK);
-				String jour = form.format(jour1);
-				String code;
-				
-		    	int indic=imp.select_indice(arti);
-				
-				if (enie.isSelected() == true) {
-					code = "E" + anne + week + jour + cc + indic;
-				} else {
-					code = "A" + anne + week + jour + cc +indic;
-				}
-				if ((chaine_comb.getSelectedIndex() != 0))
-					code_jtext.setText(code);
+				msg ="";
 
-				if (article_comb.getSelectedIndex() == 0||article_comb1.getSelectedIndex() == 0) {
+				if (article_comb.getSelectedIndex() == 0) {
 					msg += "Veuillez selectionner les deux articles \n";
 				}
 				
@@ -288,19 +252,32 @@ public class netoyer extends JFrame {
 				
 				
 				if (msg.equals("")) {
-					
-					
-					 retour.setEnabled(false);
-					 valid_ajou.setEnabled(false);
-					 but_net.setEnabled(true);
-  System.out.println(code_jtext.getText());
-					// code_jtext.setText(code);
-				 	 imp.nettoyer_serial(code_jtext.getText().toString());
-                          
-					 JOptionPane.showMessageDialog(null, "Les étiquettes ont été bien nettoyer");
-					 retour.setEnabled(true);
-					 valid_ajou.setEnabled(true);
-					
+
+
+					System.out.println(format.format(Integer.parseInt(cont_jtext.getText())));
+
+                     String debut=code_jtext.getText()+""+format.format(Integer.parseInt(cont_jtext.getText()));
+					 String fin=code_jtext.getText()+""+format.format(Integer.parseInt(cont_jtext1.getText()));
+
+
+
+                     System.out.println(debut);
+					 Boolean exist=imp.nettoyer_serial(debut, fin);
+					if(exist==true){
+						JOptionPane.showMessageDialog(null, "Les étiquettes ont été bien nettoyer");
+						article_comb.setSelectedIndex(0);
+						chaine_comb.setSelectedIndex(0);
+						code_jtext.setText("");
+						cont_jtext.setText("");
+						cont_jtext1.setText("");
+						retour.setVisible(false);
+						valid_ajou.setVisible(false);
+						but_net.setVisible(true);
+
+					}
+
+
+
 				} else {
 					JOptionPane.showMessageDialog(null, msg);
 				}	}}; 
@@ -322,71 +299,28 @@ public class netoyer extends JFrame {
 						TitledBorder.DEFAULT_POSITION,
 						TitledBorder.DEFAULT_POSITION, police2, Color.white);
 				pan.setBorder(titl2);
-				article_comb.setSelectedIndex(1);
-				article_comb1.setSelectedIndex(1);
-
-				chaine_comb.setSelectedIndex(1);
+				article_comb.setSelectedIndex(0);
+				chaine_comb.setSelectedIndex(0);
 				code_jtext.setText("");
 				cont_jtext.setText("");
 				cont_jtext1.setText("");
-
 				retour.setVisible(false);
 				valid_ajou.setVisible(false);
-				but_net.setVisible(false);
-			
+				but_net.setVisible(true);
 				code_jtext.disable();
-				
-
-				
-				action_chaine();
-
 			}
 		});
 		
 		article_comb.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 				if (article_comb.getSelectedIndex() == 0) {
 					article_comb.setSelectedIndex(0);
-					
 					chaine_comb.setSelectedIndex(1);
-					
 					code_jtext.setText("");
 					cont_jtext.setText("");
 					
 				} else {
-					if ( chaine_comb.getSelectedIndex() != 0) {
-						String[] part_c = chaine_comb.getSelectedItem().toString().split(" ");
-						String cc = part_c[0].substring(2); // 004
-					
-						String arti = null;	
-						if(article_comb.getSelectedIndex()!=0&&article_comb.getItemCount()!=0){
-						 String[] art = article_comb.getSelectedItem().toString().split(" ");
-						 arti = art[0]; // 004
-					     }
-						 int indic=imp.select_indice(arti);
-						cal.setTime(date_picker.getDate());
-						
-						String date = format1.format(cal.getTime());
-						String[] date_s = date.toString().split("/");
-						String anne = date_s[2].substring(2); // 004
-	
-						cal.setFirstDayOfWeek(Calendar.SUNDAY);
-						int week1 = cal.get(Calendar.WEEK_OF_YEAR) ;
-						String week = formatter.format(week1);
-						int jour1 = cal.get(Calendar.DAY_OF_WEEK);
-						String jour = form.format(jour1);
-                        String code;
-                       
-                        
-                        if (enie.isSelected() == true) {
-							code = "E" + anne + week + jour + cc +indic;
-						} else {
-							code = "A" + anne + week + jour + cc +indic;
-						}
-						code_jtext.setText(code);
-					}
-
+					action_chaine();
 				}
 			}
 		});
@@ -401,7 +335,6 @@ public class netoyer extends JFrame {
 		}
 		
 		article_lab.setForeground(Color.white);
-		article_lab1.setForeground(Color.white);
 		chaine_lab.setForeground(Color.white);
 		code_lab.setForeground(Color.white);
 		cont_lab.setForeground(Color.white);
@@ -419,7 +352,6 @@ public class netoyer extends JFrame {
 		enie.setFont(police2);
 		autre.setFont(police2);
 		article_lab.setFont(police2);
-		article_lab1.setFont(police2);
 		cont_lab1.setFont(police2);
 		
 		
@@ -442,15 +374,7 @@ public class netoyer extends JFrame {
 		pan_radio_lab.setOpaque(false);
 		pan_radio.setOpaque(false);
 
-		
-		pan_article1.add(pan_article_lab1);
-		pan_article_lab1.add(article_lab1);
-		pan_article1.add(pan_article_comb1);
-		pan_article_comb1.add(article_comb1);
 
-		pan_article1.setOpaque(false);
-		pan_article_lab1.setOpaque(false);
-		pan_article_comb1.setOpaque(false);
 		
 		pan_article.add(pan_article_lab);
 		pan_article_lab.add(article_lab);
@@ -524,9 +448,8 @@ public class netoyer extends JFrame {
 	
 		
 		pan_form.add(pan_article);
-		//pan_form.add(pan_cont);
-		pan_form.add(pan_article1);
-		//pan_form.add(pan_cont1);
+		pan_form.add(pan_cont);
+		pan_form.add(pan_cont1);
 		
 		
 		pan_form.add(pan_date);
@@ -570,7 +493,6 @@ public class netoyer extends JFrame {
 
 		
 		article_comb.setPreferredSize(new Dimension(210, 30));
-		article_comb1.setPreferredSize(new Dimension(210, 30));
 
 		date_picker.setPreferredSize(new Dimension(210, 30));
 		chaine_comb.setPreferredSize(new Dimension(210, 30));
@@ -580,13 +502,13 @@ public class netoyer extends JFrame {
 
 		pan_article.setLayout(new BoxLayout(pan_article, BoxLayout.X_AXIS));
 		
-		pan_article1.setLayout(new BoxLayout(pan_article1, BoxLayout.X_AXIS));
 
 		pan_date.setLayout(new BoxLayout(pan_date, BoxLayout.X_AXIS));
 		pan_chaine.setLayout(new BoxLayout(pan_chaine, BoxLayout.X_AXIS));
 		pan_code.setLayout(new BoxLayout(pan_code, BoxLayout.X_AXIS));
 
 		pan_cont1.setLayout(new BoxLayout(pan_cont1, BoxLayout.X_AXIS));
+		pan_cont.setLayout(new BoxLayout(pan_cont, BoxLayout.X_AXIS));
 
 		pan_radio.setLayout(new BoxLayout(pan_radio, BoxLayout.X_AXIS));
 
@@ -604,11 +526,7 @@ public class netoyer extends JFrame {
 		pan_article_comb.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
 		
 	
-		pan_article_lab1.setLayout(new FlowLayout(FlowLayout.CENTER));
-		pan_article_comb1.setLayout(new FlowLayout(FlowLayout.LEFT));
-		pan_article_lab1.setBorder(BorderFactory.createEmptyBorder(0, 200, 0, 0));
-		pan_article_comb1.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
-		
+
 		pan_date_lab.setLayout(new FlowLayout(FlowLayout.CENTER));
 		pan_date_jtext.setLayout(new FlowLayout(FlowLayout.LEFT));
 		pan_date_lab.setBorder(BorderFactory.createEmptyBorder(0, 297, 0, 0));
@@ -627,12 +545,12 @@ public class netoyer extends JFrame {
 
 		pan_cont_lab1.setLayout(new FlowLayout(FlowLayout.CENTER));
 		pan_cont_jtext1.setLayout(new FlowLayout(FlowLayout.LEFT));
-		pan_cont_lab1.setBorder(BorderFactory.createEmptyBorder(0, 270, 0, 0));
+		pan_cont_lab1.setBorder(BorderFactory.createEmptyBorder(0, 240, 0, 0));
 		pan_cont_jtext1.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
 		
 		pan_cont_lab.setLayout(new FlowLayout(FlowLayout.CENTER));
 		pan_cont_jtext.setLayout(new FlowLayout(FlowLayout.LEFT));
-		pan_cont_lab.setBorder(BorderFactory.createEmptyBorder(0, 270, 0, 0));
+		pan_cont_lab.setBorder(BorderFactory.createEmptyBorder(0, 220, 0, 0));
 		pan_cont_jtext.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
 
 		setTitle("imprime");
@@ -670,6 +588,7 @@ public class netoyer extends JFrame {
 	public String action_chaine() {
 		final Calendar cal = Calendar.getInstance(); // date du jour
 
+
 		if (chaine_comb.getSelectedIndex() != 0	&& chaine_comb.getItemCount() >= 1&&chaine_comb.getSelectedIndex() != chaine_comb.getItemCount() - 1) {
 				
 			    String[] part_c = chaine_comb.getSelectedItem().toString().split(" ");
@@ -681,8 +600,8 @@ public class netoyer extends JFrame {
 					String[] art = article_comb.getSelectedItem().toString().split(" ");
 					arti = art[0]; // 004
 				}
-				
-				cal.setTime(date_picker.getDate());
+
+		cal.setTime(date_picker.getDate());
 				SimpleDateFormat format1 = new SimpleDateFormat("dd/MM/yyyy");
 				String date = format1.format(cal.getTime());
 				String[] date_s = date.toString().split("/");

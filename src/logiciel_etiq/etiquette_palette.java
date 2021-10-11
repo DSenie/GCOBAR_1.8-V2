@@ -561,6 +561,8 @@ public class etiquette_palette extends JFrame implements ActionListener {
 		valid_modif.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
                 msg = "";
+				selectioncomb.closePdf();
+
 				if (article_comb.getSelectedIndex() == 0) {
 					msg += "Vous Devez  Sélectionner un Article\n";
 				}
@@ -605,6 +607,7 @@ public class etiquette_palette extends JFrame implements ActionListener {
 				 }
 				
 					if (!msg.equals("")) {
+
 						JOptionPane.showMessageDialog(null, msg);
 					}
 					else{
@@ -665,8 +668,8 @@ public class etiquette_palette extends JFrame implements ActionListener {
 					 msg +=	"Vous devez  d'abord ajouter une Ligne ";
 					}
 			
-				 else if(imp.exist_emballage(parcel_jtext.getText()))
-					 msg += "le Parcel existe deja";
+				/* else if(imp.exist_emballage(parcel_jtext.getText()))
+					 msg += "le Parcel existe deja";*/
 				 else {
 
 					if (vaidCheck(tab) == false) {

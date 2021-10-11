@@ -60,7 +60,7 @@ public class acceuil extends JFrame {
 
 	/*** Create the frame.*/
 	public acceuil() {
-		String query = "SELECT Cde,Desunite, Exercice FROM Unite ";
+		String query       = "SELECT Cde,Desunite, Exercice FROM Unite ";
         vcde = CConnect.Requete(query,bdd).get(0);
         vsigle = CConnect.Requete(query,bdd).get(1);
         vexercice = CConnect.Requete(query,bdd).get(2);

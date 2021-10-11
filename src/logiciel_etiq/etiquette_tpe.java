@@ -242,7 +242,7 @@ public class etiquette_tpe extends JFrame {
 		imp_etq.setVisible(false);
 
 		LineBorder border = new LineBorder(Color.white, 1, true);
-		TitledBorder titl2 = new TitledBorder(border, "Etiquette portable",
+		TitledBorder titl2 = new TitledBorder(border, "Etiquette TPE",
 				TitledBorder.DEFAULT_POSITION, TitledBorder.DEFAULT_POSITION,
 				police2, Color.white);
 		pan.setBorder(titl2);
@@ -443,8 +443,10 @@ public class etiquette_tpe extends JFrame {
 				}
 				
 			
-				if (msg.equals("")) {  
-				//	System.out.println(serial_jtext.getText()..length());
+				if (msg.equals("")) {
+					selectioncomb.closePdf();
+
+					//	System.out.println(serial_jtext.getText()..length());
 					String etq=null;
 					
 					 retour.setVisible(true);

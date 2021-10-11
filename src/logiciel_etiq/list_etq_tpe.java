@@ -249,7 +249,7 @@ public class list_etq_tpe extends JFrame {
 						 String date_s = list_fiche.get(l+5).toLowerCase().toString(); 
 						 SimpleDateFormat dt = new SimpleDateFormat("yyyyy-MM-dd hh:mm:ss"); 
 						 Date date = dt.parse(date_s); 
-						 SimpleDateFormat dt1 = new SimpleDateFormat("dd-MM-yyyy");
+						 SimpleDateFormat dt1 = new SimpleDateFormat("dd/MM/yyyy");
 						 String date_emb=dt1.format(date);
 						 
 					 tab.getTable().setValueAt(date_emb, j-1, 4);
