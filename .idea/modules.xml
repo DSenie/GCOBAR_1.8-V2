@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/GCOBAR.iml" filepath="$PROJECT_DIR$/GCOBAR.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/GCOBAR.iml" filepath="$PROJECT_DIR$/.idea/GCOBAR.iml" />
     </modules>
   </component>
 </project>
