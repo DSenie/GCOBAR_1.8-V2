@@ -1297,7 +1297,7 @@ public class gestion_imp {
 	public ArrayList<String> select_tpe(){
 		ArrayList <String>resultat= new ArrayList<String>() ;
 
-		String query5 = "SELECT imp_emballage_tpe.parcel,article.code_article,date_emb,designation,gw,qte,imei,sn "
+		String query5 = "SELECT imp_emballage_tpe.parcel,article.code_article,date_emb,designation,gw,qte,imei,sn, code_enie "
 				+ " from article,imp_emballage_tpe,emei_tpe "
 				+ " where article.code_article=imp_emballage_tpe.code_article "
 				+ "and imp_emballage_tpe.parcel=emei_tpe.parcel "
@@ -1309,6 +1309,18 @@ public class gestion_imp {
 	}
 
 
+	public ArrayList<String> select_tpe_3code(){
+		ArrayList <String>resultat= new ArrayList<String>() ;
+
+		String query5 = " SELECT code_article,article.designation, code_enie, Chaine.code_chaine, designation_chaine, sn, imei, date_tpe "
+				+ " from article,etiquette_tpe_3code,chaine "
+				+ " where article.code_article=etiquette_tpe_3code.id_article "
+				+ " and  Chaine.code_chaine=etiquette_tpe_3code.code_chaine ";
+		resultat=CConnect.Requete(query5,bdd);
+        System.out.println(resultat);
+		return resultat;
+
+	}
 
 
 	public ArrayList<String> select_etqemballage(){
@@ -1409,8 +1421,8 @@ public class gestion_imp {
 	}
 
 
-	public boolean exist_codeenie_tpe(String code_enie){
-		String select = "SELECT * from etiquette_tpe_3code where code_enie='"+code_enie+"'";
+	public boolean exist_codeenie_tpe(String code){
+		String select = "SELECT * from etiquette_tpe_3code where code_enie='"+code+"' ";
 
 		if(CConnect.Requete(select, bdd).size()>=1){
 
@@ -1768,32 +1780,23 @@ public class gestion_imp {
 
 	}
     String code_enie,sn,imei,code_chaine,id_article,date_tpe="";
-	public void  selection_3tpe_champ(String code){
+	public ArrayList<String>  selection_3tpe_champ(String code, String sn, String imei){
 		ArrayList<String> list_tpe=new ArrayList<String>();
 
 		String query = "SELECT code_enie,sn,imei,code_chaine,id_article,date_tpe from etiquette_tpe_3code "
-				+" where code_enie='"+code+"' ";
+				+" where code_enie='"+code+"' or sn='"+sn+"' or imei='"+imei+"'";
 		list_tpe=CConnect.Requete(query, bdd);
-
-		if(list_tpe.size()>=1){
-			System.out.println(list_tpe);
-			code_enie=(String) list_tpe.get(0);
-			sn=(String) list_tpe.get(1);
-
-			imei=(String) list_tpe.get(2);
-			code_chaine=(String) list_tpe.get(3);
-
-			id_article=(String) list_tpe.get(4);
-			System.out.println(id_article);
-			date_tpe= list_tpe.get(5);
-		}
-		else {
+         System.out.println("eee fffff"+list_tpe);
+		if(list_tpe.size()==0){
 			JOptionPane
 					.showMessageDialog(
 							null,
 							"Ce TPE n'existe pas",
 							"", JOptionPane.INFORMATION_MESSAGE);
 		}
+
+		return list_tpe;
+
 	}
 
 

@@ -20,12 +20,7 @@ import javax.swing.UIManager;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
-import javax.swing.table.AbstractTableModel;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.JTableHeader;
-import javax.swing.table.TableCellEditor;
-import javax.swing.table.TableModel;
-import javax.swing.table.TableRowSorter;
+import javax.swing.table.*;
 
 
 public class Tableau extends JPanel implements ICustomTable, ConstantesStyles, SwingConstants {
@@ -163,6 +158,14 @@ public class Tableau extends JPanel implements ICustomTable, ConstantesStyles, S
 		add(table.getTableHeader(), BorderLayout.NORTH);
 		add(table, BorderLayout.CENTER);
 
+	}
+	public void Removecol(JTable table, int col_index){
+		TableColumn tcol = table.getColumnModel().getColumn(col_index);
+		table.removeColumn(tcol);
+	}
+	public void Addcol(JTable table, int col_index){
+		TableColumn tcol = table.getColumnModel().getColumn(col_index);
+		table.addColumn(tcol);
 	}
 
 	public Tableau(final Object[] entetes, int style){// final boolean editable,

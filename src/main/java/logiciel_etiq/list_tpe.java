@@ -69,7 +69,7 @@ public class list_tpe extends JFrame {
 	private static final long serialVersionUID = 1L;
 	public String Chemin = "c:\\GCOBAR\\";
 	public  String bdd = Chemin+Utilitaire.InitBdd()+".accdb";	
-    Object [] entete={"Parcel","Code/Designation","Date emballage","GW","Qantité","IMEI","Serial Number"};
+    Object [] entete={"Parcel","Code/Designation","Date emballage","GW","Qantité","Code Enie","IMEI","Serial Number"};
     final Tableau tab=new Tableau(entete);
 	 private JComboBox dimension_comb= new JComboBox();
 	 String report;
@@ -141,6 +141,8 @@ public class list_tpe extends JFrame {
 		   tab.allowEdition4=false;
 		   tab.allowEdition5=false;
 		   tab.allowEdition6=false;
+		   tab.allowEdition7=false;
+
 		   filterText.setForeground(Color.gray); 		 
 		   tab.setStyle(2);
 
@@ -176,7 +178,22 @@ public class list_tpe extends JFrame {
 								
 								
 							}});
-			  filterText.addKeyListener(new KeyAdapter() {
+
+
+		   filterText.addActionListener(new ActionListener() {
+			   public void actionPerformed(ActionEvent event) {
+				   if(filterText.getText().contains("SN")){
+					   String sn1=filterText.getText().split(";")[0];
+					   System.out.println("dsfsdfsdfsdfsdf "+sn1);
+					   String sn=sn1.split(":")[1];
+					   System.out.println("dsfsdfsdfsdfsdf "+sn);
+					   filterText.setText(""+sn);
+                   }
+			   }
+		   });
+
+
+		   filterText.addKeyListener(new KeyAdapter() {
 			      public void keyReleased(KeyEvent e) {
 			    	  String text = filterText.getText();
 	                  if (text.length() == 0) {
@@ -234,12 +251,12 @@ public class list_tpe extends JFrame {
 			//  imp.select_portable();
 			  list_fiche=imp.select_tpe();
 			//  System.out.println(list_fiche);
-			    for(i=0;i<list_fiche.size();i=i+8){tab.ajouter();}
+			    for(i=0;i<list_fiche.size();i=i+9){tab.ajouter();}
 				int j=1;
 				int l = 0; i=1;
 				while(l<list_fiche.size()){
 				
-				 while(l<j*8){
+				 while(l<j*9){
 					
 					 tab.getTable().setValueAt(list_fiche.get(l).toLowerCase(), j-1, 0);
 					 tab.getTable().setValueAt(list_fiche.get(l+1).toLowerCase()+" "+list_fiche.get(l+3).toLowerCase(), j-1, 1);
@@ -254,12 +271,16 @@ public class list_tpe extends JFrame {
 					 tab.getTable().setValueAt(date_emb, j-1, 2);
              		 tab.getTable().setValueAt(list_fiche.get(l+4).toLowerCase(), j-1,3);
         			 tab.getTable().setValueAt(list_fiche.get(l+5).toLowerCase(), j-1,4);
-					 tab.getTable().setValueAt(list_fiche.get(l+6).toLowerCase(), j-1, 5);
-					 tab.getTable().setValueAt(list_fiche.get(l+7).toLowerCase(), j-1, 6);
+        			 if(list_fiche.get(l+8)!=null)
+					 tab.getTable().setValueAt(list_fiche.get(l+8).toLowerCase(), j-1, 5);
 
-        			
 
-           			 i=i+1; l=l+8;
+					 tab.getTable().setValueAt(list_fiche.get(l+7).toLowerCase(), j-1, 7);
+
+					 tab.getTable().setValueAt(list_fiche.get(l+6).toLowerCase(), j-1, 6);
+
+
+					 i=i+1; l=l+9;
 				 }
 				 i=1;
 				j=j+1;		
@@ -445,25 +466,37 @@ public class list_tpe extends JFrame {
 		 	        			cellStyle.setFillForegroundColor(HSSFColor.LIGHT_CORNFLOWER_BLUE.index);
 		 	        			cellStyle.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
 		 	        			cellB6.setCellStyle(cellStyle);
-		 	        			
-		 	        			
-		 	        			Cell cellB7 = row1.createCell((short) 6);
-		 	        			cellB7.setCellValue("IMEI");
+
+
+								Cell cellB7 = row1.createCell((short) 6);
+								cellB7.setCellValue("Code Enie");
+								cellStyle = worksheet.createCellStyle();
+								cellStyle.setFillForegroundColor(HSSFColor.LIGHT_CORNFLOWER_BLUE.index);
+								cellStyle.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
+								cellB7.setCellStyle(cellStyle);
+
+
+
+
+
+								Cell cellB8 = row1.createCell((short) 7);
+								cellB8.setCellValue("IMEI");
 		 	        			cellStyle = worksheet.createCellStyle();
 		 	        			cellStyle.setFillForegroundColor(HSSFColor.LIGHT_CORNFLOWER_BLUE.index);
 		 	        			cellStyle.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
-		 	        			cellB7.setCellStyle(cellStyle);
+								cellB8.setCellStyle(cellStyle);
 		 	        			
 		 	        			
-		 	        			Cell cellB8 = row1.createCell((short) 7);
-		 	        			cellB8.setCellValue("Serian Number");
+		 	        			Cell cellB9 = row1.createCell((short) 8);
+								cellB9.setCellValue("Serian Number");
 		 	        			cellStyle = worksheet.createCellStyle();
 		 	        			cellStyle.setFillForegroundColor(HSSFColor.LIGHT_CORNFLOWER_BLUE.index);
 		 	        			cellStyle.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
-		 	        			cellB8.setCellStyle(cellStyle);
-		 	        		
-		 	        			
-		 	        			Workbook wb = new HSSFWorkbook();
+								cellB9.setCellStyle(cellStyle);
+								sheet.autoSizeColumn(8);
+
+
+								Workbook wb = new HSSFWorkbook();
 		 	        		    CreationHelper createhelper = wb.getCreationHelper();
 		 	        		    Sheet sheet1 = wb.createSheet("new sheet");
 		 	        		    Row row = null;

@@ -1,100 +1,41 @@
 package logiciel_etiq;
-
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.*;
-import javax.swing.text.MaskFormatter;
+import javax.swing.table.*;
+import java.awt.*;
 
-/** @see http://stackoverflow.com/questions/7378821 */
-public class test {
-
-    private static final String MASK = "########";
-    private static final String DEFAULT = "01234567";
-    private static final String BOGUS = "0123456";
-    private JFormattedTextField jtf1 = createField();
-    private JFormattedTextField jtf2 = createField();
-    private JFormattedTextField jtf3 = createField();
-    private JFormattedTextField jtf4 = createField();
-    private JButton reset = new JButton("Reset to Default");
-    private JComboBox combo = new JComboBox();
-    private JFrame frame = new JFrame("Text Test");
-
-    public test() {
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLocation(150, 150);
-        frame.setLayout(new GridLayout(0, 1));
-        frame.add(reset);
-        frame.add(jtf1);
-        frame.add(jtf2);
-        frame.add(jtf3);
-        frame.add(jtf4);
-        frame.add(combo);
-        this.initFields();
-        reset.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                initFields();
-            }
-        });
-        for (Edit e : Edit.values()) {
-            combo.addItem(e);
-        }
-        combo.setSelectedIndex(jtf1.getFocusLostBehavior());
-        combo.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Edit current = (Edit) combo.getSelectedItem();
-                jtf1.setFocusLostBehavior(current.value);
-            }
-        });
-        frame.pack();
-        frame.setVisible(true);
-    }
-
-    private void initFields() {
-        jtf1.setText(BOGUS);
-        jtf2.setText(DEFAULT);
-        jtf3.setText(DEFAULT);
-        jtf4.setText(DEFAULT);
-    }
-
-    protected JFormattedTextField createField() {
-        MaskFormatter formatter = null;
-        try {
-            formatter = new MaskFormatter(MASK);
-        } catch (java.text.ParseException e) {
-            e.printStackTrace(System.out);
-        }
-        JFormattedTextField jtf = new JFormattedTextField(formatter);
-        return jtf;
-    }
-
-    enum Edit {
-
-        COMMIT(JFormattedTextField.COMMIT),
-        COMMIT_OR_REVERT(JFormattedTextField.COMMIT_OR_REVERT),
-        REVERT(JFormattedTextField.REVERT),
-        PERSIST(JFormattedTextField.PERSIST);
-        private int value;
-
-        private Edit(int n) {
-            this.value = n;
-        }
-
-        public static Edit getEnum(int n) {
-            for (Edit e : Edit.values()) {
-                if (e.value == n) {
-                    return e;
-                }
-            }
-            return Edit.COMMIT_OR_REVERT;
-        }
-    }
-
+public class test{
+    DefaultTableModel model;
+    JTable table;
     public static void main(String[] args) {
-        test textTest = new test();
+        new test();
+    }
+
+    public test(){
+        JFrame frame = new JFrame("Remove a column from a JTable");
+        JPanel panel = new JPanel();
+        String data[][] = {{"Vinod","MCA","Computer"},
+                {"Deepak","PGDCA","History"},
+                {"Ranjan","M.SC.","Biology"},
+                {"Radha","BCA","Computer"}};
+        String col[] = {"Name","Course","Subject"};
+        model = new DefaultTableModel(data, col);
+        table = new JTable(model);
+        JTableHeader header = table.getTableHeader();
+        header.setBackground(Color.yellow);
+        //remove column at second position
+        Remove(table,2);
+        JScrollPane pane = new JScrollPane(table);
+        panel.add(pane);
+        frame.add(panel);
+        frame.setSize(500,150);
+        frame.setUndecorated(true);
+        frame.getRootPane().setWindowDecorationStyle(JRootPane.PLAIN_DIALOG);
+        frame.setVisible(true);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+    public void Remove(JTable table, int col_index){
+        TableColumn tcol = table.getColumnModel().getColumn(col_index);
+        table.removeColumn(tcol);
     }
 }

@@ -251,8 +251,7 @@ public class etiquette_tpe_3code extends JFrame {
 
         date_picker.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-              System.out.println("eeeeeeeeee");
-             action_date();
+                action_date();
 
             }});
 
@@ -281,19 +280,20 @@ public class etiquette_tpe_3code extends JFrame {
                                     "", JOptionPane.INFORMATION_MESSAGE);
                 }
                    else if(imp.exist_codeenie_tpe(code_enie)==true){
-                        imp.selection_3tpe_champ(code_enie);
-                        System.out.println(imp.code_enie);
+                     ArrayList<String> tpe_liste=  imp.selection_3tpe_champ(code_enie,sn_jtext.getText(),imei_jtext.getText());
+                    System.out.println(tpe_liste.get(1));
+
+                    System.out.println(tpe_liste.get(1));
                       //  code_enie_jtext.setText(imp.code_enie);
-                        sn_jtext.setText(imp.sn);
-                        imei_jtext.setText(imp.imei);
+                        sn_jtext.setText(tpe_liste.get(1));
+                        imei_jtext.setText(tpe_liste.get(2));
                        for(int i=0;i<chaine_comb.getItemCount();i++){
-                            if (chaine_comb.getItemAt(i).toString().contains(imp.code_chaine)) {
+                            if (chaine_comb.getItemAt(i).toString().contains(tpe_liste.get(3))) {
                                 chaine_comb.setSelectedIndex(i);
                             }
                         }
-                       System.out.println(" artocle "+imp.id_article);
                         for(int i=0;i<model_comb.getItemCount();i++){
-                            if (model_comb.getItemAt(i).toString().contains(imp.id_article)) {
+                            if (model_comb.getItemAt(i).toString().contains(tpe_liste.get(4))) {
                                 model_comb.setSelectedIndex(i);
                             }
                         }
@@ -303,7 +303,7 @@ public class etiquette_tpe_3code extends JFrame {
                         Date d = null;
                         try {
 
-                            Date date = formatter.parse(imp.date_tpe.substring(0,10));
+                            Date date = formatter.parse(tpe_liste.get(5).substring(0,10));
                             date_picker.setDate(date);
                         } catch (ParseException e1) {
                             // TODO Auto-generated catch block
@@ -473,14 +473,14 @@ public class etiquette_tpe_3code extends JFrame {
                         boolean existe;
                         existe=imp.exist_imei_sn(sn_jtext.getText(), imei_jtext.getText());
 
-                         System.out.println("hhhh "+msg);
+                         System.out.println("esexisssssssstttttttt "+msg);
+
                         if (msg.equals("")&&existe==false
                         ) {
 
                             chaine=chaine_comb.getSelectedItem().toString().split(" ")[0].trim();
 
-                            imp.insert_Tpe_3Code(code_enie_jtext.getText(),sn_jtext.getText(), imei_jtext.getText(),
-                                    chaine,code_article,date_picker.getEditor().getText());
+                            imp.insert_Tpe_3Code(code_enie_jtext.getText(),sn_jtext.getText(), imei_jtext.getText(), chaine,code_article,date_picker.getEditor().getText());
                             JOptionPane.showMessageDialog(null, "l'étiquette TPE " + code_enie_jtext.getText()	+ "  a été bien ajouté");
 
                             retour.setVisible(true);
@@ -490,11 +490,8 @@ public class etiquette_tpe_3code extends JFrame {
                             valid_modif.setVisible(false);
                             but_modif.setVisible(false);
 
-
-
                         } else if (!msg.equals("")) {
                             JOptionPane.showMessageDialog(panel, msg, "Error", JOptionPane.ERROR_MESSAGE);
-
                         }	}};
                 att.start();
             }
@@ -512,8 +509,7 @@ public class etiquette_tpe_3code extends JFrame {
                         boolean existe;
                         existe=imp.exist_tpe_modif(sn_jtext.getText(), imei_jtext.getText(), code_enie_jtext.getText());
 
-                        if (msg.equals("")&&existe==false
-                        ) {
+                        if (msg.equals("")&&existe==false) {
                             selectioncomb.closePdf();
 
                             retour.setVisible(true);
@@ -545,9 +541,31 @@ public class etiquette_tpe_3code extends JFrame {
 
 
             }});
+        sn_jtext.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {//
+                if(sn_jtext.getText().contains("SN") || sn_jtext.getText().contains("sn")){
+                    String[] test=sn_jtext.getText().split(";");
+                    String[] sn=test[0].split(":");
+
+                    sn_jtext.setText(""+sn[1]);
+                    String[] imei=test[1].split(":");
+                    imei_jtext.setText(""+imei[1]);
+                }
+
+                sn_imei_action();
+
+            }});
 
 
-        imp_etq.addActionListener(new ActionListener() {
+        imei_jtext.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {//
+
+                sn_imei_action();
+
+            }});
+
+
+                imp_etq.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {// dispose();
                 att= new Thread(){
                     public void run(){
@@ -601,6 +619,7 @@ public class etiquette_tpe_3code extends JFrame {
                                 sn_jtext.setText("");
                                 imei_jtext.setText("");
                                 sn_jtext.requestFocus();
+
                             }}
                         else{  JOptionPane.showMessageDialog(null, "Vous devez choisir un type d'étiquette");}
 
@@ -630,7 +649,7 @@ public class etiquette_tpe_3code extends JFrame {
                 pan.setBorder(titl2);
 
               //  color_comb.setSelectedIndex(0);
-                model_comb.setSelectedIndex(0);
+              //  model_comb.setSelectedIndex(0);
                 sn_jtext.setText("");
                 imei_jtext.setText("");
                 but_sauv.setVisible(true);
@@ -967,5 +986,68 @@ public class etiquette_tpe_3code extends JFrame {
     }
 
 
+
+    public void sn_imei_action(){
+
+
+        boolean existe=imp.exist_imei_sn(sn_jtext.getText(), imei_jtext.getText());
+
+        if(existe==true){
+            System.out.println(sn_jtext.getText());
+           ArrayList<String> tpe_liste= imp.selection_3tpe_champ(code_enie_jtext.getText(),sn_jtext.getText(),imei_jtext.getText());
+            code_enie_jtext.setText(tpe_liste.get(0));
+            sn_jtext.setText(tpe_liste.get(1));
+            imei_jtext.setText(tpe_liste.get(2));
+            for(int i=0;i<chaine_comb.getItemCount();i++){
+                if (chaine_comb.getItemAt(i).toString().contains(tpe_liste.get(3))){
+                    chaine_comb.setSelectedIndex(i);
+                }
+            }
+
+            for(int i=0;i<model_comb.getItemCount();i++){
+                if (model_comb.getItemAt(i).toString().contains(tpe_liste.get(4))) {
+                    model_comb.setSelectedIndex(i);
+                }
+            }
+
+
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            Date d = null;
+            try {
+                Date date = formatter.parse(tpe_liste.get(5).substring(0,10));
+                date_picker.setDate(date);
+                } catch (ParseException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
+
+
+
+            imp_etq.setVisible(false);
+            but_modif.setVisible(false);
+            retour.setVisible(true);
+            but_sauv.setVisible(false);
+            valid_ajou.setVisible(false);
+            valid_modif.setVisible(true);
+
+        }
+        else{
+
+            imp_etq.setVisible(false);
+            but_modif.setVisible(true);
+            retour.setVisible(false);
+            but_sauv.setVisible(true);
+            valid_ajou.setVisible(false);
+            valid_modif.setVisible(false);
+            model_comb.setSelectedIndex(0);
+            chaine_comb.setSelectedIndex(0);
+            date_picker.setDate(Calendar.getInstance().getTime());
+            date_picker.setEditable(true);
+            chaine_comb.setEnabled(true);
+
+
+        }
+
+    }
 }
 

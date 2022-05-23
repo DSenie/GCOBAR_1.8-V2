@@ -38,6 +38,7 @@ import javax.swing.border.TitledBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 
 import org.jdesktop.swingx.JXDatePicker;
 
@@ -94,6 +95,7 @@ public class etiquette_embalage_tpe extends JFrame implements ActionListener {
     ArrayList <String>list_gw= new ArrayList<String>() ;
     ArrayList <String>list_emei= new ArrayList<String>() ;
     Map<String, Object> parameters = new HashMap<String, Object>();
+    int pi=0;
     
     private String Chemin = "c:\\GCOBAR\\";
     private String bdd = Chemin + Utilitaire.InitBdd() + ".accdb";
@@ -291,7 +293,13 @@ public class etiquette_embalage_tpe extends JFrame implements ActionListener {
 
     @SuppressWarnings("deprecation")
     public void composant(final String log) {
-    	 id_radio.setSelected(true);
+
+
+        tab.allowEdition2=false;
+
+
+
+        imei_radio.setSelected(true);
 
     	dimension_comb.addItem("--Sélectionner la dimension de l'etiquette--");
  		list_dimension=imp.select_dimension_etq("etq_tpe_emballage");
@@ -307,7 +315,6 @@ public class etiquette_embalage_tpe extends JFrame implements ActionListener {
         selectioncomb.selectchaine(chaine_comb, this, log);
         chaine_comb.setSelectedIndex(0);
 
-          tab.allowEdition2=false;
           date_picker.setDate(Calendar.getInstance().getTime());
           date_picker.getEditor().setEditable(false);
           date_picker.setFormats(new SimpleDateFormat("dd/MM/yyyy"));
@@ -392,7 +399,8 @@ public class etiquette_embalage_tpe extends JFrame implements ActionListener {
          tab.table.setValueAt(i+1, k-1,0);
          tab.table.setValueAt("", k-1,1);
          tab.table.setValueAt("", k-1,2);
-             tab.table.setValueAt("", k-1,3);
+             if(  tab.table.getColumnCount()==4)
+                 tab.table.setValueAt("", k-1,3);
          }
     
          qte_jtext.setText(""+tab.table.getRowCount());
@@ -413,6 +421,7 @@ public class etiquette_embalage_tpe extends JFrame implements ActionListener {
 
                     tab.table.setValueAt("", k-1,1);
                     tab.table.setValueAt("", k-1,2);
+                    if(  tab.table.getColumnCount()==4)
                     tab.table.setValueAt("", k-1,3);
 
                 }
@@ -534,32 +543,73 @@ public class etiquette_embalage_tpe extends JFrame implements ActionListener {
                 }
 
             }  });
+
+
 */
 
 
-        tab.table.changeSelection(1, 0, true, true);
+
+
+       /* int row = 1;
+        int col = 1;
+        boolean toggle = false;
+        boolean extend = false;
+        tab.table.changeSelection(0, 1, toggle, extend);*/
+
+      //  tab.table.changeSelection(1, 2, true, true);
         final KeyStroke enter = KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0);
         final KeyStroke tabu = KeyStroke.getKeyStroke(KeyEvent.VK_TAB, 0);
+        //tab.table.changeSelection(0, 1, true, true);
+
+        TableColumn col=tab.table.getColumnModel().getColumn(tab.table.getColumnCount()-1);
+
+
+        id_radio.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                //fiha 2
+
+                if (tab.table.getColumnCount() == 4) {
+                    // remove temporary the column ("hide")
+                    tab.table.getColumnModel().removeColumn(col);
+                }
+            }
+        });
+
+
+        imei_radio.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+             //fiha 3
+                if (tab.table.getColumnCount() == 3) {
+                    tab.table.addColumn(col);
+
+                }
+
+
+            }
+        });
+
+
+
+
         tab.table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
             public void valueChanged(ListSelectionEvent event) {
+
                 if(imei_radio.isSelected()){
-                    tab.allowEdition4=true;
                     tab.table.getInputMap(JTable.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(enter, tabu);
                     tab.table.getActionMap().put(tabu, new etiquette_embalage_tpe.EnterAction());
-                    tab.table.setColumnSelectionInterval(3, 1);
+                   tab.table.setColumnSelectionInterval(3, 1);
                 }
                 else if(id_radio.isSelected()){
-                    tab.allowEdition4=false;
-                    tab.table.setColumnSelectionInterval(2, 1);
-
                     tab.table.getInputMap(JTable.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(enter, tabu);
                     tab.table.getActionMap().put(tabu, new etiquette_embalage_tpe.EnterAction());
+                    tab.table.setColumnSelectionInterval(2, 1);
+
 
 
                 }
 
             }  });
-        // tab.table.getCellEditor(i, 1).stopCellEditing();
+         tab.table.getCellEditor(i, 1).stopCellEditing();
         
         
     //  final String solve = "Solve";
@@ -650,7 +700,8 @@ public class etiquette_embalage_tpe extends JFrame implements ActionListener {
                  tab.table.setValueAt(i+1, k-1,0);
                  tab.table.setValueAt("", k-1,1);
                  tab.table.setValueAt("", k-1,2);
-                 tab.table.setValueAt("", k-1,3);
+                    if(  tab.table.getColumnCount()==4)
+                        tab.table.setValueAt("", k-1,3);
 
                  }
                  qte_jtext.setText(""+tab.table.getRowCount());
@@ -672,7 +723,8 @@ public class etiquette_embalage_tpe extends JFrame implements ActionListener {
                 tab.table.setValueAt(i, k-1,0);
                 tab.table.setValueAt("", k - 1,1);
                 tab.table.setValueAt("", k - 1, 2);
-                tab.table.setValueAt("", k - 1, 3);
+                if(  tab.table.getColumnCount()==4)
+                    tab.table.setValueAt("", k - 1, 3);
 
                 qte_jtext.setText(""+tab.table.getRowCount());
 
@@ -807,7 +859,8 @@ public class etiquette_embalage_tpe extends JFrame implements ActionListener {
                         tab.table.setValueAt(i+1, k-1,0);
                         tab.table.setValueAt("", k-1,1);
                         tab.table.setValueAt("", k-1,2);
-                        tab.table.setValueAt("", k-1,3);
+                        if(  tab.table.getColumnCount()==4)
+                            tab.table.setValueAt("", k-1,3);
 
                     }
 
@@ -850,12 +903,16 @@ public class etiquette_embalage_tpe extends JFrame implements ActionListener {
             
             
          for (int i = 0; i < tab.table.getRowCount(); i++) {
-              imp.update_emei_tpe(parcel_jtext.getText(),tab.table.getValueAt(i, 3).toString(), tab.table.getValueAt(i, 2).toString(), tab.table.getValueAt(i, 1).toString());
+               String sn="";
+             if(  tab.table.getColumnCount()==4)
+                 sn=tab.table.getValueAt(i, 3).toString();
+              imp.update_emei_tpe(parcel_jtext.getText(),tab.table.getValueAt(i, 2).toString(),sn, tab.table.getValueAt(i, 1).toString());
 
                             }
                         JOptionPane.showMessageDialog(null,"L'etiquette a été bien modifiée");
                         
                         imp_embalage.setVisible(true);
+
                         valid_modif.setVisible(false);
                         but_modif.setVisible(false);
                         retour.setVisible(true);
@@ -885,9 +942,13 @@ public class etiquette_embalage_tpe extends JFrame implements ActionListener {
                             ,sizecart_comb.getSelectedItem().toString(),commentaire.getText(),date_picker.getEditor().getText()
                             ,palette_comb.getSelectedItem().toString())    ;
                     
-                    for(int i=0;i<tab.table.getRowCount();i++){                 
-                           imp.ajout_emei_tpe(parcel_jtext.getText(),tab.table.getValueAt(i,3).toString(),
-                                   tab.table.getValueAt(i, 2).toString(),  tab.table.getValueAt(i, 1).toString());
+                    for(int i=0;i<tab.table.getRowCount();i++){
+
+                        String sn="";
+                        if( tab.table.getColumnCount()==4)
+                            sn=tab.table.getValueAt(i, 3).toString();
+                            imp.ajout_emei_tpe(parcel_jtext.getText(),tab.table.getValueAt(i,2).toString(),
+                                   sn,  tab.table.getValueAt(i, 1).toString());
                            }
                     
                     JOptionPane.showMessageDialog(null, "l'etiquette a été bien ajouter");
@@ -918,7 +979,8 @@ public class etiquette_embalage_tpe extends JFrame implements ActionListener {
 
                         if(imp.exist_emballage_tpe(rech_jtext.getText())==true){
 
-                             imp.selection_tpe_champ(rech_jtext.getText());
+
+                            imp.selection_tpe_champ(rech_jtext.getText());
                             palette_comb.setSelectedItem(imp.palette);
                             palette_comb.setSelectedItem(imp.palette);
                             article_comb.setSelectedItem(imp.code_article+" "+imp.designation_tpe);
@@ -951,9 +1013,6 @@ public class etiquette_embalage_tpe extends JFrame implements ActionListener {
 
                              list_emei=imp.selection_tpe_table(parcel_jtext.getText());
 
-                               if(list_emei.get(0).trim().equals("")){
-                                   id_radio.setSelected(true);
-                               }else imei_radio.setSelected(true);
 
 
 
@@ -978,9 +1037,9 @@ public class etiquette_embalage_tpe extends JFrame implements ActionListener {
 
                             System.out.println(list_emei);
                         tab.getTable().setValueAt(j, j-1,0);
-
-                        tab.getTable().setValueAt(list_emei.get(l), j-1,3);
-                        tab.getTable().setValueAt(list_emei.get(l+1),j-1,2);
+                        if(tab.table.getColumnCount()==4)
+                        tab.getTable().setValueAt(list_emei.get(l+1), j-1,3);
+                        tab.getTable().setValueAt(list_emei.get(l),j-1,2);
                         tab.getTable().setValueAt(list_emei.get(l+2),j-1,1);
 
                          i=i+1; l=l+3;
@@ -1039,7 +1098,8 @@ public class etiquette_embalage_tpe extends JFrame implements ActionListener {
                                     tab.table.setValueAt(i+1, k-1,0);
                                     tab.table.setValueAt("", k-1,1);
                                     tab.table.setValueAt("", k-1,2);
-                                    tab.table.setValueAt("", k-1,3);
+                                    if(  tab.table.getColumnCount()==4)
+                                        tab.table.setValueAt("", k-1,3);
 
                                  }
                                  qte_jtext.setText(""+tab.table.getRowCount());
@@ -1083,7 +1143,9 @@ public class etiquette_embalage_tpe extends JFrame implements ActionListener {
 
                          tab.table.setValueAt("", k-1,1);
                          tab.table.setValueAt("", k-1,2);
-                         tab.table.setValueAt("", k-1,3);
+                            if(  tab.table.getColumnCount()==4)
+
+                                tab.table.setValueAt("", k-1,3);
 
                          }
                          qte_jtext.setText(""+tab.table.getRowCount());
@@ -1193,7 +1255,9 @@ public class etiquette_embalage_tpe extends JFrame implements ActionListener {
                           tab.table.setValueAt(i+1, k-1,0);
                           tab.table.setValueAt("", k-1,1);
                           tab.table.setValueAt("", k-1,2);
-                          tab.table.setValueAt("", k-1,3);
+                          if(  tab.table.getColumnCount()==4)
+
+                              tab.table.setValueAt("", k-1,3);
 
                       }
 
@@ -1866,19 +1930,18 @@ public class etiquette_embalage_tpe extends JFrame implements ActionListener {
                 }
                 int v;
                 if (valid_j == false) {
-                    System.out.println("hhhhh");
                     for (int i = 0; i < tab.table.getRowCount(); i++) {
-                        System.out.println("hhhhh");
+
                         if (tab.table.getValueAt(i, 1).toString().equals(tab.table.getValueAt(i, 2).toString())) {
                             v=i+1;
                             msg += "Le code enie est egals au code imei."+v+ "\n";
                         }
 
-                        if (tab.table.getValueAt(i, 1).toString().equals(tab.table.getValueAt(i, 3).toString())) {
+                        if (  tab.table.getColumnCount()==4&& tab.table.getValueAt(i, 1).toString().equals(tab.table.getValueAt(i, 3).toString())) {
                             v=i+1;
                             msg += "Le code enie est egals au serial number dans la ligne."+v+ "\n";
                         }
-                        if (tab.table.getValueAt(i, 2).toString().equals(tab.table.getValueAt(i, 3).toString())) {
+                        if (tab.table.getColumnCount()==4&&tab.table.getValueAt(i, 2).toString().equals(tab.table.getValueAt(i, 3).toString())) {
                             v=i+1;
                             msg += "L'imei  est egals au serial number dans la ligne."+v+ "\n";
                         }
@@ -1887,9 +1950,9 @@ public class etiquette_embalage_tpe extends JFrame implements ActionListener {
                             if (tab.table.getValueAt(i, 2).toString().equals(tab.table.getValueAt(j, 2).toString())||
                                     tab.table.getValueAt(i,1).toString().equals(tab.table.getValueAt(j, 1).toString())||
                                     tab.table.getValueAt(i, 1).toString().equals(tab.table.getValueAt(j, 2).toString())||
-                                    tab.table.getValueAt(i, 3).toString().equals(tab.table.getValueAt(j, 3).toString())||
-                                    tab.table.getValueAt(i,1).toString().equals(tab.table.getValueAt(j, 3).toString())||
-                                    tab.table.getValueAt(i, 3).toString().equals(tab.table.getValueAt(j, 2).toString())
+                                    tab.table.getColumnCount()==4&& tab.table.getValueAt(i, 3).toString().equals(tab.table.getValueAt(j, 3).toString())||
+                                    tab.table.getColumnCount()==4&& tab.table.getValueAt(i,1).toString().equals(tab.table.getValueAt(j, 3).toString())||
+                                    tab.table.getColumnCount()==4&& tab.table.getValueAt(i, 3).toString().equals(tab.table.getValueAt(j, 2).toString())
 
 
                             )
@@ -1903,6 +1966,7 @@ public class etiquette_embalage_tpe extends JFrame implements ActionListener {
 
 
         }
+
     }
 /*selection article*****************************/
                 

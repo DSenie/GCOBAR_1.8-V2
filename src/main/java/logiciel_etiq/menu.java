@@ -177,7 +177,7 @@ public class menu extends JFrame{
 	
 	
 	public menu(final String logi_prio ) {
-		  this.addWindowListener(new WindowAdapter(){
+		  this.addWindowListener( new WindowAdapter(){
 		        public void windowClosing(WindowEvent e){
 
 		   new File("C:\\GCOBAR\\monfichier.txt").delete();
@@ -411,14 +411,18 @@ public class menu extends JFrame{
                     } });
 
 
-        /*list_etq_tpe_3code.addActionListener(
+        list_etq_tpe_3code.addActionListener(
                 new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
-                        etiquette_embalage phon=  new  etiquette_embalage(logi_prio);
-                        //etiquette_embalage_retour phon=  new  etiquette_embalage_retour(logi_prio);
-                        phon.setVisible(true);
+                        list_tpe_3code list_3code= null;
+                        try {
+                            list_3code = new list_tpe_3code(logi_prio);
+                        } catch (ParseException e1) {
+                            e1.printStackTrace();
+                        }
+                        list_3code.setVisible(true);
                         dispose();
-                    } });*/
+                    } });
 
         etiquette_embalage_tpe.addActionListener(
                 new ActionListener() {
