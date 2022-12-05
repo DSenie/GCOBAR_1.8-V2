@@ -133,8 +133,9 @@ public class selectioncomb {
 	  private static ArrayList<String> list_famille_tr=new ArrayList<String>();
 	  private static ArrayList<String> list_process=new ArrayList<String>();
 	  private static ArrayList<String> list_article_tr_phone =new ArrayList<String>();
-	  
-	  private static ArrayList<String> list_article_tr_tpe =new ArrayList<String>();
+	private static ArrayList<String> list_article_tr_tablette=new ArrayList<String>();
+
+	private static ArrayList<String> list_article_tr_tpe =new ArrayList<String>();
 
 		static ArrayList<String> resultat=new ArrayList<String>();
 
@@ -493,7 +494,7 @@ public class selectioncomb {
 						 article_comb.setSelectedIndex(0);
 			             article_comb.removeAllItems();
                       article_comb.addItem("---Selectionner un article-----");
-                      list_article_tpe=imp.select_article_code_etqphone();
+                      list_article_tpe=imp.select_article_code_tpe();
 							    		   for(int i=0;i<list_article_tpe.size();i++)
 							    		   {
 							    		          //Pour affecter une valeur de base de donn?es ? un Combobox 
@@ -513,7 +514,77 @@ public class selectioncomb {
 			        }});
 			    }});
 			   }
-	 
+
+
+	public static void selectarticle_tablette(final jcombo article_comb, final JFrame frame,
+										 final String log){
+		resultat=use.selection_profils(log);
+		list_article_tr_tablette=imp.select_article_code_tablette();
+		//artic.select_article_code("enie");
+		for(int i=0;i<list_article_tr_tablette.size();i++)
+		{  //Pour affecter une valeur de base de donn?es ? un Combobox
+			article_comb.addItem(list_article_tr_tablette.get(i)+" "+list_article_tr_tablette.get(i+1));
+			i++;
+		}
+
+		article_comb.setWide(true);
+		if(resultat.get(26).equals("1"))
+			article_comb.addItem(buttonOktpe);
+		article_comb.setRenderer(new ButtonComboBoxRenderer());
+
+
+
+
+
+
+		article_comb.addActionListener(new ButtonComboBoxListener(frame, article_comb));
+		buttonOktpe.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent ae) {
+				if(existe_article==true){
+					arti.setVisible(true);
+					prv.add("article");
+					if( !selectioncomb.prv.contains("article")){prv.add("article");}
+				}else{
+					arti= new  article(log);
+					existe_article=true;
+
+				}
+
+				frame.setState(Frame.ICONIFIED);
+				article_comb.setSelectedIndex(0);
+				//   frame.setState(frame.ICONIFIED);
+
+				arti.addWindowListener(new WindowAdapter(){
+					public void windowClosing(WindowEvent e){
+						frame.setState(Frame.NORMAL);
+						article_comb.setSelectedIndex(0);
+						article_comb.removeAllItems();
+						article_comb.addItem("---Selectionner un article-----");
+						list_article_tpe=imp.select_article_code_tablette();
+						for(int i=0;i<list_article_tr_tablette.size();i++)
+						{
+							//Pour affecter une valeur de base de donn?es ? un Combobox
+							article_comb.addItem(list_article_tr_tablette.get(i)+" "+list_article_tr_tablette.get(i+1));
+							i++;
+						}
+
+						article_comb.setWide(true);
+						article_comb.addItem(buttonOktpe);
+						article_comb.setRenderer(new ButtonComboBoxRenderer());
+
+
+
+						frame.setState(Frame.NORMAL);
+
+
+					}});
+			}});
+	}
+
+
+
+
+
 	public static void selectprocess(final jcombo process_comb ,final JFrame frame ,final String log){
 	   //   resultat=prod.select_profils();
 
@@ -1886,6 +1957,7 @@ p.printStackTrace();
 //- Param�tres � envoyer au rapport
 			Map<String, Object> parameters = new HashMap<String, Object>();
 //parameters.put("2200000004");
+		/*	System.out.println("serial"+object.toString());*/
 			parameters.put("serial",object);
 
 //- Execution du rapport

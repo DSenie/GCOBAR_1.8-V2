@@ -61,6 +61,25 @@ public class gestion_imp {
 		return date_jour;
 
 	}
+	public void ajouter_chariot(String code,String date,String couleur){
+		String insert = "insert into imp_chariot (code,date_chariot,couleur)"
+				+ " values('"+code+"',#"+date_traiter(date)+"#,'"+couleur+"')";
+		CConnect.Insert(insert,bdd);
+	}
+
+
+
+	public ArrayList<String> select_color_chariot(){
+		ArrayList <String>resultat= new ArrayList<String>() ;
+		String query5 = "SELECT distinct couleur from imp_chariot";
+
+		if(CConnect.Requete(query5, bdd).size()>=1){
+			resultat=CConnect.Requete(query5,bdd);
+		}
+		return resultat;
+
+	}
+
 
 
 	public void update_imp_c(String commercial){
@@ -235,6 +254,16 @@ public class gestion_imp {
 
 
 
+	public  ArrayList <String> select_tablette_fourn(String sn){
+		ArrayList <String>resultat= new ArrayList<String>() ;
+		String query5 = "SELECT model,designation, couleur, sn,date_imp FROM etiq_tablette_fournisseur,article where code_article=model and  sn='"+sn+"'  ";
+
+		if(CConnect.Requete(query5, bdd).size()>=1){
+			resultat=CConnect.Requete(query5,bdd);
+		}
+		return resultat;
+
+	}
 
 
 	public  ArrayList <String> remplir_etq_tpe(String code){
@@ -257,6 +286,20 @@ public class gestion_imp {
 	public  ArrayList <String> select_imprim_fourn(){
 		ArrayList <String>resultat= new ArrayList<String>() ;
 		String query5 = "SELECT model, couleur, imei1,imei2,date_imp FROM etiq_fournisseur "
+				;
+
+		if(CConnect.Requete(query5, bdd).size()>=1){
+
+			resultat=CConnect.Requete(query5,bdd);
+		}
+		return resultat;
+
+	}
+
+
+	public  ArrayList <String> select_imprim_tablette_fourn(){
+		ArrayList <String>resultat= new ArrayList<String>() ;
+		String query5 = "SELECT model, couleur, sn,date_imp FROM etiq_tablette_fournisseur "
 				;
 
 		if(CConnect.Requete(query5, bdd).size()>=1){
@@ -310,9 +353,19 @@ public class gestion_imp {
 
 	}
 
+	public void insert_tablette_fournisseur(String model,String couleur,String sn,String date)
+	{
+		System.out.println(date);
+		String insert = "insert into etiq_tablette_fournisseur (model,couleur,sn,date_imp)"
+				+ " values('"+model+"','"+couleur+"','"+sn+"', #"+date_traiter(date)+"# )";
+		CConnect.Insert(insert,bdd);
+
+	}
 
 
-    public boolean exist_imei_sn(String sn,String imei) {
+
+
+	public boolean exist_imei_sn(String sn,String imei) {
     String existe_sn="select sn from etiquette_tpe_3code where sn ='"+sn+"'";
     String existe_imei="select imei from etiquette_tpe_3code where imei ='"+imei+"'";
     boolean exist=false;
@@ -362,6 +415,13 @@ public class gestion_imp {
 
 	public void delete_phone_fournisseur(String  imei1, String imei2 ){
 		String delete= "delete from etiq_fournisseur where imei1='"+imei1+"' or  imei1='"+imei2+"' or imei2='"+imei1+"' or  imei2='"+imei2+"' ";
+
+		CConnect.Insert(delete,bdd);
+
+	}
+
+	public void delete_tablette_fournisseur(String  sn){
+		String delete= "delete from etiq_tablette_fournisseur where sn='"+sn+"'  ";
 
 		CConnect.Insert(delete,bdd);
 
@@ -598,6 +658,32 @@ public class gestion_imp {
 		System.out.println(list_affiche_cont);
 		if(list_affiche_cont.size()>=1){
 			cont=Integer.parseInt(list_affiche_cont.get(0).substring(list_affiche_cont.get(0).length()-4));
+			cont=cont+1;
+			code=formatter.format(cont);
+		}
+		else {
+			code= "0001";
+		}
+		return code;
+	}
+
+	public String afficher_conteur_chariot(Date date_i,String table,String prefix)
+	{   String code = null;
+		NumberFormat formatter = new DecimalFormat("0000");
+		ArrayList <String>list_affiche_cont= new ArrayList<String>() ;
+		ArrayList <String>list_conteur2= new ArrayList<String>() ;
+
+		final Calendar cal = Calendar.getInstance( );  // date du jour
+		cal.setTime(date_i);
+		SimpleDateFormat format1 = new SimpleDateFormat("dd/MM/yyyy");
+		String date = format1.format(cal.getTime());
+		int position_number=prefix.length()+1;
+		String query2 = " SELECT top 1 code FROM "+table+"  where date_chariot= #"+date_traiter(date)+"#  order by code desc  ";
+		System.out.println("query"+query2);
+		list_affiche_cont=CConnect.Requete(query2, bdd);
+		System.out.println("cont"+list_affiche_cont);
+		if(list_affiche_cont.size()>=1){
+			cont=Integer.parseInt(list_affiche_cont.get(0).substring(list_affiche_cont.get(0).length()-3));
 			cont=cont+1;
 			code=formatter.format(cont);
 		}
@@ -1044,6 +1130,21 @@ public class gestion_imp {
 
 	}
 
+
+
+	public ArrayList<String> select_color_tablette(){
+		ArrayList <String>resultat= new ArrayList<String>() ;
+		String query5 = "SELECT distinct couleur from etiq_tablette_fournisseur";
+		//System.out.println(CConnect.Requete(query5, bdd));
+		//	+ " and (code_famille='F02' or code_famille='F03') " ;
+		System.out.println(CConnect.Requete(query5, bdd));
+		if(CConnect.Requete(query5, bdd).size()>=1){
+			resultat=CConnect.Requete(query5,bdd);
+		}
+		return resultat;
+
+	}
+
 	public ArrayList<String> select_color_embalage(){
 		ArrayList <String>resultat= new ArrayList<String>() ;
 		String query5 = "SELECT distinct couleur from imp_emballage";
@@ -1071,6 +1172,19 @@ public class gestion_imp {
 	public ArrayList<String> select_size_tpe(){
 		ArrayList <String>resultat= new ArrayList<String>() ;
 		String query5 = "SELECT distinct carton_size from imp_emballage_tpe";
+		//System.out.println(CConnect.Requete(query5, bdd));
+		//	+ " and (code_famille='F02' or code_famille='F03') " ;
+		if(CConnect.Requete(query5, bdd).size()>=1){
+			resultat=CConnect.Requete(query5,bdd);
+		}
+		return resultat;
+
+	}
+
+
+	public ArrayList<String> select_size_tablette(){
+		ArrayList <String>resultat= new ArrayList<String>() ;
+		String query5 = "SELECT distinct carton_size from imp_emballage_tabelette";
 		//System.out.println(CConnect.Requete(query5, bdd));
 		//	+ " and (code_famille='F02' or code_famille='F03') " ;
 		if(CConnect.Requete(query5, bdd).size()>=1){
@@ -1135,6 +1249,20 @@ public class gestion_imp {
 		return resultat;
 	}
 
+
+
+
+	public ArrayList<String> select_article_code_tablette(){
+		ArrayList <String>resultat= new ArrayList<String>() ;
+		String query5 = "SELECT  distinct article.code_article,designation FROM article,nomoclature"
+				+ " where  nomoclature.code_article=article.code_article and indice=7";
+		//System.out.println(CConnect.Requete(query5, bdd));
+		//	+ " and (code_famille='F02' or code_famille='F03') " ;
+		if(CConnect.Requete(query5, bdd).size()>=1){
+			resultat=CConnect.Requete(query5,bdd);
+		}
+		return resultat;
+	}
 
 
 	public ArrayList<String> select_article_tout(){
@@ -1280,6 +1408,21 @@ public class gestion_imp {
 	}
 
 
+	public ArrayList<String> select_etq_tablette(){
+		ArrayList <String>resultat= new ArrayList<String>() ;
+		String query5 = "SELECT article.code_article,designation,couleur,sn, date_imp "
+				+ " from etiq_tablette_fournisseur,article "
+				+ " where article.code_article=etiq_tablette_fournisseur.model"
+				;
+
+
+		resultat=CConnect.Requete(query5,bdd);
+
+		return resultat;
+
+	}
+
+
 	public ArrayList<String> select_composant(){
 		ArrayList <String>resultat= new ArrayList<String>() ;
 
@@ -1303,6 +1446,21 @@ public class gestion_imp {
 				+ "and imp_emballage_tpe.parcel=emei_tpe.parcel "
 				;
 		resultat=CConnect.Requete(query5,bdd);
+
+		return resultat;
+
+	}
+
+	public ArrayList<String> select_tablette(){
+		ArrayList <String>resultat= new ArrayList<String>() ;
+
+		String query5 = "SELECT imp_emballage_tablette.parcel,article.code_article,date_emb,designation,gw,qte,sn "
+				+ " from article,imp_emballage_tablette,sn_tablette "
+				+ " where article.code_article=imp_emballage_tablette.code_article "
+				+ "and imp_emballage_tablette.parcel=sn_tablette.parcel "
+				;
+		resultat=CConnect.Requete(query5,bdd);
+		System.out.println("res"+CConnect.Requete(query5,bdd));
 
 		return resultat;
 
@@ -1421,6 +1579,18 @@ public class gestion_imp {
 	}
 
 
+
+
+	public boolean exist_emballage_tablette(String parcel){
+		String select = "SELECT * from imp_emballage_tablette where parcel='"+parcel+"'";
+
+		if(CConnect.Requete(select, bdd).size()>=1){
+
+			return true;
+		}
+		else return false;
+	}
+
 	public boolean exist_codeenie_tpe(String code){
 		String select = "SELECT * from etiquette_tpe_3code where code_enie='"+code+"' ";
 
@@ -1472,6 +1642,19 @@ public class gestion_imp {
 		CConnect.Insert(query5,bdd);
 	}
 
+
+
+	public void	ajout_embalage_tablette(String parcel,String article,String qte,String gw,String dimension,String commentaire,String date, String id_pal){
+		int id_palette= select_id_palette(id_pal);
+		System.out.println(" bien   "+id_palette);
+		String query5 = "insert into imp_emballage_tablette(parcel,code_article,qte,gw,carton_size,commentaire,date_emb,id_palette) "
+				+ "values ('"+parcel+"','"+article+"','"+qte+"','"+gw+"','"+dimension+"','"+commentaire+"',#"+date_traiter(date)+"#"
+				+ ", "+id_palette+")";
+		CConnect.Insert(query5,bdd);
+	}
+
+
+
 	public void	ajout_emei(String parcel,String emei1,String emei2){
 		String query5 = "insert into emei_table(parcel_code,imei1,imei2) "
 				+ "values ('"+parcel+"','"+emei1+"','"+emei2+"')";
@@ -1490,7 +1673,11 @@ public class gestion_imp {
 				+ "values ('"+parcel+"','"+emei1+"','"+sn+"','"+code_enie+"')";
 		CConnect.Insert(query5,bdd);
 	}
-
+	public void	ajout_sn_tablette(String parcel,String sn){
+		String query5 = "insert into sn_tablette(parcel,sn) "
+				+ "values ('"+parcel+"','"+sn+"')";
+		CConnect.Insert(query5,bdd);
+	}
 
 	public void	update_embalage(String parcel,String article,String couleur,String qte
 			,String delivery,String gw,String nw,String dimension,String commentaire,String date, String id_pal){
@@ -1529,6 +1716,20 @@ public class gestion_imp {
 				+ " parcel='"+parcel+"'";
 		CConnect.Insert(query5,bdd);
 	}
+
+
+	public void	update_embalage_tablette(String parcel,String article,String qte
+			,String gw,String dimension,String commentaire,String date, String id_pal){
+		int id_palette= select_id_palette(id_pal);
+
+		String query5 = "update imp_emballage_tablette set code_article='"+article+"'"
+				+ ",qte='"+qte+"',gw='"+gw+"',carton_size='"+dimension+"',"
+				+ " commentaire='"+commentaire+"',date_emb= #"+date_traiter(date)+"#  "
+				+ ", id_palette="+id_palette+" where "
+				+ " parcel='"+parcel+"'";
+		CConnect.Insert(query5,bdd);
+	}
+
 
 
 	public void	update_composant(String code_carton,String article,String qte_bobine
@@ -1605,6 +1806,13 @@ public class gestion_imp {
 				+ " where parcel='"+parcel+"'";
 		CConnect.Insert(delete,bdd);
 	}
+
+
+	public void	delete_emei_tablette(String parcel){
+		String delete = "delete from   sn_tablette "
+				+ " where parcel='"+parcel+"'";
+		CConnect.Insert(delete,bdd);
+	}
 	public void	update_emei(String parcel,String emei1,String emei2){
 
 
@@ -1629,6 +1837,18 @@ public class gestion_imp {
 				+ "values ('"+parcel+"','"+emei1+"','"+sn+"','"+code_enie+"' )";
 		CConnect.Insert(insert,bdd);
 	}
+
+
+
+
+	public void	update_sn_tablette(String parcel,String sn){
+
+		String insert = "insert into sn_tablette (parcel,sn) "
+				+ "values ('"+parcel+"','"+sn+"' )";
+		CConnect.Insert(insert,bdd);
+	}
+
+
 
 	public ArrayList<String> select_nw(){
 		ArrayList <String>resultat= new ArrayList<String>() ;
@@ -1658,6 +1878,20 @@ public class gestion_imp {
 	public ArrayList<String> select_gw_tpe(){
 		ArrayList <String>resultat= new ArrayList<String>() ;
 		String query5 = "SELECT distinct gw from imp_emballage_tpe";
+		//System.out.println(CConnect.Requete(query5, bdd));
+		//	+ " and (code_famille='F02' or code_famille='F03') " ;
+		if(CConnect.Requete(query5, bdd).size()>=1){
+			resultat=CConnect.Requete(query5,bdd);
+		}
+		return resultat;
+
+	}
+
+
+
+	public ArrayList<String> select_gw_tablette(){
+		ArrayList <String>resultat= new ArrayList<String>() ;
+		String query5 = "SELECT distinct gw from imp_emballage_tablette";
 		//System.out.println(CConnect.Requete(query5, bdd));
 		//	+ " and (code_famille='F02' or code_famille='F03') " ;
 		if(CConnect.Requete(query5, bdd).size()>=1){
@@ -1851,6 +2085,56 @@ public class gestion_imp {
 
 
 
+	public void  selection_tablette_champ(String code){
+		ArrayList<String> list_tablette=new ArrayList<String>();
+		ArrayList<String> list_palette=new ArrayList<String>();
+
+		String query = "SELECT designation,parcel,article.code_article,gw,carton_size,date_emb,commentaire,qte,id_palette "
+				+" from imp_emballage_tablette,article where parcel='"+code+"' "
+				+ "and  article.code_article=imp_emballage_tablette.code_article";
+
+		list_tablette=CConnect.Requete(query, bdd);
+		//   System.out.println(code+" "+list_article.size()+" "+list_article);
+		if(list_tablette.size()>=1){
+			designation_tpe=(String) list_tablette.get(0);
+			parcel=(String) list_tablette.get(1);
+
+			code_article=(String) list_tablette.get(2);
+			gw_tpe=(String) list_tablette.get(3);
+
+			carton_size=(String) list_tablette.get(4);
+			date_emb= list_tablette.get(5);
+			commentaire=(String) list_tablette.get(6);
+			qte_tpe=(String) list_tablette.get(7);
+			System.out.println("jjjjjjj " +qte_tpe);
+			String id_pal=(String) list_tablette.get(8);
+			System.out.println(" id "+id_pal);
+			String query2 = "SELECT parcel_palette"
+					+" from palette where id_pal="+id_pal+"";
+			list_palette=CConnect.Requete(query2, bdd);
+			if(list_palette.size()!=0){
+				palette=(String) list_palette.get(0);}
+			else
+			{
+				palette="---Selectionner une Palette-----";
+			}
+
+		}
+
+		else {
+
+
+			JOptionPane
+					.showMessageDialog(
+							null,
+							"Cette tablette n'existe pas",
+							"", JOptionPane.INFORMATION_MESSAGE);
+		}
+
+
+	}
+
+
 	public void  selection_composant_champ(String code_carton){
 		ArrayList<String> list_tpe=new ArrayList<String>();
 
@@ -1904,6 +2188,22 @@ public class gestion_imp {
 	}
 
 
+	public ArrayList<String>   selection_tablette_table(String code){
+
+		ArrayList<String> list_tablette_tab=new ArrayList<String>();
+
+		String query = "SELECT  sn "
+				+ " from sn_tablette where parcel='"+code+"'";
+
+		list_tablette_tab=CConnect.Requete(query, bdd);
+
+		return    list_tablette_tab;
+
+
+	}
+
+
+
 	public  String   select_count_palette(String table,String palette){
 		ArrayList<String> resultat=new ArrayList<>();
 		String code="0";
@@ -1919,6 +2219,7 @@ public class gestion_imp {
 	public  int   select_id_palette(String palette){
 
 		String insert = "select id_pal from palette where  parcel_palette='"+palette+"'";
+
 		return Integer.parseInt(CConnect.Requete(insert, bdd).get(0));
 	}
 
@@ -1940,14 +2241,10 @@ public class gestion_imp {
 	{
 		String code = null;
 		int count=0;
-
 		NumberFormat formatter = new DecimalFormat("0000");
 		NumberFormat forme = new DecimalFormat("00");
-
 		String cont;
-
 		final Calendar cal = Calendar.getInstance( );  // date du jour
-
 		cal.setFirstDayOfWeek(Calendar.SUNDAY);
 		int week1 = cal.get(Calendar.WEEK_OF_YEAR) ;
 		String week = forme.format(week1);
@@ -1960,21 +2257,20 @@ public class gestion_imp {
 		String query2 = " SELECT max(parcel_palette) FROM palette  where parcel_palette like '"+code_pal+"%' ";
 		cont=CConnect.Requete(query2, bdd).get(0);
 
-		System.out.print(cont);
+		System.out.print("test "+cont);
 
 		if(cont!=null){
 			count=Integer.parseInt(cont.substring(cont.length()-4))+1;
 			System.out.println(count+" ffgfffffff "+cont.substring(10));
 			code= code_pal+formatter.format(count);
-
 		}
 		else {
 			code= code_pal+"0001";
 		}
-
+		System.out.print("test "+code);
 
 		String query3 = " insert into palette (parcel_palette) values('"+code+"') ";
-		CConnect.Requete(query3, bdd);
+		CConnect.Insert(query3, bdd);
 		return code;
 	}
 
@@ -2027,6 +2323,58 @@ public class gestion_imp {
 		System.out.println("eeee edfsf88888mmmm\\"+resultat);
 		return  resultat;
 	}
+
+	public ArrayList<String> recherche_palette_tablette(String filter,String datedebut,String datefin)
+	{
+		ArrayList <String>resultat= new ArrayList<String>() ;
+		String insert="";
+		if(!filter.equals("")){
+			insert = "select article.code_article, article.designation, parcel_palette, imp_emballage_tablette.parcel, sn_tablette.sn  "
+					+ "from palette,article,imp_emballage_tablette,sn_tablette "
+					+ " where palette.id_pal=imp_emballage_tablette.id_palette and article.code_article = imp_emballage_tablette.code_article"
+					+ " and imp_emballage_tablette.parcel = sn_tablette.parcel  "
+					+ " and imp_emballage_tablette.date_emb BETWEEN #"+date_traiter(datedebut)+"#  and #"+date_traiter(datefin)+"#   "
+					+ "AND(  sn_tablette.sn like '%"+filter+"%' or  imp_emballage_tablette.parcel  like '%"+filter+"%' "
+					+ " or article.code_article  like '%"+filter+"%' or article.designation  like '%"+filter+"%'  or parcel_palette like '%"+filter+"%'  )";
+		}else{
+			insert = "select article.code_article, article.designation, parcel_palette, imp_emballage_tablette.parcel, sn_tablette.sn  "
+					+ "from palette,article,imp_emballage_tablette,sn_tablette "
+					+ " where palette.id_pal=imp_emballage_tablette.id_palette and article.code_article = imp_emballage_tablette.code_article"
+					+ " and imp_emballage_tablette.parcel = sn_tablette.parcel  "
+					+ " and imp_emballage_tablette.date_emb BETWEEN #"+date_traiter(datedebut)+"#  and #"+date_traiter(datefin)+"#   ";
+		}
+
+		resultat=CConnect.Requete(insert,bdd);
+		System.out.println("eeee edfsf88888mmmm\\"+resultat);
+		return  resultat;
+	}
+
+
+
+
+
+	public ArrayList<String> recherche_chariot(String filter,String datedebut,String datefin)
+	{
+		ArrayList <String>resultat= new ArrayList<String>() ;
+		String insert="";
+		if(!filter.equals("")){
+			insert = "select code,date_chariot,couleur  "
+					+ "from imp_chariot "
+					+ " where  date_chariot BETWEEN #"+date_traiter(datedebut)+"#  and #"+date_traiter(datefin)+"#   "
+					+ "AND(  code like '%"+filter+"%' or  couleur  like '%"+filter+"%' )";
+		}else{
+			insert = "select code,date_chariot,couleur  "
+					+ "from imp_chariot "
+					+ " where  date_chariot BETWEEN #"+date_traiter(datedebut)+"#  and #"+date_traiter(datefin)+"#   ";
+		}
+
+		resultat=CConnect.Requete(insert,bdd);
+		System.out.println("eeee edfsf88888mmmm\\"+resultat);
+		return  resultat;
+	}
+
+
+
 
 
 	public String nbr_carton_portable(String filter,String datedebut,String datefin)
@@ -2107,7 +2455,38 @@ public class gestion_imp {
 					+ "from palette,article,imp_emballage_tpe,emei_tpe "
 					+ " where palette.id_pal=imp_emballage_tpe.id_palette and article.code_article = imp_emballage_tpe.code_article"
 					+ " and imp_emballage_tpe.parcel = emei_tpe.parcel  "
-					+ " and imp_emballage_tpe.date_emb BETWEEN  #"+date_traiter(datedebut)+"#  and #"+date_traiter(datefin)+"# ";
+					+ " and imp_emballage_tpe.date_emb BETWEEN  #"+date_traiter(datedebut)+"#  and #"+date_traiter(datefin)+"#) ";
+
+		}
+		if(CConnect.Requete(insert,bdd).size()>0)
+			resultat=CConnect.Requete(insert,bdd).get(0).toString();
+		System.out.println("pal"+resultat);
+		return  resultat;
+	}
+
+
+
+
+	public String nbr_palette_tablette(String filter,String datedebut,String datefin)
+	{
+		String resultat="0";
+		String insert="";
+		if(!filter.equals("")){
+			insert = "SELECT Count(*) AS N FROM (SELECT DISTINCT  palette.parcel_palette "
+					+ "from palette,article,imp_emballage_tablette,sn_tablette"
+					+ " where palette.id_pal=imp_emballage_tablette.id_palette and article.code_article = imp_emballage_tablette.code_article"
+					+ " and imp_emballage_tablette.parcel = sn_tablette.parcel  "
+					+ " and imp_emballage_tablette.date_emb BETWEEN #"+date_traiter(datedebut)+"#  and #"+date_traiter(datefin)+"#  "
+					+ "AND(  sn_tablette.sn like '%"+filter+"%' or  imp_emballage_tablette.parcel  like '%"+filter+"%' "
+					+ " or article.code_article  like '%"+filter+"%' or article.designation  like '%"+filter+"%'  or parcel_palette like '%"+filter+"%'  ))"
+					;
+		}
+		else{
+			insert = "SELECT Count(*) AS N FROM (SELECT DISTINCT  palette.parcel_palette "
+					+ "from palette,article,imp_emballage_tablette,sn_tablette"
+					+ " where palette.id_pal=imp_emballage_tablette.id_palette and article.code_article = imp_emballage_tablette.code_article"
+					+ " and imp_emballage_tablette.parcel = sn_tablette.parcel  "
+					+ " and imp_emballage_tablette.date_emb BETWEEN  #"+date_traiter(datedebut)+"#  and #"+date_traiter(datefin)+"# )";
 
 		}
 		if(CConnect.Requete(insert,bdd).size()>0)
@@ -2126,7 +2505,7 @@ public class gestion_imp {
 					+ " and imp_emballage_tpe.parcel = emei_tpe.parcel  "
 					+ " and imp_emballage_tpe.date_emb BETWEEN #"+date_traiter(datedebut)+"#  and #"+date_traiter(datefin)+"#  "
 					+ "AND( imei = '"+filter+"' or emei_tpe.sn = '"+filter+"' or  imp_emballage_tpe.parcel  = '"+filter+"'"
-					+ " or article.code_article = '"+filter+"' or article.designation = '"+filter+"')";
+					+ " or article.code_article = '"+filter+"' or article.designation = '"+filter+"'))";
 
 		}
 		else{
@@ -2134,12 +2513,45 @@ public class gestion_imp {
 					+ "from palette,article,imp_emballage_tpe,emei_tpe "
 					+ " where palette.id_pal=imp_emballage_tpe.id_palette and article.code_article = imp_emballage_tpe.code_article"
 					+ " and imp_emballage_tpe.parcel = emei_tpe.parcel  "
-					+ " and imp_emballage_tpe.date_emb BETWEEN #"+date_traiter(datedebut)+"#  and #"+date_traiter(datefin)+"#  ";
+					+ " and imp_emballage_tpe.date_emb BETWEEN #"+date_traiter(datedebut)+"#  and #"+date_traiter(datefin)+"#)  ";
 
 		}
 		// System.out.println("eeee edfsf\\"+resultat);
 		if(CConnect.Requete(insert,bdd).size()>0)
 			resultat=CConnect.Requete(insert,bdd).get(0).toString();
+		return  resultat;
+	}
+
+
+
+	public String nbr_carton_tablette(String filter,String datedebut,String datefin)
+	{
+		String resultat="0";
+		String insert="";
+		if(!filter.equals("")){
+			insert = "SELECT Count(*) AS N FROM (SELECT DISTINCT imp_emballage_tablette.parcel  "
+					+ "from palette,article,imp_emballage_tablette,sn_tablette "
+					+ " where palette.id_pal=imp_emballage_tablette.id_palette and article.code_article = imp_emballage_tablette.code_article"
+					+ " and imp_emballage_tablette.parcel = sn_tablette.parcel  "
+					+ " and imp_emballage_tablette.date_emb BETWEEN #"+date_traiter(datedebut)+"#  and #"+date_traiter(datefin)+"#  "
+					+ "AND(  sn_tablette.sn like '%"+filter+"%' or  imp_emballage_tablette.parcel  like '%"+filter+"%' "
+					+ " or article.code_article  like '%"+filter+"%' or article.designation  like '%"+filter+"%'  or parcel_palette like '%"+filter+"%'  ))";
+			System.out.println("if "+insert);
+
+
+		}
+		else{
+			insert = "SELECT Count(*) AS N FROM (SELECT DISTINCT imp_emballage_tablette.parcel  "
+					+ "from palette,article,imp_emballage_tablette,sn_tablette "
+					+ " where palette.id_pal=imp_emballage_tablette.id_palette and article.code_article = imp_emballage_tablette.code_article"
+					+ " and imp_emballage_tablette.parcel = sn_tablette.parcel  "
+					+ " and imp_emballage_tablette.date_emb BETWEEN #"+date_traiter(datedebut)+"#  and #"+date_traiter(datefin)+"# ) ";
+			System.out.println("else "+insert);
+		}
+		// System.out.println("eeee edfsf\\"+resultat);
+		if(CConnect.Requete(insert,bdd).size()>0)
+			resultat=CConnect.Requete(insert,bdd).get(0).toString();
+		System.out.println("carton"+resultat);
 		return  resultat;
 	}
 
@@ -2152,6 +2564,17 @@ public class gestion_imp {
 
 		return resultat;
 	}
+
+	public String nbr_carton_palette_tablette (String palette_parcel){
+		String resultat="0";
+		String insert ="SELECT Count(*)  from imp_emballage_tablette,palette where id_pal=id_palette and parcel_palette= '"+palette_parcel+"'";
+		//System.out.println(insert);
+		resultat=CConnect.Requete(insert,bdd).get(0);
+		// System.out.println("selcty"+resultat);
+
+		return resultat;
+	}
+
 
 	public ArrayList<String> parcel_numero(){
 		ArrayList<String> resultat;
@@ -2174,6 +2597,8 @@ public class gestion_imp {
 		if(table_s.trim().equals("emei_table"))
 			delete_d+= " parcel_code= '" + parcel + "'";
 		else if(table_s.trim().equals("emei_tpe"))
+			delete_d+= " parcel= '" + parcel + "'";
+		else if(table_s.trim().equals("sn_tablette"))
 			delete_d+= " parcel= '" + parcel + "'";
 
 		CConnect.Insert(delete_d, bdd);

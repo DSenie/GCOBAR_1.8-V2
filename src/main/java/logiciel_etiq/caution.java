@@ -34,22 +34,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
-import javax.swing.ButtonGroup;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFormattedTextField;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JProgressBar;
-import javax.swing.JRadioButton;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
+import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
@@ -86,12 +71,18 @@ public class caution extends JFrame {
 
 	private JPanel pan_button = new JPanel();
 	private JButton imp_caution = new JButton("Imprimer");
-	
+	private JPanel pan_dimension = new JPanel();
+	private JPanel pan_dimension_lab = new JPanel();
+	private JPanel pan_dimension_comb= new JPanel();
+	private JLabel dimension_lab = new JLabel("Dimension");
+	private JComboBox<String> dimension_comb =new JComboBox<String>();
 
 	private JPanel pan_gener = new JPanel();
 
-      
-	
+	String report;
+	ArrayList <String>list_dimension= new ArrayList<String>() ;
+	private static gestion_imp imp=new gestion_imp();
+
 	Map<String, Object> parameters = new HashMap<String, Object>();
 	caution(final String log) {
 		final menu fr = new menu(log);
@@ -105,10 +96,26 @@ public class caution extends JFrame {
 
 	@SuppressWarnings("deprecation")
 	public void composant(final String logi_prio) {
-	
-		
-		  
-		
+
+
+		dimension_comb.addItem("--Sélectionner la dimension de l'etiquette--");
+		list_dimension=imp.select_dimension_etq("etq_caution");
+
+		for(int i=0;i<list_dimension.size();i++)
+		{
+			//Pour affecter une valeur de base de donn?es ? un Combobox
+			dimension_comb.addItem(list_dimension.get(i));
+		}
+
+
+		dimension_comb.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
+				if(dimension_comb.getSelectedIndex()!=0)
+					report=imp.select_report(dimension_comb.getSelectedItem().toString(),"etq_caution");
+
+			}});
+
+
 		final Calendar cal = Calendar.getInstance(); // date du jour
 		if (!selectioncomb.prv.contains("caution"))
 			selectioncomb.prv.add("caution");
@@ -152,62 +159,84 @@ public class caution extends JFrame {
                 public void actionPerformed(ActionEvent e) {
 
 
-                	
-                	BufferedReader bfr = null ;	
-                
-              	  
-              		  String parcour= "C:\\GCOBAR\\pdf\\etq_portable\\caution.pdf";
-							String model ="C:\\GCOBAR\\CODE\\caution.jrxml";
-							
-							 File fichier = new File(parcour);
-							    fichier.delete(); 
-              		  try{
-              			bfr=	new BufferedReader(new FileReader(
-    							"C:\\GCOBAR\\pdf\\etq_portable\\caution.pdf"));
-    					
+					if (dimension_comb.getSelectedIndex() == 0) {
+						JOptionPane
+								.showMessageDialog(
+										null,
+										" Vous dever choisir la dimension de l'étiquette ",
+										"", JOptionPane.INFORMATION_MESSAGE);
+					} else {
+						BufferedReader bfr = null;
+
+						String parcour = null;
+						String model;
+						parcour = "C:\\GCOBAR\\pdf\\etq_portable\\caution" + dimension_comb.getSelectedItem().toString().split(" ")[1] + ".pdf";
+
+						model = "C:\\GCOBAR\\CODE\\" + report;
+						//imp.update_imp_s("1");
+						File fichier = new File(parcour);
+						fichier.delete();
+						UIManager.put("nimbusOrange", (new Color(70, 130, 180)));
+
+						try {
+
+							//
+							bfr = new BufferedReader(new FileReader(parcour));
 							bfr.close();
-					
+							System.out.println("buffer");
 							try {
-								Desktop.getDesktop().open(new File(
-										"C:\\GCOBAR\\pdf\\etq_portable\\caution.pdf"));
+								Desktop.getDesktop().open(new File(parcour));
 								System.out.println("desk");
-							
+
 							} catch (IOException p) {
 								// TODO Auto-generated catch block
 								p.printStackTrace();
-							}}
-						
-              			 catch (IOException fnfe) {
-              				parameters.put("caution",caution_area.getText());
-              				
-              				System.out.println(parameters.get(0)+" "+caution_area.getText());
-            				selectioncomb.imprimer( bdd, parcour,model,parameters);
-              
+							}
+						} catch (FileNotFoundException fnfe) {
+							parameters.put("caution", caution_area.getText());
 
-              	  
-                } }            
-                });
+							System.out.println(parameters.get(0) + " " + caution_area.getText());
+							selectioncomb.imprimer(bdd, parcour, model, parameters);
 
 
+						} catch (IOException e1) {
+							e1.printStackTrace();
+						}
+
+
+					}
+
+				}});
 
 
 
 
+
+
+		Font police_fi = new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 13);
 
 
 		generale.styles("Nimbus");
 		SwingUtilities.updateComponentTreeUI(this);
 
 		caution_lab.setForeground(Color.white);
-		
+		dimension_comb.setFont(police_fi);
+		dimension_lab.setFont(police2);
 
-		
-		caution_lab.setFont(police2);	
-		
 
-		
-	
+
+		caution_lab.setFont(police2);
+
+
+		dimension_comb.setPreferredSize(new Dimension(230, 30));
+
+
 		/*************************code_com pour le code commercial************/
+		pan_dimension.add(pan_dimension_lab);
+		pan_dimension.add(pan_dimension_comb);
+		pan_dimension_lab.add(dimension_lab);
+		pan_dimension_comb.add(dimension_comb);
+
 		pan_caution.add(pan_caution_lab);
 		pan_caution_lab.add(caution_lab);
 		pan_caution.add(pan_caution_area);
@@ -216,7 +245,9 @@ public class caution extends JFrame {
 		pan_caution.setOpaque(false);
 		pan_caution_lab.setOpaque(false);
 		pan_caution_area.setOpaque(false);
-	
+		pan_dimension.setOpaque(false);
+		pan_dimension_lab.setOpaque(false);
+		pan_dimension_comb.setOpaque(false);
 	
 		pan_button.add(imp_caution);
 		
@@ -225,9 +256,13 @@ public class caution extends JFrame {
 		pan_gener.setOpaque(false);
 
 		pan_general.add(pan_gener);
+		pan_gener.add(pan_dimension);
+
 		pan_gener.add(pan_caution);
 		pan_general.add(pan_button);
-		
+
+
+
 
 		pan.add(pan_general);
 		panel.add(pan);
@@ -240,10 +275,11 @@ public class caution extends JFrame {
 
 		pan_general.setLayout(new BoxLayout(pan_general, BoxLayout.Y_AXIS));
 
-		pan_gener.setLayout(new BoxLayout(pan_gener, BoxLayout.X_AXIS));
+		pan_gener.setLayout(new BoxLayout(pan_gener, BoxLayout.Y_AXIS));
 
 		imp_caution.setFont(new Font("Comic Sans MS", Font.BOLD, 13));
-		
+
+		dimension_lab.setForeground(new Color(255, 255, 255));
 
 
 		
@@ -253,16 +289,16 @@ public class caution extends JFrame {
 		
 
 		pan_caution.setLayout(new BoxLayout(pan_caution, BoxLayout.Y_AXIS));
-	
+		pan_dimension.setLayout(new BoxLayout(pan_dimension, BoxLayout.Y_AXIS));
 
-		
+
+
 		pan_caution_lab.setLayout(new FlowLayout(FlowLayout.CENTER));
 		pan_caution_area.setLayout(new FlowLayout(FlowLayout.CENTER));
-		pan_caution_lab.setBorder(BorderFactory.createEmptyBorder(80, 0, 0, 0));
+		pan_caution_lab.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
 		//pan_caution_area.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
-		
-	
-	
+
+
 
 
 

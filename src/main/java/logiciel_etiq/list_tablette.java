@@ -1,75 +1,34 @@
 package logiciel_etiq;
 
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.hssf.util.HSSFColor;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.ss.util.WorkbookUtil;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import javax.swing.*;
 import java.awt.Color;
-import java.awt.Desktop;
-import java.awt.Dimension;
-import java.awt.EventQueue;
-import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.Point;
-import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.IOException;
+import java.awt.*;
+import java.awt.event.*;
+import java.io.*;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JPopupMenu;
-import javax.swing.JScrollPane;
-import javax.swing.JTextField;
-import javax.swing.RowFilter;
-import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
 
-import org.apache.poi.hssf.usermodel.HSSFCellStyle;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.hssf.util.HSSFColor;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellStyle;
-import org.apache.poi.ss.usermodel.CreationHelper;
-import org.apache.poi.ss.usermodel.HorizontalAlignment;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.ss.util.WorkbookUtil;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
-
-public class list_tpe extends JFrame {
+public class list_tablette extends JFrame {
 	/**
-	 * 
+	 *
 	 */
 	ArrayList <String>list_fiche= new ArrayList<String>() ;
 	private static final long serialVersionUID = 1L;
 	public String Chemin = "c:\\GCOBAR\\";
-	public  String bdd = Chemin+Utilitaire.InitBdd()+".accdb";	
-    Object [] entete={"Parcel","Code/Designation","Date emballage","GW","Quantité","Code Enie","IMEI","Serial Number"};
+	public  String bdd = Chemin+Utilitaire.InitBdd()+".accdb";
+    Object [] entete={"Parcel","Code/Designation","Date emballage","GW","Quantité","Serial Number"};
     final Tableau tab=new Tableau(entete);
 	 private JComboBox dimension_comb= new JComboBox();
 	 String report;
@@ -78,11 +37,11 @@ public class list_tpe extends JFrame {
     final JTextField filterText = new JTextField("Recherche");
 	//static String laf="com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel";
 	 JMenuItem menuItem = new JMenuItem("Imprimer etiquette" );
-	 
+
 	 String date_jour;
 	 JMenuItem menuItem4 = new JMenuItem("Exporter en excel" );
-	 
-	 SimpleDateFormat dt = new SimpleDateFormat("yyyyy-MM-dd hh:mm:ss"); 
+
+	 SimpleDateFormat dt = new SimpleDateFormat("yyyyy-MM-dd hh:mm:ss");
 
 	 //JMenuItem menuItem2 = new JMenuItem("Imprimer etiquette ARPT" );
 
@@ -97,7 +56,7 @@ public class list_tpe extends JFrame {
 	final JPanel pan2=new JPanel();
 	final JPanel pan3=new JPanel();
     final JLabel rech = new JLabel("Recherche");
-    JLabel count=new JLabel("00");    
+    JLabel count=new JLabel("00");
     //JLabel qte_carton=new JLabel("00") ;
 
     private JPopupMenu popupMenu = new JPopupMenu();
@@ -106,15 +65,15 @@ public class list_tpe extends JFrame {
     gestion_imp imp=new gestion_imp();
 	int i=1;
 	int j=1;
-	int l = 0; 
+	int l = 0;
 	  ArrayList<String> listrc = new ArrayList<String>();
-	  
+
 	  ArrayList<String> listrarpt = new ArrayList<String>();
 
 	  ArrayList<String> listrc1 = new ArrayList<String>();
 	  ArrayList<String> listfc = new ArrayList<String>();
 
-	list_tpe(final String log) throws ParseException{
+	list_tablette(final String log) throws ParseException{
 		final menu fr=new menu(log);
 		fr.setVisible(false);
 		Toolkit kit = Toolkit.getDefaultToolkit();
@@ -122,14 +81,14 @@ public class list_tpe extends JFrame {
 	   setIconImage(img);
 	   selectioncomb.windows(this,log);
 
-			
+
 		    build();
-				
+
 			composant();}
-	
-		 
-		
-	    		 
+
+
+
+
 	   public void composant() throws ParseException{
 		   if(!selectioncomb.prv.contains("list_composant")){
 			//System.out.println("list_fiche"+selectioncomb.prv);
@@ -143,27 +102,27 @@ public class list_tpe extends JFrame {
 		   tab.allowEdition6=false;
 		   tab.allowEdition7=false;
 
-		   filterText.setForeground(Color.gray); 		 
+		   filterText.setForeground(Color.gray);
 		   tab.setStyle(2);
 
-		   
+
 		   dimension_comb.addItem("--- Sélectionner la dimension de l'etiquette ----");
 
-			list_dimension=imp.select_dimension_etq("etq_tpe_emballage_list");
-		 	  
+			list_dimension=imp.select_dimension_etq("etq_tablette_emballage_list");
+
 			   for(int i=0;i<list_dimension.size();i++)
 			   {
 			          //Pour affecter une valeur de base de donn�es � un Combobox
 				   dimension_comb.addItem(list_dimension.get(i));
-				   
+
 			   }
-			   
-			   
-			   
-			   
-			 JPanel panel =new JPanel() {   
+
+
+
+
+			 JPanel panel =new JPanel() {
 		  		/**
-				 * 
+				 *
 				 */
 				private static final long serialVersionUID = 1L;
 				public void paintComponent(Graphics g){
@@ -174,9 +133,9 @@ public class list_tpe extends JFrame {
 		             dimension_comb.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent event) {
 								if(dimension_comb.getSelectedIndex()!=0)
-								report=imp.select_report(dimension_comb.getSelectedItem().toString(),"etq_tpe_emballage_list");
-								
-								
+								report=imp.select_report(dimension_comb.getSelectedItem().toString(),"etq_tablette_emballage_list");
+
+
 							}});
 
 
@@ -203,126 +162,124 @@ public class list_tpe extends JFrame {
 	                  }
 						count.setText("Le Nombre Des Fiches :  "+tab.table.getRowCount());
 
-	                  
+
 	                 // count.setText(" Nombre de bobine: "+tab.table.getRowCount());
 	                  int somme=0;
 	                  for(int i=0;i<tab.table.getRowCount();i++){
 	                	somme+= Integer.parseInt(tab.table.getValueAt(i, 4).toString() );
 	                  }
-	                  
+
 	               //   qte_carton.setText("Quantit� global :"+somme);
 
 			      }
 
 			      public void keyPressed(KeyEvent e) {
-			    	  
+
 			      } });
 
-			  filterText.addMouseListener( 
+			  filterText.addMouseListener(
 					  new  MouseAdapter(){
 						  public void mousePressed(MouseEvent e) {
 							    // TODO Auto-generated method stub
 								 filterText.setText("");
-								 filterText.setForeground(Color.gray); 
-							}     
-						  
+								 filterText.setForeground(Color.gray);
+							}
+
 					  });
-			  
+
 			  filterText.addFocusListener(
 					  new FocusListener() {
 
 				    @Override
-				    public void focusGained(FocusEvent e) { filterText.setForeground(Color.black); 
+				    public void focusGained(FocusEvent e) { filterText.setForeground(Color.black);
 
 				    }
 
 				    @Override
 				    public void focusLost(FocusEvent e) {
 						 filterText.setText("Recherche");
-						 filterText.setForeground(Color.gray); 
+						 filterText.setForeground(Color.gray);
 
 				        // You could do something here when the field loses focus, if you like
 				    }
 
 				});
 
-			  
-			
+
+
 			//  imp.select_portable();
-			  list_fiche=imp.select_tpe();
+			  list_fiche=imp.select_tablette();
+			  System.out.println("select_tablette"+list_fiche);
 			//  System.out.println(list_fiche);
-			    for(i=0;i<list_fiche.size();i=i+9){tab.ajouter();}
+			    for(i=0;i<list_fiche.size();i=i+7){tab.ajouter();}
 				int j=1;
 				int l = 0; i=1;
 				while(l<list_fiche.size()){
-				
-				 while(l<j*9){
-					
+
+				 while(l<j*7){
+
 					 tab.getTable().setValueAt(list_fiche.get(l).toLowerCase(), j-1, 0);
 					 tab.getTable().setValueAt(list_fiche.get(l+1).toLowerCase()+" "+list_fiche.get(l+3).toLowerCase(), j-1, 1);
 
-					 String date_s = list_fiche.get(l+2).toLowerCase().toString(); 
-					 SimpleDateFormat dt = new SimpleDateFormat("yyyyy-MM-dd hh:mm:ss"); 
-					 Date date = dt.parse(date_s); 
+					 String date_s = list_fiche.get(l+2).toLowerCase().toString();
+					 SimpleDateFormat dt = new SimpleDateFormat("yyyyy-MM-dd hh:mm:ss");
+					 Date date = dt.parse(date_s);
 					 SimpleDateFormat dt1 = new SimpleDateFormat("dd/MM/yyyy");
 					 String date_emb=dt1.format(date);
-					 
-	
+
+
 					 tab.getTable().setValueAt(date_emb, j-1, 2);
              		 tab.getTable().setValueAt(list_fiche.get(l+4).toLowerCase(), j-1,3);
         			 tab.getTable().setValueAt(list_fiche.get(l+5).toLowerCase(), j-1,4);
-        			 if(list_fiche.get(l+8)!=null)
-					 tab.getTable().setValueAt(list_fiche.get(l+8).toLowerCase(), j-1, 5);
+        			 if(list_fiche.get(l+5)!=null)
 
 
-					 tab.getTable().setValueAt(list_fiche.get(l+7).toLowerCase(), j-1, 7);
-
-					 tab.getTable().setValueAt(list_fiche.get(l+6).toLowerCase(), j-1, 6);
+					 tab.getTable().setValueAt(list_fiche.get(l+6).toLowerCase(), j-1, 5);
 
 
-					 i=i+1; l=l+9;
+					 i=i+1; l=l+7;
 				 }
 				 i=1;
-				j=j+1;		
+				j=j+1;
 				}
 
 
 		   generale.styles("Nimbus");
 		   SwingUtilities.updateComponentTreeUI(this);
-				  
-				  
-					
+
+
+
 				   Font police_fi = new Font("Comic Sans MS", Font.BOLD|Font.ITALIC,13);
 
 				    Font police2 = new Font("Comic Sans MS", Font.BOLD|Font.ITALIC,13);
 				   tab.table.setFont(police_fi);
-				   
-				   
+
+
 				   count = new JLabel("Le Nombre Des Fiches :  "+tab.table.getRowCount());
-				    count.setForeground(Color.white); 
+				    count.setForeground(Color.white);
 			 	    count.setBackground(new Color(6,119,144));
 			 	    count.setOpaque(true);
 			 	    count.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 			 	    count.setFont(police2);
-			 	    
-			 	    
-//		qte_carton.setForeground(Color.white); 
+
+
+//		qte_carton.setForeground(Color.white);
 //		qte_carton.setBackground(new Color(6,119,144));
 //		qte_carton.setOpaque(true);
 //		qte_carton.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 //		qte_carton.setFont(police2);
-			 	    
-			 	    
-//		    count.setForeground(Color.white); 
+
+
+//		    count.setForeground(Color.white);
 //	 	    count.setBackground(new Color(6,119,144));
 //	 	    count.setOpaque(true);
 //	 	    count.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 //	 	    count.setFont(police2);
 
 		    panel.add(paneltext);
-			panel.add(p); 
+			panel.add(p);
 			panel.add(pan);
-			
+
 			paneltext.add(pan2);
 			paneltext.add(pan3);
 
@@ -351,50 +308,50 @@ public class list_tpe extends JFrame {
 		    paneltext.setOpaque(false);
 		    pan1.setOpaque(false);
 		    pan2.setOpaque(false);
-		    pan3.setOpaque(false); 
-		    
+		    pan3.setOpaque(false);
+
 		    pan2.setLayout(null);
 		    filterText.setBounds(00, 30, 150,30);
-		    
+
 		    panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 		    pan1.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 		    pan2.setLayout(new FlowLayout(FlowLayout.CENTER));
 			pan3.setLayout(new FlowLayout(FlowLayout.LEFT));
 			pan2.setBorder(BorderFactory.createEmptyBorder(0, 90, 0, 0));
 			pan3.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
-			     
-				  setTitle("List des Fiches" );
+
+				  setTitle("List des Fiches tablette" );
 		          setSize(1000, 600);
-		          setLocationRelativeTo(null);          
+		          setLocationRelativeTo(null);
 		          setVisible(true);
 		          setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			      setContentPane(panel);
-			    
-		   
-	   } 		 
-	   
+
+
+	   }
+
 	   private void build() {
-			
+
 		     tab.table.addMouseListener(new MouseAdapter() {
 		      @Override
 		      public void mouseReleased(MouseEvent e) {
 		       if(e.getButton()==MouseEvent.BUTTON3){
-		    	 
+
 		    	   //String[] data = tab.table.getValueAt(row, col);
-		    	 
+
 		        showPopup(e);
 		       }
 		      }
 		     });
-		    
+
 
 
 		     popupMenu.add(menuItem);
 		    // popupMenu.add(menuItem2);
-		
+
 		     popupMenu.add(menuItem4);
 		     menuItem4.addActionListener(
-	                  new ActionListener() { 
+	                  new ActionListener() {
 	                  public void actionPerformed(ActionEvent e) {
 	                	   att = new Thread(){
 	  	 					public void run(){
@@ -408,14 +365,14 @@ public class list_tpe extends JFrame {
 		  						Date actuelle=new Date();
 			 	                  DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 			 					   date_jour = dateFormat.format(actuelle);
-			 					  
+
 			 	          			System.out.println(date_jour);
-			 	          			String parcour="C://GCOBAR//pdf//excel//tpe_etiquette_emballage"+date_jour+".xlsx";
+			 	          			String parcour="C://GCOBAR//pdf//excel//tablette_etiquette_emballage"+date_jour+".xlsx";
 			 	          			FileOutputStream fileOut = new FileOutputStream(parcour);
 			 	          			Workbook worksheet = new XSSFWorkbook();
 			 	          			CreationHelper ch = worksheet.getCreationHelper();
 			 	          			String safeName = WorkbookUtil.createSafeSheetName("Liste Produit");
-			 	          			org.apache.poi.ss.usermodel.Sheet sheet = worksheet.createSheet(safeName);
+			 	          			Sheet sheet = worksheet.createSheet(safeName);
 			 	          			 
 			 	          			File fichier = new File(parcour);
 			 	 					    fichier.delete();
@@ -468,26 +425,9 @@ public class list_tpe extends JFrame {
 		 	        			cellB6.setCellStyle(cellStyle);
 
 
-								Cell cellB7 = row1.createCell((short) 6);
-								cellB7.setCellValue("Code Enie");
-								cellStyle = worksheet.createCellStyle();
-								cellStyle.setFillForegroundColor(HSSFColor.LIGHT_CORNFLOWER_BLUE.index);
-								cellStyle.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
-								cellB7.setCellStyle(cellStyle);
 
-
-
-
-
-								Cell cellB8 = row1.createCell((short) 7);
-								cellB8.setCellValue("IMEI");
-		 	        			cellStyle = worksheet.createCellStyle();
-		 	        			cellStyle.setFillForegroundColor(HSSFColor.LIGHT_CORNFLOWER_BLUE.index);
-		 	        			cellStyle.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
-								cellB8.setCellStyle(cellStyle);
 		 	        			
-		 	        			
-		 	        			Cell cellB9 = row1.createCell((short) 8);
+		 	        			Cell cellB9 = row1.createCell((short) 6);
 								cellB9.setCellValue("Serian Number");
 		 	        			cellStyle = worksheet.createCellStyle();
 		 	        			cellStyle.setFillForegroundColor(HSSFColor.LIGHT_CORNFLOWER_BLUE.index);
@@ -538,16 +478,16 @@ public class list_tpe extends JFrame {
  		                	sheet.autoSizeColumn(4);
  		                	sheet.autoSizeColumn(5);
  		                	sheet.autoSizeColumn(6);
- 		                	sheet.autoSizeColumn(7);
+
 
 	 	        			sheet.autoSizeColumn(0); 
 		 	        		worksheet.write(fileOut);
 	 			          	fileOut.close();
 	 			          	fileOut.flush();
-	  					    BufferedReader bfr=	new BufferedReader(new FileReader("C://GCOBAR//pdf//excel//tpe_etiquette_emballage"+date_jour+".xlsx"));
+	  					    BufferedReader bfr=	new BufferedReader(new FileReader("C://GCOBAR//pdf//excel//tablette_etiquette_emballage"+date_jour+".xlsx"));
 	  					    bfr.close();		
 	  						 					try {
-	  		            	 Desktop.getDesktop().open(new File( "C://GCOBAR//pdf//excel//tpe_etiquette_emballage"+date_jour+".xlsx"));
+	  		            	 Desktop.getDesktop().open(new File( "C://GCOBAR//pdf//excel//tablette_etiquette_emballage"+date_jour+".xlsx"));
 	  						                  
 	  						 					} catch (IOException p1) {
 	  						 						
@@ -559,7 +499,7 @@ public class list_tpe extends JFrame {
 	  						 				 catch (IOException fnfe) {
 	  						 				
 	  						 			 try {
-											Desktop.getDesktop().open(new File( "C://GCOBAR//pdf//excel//tpe_etiquette_emballage"+date_jour+".xlsx"));
+											Desktop.getDesktop().open(new File( "C://GCOBAR//pdf//excel//tablette_etiquette_emballage"+date_jour+".xlsx"));
 										} catch (IOException e) {
 											// TODO Auto-generated catch block
 											e.printStackTrace();
@@ -595,13 +535,13 @@ public class list_tpe extends JFrame {
 		   		    	   }
 		   		    	    System.out.println(listrc+"size"+listrc.size());
 	                	  if(selectedRow!=-1){
-	                		  String parcour= "C:\\GCOBAR\\pdf\\etq_emballage_tpe\\"+dimension_comb.getSelectedItem().toString()+listrc.get(0)+"_"+z+"_"+"etq_emballage_tpe.pdf";
+	                		  String parcour= "C:\\GCOBAR\\pdf\\etq_emballage_tablette\\"+dimension_comb.getSelectedItem().toString()+listrc.get(0)+"_"+z+"_"+"etq_emballage_tablette.pdf";
 								String model ="C:\\GCOBAR\\CODE\\"+report;
 	                		  try{
 
-                            new BufferedReader(new FileReader("C:\\GCOBAR\\pdf\\etq_emballage_tpe\\"+dimension_comb.getSelectedItem().toString()+listrc.get(0)+"_"+z+"_"+"etq_emballage_tpe.pdf"));
+                            new BufferedReader(new FileReader("C:\\GCOBAR\\pdf\\etq_emballage_tablette\\"+dimension_comb.getSelectedItem().toString()+listrc.get(0)+"_"+z+"_"+"etq_emballage_tablette.pdf"));
 	                			  try {
-	    	    Desktop.getDesktop().open(new File("C:\\GCOBAR\\pdf\\etq_emballage_tpe\\"+dimension_comb.getSelectedItem().toString()+listrc.get(0)+"_"+z+"_"+"etq_emballage_tpe.pdf"));
+	    	    Desktop.getDesktop().open(new File("C:\\GCOBAR\\pdf\\etq_emballage_tablette\\"+dimension_comb.getSelectedItem().toString()+listrc.get(0)+"_"+z+"_"+"etq_emballage_tablette.pdf"));
 
 	    	                		  //cop(new File(bdd),new File(save.getSelectedFile().getPath().replace(".accdb", ".naw")));
 	    	                		  //cop(new File("C:\\GEFACT\\factpro\\"+code_jtext.getText().replace("/", "")+".pdf"),new File("C:\\GCOBAR\\CODE BARRE\\"+code_jtext.getText().replace("/", "")+" "+date+".fpc"));
@@ -648,7 +588,7 @@ public class list_tpe extends JFrame {
 			EventQueue.invokeLater(new Runnable() {
 				public void run() {
 					try {
-						 new list_tpe("4");
+						 new list_tablette("4");
 						//frame.setVisible(true);
 					} catch (Exception e) {
 						e.printStackTrace();

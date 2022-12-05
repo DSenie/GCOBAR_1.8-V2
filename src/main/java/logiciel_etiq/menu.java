@@ -83,11 +83,19 @@ public class menu extends JFrame{
     private JMenuItem etiquette_tpe_3code = new JMenuItem("Etiquette  TPE 3 Code");
     private JMenuItem list_etq_tpe_3code = new JMenuItem("Liste Etiquette TPE 3 Code");
 
+    private JMenuItem etq_tablette_forniss = new JMenuItem("Etiquette  Tablette");
+    private JMenuItem etq_tablette_forniss_list = new JMenuItem("Listes Etiquette  Tablette");
+    private JMenuItem etq_tablette = new JMenuItem("Etiquette Emballage Tablette");
 
-    
+    private JMenuItem etq_tablette_list = new JMenuItem("Listes Etiquette Tablette Emballage");
+
+   private JMenuItem etq_palette_tablette_list = new JMenuItem("Recherche Détaillée Tablette");
+
+
     private  JMenu televisseur= new  JMenu("Etiquette Téléviseur");
     private  JMenu portable= new  JMenu("Etiquette Portable");
     private  JMenu tpe= new  JMenu("Etiquette TPE");
+    private  JMenu tablette= new  JMenu(" Etiquette Tablette");
     private  JMenu composant= new  JMenu("Etiquette Composant");
     private  JMenu palette= new  JMenu("Etiquette Palette");
     private  JMenu recherche= new  JMenu("Recherche");
@@ -140,6 +148,9 @@ public class menu extends JFrame{
     private JMenuItem list_palette_portable = new JMenuItem("List Palette Portable");
 			
 		    private JMenuItem imp_palette = new JMenuItem("Etiquette palette");
+    private JMenuItem etq_tablette_chariot = new JMenuItem("Etiquette Chariot");
+
+    private JMenuItem list_etq_tablette_chariot = new JMenuItem("List Etiquette Chariot");
 
 		 private JMenu prof = new JMenu("Profils");
 		 private JMenuItem edit_prof = new JMenuItem("Editions Profils");
@@ -340,6 +351,8 @@ public class menu extends JFrame{
           imp.add(televisseur);
           imp.add(portable);
           imp.add(tpe);
+          imp.add(tablette);
+
           imp.add(composant);
       //    imp.add(palette);
           imp.add(recherche);
@@ -371,8 +384,20 @@ public class menu extends JFrame{
           tpe.add(list_tpe);
           tpe.add(etiquette_tpe);
           tpe.add(list_etq_tpe);
+        tablette.add(etq_tablette_forniss);
+        tablette.add(etq_tablette_forniss_list);
 
 
+        tablette.add(etq_tablette);
+
+        tablette.add(etq_tablette_list);
+
+
+        tablette.add(etq_palette_tablette_list);
+        tablette.add(etq_tablette_chariot);
+        tablette.add(list_etq_tablette_chariot);
+
+        //etq_tablette_tablette_list
         //  palette.add(imp_palette);
         //  palette.add(list_palette);
 
@@ -391,6 +416,27 @@ public class menu extends JFrame{
         tpe.add(list_etq_tpe_3code);
 
 
+
+        etq_tablette_chariot.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        etiquette_chariot chariot=  new  etiquette_chariot(logi_prio);
+                        //etiquette_embalage_retour phon=  new  etiquette_embalage_retour(logi_prio);
+                        chariot.setVisible(true);
+                        dispose();
+                    } });
+
+        list_etq_tablette_chariot.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        list_chariot list_chariot=  new  list_chariot(logi_prio);
+                        //etiquette_embalage_retour phon=  new  etiquette_embalage_retour(logi_prio);
+                        list_chariot.setVisible(true);
+                        dispose();
+                    } });
+
+
+
         imp_phon_embalage.addActionListener(
                 new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
@@ -400,6 +446,65 @@ public class menu extends JFrame{
                         dispose();
                     } });
 
+        etq_tablette_forniss.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        etiquette_tablette_forn  tablet_forn=  new  etiquette_tablette_forn(logi_prio);
+                        //   etiquette_embalage_retour phon=  new  etiquette_embalage_retour(logi_prio);
+                        tablet_forn.setVisible(true);
+                        dispose();
+                    } });
+
+
+        etq_tablette_forniss_list.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        list_etq_sn_tablette  tablet_forn_l= null;
+                        try {
+                            tablet_forn_l=   new  list_etq_sn_tablette(logi_prio);
+                        } catch (ParseException e1) {
+                            e1.printStackTrace();
+                        }
+                        //   etiquette_embalage_retour phon=  new  etiquette_embalage_retour(logi_prio);
+                        tablet_forn_l.setVisible(true);
+                        dispose();
+                    } });
+
+
+        etq_tablette.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        etiquette_embalage_tablette tablet=  new  etiquette_embalage_tablette(logi_prio);
+                      //   etiquette_embalage_retour phon=  new  etiquette_embalage_retour(logi_prio);
+                        tablet.setVisible(true);
+                        dispose();
+                    } });
+
+
+        etq_tablette_list.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        list_tablette table=null;
+                        try {
+                            table= new  list_tablette(logi_prio);
+                        } catch (ParseException e1) {
+                            e1.printStackTrace();
+                        }
+                        //   etiquette_embalage_retour phon=  new  etiquette_embalage_retour(logi_prio);
+                        table.setVisible(true);
+                        dispose();
+                    } });
+
+        etq_palette_tablette_list.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        list_palette_tablette
+                            table= new  list_palette_tablette(logi_prio);
+
+                        //   etiquette_embalage_retour phon=  new  etiquette_embalage_retour(logi_prio);
+                        table.setVisible(true);
+                        dispose();
+                    } });
 
         etiquette_tpe_3code.addActionListener(
                 new ActionListener() {
