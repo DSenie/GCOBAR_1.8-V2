@@ -364,6 +364,22 @@ public class gestion_imp {
 
 
 
+	public boolean exist_imei(String imei) {
+		String existe_imei="select imei from etiquette_tpe_3code where imei ='"+imei+"'";
+		boolean exist=false;
+
+		 if(CConnect.Requete(existe_imei,bdd).size()!=0){
+			JOptionPane.showMessageDialog(
+					null,
+					"L'imei exist deja" ,
+					"", JOptionPane.ERROR_MESSAGE);
+			exist=true;
+		}
+
+		return exist;
+	}
+
+
 
 	public boolean exist_imei_sn(String sn,String imei) {
     String existe_sn="select sn from etiquette_tpe_3code where sn ='"+sn+"'";
@@ -432,6 +448,25 @@ public class gestion_imp {
 		CConnect.Insert(delete,bdd);
 	}
 
+
+	public boolean exist_tpe_modif_2code(String imei, String code_enie){
+		String existe_imei="select imei from etiquette_tpe_3code where imei ='"+imei+"' and  code_enie!='"+code_enie+"'  ";
+		boolean exist=false;
+
+		if(CConnect.Requete(existe_imei,bdd).size()!=0){
+			JOptionPane.showMessageDialog(
+					null,
+					"L'imei exist deja" ,
+					"", JOptionPane.ERROR_MESSAGE);
+			exist=true;
+
+		}
+		return exist;
+
+	}
+
+
+
 	public boolean exist_tpe_modif(String sn, String imei, String code_enie){
 		String existe_sn="select sn from etiquette_tpe_3code where sn ='"+sn+"' and  code_enie!='"+code_enie+"' ";
 		String existe_imei="select imei from etiquette_tpe_3code where imei ='"+imei+"' and  code_enie!='"+code_enie+"'  ";
@@ -489,6 +524,8 @@ public class gestion_imp {
 
 		String insert = "select nom_report from dimension_etq"
 				+ " where dimension ='"+dimension+"' and indice='"+indice+"'";
+		System.out.println(dimension+"eeee edfsf"+insert);
+
 		resultat=CConnect.Requete(insert,bdd);
 		System.out.println(dimension+"eeee edfsf"+resultat);
 		return  resultat.get(0);
@@ -1440,7 +1477,7 @@ public class gestion_imp {
 	public ArrayList<String> select_tpe(){
 		ArrayList <String>resultat= new ArrayList<String>() ;
 
-		String query5 = "SELECT imp_emballage_tpe.parcel,article.code_article,date_emb,designation,gw,qte,imei,sn, code_enie "
+		String query5 = "SELECT imp_emballage_tpe.parcel,article.code_article,date_emb,designation,gw,qte,imei,sn, code_enie, commentaire "
 				+ " from article,imp_emballage_tpe,emei_tpe "
 				+ " where article.code_article=imp_emballage_tpe.code_article "
 				+ "and imp_emballage_tpe.parcel=emei_tpe.parcel "
@@ -1706,14 +1743,16 @@ public class gestion_imp {
 
 
 	public void	update_embalage_tpe(String parcel,String article,String qte
-			,String gw,String dimension,String commentaire,String date, String id_pal){
+			,String gw,String dimension,String commentaire, String id_pal){
 		int id_palette= select_id_palette(id_pal);
-
+  //System.out.println("date"+date+" "+date_traiter(date));
 		String query5 = "update imp_emballage_tpe set code_article='"+article+"'"
 				+ ",qte='"+qte+"',gw='"+gw+"',carton_size='"+dimension+"',"
-				+ " commentaire='"+commentaire+"',date_emb= #"+date_traiter(date)+"#  "
+				+ " commentaire='"+commentaire+"'  "
 				+ ", id_palette="+id_palette+" where "
 				+ " parcel='"+parcel+"'";
+		System.out.println("query5 ="+query5 );
+
 		CConnect.Insert(query5,bdd);
 	}
 

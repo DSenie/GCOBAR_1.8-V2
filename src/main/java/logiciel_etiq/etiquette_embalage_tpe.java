@@ -441,16 +441,23 @@ public class etiquette_embalage_tpe extends JFrame implements ActionListener {
                     ((DefaultTableModel) tab.table.getModel()).removeRow(i);
                 }
                 for(i=0;i<row;i=i+1){
+                    System.out.println(row+"   " +rows+" "+i);
+
                     tab.ajouter();
-                    int k=tab.table.getRowCount();
+                   int k=tab.table.getRowCount();
                     col_index();
                     tab.table.setValueAt(i+1, k-1,0);
-                    if(col_sn!=-1)
+                   System.out.println(col_sn);
+
+                  /*  if(col_sn!=-1)
+                    {
+                        System.out.println(k-1+"  col_sn " +col_sn);
                         tab.table.setValueAt("", k-1,col_sn);
+                         }
                     if(col_iemi!=-1)
                         tab.table.setValueAt("", k-1,col_iemi);
                     if(col_enie!=-1)
-                        tab.table.setValueAt("", k-1,col_enie);
+                        tab.table.setValueAt("", k-1,col_enie);*/
                 }
             }
         });
@@ -596,7 +603,9 @@ public class etiquette_embalage_tpe extends JFrame implements ActionListener {
 
         id_radio.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+
                 //fiha 2
+                col_sn=-1;
                 remove_column_sn("Serial Number");
                 //String name= tab.table.getColumnName(tab.table.getColumnCount()-1);
 
@@ -608,6 +617,7 @@ public class etiquette_embalage_tpe extends JFrame implements ActionListener {
         imei_radio.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
              //fiha 3
+
                 add_colomn("Serial Number",colomn_sn);
 
             }
@@ -924,10 +934,10 @@ public class etiquette_embalage_tpe extends JFrame implements ActionListener {
           String[] art = article_comb.getSelectedItem().toString().split(" ");
           String arti = art[0]; // 004
           
-            imp.update_embalage_tpe(parcel_jtext.getText(),arti,qte_jtext.getText(),gw_comb.getSelectedItem().toString()
-            ,sizecart_comb.getSelectedItem().toString(),commentaire.getText(),date_picker.getEditor().getText(),
+            imp.update_embalage_tpe(rech_jtext.getText(),arti,qte_jtext.getText(),gw_comb.getSelectedItem().toString()
+            ,sizecart_comb.getSelectedItem().toString(),commentaire.getText(),
             palette_comb.getSelectedItem().toString());
-            imp.delete_emei_tpe(parcel_jtext.getText());
+            imp.delete_emei_tpe(rech_jtext.getText());
             
             
          for (int i = 0; i < tab.table.getRowCount(); i++) {
@@ -1038,13 +1048,14 @@ public class etiquette_embalage_tpe extends JFrame implements ActionListener {
 
                         if(imp.exist_emballage_tpe(rech_jtext.getText())==true){
 
-
+                             //parcel_jtext.setText(rech_jtext.getText());
                             imp.selection_tpe_champ(rech_jtext.getText());
                             palette_comb.setSelectedItem(imp.palette);
                             palette_comb.setSelectedItem(imp.palette);
                             article_comb.setSelectedItem(imp.code_article+" "+imp.designation_tpe);
                             qte_jtext.setText(imp.qte_tpe);
 
+                            commentaire.setText(imp.commentaire);
 
 
                           SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -2239,9 +2250,10 @@ int col_enie=-1,col_sn=-1,col_iemi=-1;
                  col_enie= j;
             }
             if (tab.table.getColumnName(j).toString().equals("Serial Number"))
-                 col_sn= j;
+            {  System.out.println("sn_col fi index"+col_sn);
+                col_sn = j;
 
-
+            }
             if (tab.table.getColumnName(j).toString().equals("Code IMEI1/ID"))
                 col_iemi= j;
         }

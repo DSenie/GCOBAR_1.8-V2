@@ -69,7 +69,7 @@ public class list_tpe extends JFrame {
 	private static final long serialVersionUID = 1L;
 	public String Chemin = "c:\\GCOBAR\\";
 	public  String bdd = Chemin+Utilitaire.InitBdd()+".accdb";	
-    Object [] entete={"Parcel","Code/Designation","Date emballage","GW","Quantité","Code Enie","IMEI","Serial Number"};
+    Object [] entete={"Parcel","Code/Designation","Date emballage","GW","Quantité","Code Enie","IMEI","Serial Number", "Commentaire"};
     final Tableau tab=new Tableau(entete);
 	 private JComboBox dimension_comb= new JComboBox();
 	 String report;
@@ -251,12 +251,12 @@ public class list_tpe extends JFrame {
 			//  imp.select_portable();
 			  list_fiche=imp.select_tpe();
 			//  System.out.println(list_fiche);
-			    for(i=0;i<list_fiche.size();i=i+9){tab.ajouter();}
+			    for(i=0;i<list_fiche.size();i=i+10){tab.ajouter();}
 				int j=1;
 				int l = 0; i=1;
 				while(l<list_fiche.size()){
 				
-				 while(l<j*9){
+				 while(l<j*10){
 					
 					 tab.getTable().setValueAt(list_fiche.get(l).toLowerCase(), j-1, 0);
 					 tab.getTable().setValueAt(list_fiche.get(l+1).toLowerCase()+" "+list_fiche.get(l+3).toLowerCase(), j-1, 1);
@@ -280,7 +280,11 @@ public class list_tpe extends JFrame {
 					 tab.getTable().setValueAt(list_fiche.get(l+6).toLowerCase(), j-1, 6);
 
 
-					 i=i+1; l=l+9;
+					 if(list_fiche.get(l+9)!=null)
+						 tab.getTable().setValueAt(list_fiche.get(l+9).toLowerCase(), j-1, 8);
+
+
+					 i=i+1; l=l+10;
 				 }
 				 i=1;
 				j=j+1;		

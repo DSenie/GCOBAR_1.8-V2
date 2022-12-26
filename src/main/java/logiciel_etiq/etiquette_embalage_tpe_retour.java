@@ -780,7 +780,7 @@ public class etiquette_embalage_tpe_retour extends JFrame implements ActionListe
                     String arti = art[0]; // 004
 
                     imp.update_embalage_tpe(parcel_jtext.getText(),arti,qte_jtext.getText(),gw_comb.getSelectedItem().toString()
-                            ,sizecart_comb.getSelectedItem().toString(),commentaire.getText(),date_picker.getEditor().getText(),
+                            ,sizecart_comb.getSelectedItem().toString(),commentaire.getText(),
                             palette_comb.getSelectedItem().toString());
                     imp.delete_emei_tpe(parcel_jtext.getText());
 

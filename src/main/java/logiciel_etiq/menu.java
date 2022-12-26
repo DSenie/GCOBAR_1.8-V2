@@ -81,6 +81,8 @@ public class menu extends JFrame{
 
 
     private JMenuItem etiquette_tpe_3code = new JMenuItem("Etiquette  TPE 3 Code");
+    private JMenuItem etiquette_tpe_2code = new JMenuItem("Etiquette  TPE 2 Code");
+
     private JMenuItem list_etq_tpe_3code = new JMenuItem("Liste Etiquette TPE 3 Code");
 
     private JMenuItem etq_tablette_forniss = new JMenuItem("Etiquette  Tablette");
@@ -413,6 +415,8 @@ public class menu extends JFrame{
         tpe.add(palette_tpe);
 
         tpe.add(etiquette_tpe_3code);
+        tpe.add(etiquette_tpe_2code);
+
         tpe.add(list_etq_tpe_3code);
 
 
@@ -510,6 +514,16 @@ public class menu extends JFrame{
                 new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         etiquette_tpe_3code phon=  new  etiquette_tpe_3code(logi_prio);
+                        //etiquette_embalage_retour phon=  new  etiquette_embalage_retour(logi_prio);
+                        phon.setVisible(true);
+                        dispose();
+                    } });
+
+
+               etiquette_tpe_2code.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        etiquette_tpe_2code phon=  new  etiquette_tpe_2code(logi_prio);
                         //etiquette_embalage_retour phon=  new  etiquette_embalage_retour(logi_prio);
                         phon.setVisible(true);
                         dispose();
