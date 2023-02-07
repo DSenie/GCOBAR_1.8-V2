@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding" addBOMForNewFiles="with NO BOM">
-    <file url="file://$PROJECT_DIR$/src/main/java/logiciel_etiq/CConnect.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/logiciel_etiq/Chaine.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/logiciel_etiq/acceuil.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/logiciel_etiq/Controller/CConnect.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/logiciel_etiq/View/acceuil.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/logiciel_etiq/list_etq_tpe.java" charset="UTF-8" />
   </component>
 </project>
