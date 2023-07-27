@@ -369,15 +369,16 @@ public class etiquette_embalage_tablette extends generale {
 
         imp_etq.addActionListener(
                 event -> {
-                    parameters.clear();
+                    code_aimprimer.clear();
                     if (dimension_comb.getSelectedIndex() == 0) {
                         JOptionPane.showMessageDialog(null, "Vous devez choisir un type d'étiquette"); }
                     else {
 
 
                         code_aimprimer.add(parcel_jtext.getText());
-
+                         System.out.println(parcel_jtext.getText());
                         parameters.put("parcel", code_aimprimer);
+                        System.out.println(code_aimprimer);
 
                         String parcour = constant.etiq_tablette + String.valueOf(dimension_comb.getSelectedItem()).replace("/","_");
 
@@ -809,7 +810,7 @@ public class etiquette_embalage_tablette extends generale {
             for (int i = 0; i < tab.table.getRowCount(); i++) {
                 for (int j = i + 1; j < tab.table.getRowCount(); j++) {
                     if ( tab.table.getValueAt(i, 1).equals(tab.table.getValueAt(j, 1))) {
-                        msg = "les Ligne "+i+ " et "+j+" sont  dupliqué. \n";
+                        msg = "les Lignes "+(i+1)+ " et "+(j+1)+" sont  dupliqué. \n";
                     }
                 }
             }
@@ -829,7 +830,9 @@ public class etiquette_embalage_tablette extends generale {
 
        String msg= verifierchamp();
         for (int i = 0; i < tab.table.getRowCount(); i++) {
-            msg = imp_tablette.sn_deja_associer((String) tab.table.getValueAt(i,1),parcel_jtext.getText());
+
+            msg += imp_tablette.sn_deja_associer((String) tab.table.getValueAt(i,1),parcel_jtext.getText());
+
         }
 
 

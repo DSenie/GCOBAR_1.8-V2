@@ -13,6 +13,8 @@ public class gestion_imp_tpe extends  gestion_general_imp {
 
         if(!sn.trim().equals("")){
             String existe_sn="select sn from etiquette_tpe where (UPPER(sn) =UPPER('"+sn+"') or UPPER(imei) =UPPER('"+sn+"')  ) and  UPPER(code_enie)!=UPPER('"+code_enie+"') ";
+
+            System.out.println(existe_sn);
             if(CConnect.Requete(existe_sn).size()!=0){
                 JOptionPane.showMessageDialog(
                         null,
@@ -65,15 +67,22 @@ public class gestion_imp_tpe extends  gestion_general_imp {
 
     }
 
-    public void update_tpe(String sn,String imei,String code_article, String code_enie)
+    public void update_tpe(String sn,String imei,String code_article, String code_enie,String code_enie_avant,Date date,String code_chaine)
     {
+        String delete = "delete from  etiquette_tpe where UPPER(code_enie)=UPPER('" + code_enie_avant + "')";
+        CConnect.Insert(delete);
 
-        String insert = "update etiquette_tpe set sn='" + sn + "', imei='" + imei + "' , id_article='" + code_article + "' "
-                + " where UPPER(code_enie)=UPPER('" + code_enie + "')"
-                + "";
+        System.out.println(delete);
 
+            String insert = "insert into etiquette_tpe" +
+                    " (code_enie" +
+                    ",sn,imei,code_chaine,id_article,date_tpe)"
+                    + " values('" + code_enie + "'" +
+                    ",'" + sn + "','" + imei + "','" + code_chaine + "','" + code_article + "','" + date_traiter(date) + "')";
         System.out.println(insert);
+
         CConnect.Insert(insert);
+
 
     }
 
@@ -143,21 +152,22 @@ public class gestion_imp_tpe extends  gestion_general_imp {
 
         query = "SELECT  parcel_carton from etiquette_tpe where  parcel_carton<>'' and parcel_carton<>'" + parcel + "' and  UPPER(imei)=UPPER('"+emei+"') " ;
         if(CConnect.Requete(query).size()!=0) {
-            msg+="Le code " + emei + "  est deja associer a un autre carton veiller verifier le carton numero " + CConnect.Requete(query).get(0)+"\n";
+            msg+="Le code " + emei + "  est deja associer a un autre carton veuiller verifier le carton numero " + CConnect.Requete(query).get(0)+"\n";
         }
         else {
             query = "SELECT  parcel_carton from etiquette_tpe where  parcel_carton<>'' and parcel_carton<>'" + parcel + "' and  UPPER(code_enie)=UPPER('" + code_enie + "')   and code_enie<>'' ";
             if (CConnect.Requete(query).size() != 0) {
-                msg += "Le code Enie " + code_enie + "  est deja associer a un autre carton veiller verifier le carton numero " + CConnect.Requete(query).get(0) + "\n";
+                msg += "Le code Enie " + code_enie + "  est deja associer a un autre carton veuiller verifier le carton numero " + CConnect.Requete(query).get(0) + "\n";
             }
             else {
                 query = "SELECT  parcel_carton from etiquette_tpe where  parcel_carton<>'' and parcel_carton<>'" + parcel + "' and   UPPER(sn)=UPPER('" + sn + "')  and sn<>''   ";
                 if (CConnect.Requete(query).size() != 0) {
-                    msg += "Le Serial Number " + sn + "  est deja associer a un autre carton veiller verifier le carton numero " + CConnect.Requete(query).get(0) + "\n";
+                    msg += "Le Serial Number " + sn + "  est deja associer a un autre carton veuiller verifier le carton numero " + CConnect.Requete(query).get(0) + "\n";
                 }
                 else {
                     String existe_enie = "SELECT  imei from etiquette_tpe where (UPPER(code_enie)=UPPER('" + code_enie + "') or  UPPER(imei)=UPPER('" + code_enie + "')" +
                             " or (UPPER(code_enie)=UPPER('" + sn + "') and UPPER(code_enie)<>''  ) ) and  UPPER(imei)<>UPPER('" + emei + "')  ";
+                    System.out.println(existe_enie);
                     if (CConnect.Requete(existe_enie).size() != 0) {
                         msg += "Le code " + code_enie + " est deja associer a un autre  imei " + CConnect.Requete(existe_enie).get(0) + "\n";
                     }
@@ -219,12 +229,14 @@ public class gestion_imp_tpe extends  gestion_general_imp {
 
 
     public ArrayList<String> select_etq_tpe(String filter, Date date_debut, Date date_fin){
-        String query5 = " SELECT  etiquette_tpe.id_article||' '||designation,etiquette_tpe.code_chaine||' '||designation_chaine,date_tpe, code_enie, sn, imei  "
-                + " from etiquette_tpe,article, Chaine "
-                + " where article.code_article=etiquette_tpe.id_article and  Chaine.code_chaine=etiquette_tpe.code_chaine "
+        String query5 = " SELECT  etiquette_tpe.id_article||' '||designation,etiquette_tpe.code_chaine,date_tpe, code_enie, sn, imei  "
+                + " from etiquette_tpe,article "
+                + " where article.code_article=etiquette_tpe.id_article "
                 +" and  date_tpe BETWEEN '"+date_traiter(date_debut)+"' AND '"+date_traiter(date_fin)+"' and "
                 +"(etiquette_tpe.id_article like  '%"+filter+"%' or sn like  '%"+filter+"%' or code_enie like  '%"+filter+"%' or imei like  '%"+filter+"%'" +
-                "  or  designation like  '%"+filter+"%' or etiquette_tpe.code_chaine like  '%"+filter+"%' or  designation_chaine  like  '%"+filter+"%')";
+                "  or  designation like  '%"+filter+"%' or etiquette_tpe.code_chaine like  '%"+filter+"%' )";
+
+            System.out.println(query5);
 
         return CConnect.Requete(query5);
 
@@ -247,6 +259,8 @@ public class gestion_imp_tpe extends  gestion_general_imp {
                 "  or  designation like  '%"+filter+"%' or parcel like  '%"+filter+"%' or gw like  '%"+filter+"%' or carton_size like  '%"+filter+"%' or commentaire like  '%"+filter+"%' " +
                 "or parcel_palette like  '%"+filter+"%'   )";
 
+
+        System.out.println(query5);
         return CConnect.Requete(query5);
 
     }

@@ -7,6 +7,7 @@ import logiciel_etiq.View.tableau.Tableau;
 import logiciel_etiq.constant;
 import org.jdesktop.swingx.JXDatePicker;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import java.awt.*;
 import java.text.ParseException;
@@ -492,14 +493,13 @@ public class etiquette_embalage_tpe extends generale {
 
                             parcour += "_" + parcel_jtext.getText() + ".pdf";
 
-
                         }
 
                         Imprimer_pdf_Final( parcour, report, parameters);
 
                         countCartonPalette(palette_comb, qtepalette, "etiquette_emballage_tpe");
 
-
+                        date_picker.setDate(Calendar.getInstance().getTime());
                         rech_jtext.setText("");
                         action_date();
 
@@ -1087,6 +1087,18 @@ private int col_enie=-1,col_sn=-1,col_iemi=-1;
         if (index!=-1) {
             TableColumn colmn = tab.table.getColumnModel().getColumn(index);
             tab.table.removeColumn(colmn);
+            DefaultTableModel tableModel = (DefaultTableModel) tab.table.getModel();
+
+
+            int modelIndex = colmn.getModelIndex();
+            // Set all the cells in the column to empty
+            int rowCount = tableModel.getRowCount();
+            for (int i = 0; i < rowCount; i++) {
+                tableModel.setValueAt("", i, modelIndex);
+            }
+
+
+
         }
      }
 
@@ -1137,7 +1149,7 @@ private int col_enie=-1,col_sn=-1,col_iemi=-1;
         String msg=verifierchamp();
         for (int i = 0; i < tab.table.getRowCount(); i++) {
             getColomnValue(i);
-            msg = imp_tpe.emai_deja_associer(imei_colomn,Code_Enie,sn_colomn, rech_jtext.getText());
+            msg += imp_tpe.emai_deja_associer(imei_colomn,Code_Enie,sn_colomn, rech_jtext.getText());
         }
 
         if (!msg.equals("")) {
@@ -1153,7 +1165,6 @@ private int col_enie=-1,col_sn=-1,col_iemi=-1;
 
             imp_tpe.delete_code(parcel_jtext.getText(),"etiquette_tpe");
 
-
             for (int i = 0; i < tab.table.getRowCount(); i++) {
                 getColomnValue(i);
                 imp_tpe.ajout_emei_tpe(parcel_jtext.getText(), imei_colomn, sn_colomn,  Code_Enie,splitcombo(chaine_comb),date_picker.getDate(),code_article);
@@ -1163,9 +1174,6 @@ private int col_enie=-1,col_sn=-1,col_iemi=-1;
             visibiliteButton(false, false, false, true,
                     false, false,false);
             imp_etq.setVisible(true);
-
-
-
 
         }
     }

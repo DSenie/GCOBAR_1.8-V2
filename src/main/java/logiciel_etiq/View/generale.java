@@ -671,8 +671,6 @@ public  void remplirTab(ArrayList liste, int col, Tableau tab, int debut_col) {
 ///////*********** action JText sur les champ de tablea*********************/
 
     protected void actionKeyJtextFieldSorter(JTextField filterText, Tableau tab, JLabel count) {
-
-
         filterText.addKeyListener(new KeyAdapter() {
             public void keyReleased(KeyEvent e) {
                 String text = filterText.getText();
@@ -758,10 +756,10 @@ public  void remplirTab(ArrayList liste, int col, Tableau tab, int debut_col) {
         valid_ajou= new  JButton("Valider");
         valid_modif=new  JButton("Valider");
         valid_supp=new  JButton("Valider");
+        styleButton(retour,  panel);
         styleButton(ajouter,  panel);
         styleButton(modifier,  panel);
         styleButton(Supprimer,  panel);
-        styleButton(retour,  panel);
         styleButton(valid_ajou,  panel);
         styleButton(valid_modif,  panel);
         styleButton(valid_supp,  panel);
@@ -922,7 +920,8 @@ public  void remplirTab(ArrayList liste, int col, Tableau tab, int debut_col) {
             fichier.delete();
             killProcess("AcroRd32.exe");
             killProcess("Acrobat.exe");
-
+            killProcess("FoxitReader.exe");
+            killProcess("Foxit Reader.exe");
 
             try {
 

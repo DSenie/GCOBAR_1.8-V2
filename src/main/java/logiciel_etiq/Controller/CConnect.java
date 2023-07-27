@@ -11,17 +11,18 @@ public class CConnect {
 	private CConnect(){
 
 
-        String url = "jdbc:sqlite:C:///GCOBAR/IEsqllite.db";
+        String url = "jdbc:sqlite:C:/GCOBAR/IEsqllite.db";
 
 		  try {
-              con = DriverManager.getConnection(url);
+			  Class.forName("org.sqlite.JDBC").newInstance();
+                      System.out.println("eeeeee");
+			  con = DriverManager.getConnection(url);
 		  } 
 		  
-		  catch (SQLException e1) { 
+		  catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException e1) {
 		   e1.printStackTrace(); 
-		  } 
-
-}
+		  }
+	}
 	public static Connection getInstance(){
 		if(con == null){
 			new CConnect();

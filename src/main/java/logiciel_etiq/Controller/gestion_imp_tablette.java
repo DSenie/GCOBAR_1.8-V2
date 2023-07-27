@@ -12,7 +12,7 @@ public class gestion_imp_tablette extends gestion_general_imp {
 
     public ArrayList<String> select_tablette_fourn(String sn){
         ArrayList <String>resultat= new ArrayList<>() ;
-        String query5 = "SELECT etiquette_tablette.model,designation, couleur, sn, parcel_carton " +
+        String query5 = "SELECT etiquette_tablette.model,designation, couleur, sn, parcel_carton, key_licence " +
                 "FROM etiquette_tablette,article " +
                 "where code_article=etiquette_tablette.model and  UPPER(sn)=UPPER('"+sn+"')  ";
         if(CConnect.Requete(query5).size()>=1){
@@ -23,18 +23,33 @@ public class gestion_imp_tablette extends gestion_general_imp {
     }
 
 
+    public ArrayList<String> tablette_licence_exist(String licence,String sn){
+        ArrayList <String>resultat= new ArrayList<>() ;
+        String query5 = "SELECT key_licence " +
+                "FROM etiquette_tablette " +
+                "where UPPER(key_licence)=UPPER('"+licence+"') and UPPER(sn)<> UPPER('\"+sn+\"')  ";
+        if(CConnect.Requete(query5).size()>=1){
+            resultat=CConnect.Requete(query5);
+        }
+        return resultat;
+
+    }
 
 
-    public void insert_tablette_fournisseur(String model, String couleur, String sn, Date date,String parcel_carton)
+
+    public void insert_tablette_fournisseur(String model, String couleur, String sn, Date date,String parcel_carton,String key_licence)
     {
-        String insert = "insert into etiquette_tablette (model,couleur,sn,date_imp,parcel_carton)"
-                + " values('"+model+"','"+couleur+"','"+sn+"','"+date_traiter(date)+"', '"+parcel_carton+"')";
+        String insert = "insert into etiquette_tablette (model,couleur,sn,date_imp,parcel_carton, key_licence)"
+                + " values('"+model+"','"+couleur+"','"+sn+"','"+date_traiter(date)+"', '"+parcel_carton+"','"+key_licence+"')";
         CConnect.Insert(insert);
 
     }
 
     public void delete_tablette_fournisseur(String  sn){
         String delete= "delete from etiquette_tablette where UPPER(sn)=UPPER('"+sn+"')  ";
+
+
+        System.out.println(delete);
         CConnect.Insert(delete);
     }
 
@@ -91,7 +106,9 @@ public class gestion_imp_tablette extends gestion_general_imp {
 
         query = "SELECT  parcel_carton from etiquette_tablette where  parcel_carton<>'' and parcel_carton<>'" + parcel + "' and  UPPER(sn)=UPPER('"+sn+"') " ;
         if(CConnect.Requete(query).size()!=0) {
+
             msg+="Le code " + sn + "  est deja associer a un autre carton veiller verifier le carton numero " + CConnect.Requete(query).get(0)+"\n";
+
         }
 
         return msg;

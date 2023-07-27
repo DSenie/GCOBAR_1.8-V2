@@ -91,7 +91,7 @@ public class etiquette_tpe extends generale {
 
         JPanel panel = generalPanle();
         declarationButton(pan_button);
-        visibiliteButton(true, true, false, false,
+        visibiliteButton(true, false, false, false,
                 false, false,false);
         initFrame("Etiquette TPE", pan, this, logi_prio,"Etiquette TPE");
         code_enie_jtext.setEditable(false);
@@ -107,6 +107,7 @@ public class etiquette_tpe extends generale {
         chaine_comb.addActionListener(arg0 -> {
             code_chaine=splitcombo(chaine_comb);
             action_date();
+
 
         });
 
@@ -146,6 +147,8 @@ public class etiquette_tpe extends generale {
 
 
         sn_jtext.addActionListener(event -> {
+
+
             if(sn_jtext.getText().contains("SN") || sn_jtext.getText().contains("sn")){
                 String[] test=sn_jtext.getText().split(";");
                 String[] sn=test[0].split(":");
@@ -158,8 +161,8 @@ public class etiquette_tpe extends generale {
             code=sn_jtext.getText();
 
 
-
             code_enie_sn_imei_action();
+
 
         });
 
@@ -169,10 +172,11 @@ public class etiquette_tpe extends generale {
         });
 
         imei_jtext.addActionListener(event -> {
+
             code=imei_jtext.getText();
             code_enie_sn_imei_action();
-        });
 
+        });
 
 
 
@@ -182,10 +186,9 @@ public class etiquette_tpe extends generale {
 
         retour.addActionListener(e -> {
             titleFrame("Edition Etiqette TPE", pan);
-            visibiliteButton(true, true, false, false,
+            visibiliteButton(true, false, false, false,
                     false, false,false);
             imp_etq.setVisible(false);
-            code_enie_jtext.setEditable(false);
             article_comb.setSelectedIndex(0);
         });
 
@@ -195,22 +198,17 @@ public class etiquette_tpe extends generale {
 
 
         ajouter.addActionListener(e -> {
-            titleFrame("Ajouter etiquette TV",pan);
+            titleFrame("Ajouter etiquette TPE",pan);
             visibiliteButton(false, false, false, true,
                     true, false,false);
             imp_etq.setVisible(false);
-            code_enie_jtext.setEditable(false);
         });
 
 
         modifier.addActionListener(e -> {
-            titleFrame("Modifier etiquette TV",pan);
+            titleFrame("Modifier etiquette TPE",pan);
             visibiliteButton(false, false, false, true,
                     false, true,false);
-
-            code_enie_jtext.setText("");
-            code_enie_jtext.setEditable(true);
-
         });
 
 
@@ -246,7 +244,7 @@ public class etiquette_tpe extends generale {
         valid_modif.addActionListener(e -> {
 
                   String msg= validationChamp();
-                   boolean existe=imp_tpe.exist_imei_sn_code(sn_jtext.getText(), imei_jtext.getText(),code_enie_jtext.getText());
+                   boolean existe=imp_tpe.exist_imei_sn_code(sn_jtext.getText(), imei_jtext.getText(),code_enie_avant);
 
                     if (msg.equals("")&&!existe) {
 
@@ -254,7 +252,7 @@ public class etiquette_tpe extends generale {
                                 false, false,false);
                         imp_etq.setVisible(true);
 
-                        imp_tpe.update_tpe(sn_jtext.getText(), imei_jtext.getText(), code_article, code_enie_jtext.getText() );
+                        imp_tpe.update_tpe(sn_jtext.getText(), imei_jtext.getText(), code_article, code_enie_jtext.getText(), code_enie_avant,date_picker.getDate(),code_chaine);
 
                         JOptionPane.showMessageDialog(null, "l'étiquette TPE " + code_enie_jtext.getText()	+ "  a été bien Modifier");
 
@@ -291,13 +289,13 @@ public class etiquette_tpe extends generale {
                         String parcour = constant.etiq_tpe + dimension_comb.getSelectedItem() + "_" + code_enie_jtext.getText() + ".pdf";
 
                         Imprimer_pdf_Final( parcour, report, parameters);
+                        date_picker.setDate(Calendar.getInstance().getTime());
 
                         sn_jtext.setText("");
                         imei_jtext.setText("");
 
                         action_date();
 
-                        code_enie_jtext.setEditable(false);
                         imei_jtext.requestFocus();
 
                         visibiliteButton(false, false, false, true,
@@ -540,14 +538,15 @@ public class etiquette_tpe extends generale {
         return msg;
 
     }
+    String code_enie_avant="";
 
     private void action_date(){
+
          if(chaine_comb.getSelectedIndex()!=0)
             code_chaine=splitcombo(chaine_comb).substring(2).trim();
          String code=imp_tpe.afficher_conteur(date_picker.getDate(),code_chaine,"etiquette_tpe","TPF","code_enie","date_tpe");
-         code_enie_jtext.setText(code);
+        code_enie_jtext.setText(code);
     }
-
 
 
     private void code_enie_sn_imei_action(){
@@ -555,6 +554,9 @@ public class etiquette_tpe extends generale {
         ArrayList<String> tpe_liste=imp_tpe.selection_tpe_champ(code);
 
         if(tpe_liste.size()!=0){
+
+
+            code_enie_jtext.disable();
 
             for(int i=0;i<chaine_comb.getItemCount();i++){
                 if (chaine_comb.getItemAt(i).toString().contains(tpe_liste.get(3))){
@@ -567,6 +569,7 @@ public class etiquette_tpe extends generale {
                     article_comb.setSelectedIndex(i);
                 }
             }
+            code_enie_avant=tpe_liste.get(0);
             code_enie_jtext.setText(tpe_liste.get(0));
             sn_jtext.setText(tpe_liste.get(1));
             imei_jtext.setText(tpe_liste.get(2));
@@ -576,9 +579,8 @@ public class etiquette_tpe extends generale {
                 e.printStackTrace();
             }
 
-
-            visibiliteButton(false, false, false, true,
-                    false, true,false);
+            visibiliteButton(false, true, false, true,
+                    false, false,false);
             imp_etq.setVisible(false);
 
 
@@ -586,10 +588,9 @@ public class etiquette_tpe extends generale {
         else{
 
             imp_etq.setVisible(false);
-            visibiliteButton(true, true, false, false,
+            visibiliteButton(true, false, false, true,
                     false, false,false);
-
-
+            //retour.doClick();
             action_date();
 
 

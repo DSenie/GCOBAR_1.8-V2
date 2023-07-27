@@ -32,6 +32,26 @@ public class etiquette_tablette extends generale {
 	private JLabel sn_lab = new JLabel("SN");
 	private JTextField sn_jtext= new  JTextField();
 
+
+     String snaimp;
+
+	private JPanel pan_nvsn_lab = new JPanel();
+	private JPanel pan_nvsn = new JPanel();
+	private JPanel pan_nvsn_jtext = new JPanel();
+	private JLabel nvsn_lab = new JLabel("Nouveau SN");
+	private JTextField nvsn_jtext= new  JTextField();
+
+
+	private JPanel pan_licence_lab = new JPanel();
+	private JPanel pan_licence = new JPanel();
+	private JPanel pan_licence_jtext = new JPanel();
+	private JLabel licence_lab = new JLabel("licence");
+	private JTextField licence_jtext= new  JTextField();
+
+
+
+
+
 	private JPanel pan_dimension = new JPanel();
 	private JPanel pan_dimension_lab = new JPanel();
 	private JPanel pan_dimension_comb = new JPanel();
@@ -64,7 +84,7 @@ public class etiquette_tablette extends generale {
 		initFrame("Etiquette Tablette", pan, this, logi_prio,"Etiquette Tablette");
 
 
-
+		pan_nvsn.setVisible(false);
         Date actuelle=new Date();
 
 
@@ -102,6 +122,11 @@ public class etiquette_tablette extends generale {
 			color_comb.setSelectedIndex(0);
 			model_jtext.setSelectedIndex(0);
 			sn_jtext.setText("");
+			nvsn_jtext.setText("");
+			licence_jtext.setText("");
+
+			sn_jtext.setEditable(true);
+            pan_nvsn.setVisible(false);
 		});
 
 		ajouter.addActionListener(e -> {
@@ -125,10 +150,10 @@ public class etiquette_tablette extends generale {
 					imp_etq.setVisible(true);
 
 
-					imp_tablette.insert_tablette_fournisseur(code_article,String.valueOf(color_comb.getSelectedItem()),sn_jtext.getText(),actuelle,"");
+					imp_tablette.insert_tablette_fournisseur(code_article,String.valueOf(color_comb.getSelectedItem()),sn_jtext.getText(),actuelle,"",licence_jtext.getText());
 
 					JOptionPane.showMessageDialog(null, "l'étiquette portable " + sn_jtext.getText()	+ "  a été bien ajouté");
-
+                     snaimp=sn_jtext.getText();
 				} else {
 					JOptionPane.showMessageDialog(panel, msg, "Error", JOptionPane.ERROR_MESSAGE);
 
@@ -160,8 +185,8 @@ public class etiquette_tablette extends generale {
 					imp_etq.setVisible(true);
 
 
-					imp_tablette.insert_tablette_fournisseur(code_article,String.valueOf(color_comb.getSelectedItem()),sn_jtext.getText(), actuelle,resultat.get(4).toString());
-
+					imp_tablette.insert_tablette_fournisseur(code_article,String.valueOf(color_comb.getSelectedItem()),nvsn_jtext.getText(), actuelle,resultat.get(4).toString(),licence_jtext.getText());
+					snaimp=nvsn_jtext.getText();
 					JOptionPane.showMessageDialog(null, "l'étiquette tablette " + sn_jtext.getText()	+ "  a été bien Modifier");
 
 				} else {
@@ -178,19 +203,23 @@ public class etiquette_tablette extends generale {
 					if (dimension_comb.getSelectedIndex() == 0) {
 						JOptionPane.showMessageDialog(null, "Vous devez choisir un type d'étiquette"); }
 					else {
-						code_aimprimer.add(sn_jtext.getText());
+						code_aimprimer.add(snaimp);
 
 						parameters.put("serial", code_aimprimer);
 
-						String parcour = constant.etiq_tablette +dimension_comb.getSelectedItem()+"_"+sn_jtext.getText()+"_Etiquette_tablette.pdf";
+						String parcour = constant.etiq_tablette +dimension_comb.getSelectedItem()+"_"+snaimp+"_Etiquette_tablette.pdf";
 
 
 						Imprimer_pdf_Final( parcour, report, parameters);
 						sn_jtext.setText("");
+						nvsn_jtext.setText("");
+						licence_jtext.setText("");
 
 						visibiliteButton(true, false, false, true,
 								false, false, false);
 						imp_etq.setVisible(false);
+						sn_jtext.setEditable(true);
+						pan_nvsn.setVisible(false);
 
 
 					}
@@ -206,6 +235,8 @@ public class etiquette_tablette extends generale {
 		styleLabel(color_lab);
 		styleLabel(sn_lab);
 		styleLabel(dimension_lab);
+		styleLabel(nvsn_lab);
+		styleLabel(licence_lab);
 
 
 		// /*************************add component in pane************/
@@ -232,9 +263,25 @@ public class etiquette_tablette extends generale {
 		pan_sn_jtext.add(sn_jtext);
 
 
+		pan_nvsn.add(pan_nvsn_lab);
+		pan_nvsn_lab.add(nvsn_lab);
+		pan_nvsn.add(pan_nvsn_jtext);
+		pan_nvsn_jtext.add(nvsn_jtext);
+
+
+		pan_licence.add(pan_licence_lab);
+		pan_licence_lab.add(licence_lab);
+		pan_licence.add(pan_licence_jtext);
+		pan_licence_jtext.add(licence_jtext);
+
+
+
 		pan_form.add(pan_model);
 		pan_form.add(pan_color);
 		pan_form.add(pan_sn);
+		pan_form.add(pan_nvsn);
+		pan_form.add(pan_licence);
+
 		pan_form.add(pan_dimension);
 
 
@@ -266,6 +313,19 @@ public class etiquette_tablette extends generale {
 		pan_sn_lab.setOpaque(false);
 		pan_sn_jtext.setOpaque(false);
 
+
+
+		pan_nvsn.setOpaque(false);
+		pan_nvsn_lab.setOpaque(false);
+		pan_nvsn_jtext.setOpaque(false);
+
+		pan_licence.setOpaque(false);
+		pan_licence_lab.setOpaque(false);
+		pan_licence_jtext.setOpaque(false);
+
+
+
+
 		pan_button.setOpaque(false);
 
 
@@ -286,6 +346,9 @@ public class etiquette_tablette extends generale {
 		pan_model.setLayout(new BoxLayout(pan_model, BoxLayout.X_AXIS));
 		pan_color.setLayout(new BoxLayout(pan_color, BoxLayout.X_AXIS));
 		pan_sn.setLayout(new BoxLayout(pan_sn, BoxLayout.X_AXIS));
+		pan_nvsn.setLayout(new BoxLayout(pan_nvsn, BoxLayout.X_AXIS));
+		pan_licence.setLayout(new BoxLayout(pan_licence, BoxLayout.X_AXIS));
+
 		pan_dimension.setLayout(new BoxLayout(pan_dimension, BoxLayout.X_AXIS));
 		pan_dimension_lab.setLayout(new FlowLayout(FlowLayout.CENTER));
 		pan_dimension_comb.setLayout(new FlowLayout(FlowLayout.LEFT));
@@ -296,12 +359,24 @@ public class etiquette_tablette extends generale {
 		pan_sn_lab.setLayout(new FlowLayout(FlowLayout.CENTER));
 		pan_sn_jtext.setLayout(new FlowLayout(FlowLayout.LEFT));
 
+		pan_nvsn_lab.setLayout(new FlowLayout(FlowLayout.CENTER));
+		pan_nvsn_jtext.setLayout(new FlowLayout(FlowLayout.LEFT));
+
+
+		pan_licence_lab.setLayout(new FlowLayout(FlowLayout.CENTER));
+		pan_licence_jtext.setLayout(new FlowLayout(FlowLayout.LEFT));
 
 		// /******************component size**************************/
 
 		color_comb.setPreferredSize(new Dimension(210, 30));
 		model_jtext.setPreferredSize(new Dimension(210, 30));
 		sn_jtext.setPreferredSize(new Dimension(210, 30));
+
+		nvsn_jtext.setPreferredSize(new Dimension(210, 30));
+
+		licence_jtext.setPreferredSize(new Dimension(210, 30));
+
+
 		dimension_comb.setPreferredSize(new Dimension(210, 30));
 
 
@@ -321,6 +396,17 @@ public class etiquette_tablette extends generale {
 
 		pan_sn_lab.setBorder(BorderFactory.createEmptyBorder(0, 135, 0, 0));
 		pan_sn_jtext.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 0));
+
+
+
+		pan_nvsn_lab.setBorder(BorderFactory.createEmptyBorder(0, 75, 0, 0));
+		pan_nvsn_jtext.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 0));
+
+
+
+		pan_licence_lab.setBorder(BorderFactory.createEmptyBorder(0, 105, 0, 0));
+		pan_licence_jtext.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 0));
+
 
 
 		setContentPane(panel);
@@ -343,15 +429,22 @@ private ArrayList  imei(){
 
 				ArrayList <String>  resultat=imp_tablette.select_tablette_fourn(sn_jtext.getText());
 				if(resultat.size()!=0){
+					pan_nvsn.setVisible(true);
+
 					model_jtext.setSelectedItem(resultat.get(0)+" "+resultat.get(1));
 					color_comb.setSelectedItem(resultat.get(2));
 					sn_jtext.setText(resultat.get(3));
+					licence_jtext.setText(resultat.get(5));
 
+					sn_jtext.setEditable(false);
 					visibiliteButton(false, false, false, true,
 							false, true,false);
 					imp_etq.setVisible(false);
+
 				}
 				else{
+					pan_nvsn.setVisible(false);
+
 					imp_etq.setVisible(false);
 					visibiliteButton(true, false, false, true,
 							false, false,false);
@@ -369,10 +462,15 @@ private ArrayList  imei(){
         code_aimprimer.clear();
 
         ArrayList <String>  resultat=imp_tablette.select_tablette_fourn(sn_jtext.getText());
+		ArrayList <String>  tab_existe=imp_tablette.tablette_licence_exist(licence_jtext.getText(), sn_jtext.getText());
 
 		if (sn_jtext.getText().trim().equals("")) {
 			msg += "Veuillez remplir  le Sn \n";
 		}
+		else if (licence_jtext.getText().trim().equals("")) {
+			msg += "Veuillez remplir  la licence \n";
+		}
+
 		else if (color_comb.getSelectedIndex() == 0) {
 			msg += "Veuillez selectionner une couleur \n";
 		}
@@ -384,7 +482,18 @@ private ArrayList  imei(){
 			msg += " Le Serial Number existe déjà \n";
 		}
 
+		else if (tab_existe.size()!=0) {
+			msg += "La licence est déjà associée à une autre tablette.  \n";
+		}
+		else if(pan_nvsn.isVisible()==true){
+			ArrayList <String>  resultat_nv=imp_tablette.select_tablette_fourn(nvsn_jtext.getText());
+         if (resultat_nv.size()!=0) {
+				msg += " Le Serial Number a modifier existe déjà \n";
+			}
 
+
+
+		}
 	}
 
 }
