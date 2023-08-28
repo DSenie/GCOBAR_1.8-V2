@@ -15,12 +15,6 @@ public class etiquette_chariot extends generale {
 
 
 
-    private JPanel pan_chaine = new JPanel();
-    private JPanel pan_chaine_comb = new JPanel();
-    private JPanel pan_chaine_lab = new JPanel();
-    private JLabel chaine_lab = new JLabel("Liste des Chaine");
-    private jcombo chaine_comb= new jcombo(list_comb);
-
 
 
     private JPanel pan_color = new JPanel();
@@ -105,9 +99,6 @@ public class etiquette_chariot extends generale {
         color_comb.addActionListener(e -> addTocomboAction(color_comb));
 
 
-        remplirChaine(chaine_comb);
-        chaine_comb.addActionListener(e -> action_champ());
-
 
         action_champ();
 
@@ -115,7 +106,6 @@ public class etiquette_chariot extends generale {
         retour.addActionListener(e -> {
             titleFrame("Edition Etiquette Chariot",pan);
 
-            chaine_comb.setSelectedIndex(0);
             color_comb.setSelectedIndex(0);
             cont_jtext.setText("");
             date_picker.setDate(Calendar.getInstance().getTime());
@@ -179,7 +169,7 @@ public class etiquette_chariot extends generale {
                     for(int i=af_cont;i<=af_cont+conteur-1;i++ ) {
 
                         code =prefix+ format3.format(i);
-                        imp_tablette.ajouter_chariot(code,(String) color_comb.getSelectedItem(),splitcombo(chaine_comb),date_picker.getDate());
+                        imp_tablette.ajouter_chariot(code,(String) color_comb.getSelectedItem(),date_picker.getDate());
                         code_aimprimer.add(code);
 
                         progressBar.setValue(i);
@@ -242,7 +232,6 @@ public class etiquette_chariot extends generale {
 
         ////******************************style label
 
-        styleLabel(chaine_lab);
         styleLabel(code_lab);
         styleLabel(cont_lab);
         styleLabel(dimension_lab);
@@ -263,10 +252,6 @@ public class etiquette_chariot extends generale {
         pan_color_comb.add(color_comb);
 
 
-        pan_chaine.add(pan_chaine_lab);
-        pan_chaine_lab.add(chaine_lab);
-        pan_chaine.add(pan_chaine_comb);
-        pan_chaine_comb.add(chaine_comb);
 
 
         pan_code.add(pan_code_lab);
@@ -288,7 +273,6 @@ public class etiquette_chariot extends generale {
 
         pan_form.add(pan_code);
         pan_form.add(pan_date);
-        pan_form.add(pan_chaine);
         pan_form.add(pan_color);
 
         pan_form.add(pan_cont);
@@ -317,9 +301,7 @@ public class etiquette_chariot extends generale {
         pan_date_lab.setOpaque(false);
         pan_date_jtext.setOpaque(false);
 
-        pan_chaine.setOpaque(false);
-        pan_chaine_lab.setOpaque(false);
-        pan_chaine_comb.setOpaque(false);
+
 
 
         pan_code.setOpaque(false);
@@ -358,7 +340,6 @@ public class etiquette_chariot extends generale {
         pan_date.setLayout(new BoxLayout(pan_date, BoxLayout.X_AXIS));
         pan_dimension.setLayout(new BoxLayout(pan_dimension, BoxLayout.X_AXIS));
         pan_code.setLayout(new BoxLayout(pan_code, BoxLayout.X_AXIS));
-        pan_chaine.setLayout(new BoxLayout(pan_chaine, BoxLayout.X_AXIS));
 
         pan_cont.setLayout(new BoxLayout(pan_cont, BoxLayout.X_AXIS));
 
@@ -372,8 +353,6 @@ public class etiquette_chariot extends generale {
         pan_color_comb.setLayout(new FlowLayout(FlowLayout.LEFT));
 
 
-        pan_chaine_lab.setLayout(new FlowLayout(FlowLayout.RIGHT));
-        pan_chaine_comb.setLayout(new FlowLayout(FlowLayout.LEFT));
 
         pan_dimension_lab.setLayout(new FlowLayout(FlowLayout.RIGHT));
         pan_dimension_comb.setLayout(new FlowLayout(FlowLayout.LEFT));
@@ -393,7 +372,6 @@ public class etiquette_chariot extends generale {
         styleButton(imp_etq,pan_button);
 
         styleComponent(dimension_comb);
-        styleComponent(chaine_comb);
         styleComponent(date_picker);
         styleComponent(code_jtext);
         styleComponent(cont_jtext);
@@ -409,10 +387,6 @@ public class etiquette_chariot extends generale {
 
         pan_date_lab.setBorder(BorderFactory.createEmptyBorder(0, 273, 0, 0));
         pan_date_jtext.setBorder(BorderFactory.createEmptyBorder(0, 50, 0, 0));
-
-        pan_chaine_lab.setBorder(BorderFactory.createEmptyBorder(0, 187, 0, 0));
-        pan_chaine_comb.setBorder(BorderFactory.createEmptyBorder(0, 50, 0, 0));
-
 
         pan_color_lab.setBorder(BorderFactory.createEmptyBorder(0, 180, 0, 0));
         pan_color_comb.setBorder(BorderFactory.createEmptyBorder(0, 50, 0, 0));
@@ -445,10 +419,9 @@ public class etiquette_chariot extends generale {
 
     private void action_champ(){
         System.out.println();
-        if(chaine_comb.getSelectedIndex()!=0)
-            code_chaine=splitcombo(chaine_comb).substring(2).trim();
 
-        String code=imp_tablette.afficher_conteur(date_picker.getDate(),code_chaine,"etiquette_chariot","CT","code","date_chariot");
+
+        String code=imp_tablette.afficher_conteur(date_picker.getDate(),"","etiquette_chariot","CT","code","date_chariot");
         code_jtext.setText(code);
     }
 

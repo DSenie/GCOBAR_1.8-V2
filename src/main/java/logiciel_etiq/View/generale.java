@@ -8,6 +8,8 @@ import logiciel_etiq.constant;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
+
+import javax.print.*;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
@@ -15,6 +17,8 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -911,72 +915,72 @@ public  void remplirTab(ArrayList liste, int col, Tableau tab, int debut_col) {
 
 
 
-    public  void Imprimer_pdf_Final(String parcour,String report, Map<String, Object> parameters){
+    public  void Imprimer_pdf_Final(String parcour,String report, Map<String, Object> parameters) {
 
-            creeDossier(parcour);
+        creeDossier(parcour);
 
-            String model = chemin_report + report;
-            File fichier = new File(parcour);
-            fichier.delete();
-            killProcess("AcroRd32.exe");
-            killProcess("Acrobat.exe");
-            killProcess("FoxitReader.exe");
-            killProcess("Foxit Reader.exe");
+        String model = chemin_report + report;
+        File fichier = new File(parcour);
+        fichier.delete();
+        killProcess("AcroRd32.exe");
+        killProcess("Acrobat.exe");
+        killProcess("FoxitReader.exe");
+        killProcess("Foxit Reader.exe");
 
-            try {
+        try {
 
-                JPanel controlPanel = new JPanel();
-                JFrame frame = new JFrame();
-                frame.add(controlPanel);
-                frame.setUndecorated(true);
+            JPanel controlPanel = new JPanel();
+            JFrame frame = new JFrame();
+            frame.add(controlPanel);
+            frame.setUndecorated(true);
 
-                JLabel titr = new JLabel("Veuillez patienter ....");
-                titr.setFont(titr.getFont().deriveFont(Font.BOLD | Font.ITALIC));
-                UIManager.put("nimbusOrange", (new Color(70, 130, 180)));
+            JLabel titr = new JLabel("Veuillez patienter ....");
+            titr.setFont(titr.getFont().deriveFont(Font.BOLD | Font.ITALIC));
+            UIManager.put("nimbusOrange", (new Color(70, 130, 180)));
 
-                titr.setFont(police2);
-                controlPanel.add(titr);
-                controlPanel.setBorder(BorderFactory.createEmptyBorder(20, 0, 0, 0));
+            titr.setFont(police2);
+            controlPanel.add(titr);
+            controlPanel.setBorder(BorderFactory.createEmptyBorder(20, 0, 0, 0));
 
-                frame.setSize(300, 70);
-                frame.setLocationRelativeTo(null);
-                frame.setVisible(true);
+            frame.setSize(300, 70);
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
 
-                JasperDesign jasperDesign = JRXmlLoader.load(model);
-                JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+            JasperDesign jasperDesign = JRXmlLoader.load(model);
+            JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
 
 
-                //- Execution du rapport
-                JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, CConnect.getInstance());
+            //- Execution du rapport
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, CConnect.getInstance());
 
-                //- Cr?ation du rapport au format PDF
+            //- Cr?ation du rapport au format PDF
 
-                JasperExportManager.exportReportToPdfFile(jasperPrint, parcour);
-                controlPanel.remove(titr);
-                frame.setVisible(false);
-                int reponse = JOptionPane.showConfirmDialog(
+            JasperExportManager.exportReportToPdfFile(jasperPrint, parcour);
+            controlPanel.remove(titr);
+            frame.setVisible(false);
+            int reponse = 0;
+                       /* JOptionPane.showConfirmDialog(
                         null, "Operation terminée. Voulez-vous ouvrir le pdf?",
                         "Confirmation",
                         JOptionPane.YES_NO_OPTION,
-                        JOptionPane.QUESTION_MESSAGE);
-                if (reponse == JOptionPane.YES_OPTION) {
-                    try {
-                        Desktop.getDesktop().open(new File(parcour));
-                    } catch (IOException p) {
-//TODO Auto-generated catch block
-                        p.printStackTrace();
-                    }
-                }
-            } catch(JRException p){
-//TODO Auto-generated catch block
-                p.printStackTrace();
-            }
+                        JOptionPane.QUESTION_MESSAGE);*/
+            if (reponse == 0) {
+                try {
+                    Desktop.getDesktop().open(new File(parcour));
 
+                } catch (IOException p) {
+//TODO Auto-generated catch block
+                    p.printStackTrace();
+
+                }
+            }
+        } catch (JRException e) {
+            e.printStackTrace();
+        }
     }
 
 
-
-   ///////**************generation de l'excel lors de selecction tableu*************/
+        ///////**************generation de l'excel lors de selecction tableu*************/
     protected void generateExcel(String nom_par, String titre, Tableau tab, Object[] entete, int selectedRow){
         if(selectedRow!=0){
 

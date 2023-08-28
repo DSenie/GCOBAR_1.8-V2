@@ -15,7 +15,6 @@ public class CConnect {
 
 		  try {
 			  Class.forName("org.sqlite.JDBC").newInstance();
-                      System.out.println("eeeeee");
 			  con = DriverManager.getConnection(url);
 		  } 
 		  

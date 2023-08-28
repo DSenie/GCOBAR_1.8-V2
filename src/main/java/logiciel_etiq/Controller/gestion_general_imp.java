@@ -145,7 +145,6 @@ public class gestion_general_imp {
 
         String  code_globale = afficher_conteur(date_i, chaine, prefix);
         ArrayList list_affiche_cont2=CConnect.Requete(query2);
-        System.out.println("ddddddd"+list_affiche_cont2);
 
         if(list_affiche_cont2.get(0)!=null){
             count=Integer.parseInt(list_affiche_cont2.get(0).toString().substring(list_affiche_cont2.get(0).toString().length()-4));
@@ -245,8 +244,10 @@ public class gestion_general_imp {
         int position_number=prefix.length()+1;
         int pos_count=codeSelect.length()-3;
         System.out.println(codeSelect+" "+pos_count+" "+codeSelect.length());
-        String query2 = " SELECT Max("+codeSelect+") FROM "+table+"  where "+date+"= '"+date_traiter(date_i)+"'  " +
-                "and  substr("+codeSelect+","+position_number+",1)= '"+chaine+"' " ;
+        String query2 = " SELECT Max("+codeSelect+") FROM "+table+"  where "+date+"= '"+date_traiter(date_i)+"'  " ;
+        if(!chaine.equals(""))
+            query2+=   "and  substr("+codeSelect+","+position_number+",1)= '"+chaine+"' " ;
+
         return codification_generale(date_i, chaine, prefix,query2);
     }
 

@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class list_etq_chariot extends generale {
 
 
-    private Object [] entete={"Code","Date","Couleur","Chaine"};
+    private Object [] entete={"Code","Date","Couleur"};
     private Tableau tab=new Tableau(entete);
 
 
@@ -216,7 +216,7 @@ public class list_etq_chariot extends generale {
 
     public void recherche(){
     ArrayList list_fiche=imp_tablette.recherche_chariot(filterText.getText(),datedebutText.getDate(),datefinText.getDate());
-    remplirTab(list_fiche, 4,  tab,0);
+        remplirTab(list_fiche, 3,  tab,0);
     count.setText("Nombre Total : " +tab.table.getRowCount());
     }
 

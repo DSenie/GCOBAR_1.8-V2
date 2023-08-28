@@ -27,7 +27,7 @@ public class gestion_imp_tablette extends gestion_general_imp {
         ArrayList <String>resultat= new ArrayList<>() ;
         String query5 = "SELECT key_licence " +
                 "FROM etiquette_tablette " +
-                "where UPPER(key_licence)=UPPER('"+licence+"') and UPPER(sn)<> UPPER('\"+sn+\"')  ";
+                "where UPPER(key_licence)=UPPER('"+licence+"') and UPPER(sn)<> UPPER('"+sn+"')  ";
         if(CConnect.Requete(query5).size()>=1){
             resultat=CConnect.Requete(query5);
         }
@@ -158,9 +158,9 @@ public class gestion_imp_tablette extends gestion_general_imp {
 
 
 
-    public void ajouter_chariot(String code,String couleur,String code_chaine,Date date){
-        String insert = "insert into etiquette_chariot (code,date_chariot,couleur,code_chaine)"
-                + " values('"+code+"','"+date_traiter(date)+"','"+couleur+"', '"+code_chaine+"')";
+    public void ajouter_chariot(String code,String couleur,Date date){
+        String insert = "insert into etiquette_chariot (code,date_chariot,couleur)"
+                + " values('"+code+"','"+date_traiter(date)+"','"+couleur+"')";
         CConnect.Insert(insert);
     }
 
@@ -191,12 +191,13 @@ public class gestion_imp_tablette extends gestion_general_imp {
 
     public ArrayList<String> recherche_chariot(String filter,Date datedebut,Date datefin)
     {
-          String  insert = "select distinct code,date_chariot,couleur, c.code_chaine||' '||designation_chaine "
-                    + "from etiquette_chariot, Chaine c " +
-                  "  where c.code_chaine=etiquette_chariot.code_chaine and "
+          String  insert = "select distinct code,date_chariot,couleur "
+                    + "from etiquette_chariot" +
+                  "  where  "
                     + "   date_chariot BETWEEN '"+date_traiter(datedebut)+"'  and '"+date_traiter(datefin)+"'   "
-                    + "AND(  code like '%"+filter+"%' or  couleur  like '%"+filter+"%' " +
-                  "  or  c.code_chaine  like '%"+filter+"%' or designation_chaine  like '%"+filter+"%')";
+                    + "AND(  code like '%"+filter+"%' or  couleur  like '%"+filter+"%' )";
+
+
         return  CConnect.Requete(insert);
     }
 
@@ -204,13 +205,14 @@ public class gestion_imp_tablette extends gestion_general_imp {
 
 
     public ArrayList<String> select_etq_tablette(String filter,Date datedebut,Date datefin){
-        String query5 = "SELECT article.code_article||' '||designation,couleur,sn, date_imp "
+        String query5 = "SELECT article.code_article||' '||designation,couleur,sn, key_licence, date_imp "
                 + " from etiquette_tablette ,article "
                 + " where article.code_article=etiquette_tablette.model"
                + "  and  date_imp BETWEEN '"+date_traiter(datedebut)+"'  and '"+date_traiter(datefin)+"'   "
-                + "AND(   couleur  like '%"+filter+"%' " +
+                + "AND(  couleur  like '%"+filter+"%' " +
                 "  or   designation  like '%"+filter+"%' or etiquette_tablette.model  like '%"+filter+"%'" +
-                " or sn  like '%"+filter+"%')";
+                " or sn  like '%"+filter+"%' or key_licence  like '%"+filter+"%')";
+        System.out.println(query5);
         return CConnect.Requete(query5);
 
     }

@@ -8,9 +8,12 @@
     <properties>
         <jdk.version>1.6.1</jdk.version>
     </properties>
-    <groupId>groupId</groupId>
+
+
+    <groupId>GCOBAR</groupId>
     <artifactId>GCOBAR</artifactId>
     <version>1.0-SNAPSHOT</version>
+
     <build>
         <resources>
             <!-- regular resource processsing for everything except logback.xml -->
@@ -267,21 +270,7 @@
             <version>3.23.1</version>
         </dependency>
 
-        <dependency>
-            <groupId>groupId</groupId>
-            <artifactId>GCOBAR</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>groupId</groupId>
-            <artifactId>GCOBAR</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>groupId</groupId>
-            <artifactId>GCOBAR</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
+
 
     </dependencies>
 

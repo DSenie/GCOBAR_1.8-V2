@@ -8,6 +8,10 @@ import logiciel_etiq.constant;
 import javax.swing.*;
 import java.awt.*;
 
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.IOException;
 import java.util.*;
 
 
@@ -102,13 +106,35 @@ public class etiquette_tablette extends generale {
 
         remplirColor(color_comb,"etiquette_tablette");
 		color_comb.addActionListener(e -> addTocomboAction(color_comb));
+		sn_jtext.addActionListener(e -> {
+					resultat = imei();
+					if(resultat.size()>0) {
+						nvsn_jtext.requestFocus();
+					}
+					else {
+						licence_jtext.requestFocus();
+
+					}
+
+
+				}
+
+		);
+
+
+
+		nvsn_jtext.addKeyListener(new KeyAdapter() {
+			public void keyPressed(KeyEvent evt) {
+				if(evt.getKeyCode()== KeyEvent.VK_ENTER)
+				{
+					licence_jtext.requestFocus();
+				}
+			}
+		});
 
 
 
 
-        sn_jtext.addActionListener(e ->
-            resultat=imei()
-        );
 
 
 
@@ -147,13 +173,15 @@ public class etiquette_tablette extends generale {
 					visibiliteButton(false, false, false, true,
 							false, false,false);
 
-					imp_etq.setVisible(true);
+					//imp_etq.setVisible(true);
 
 
 					imp_tablette.insert_tablette_fournisseur(code_article,String.valueOf(color_comb.getSelectedItem()),sn_jtext.getText(),actuelle,"",licence_jtext.getText());
 
 					JOptionPane.showMessageDialog(null, "l'étiquette portable " + sn_jtext.getText()	+ "  a été bien ajouté");
                      snaimp=sn_jtext.getText();
+
+                     imp_etq.doClick();
 				} else {
 					JOptionPane.showMessageDialog(panel, msg, "Error", JOptionPane.ERROR_MESSAGE);
 
@@ -174,20 +202,23 @@ public class etiquette_tablette extends generale {
 
         valid_modif.addActionListener(e -> {
 			Thread	att= new Thread(() -> {
-				imp_tablette.delete_tablette_fournisseur(sn_jtext.getText());
 
 				msg = "";
 				validationChamp();
 
 				if (msg.equals("")) {
+
 					visibiliteButton(false, false, false, true,
 							false, false,false);
-					imp_etq.setVisible(true);
+					//imp_etq.setVisible(true);
 
+                    imp_tablette.delete_tablette_fournisseur(sn_jtext.getText());
 
 					imp_tablette.insert_tablette_fournisseur(code_article,String.valueOf(color_comb.getSelectedItem()),nvsn_jtext.getText(), actuelle,resultat.get(4).toString(),licence_jtext.getText());
 					snaimp=nvsn_jtext.getText();
 					JOptionPane.showMessageDialog(null, "l'étiquette tablette " + sn_jtext.getText()	+ "  a été bien Modifier");
+					imp_etq.doClick();
+
 
 				} else {
 					JOptionPane.showMessageDialog(panel, msg, "Error", JOptionPane.ERROR_MESSAGE);
@@ -200,9 +231,7 @@ public class etiquette_tablette extends generale {
 		imp_etq.addActionListener(
 				event -> {
 
-					if (dimension_comb.getSelectedIndex() == 0) {
-						JOptionPane.showMessageDialog(null, "Vous devez choisir un type d'étiquette"); }
-					else {
+
 						code_aimprimer.add(snaimp);
 
 						parameters.put("serial", code_aimprimer);
@@ -218,11 +247,13 @@ public class etiquette_tablette extends generale {
 						visibiliteButton(true, false, false, true,
 								false, false, false);
 						imp_etq.setVisible(false);
+
+
 						sn_jtext.setEditable(true);
 						pan_nvsn.setVisible(false);
 
 
-					}
+
 				});
 
 
@@ -400,7 +431,7 @@ public class etiquette_tablette extends generale {
 
 
 		pan_nvsn_lab.setBorder(BorderFactory.createEmptyBorder(0, 75, 0, 0));
-		pan_nvsn_jtext.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 0));
+		pan_nvsn_jtext.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
 
 
 
@@ -429,17 +460,36 @@ private ArrayList  imei(){
 
 				ArrayList <String>  resultat=imp_tablette.select_tablette_fourn(sn_jtext.getText());
 				if(resultat.size()!=0){
-					pan_nvsn.setVisible(true);
+					int reponse = JOptionPane.showConfirmDialog(
+							null, "SN existe deja. Voullez vous modifier le SN",
+							"Confirmation",
+							JOptionPane.YES_NO_OPTION,
+							JOptionPane.ERROR_MESSAGE);
 
-					model_jtext.setSelectedItem(resultat.get(0)+" "+resultat.get(1));
-					color_comb.setSelectedItem(resultat.get(2));
-					sn_jtext.setText(resultat.get(3));
-					licence_jtext.setText(resultat.get(5));
+					if (reponse == JOptionPane.YES_OPTION) {
+						pan_nvsn.setVisible(true);
+						model_jtext.setSelectedItem(resultat.get(0)+" "+resultat.get(1));
+						color_comb.setSelectedItem(resultat.get(2));
+						sn_jtext.setText(resultat.get(3));
+						licence_jtext.setText(resultat.get(5));
 
-					sn_jtext.setEditable(false);
-					visibiliteButton(false, false, false, true,
-							false, true,false);
-					imp_etq.setVisible(false);
+						sn_jtext.setEditable(false);
+						visibiliteButton(false, false, false, true,
+								false, true,false);
+						imp_etq.setVisible(false);
+
+					}
+					else {
+						pan_nvsn.setVisible(false);
+
+						imp_etq.setVisible(false);
+						visibiliteButton(true, false, false, true,
+								false, false,false);
+						sn_jtext.setText("");
+						sn_jtext.setFocusable(true);
+
+					}
+
 
 				}
 				else{
@@ -449,7 +499,6 @@ private ArrayList  imei(){
 					visibiliteButton(true, false, false, true,
 							false, false,false);
 
-
 				}
 
 	return resultat;
@@ -457,20 +506,23 @@ private ArrayList  imei(){
 
 
 
-
 	private void validationChamp(){
         code_aimprimer.clear();
-
-        ArrayList <String>  resultat=imp_tablette.select_tablette_fourn(sn_jtext.getText());
+		ArrayList <String>  resultatsn=imp_tablette.select_tablette_fourn(sn_jtext.getText());
 		ArrayList <String>  tab_existe=imp_tablette.tablette_licence_exist(licence_jtext.getText(), sn_jtext.getText());
-
-		if (sn_jtext.getText().trim().equals("")) {
+		 if (sn_jtext.getText().trim().equals("")) {
 			msg += "Veuillez remplir  le Sn \n";
 		}
 		else if (licence_jtext.getText().trim().equals("")) {
 			msg += "Veuillez remplir  la licence \n";
 		}
 
+		else if (!sn_jtext.getText().trim().contains("SKT")) {
+			msg += "Veuillez remplir  un SN valide. \n";
+		}
+		else if (!nvsn_jtext.getText().trim().contains("SKT")&&pan_nvsn.isVisible()==true) {
+			msg += "Veuillez remplir  un nouveau SN valide. \n";
+		}
 		else if (color_comb.getSelectedIndex() == 0) {
 			msg += "Veuillez selectionner une couleur \n";
 		}
@@ -478,14 +530,15 @@ private ArrayList  imei(){
 			msg += "Veuillez selectionner  l'article \n";
 		}
 
-		else if (resultat.size()!=0) {
+		else if (resultatsn.size()!=0&&pan_nvsn.isVisible()==false) {
 			msg += " Le Serial Number existe déjà \n";
 		}
 
 		else if (tab_existe.size()!=0) {
 			msg += "La licence est déjà associée à une autre tablette.  \n";
 		}
-		else if(pan_nvsn.isVisible()==true){
+		else if(pan_nvsn.isVisible()==true&&!sn_jtext.getText().equals(nvsn_jtext.getText())){
+
 			ArrayList <String>  resultat_nv=imp_tablette.select_tablette_fourn(nvsn_jtext.getText());
          if (resultat_nv.size()!=0) {
 				msg += " Le Serial Number a modifier existe déjà \n";
@@ -494,6 +547,12 @@ private ArrayList  imei(){
 
 
 		}
+		else if (dimension_comb.getSelectedIndex() == 0) {
+			 msg += "Vous devez choisir un type d'étiquette \n";
+
+
+		}
+
 	}
 
 }

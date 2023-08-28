@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class list_etq_tablette extends generale {
 
 
-    private Object [] entete={"Code/Designation Article ","couleur","sn","Date"};
+    private Object [] entete={"Code/Designation Article ","couleur","sn","Licence", "Date"};
     private Tableau tab=new Tableau(entete);
 
 
@@ -214,7 +214,9 @@ public class list_etq_tablette extends generale {
 
     private void recherche_tablette(){
     ArrayList list_fiche=imp_tablette.select_etq_tablette(filterText.getText(),datedebutText.getDate(),datefinText.getDate());
-    remplirTab(list_fiche, 4,  tab,0);
+        System.out.println(list_fiche);
+
+        remplirTab(list_fiche, 5,  tab,0);
     count.setText("Nombre Total : " +tab.table.getRowCount());
     }
 
