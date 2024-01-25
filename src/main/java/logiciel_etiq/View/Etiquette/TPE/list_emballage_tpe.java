@@ -104,7 +104,9 @@ public class list_emballage_tpe extends generale {
                     else {
                          removeDoublant(tab,1);
                         if (selectedRow != 0) {
-                            String parcour = constant.etiq_tpe + String.valueOf(dimension_comb.getSelectedItem()).replace("/","-") + tab.table.getSelectedRowCount() + "_" + ".pdf";
+                            String parcour = constant.etiq_tpe +
+                                    String.valueOf(dimension_comb.getSelectedItem()).replace("/","-") + tab.table.getSelectedRowCount() + "_" + ".pdf";
+
                             parameters.put("parcel", code_aimprimer);
                             Imprimer_pdf_Final(parcour, report, parameters);
                             code_aimprimer.clear();

@@ -1001,28 +1001,32 @@ public  void remplirTab(ArrayList liste, int col, Tableau tab, int debut_col) {
                 String safeName = WorkbookUtil.createSafeSheetName(titre);
                 XSSFSheet sheet = worksheet.createSheet(safeName);
 
-                XSSFRow row ;
+
+
+                /********************** creation de l'etete   ************************/
+                XSSFRow row = sheet.createRow(0);
+                XSSFCell cell ;
+                for(int i=0; i<entete.length;i++) {
+                    cell = row.createCell(i);
+                    cell.setCellValue(entete[i].toString());
+                    CellStyle cellStyle = worksheet.createCellStyle();
+                    cellStyle.setFillForegroundColor(HSSFColor.LIGHT_CORNFLOWER_BLUE.index);
+                    cellStyle.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
+                    cell.setCellStyle(cellStyle);
+                }
+
 
                 int[] selection = tab.table.getSelectedRows() ;
                 int z =selection.length;
                 for (int j=0;j<z; j++) {
-                    row = sheet.createRow(j);
+                    row = sheet.createRow(j+1);
 
                     for(int i=0; i<entete.length;i++) {
-                        XSSFCell cell = row.createCell(i);
-
-                        if(j==0){
-                            cell.setCellValue(entete[i].toString());
-                            CellStyle cellStyle = worksheet.createCellStyle();
-                            cellStyle.setFillForegroundColor(HSSFColor.LIGHT_CORNFLOWER_BLUE.index);
-                            cellStyle.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
-                            cell.setCellStyle(cellStyle);
-                        }
-                        else
-                            cell.setCellValue(tab.table.getValueAt(selection[j], i).toString());
-
-
-                        sheet.autoSizeColumn(i);
+                         cell = row.createCell(i);
+                         if(tab.table.getValueAt(selection[j], i)!=null){
+                             cell.setCellValue(tab.table.getValueAt(selection[j], i).toString());
+                         }
+                            sheet.autoSizeColumn(i);
                     }
 
                 }
